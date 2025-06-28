@@ -1,0 +1,19 @@
+<button
+  class="btn"
+  [class]="[
+    'btn',
+    `btn--${variant()}`,
+    `btn--${size()}`,
+    `btn--${color()}`,
+    loading() ? 'btn--loading' : '',
+    disabled() ? 'btn--disabled' : '',
+    bgWhite() ? 'bg--white' : ''
+  ]"
+  [disabled]="disabled() || loading()"
+>
+    @if (!loading()) {
+      <ng-content></ng-content>
+    } @else {
+    <span class="btn__spinner"></span>
+    }
+</button>

@@ -1,0 +1,118 @@
+@if (type() === 'tel') {
+  <div class="relative w-full flex items-center">
+    <img [src]="selectedCountry()?.flag" alt="country flag" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-[30px] rounded-sm z-10">
+    <select 
+      class="absolute left-[42px] top-1/2 -translate-y-1/2 bg-transparent border-none w-10 text-black cursor-pointer z-20 disabled:text-gray-500 disabled:cursor-not-allowed" 
+      [disabled]="isDisabled"
+      (change)="onSelectCountry($any($event.target).value)">
+      @for (country of availableCountries; track country.code) {
+        <option [value]="country.code" [selected]="country.code === selectedCountry()?.code">
+          {{country.code}}
+        </option>
+      }
+    </select>
+    <div class="relative flex items-center bg-white min-h-[54px] px-3 rounded-md border" 
+         [class.border-red-500]="errors() && fieldIsTouched"
+         [class.border-gray-200]="!(errors() && fieldIsTouched)"
+         [style.width]="width()" 
+         [style.height]="height()" 
+         [style.background-color]="backgroundColor()">
+      <span class="pl-20 text-sm">{{selectedCountry()?.dialCode}}</span>
+
+      <input 
+        [type]="type()" 
+        [id]="label()" 
+        [placeholder]="floatingLabels() ? ' ' : placeholder()"
+        class="h-full w-full border-none outline-none text-sm text-gray-900 font-medium leading-[130%] font-montserrat px-1.5 mt-1.5 bg-transparent"
+        [class.placeholder-start]="placeholderPosition() === 'start'"
+        [class.has-content]="innerValue && innerValue.length > 0"
+        [formControlName]="label()"
+        (input)="onInputChange($any($event.target).value)" 
+        (focus)="onFocus()"
+        (blur)="onBlur()">
+      <label 
+        [for]="label()" 
+        class="absolute left-4 font-montserrat text-sm transition-all duration-200 pointer-events-none top-1/2 -translate-y-1/2 z-10"
+        [class.text-red-500]="errors() && fieldIsTouched"
+        [class.text-gray-600]="!(errors() && fieldIsTouched)"
+        [class.floating]="floatingLabels() && (isFocused || (innerValue && innerValue.length > 0))">
+        {{ floatingLabels() ? placeholder() : label() }}
+      </label>
+    </div>
+  </div>
+} @else {
+  <div class="relative flex items-center bg-white min-h-[54px] px-3 rounded-md border" 
+       [class.border-red-500]="errors() && fieldIsTouched"
+       [class.border-gray-200]="!(errors() && fieldIsTouched)"
+       [style.width]="width()" 
+       [style.height]="height()" 
+       [style.background-color]="backgroundColor()">
+    <input 
+      [type]="type()" 
+      [id]="label()" 
+      [placeholder]="floatingLabels() ? ' ' : placeholder()"
+      class="h-full w-full border-none outline-none text-sm text-gray-900 font-medium leading-[130%] font-montserrat px-1.5 mt-1.5 bg-transparent"
+      [class.pl-12]="leftImageUrl()"
+      [class.pr-12]="rightImageUrl() || (showClearButton() && innerValue)"
+      [class.placeholder-start]="placeholderPosition() === 'start'"
+      [class.has-content]="innerValue && innerValue.length > 0"
+      [formControlName]="label()"
+      (input)="onInputChange($any($event.target).value)" 
+      (focus)="onFocus()"
+      (blur)="onBlur()">
+
+    <label 
+      [for]="label()" 
+      class="absolute left-4 font-montserrat text-sm transition-all duration-200 pointer-events-none top-1/2 -translate-y-1/2 z-10"
+      [class.text-red-500]="errors() && fieldIsTouched"
+      [class.text-gray-600]="!(errors() && fieldIsTouched)"
+      [class.floating]="floatingLabels() && innerValue && innerValue.length > 0">
+      {{ floatingLabels() ? placeholder() : label() }}
+    </label>
+
+    @if (leftImageUrl()) {
+      <div class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4">
+        <img [src]="leftImageUrl()" alt="left icon" class="w-full h-full object-contain">
+      </div>
+    }
+
+    @if (rightImageUrl()) {
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 cursor-pointer" (click)="onRightIconClick()">
+        <img [src]="rightImageUrl()" alt="right icon" class="w-full h-full object-contain">
+      </div>
+    }
+
+    @if (showClearButton() && innerValue) {
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer z-20 hover:opacity-80" (click)="clearInput()">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+            stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11.9314 7.1297C12.2243 6.8368 12.2243 6.36193 11.9314 6.06904C11.6385 5.77614 11.1636 5.77614 10.8707 6.06904L9.00107 7.93871L7.1314 6.06904C6.83851 5.77614 6.36364 5.77614 6.07074 6.06904C5.77785 6.36193 5.77785 6.8368 6.07074 7.1297L7.94041 8.99937L6.07074 10.869C5.77785 11.1619 5.77785 11.6368 6.07074 11.9297C6.36364 12.2226 6.83851 12.2226 7.1314 11.9297L9.00107 10.06L10.8707 11.9297C11.1636 12.2226 11.6385 12.2226 11.9314 11.9297C12.2243 11.6368 12.2243 11.1619 11.9314 10.869L10.0617 8.99937L11.9314 7.1297Z"
+            fill="#2E2473" />
+        </svg>
+      </div>
+    }
+  </div>
+}
+
+@if (errors() && fieldIsTouched) {
+  <div class="mt-0.5 pl-3 bg-transparent">
+    @if (errors()?.['required']) {
+      <span class="text-red-500 text-xs font-montserrat block mb-0.5">This field is required</span>
+    }
+    @if (errors()?.['email']) {
+      <span class="text-red-500 text-xs font-montserrat block mb-0.5">Invalid email</span>
+    }
+    @if (errors()?.['minlength']) {
+      <span class="text-red-500 text-xs font-montserrat block mb-0.5">Minimum {{errors()?.['minlength'].requiredLength}} characters</span>
+    }
+    @if (errors()?.['pattern']) {
+      <span class="text-red-500 text-xs font-montserrat block mb-0.5">Invalid pattern</span>
+    }
+    @if (errors()?.['maxlength']) {
+      <span class="text-red-500 text-xs font-montserrat block mb-0.5">Maximum {{errors()?.['maxlength'].requiredLength}} characters</span>
+    }
+  </div>
+}

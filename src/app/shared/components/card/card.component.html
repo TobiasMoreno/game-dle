@@ -1,0 +1,32 @@
+@if(vacancy()){
+<div class="card" [class.card--hoverable]="hoverable()">
+  @if(header()){
+  <div class="card__header">
+    @if(image){
+    <img [src]="vacancy().logoCompany" class="card__logo" />
+    } @if(accionsheader()){
+    <img src="/assets/img/tresPuntos.svg" alt="" class="card__options" />
+    }
+  </div>
+  }
+
+  <div>
+    <h3 class="card__title">{{ vacancy().rol }}</h3>
+    <span class="card__nameCompany">{{ vacancy().nameCompany }}</span>
+  </div>
+
+  <div class="card__content">
+    <p class="card__location">
+      {{ vacancy().location }}
+    </p>
+  </div>
+  <div>
+    <span class="card__date">{{ vacancy().creationDate }}</span>
+  </div>
+  @if(actions()){
+  <div class="card__actions">
+    <ng-content select="[card-actions]"></ng-content>
+  </div>
+  }
+</div>
+}

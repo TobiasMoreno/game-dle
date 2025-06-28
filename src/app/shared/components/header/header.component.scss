@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+    background-color: inherit;
+    padding: 1em 0;
+    
+    &__container {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width:768px){
+    .header{
+        &__container{
+            width: 90%;
+        }
+    }
+}

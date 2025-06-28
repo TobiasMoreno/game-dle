@@ -1,0 +1,39 @@
+/* Estados del input */
+.has-error {
+  border-color: rgb(239, 68, 68);
+}
+
+.has-error + label {
+  color: rgb(239, 68, 68);
+}
+
+/* Placeholder */
+.placeholder-start::placeholder {
+  text-align: left;
+}
+
+/* Label flotante */
+label.floating {
+  top: 60%;
+  transform: translateY(-100%);
+  font-size: 0.75rem;
+  color: #2e2473;
+}
+
+/* Input con contenido */
+.has-content + label {
+  top: 60%;
+  transform: translateY(-100%);
+  font-size: 0.75rem;
+  color: #2e2473;
+}
+
+/* Focus state */
+input:focus + label:not(.floating) {
+  color: #2e2473;
+}
+
+/* Input container focus state */
+div:has(input:focus) {
+  border-color: #2e2473;
+} 

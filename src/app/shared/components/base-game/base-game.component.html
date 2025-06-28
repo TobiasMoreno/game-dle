@@ -1,0 +1,94 @@
+<div class="min-h-screen bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Header -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">{{ game?.name }}</h1>
+            <p class="text-gray-600">{{ game?.description }}</p>
+          </div>
+          <button
+            (click)="goHome()"
+            class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+          >
+            Volver al Inicio
+          </button>
+        </div>
+      </div>
+
+      <!-- Estado del juego -->
+      @if (dailyState) {
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Estado del Juego</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold" [class]="dailyState.won ? 'text-green-600' : 'text-red-600'">
+              {{ dailyState.won ? '¡Ganaste!' : 'Perdiste' }}
+            </div>
+            <div class="text-gray-600">Resultado</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-blue-600">
+              {{ dailyState.attempts }}/{{ dailyState.maxAttempts }}
+            </div>
+            <div class="text-gray-600">Intentos</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-purple-600">
+              {{ game?.stats?.currentStreak || 0 }}
+            </div>
+            <div class="text-gray-600">Racha Actual</div>
+          </div>
+        </div>
+      </div>
+      }
+      <!-- Contenido del juego -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <ng-content></ng-content>
+      </div>
+
+      <!-- Estadísticas -->
+      @if (game?.stats) {
+      <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+        <h2 class="text-xl font-semibold mb-4">Estadísticas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-gray-900">{{ game?.stats?.totalGames || 0 }}</div>
+            <div class="text-gray-600">Juegos Jugados</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600">{{ game?.stats?.wins || 0 }}</div>
+            <div class="text-gray-600">Victorias</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-blue-600">{{ game?.stats?.currentStreak || 0 }}</div>
+            <div class="text-gray-600">Racha Actual</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-purple-600">{{ game?.stats?.bestStreak || 0 }}</div>
+            <div class="text-gray-600">Mejor Racha</div>
+          </div>
+        </div>
+
+        <!-- Distribución de intentos -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Distribución de Intentos</h3>
+          <div class="space-y-2">
+            @for (count of game?.stats?.guessDistribution || []; track $index) {
+            <div class="flex items-center">
+              <span class="w-8 text-sm font-medium">{{ $index + 1 }}</span>
+              <div class="flex-1 bg-gray-200 rounded-full h-6 mx-2">
+                <div 
+                  class="bg-blue-600 h-6 rounded-full transition-all duration-300"
+                  [style.width.%]="getGuessPercentage(count)"
+                ></div>
+              </div>
+              <span class="w-8 text-sm text-gray-600">{{ count }}</span>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>

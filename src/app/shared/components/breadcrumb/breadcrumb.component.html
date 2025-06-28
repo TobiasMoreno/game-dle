@@ -1,0 +1,17 @@
+<nav class="flex px-5 py-3 text-gray-700 dark:text-gray-200" aria-label="breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        @for (crumb of crumbs; track $index) {
+            <li class="inline-flex items-center">
+                @if ($index > 0) {
+                    <svg class="w-3 h-3 mx-1 text-gray-400 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                }
+                <a [routerLink]="crumb.url" 
+                   class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+                    {{ crumb.label }}
+                </a>
+            </li>
+        }
+    </ol>
+</nav>

@@ -1,0 +1,23 @@
+<div class="menu">
+  <a href="#" class="menu__link"> Notifications </a>
+  <div
+    class="menu__dropdown dropdown"
+    [class.dropdown--active]="isDropdownOpen"
+  >
+    <a href="#" class="dropdown__toggle" (click)="toggleDropdown($event)">
+      Tobias
+      <img
+        src="./assets/img/profile-2.jpg"
+        alt="Foto de perfil"
+        class="dropdown__image"
+      />
+    </a>
+    <div class="dropdown__menu">
+      <a href="#" class="dropdown__item"> Configuration </a>
+      <a href="#" class="dropdown__item" (click)="logout()"> Logout </a>
+      <a href="#" class="dropdown__item"> English </a>
+      <a href="#" class="dropdown__item"> Portuguese </a>
+      <a href="#" class="dropdown__item"> Spanish </a>
+    </div>
+  </div>
+</div>

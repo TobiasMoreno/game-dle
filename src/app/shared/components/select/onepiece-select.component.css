@@ -1,0 +1,45 @@
+/* Estilos pirata para el select */
+.pirate-font {
+  font-family: 'Pirata One', 'Treasure Map Deadhand', 'Comic Sans MS', cursive, sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Bordes gruesos y colores dorados */
+:host ::ng-deep .border-yellow-700 {
+  border-color: #b7791f !important;
+}
+:host ::ng-deep .bg-yellow-200 {
+  background-color: #fefcbf !important;
+}
+:host ::ng-deep .bg-yellow-100 {
+  background-color: #fef9c3 !important;
+}
+:host ::ng-deep .hover\:bg-yellow-300:hover {
+  background-color: #fde68a !important;
+}
+
+/* Sombra y bordes redondeados */
+:host ::ng-deep .rounded-xl {
+  border-radius: 1rem !important;
+}
+:host ::ng-deep .shadow-xl {
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.15) !important;
+}
+
+/* Dropdown scroll */
+:host ::ng-deep .max-h-60 {
+  max-height: 15rem !important;
+}
+
+/* Input de búsqueda */
+:host ::ng-deep input[type="text"] {
+  font-size: 1rem;
+}
+
+/* Ícono de cerrar */
+:host ::ng-deep .text-red-600 {
+  color: #dc2626 !important;
+}
+:host ::ng-deep .hover\:text-red-800:hover {
+  color: #991b1b !important;
+} 

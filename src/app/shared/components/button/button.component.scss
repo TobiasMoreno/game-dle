@@ -1,0 +1,260 @@
+@use "sass:color";
+
+$btn-sizes: (
+  "small": (
+    padding: 4px 8px,
+    font-size: 10px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+  "medium": (
+    padding: 6px 16px,
+    font-size: 14px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+  "large": (
+    padding: 8px 30px,
+    font-size: 16px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+  "square": (
+    padding: 10px,
+    font-size: 16px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+  "ultra-large": (
+    padding: 12px 16px,
+    font-size: 18px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+  "ultra-large-minor-height": (
+    padding: 12px 16px,
+    font-size: 18px,
+    spinner-size: 10px,
+    spinner-border: 2px,
+  ),
+);
+
+// Mapa de colores del sistema
+$button-colors: (
+  "default": (
+    base:  #155dfc,
+    hover: #1447e6,
+    press: #1447e6,
+    disabled: rgba( #155dfc, 0.3),
+    secondary: color.scale(#1447e6, $lightness: 80%),
+  ),
+  "success": (
+    base: #04d9b2,
+    hover: color.scale(#04d9b2, $lightness: 30%),
+    press: color.scale(#04d9b2, $lightness: -30%),
+    disabled: rgba(#04d9b2, 0.3),
+    secondary: color.scale(#04d9b2, $lightness: 80%),
+  ),
+  "error": (
+    base: #cb4141,
+    hover: color.scale(#cb4141, $lightness: 30%),
+    press: color.scale(#cb4141, $lightness: -30%),
+    disabled: rgba(#cb4141, 0.3),
+    secondary: color.scale(#cb4141, $lightness: 80%),
+  ),
+  "warning": (
+    base: #ffc107,
+    hover: color.scale(#ffc107, $lightness: 30%),
+    press: color.scale(#ffc107, $lightness: -30%),
+    disabled: rgba(#ffc107, 0.3),
+    secondary: color.scale(#ffc107, $lightness: 80%),
+  ),
+  "info": (
+    base: #17a2b8,
+    hover: color.scale(#17a2b8, $lightness: 30%),
+    press: color.scale(#17a2b8, $lightness: -30%),
+    disabled: rgba(#17a2b8, 0.3),
+    secondary: color.scale(#17a2b8, $lightness: 80%),
+  ),
+  "dark": (
+    base: #1f2937,
+    hover: color.scale(#1f2937, $lightness: 30%),
+    press: color.scale(#1f2937, $lightness: -30%),
+    disabled: rgba(#1f2937, 0.3),
+    secondary: color.scale(#1f2937, $lightness: 80%),
+  ),
+  "green": (
+    base: #04d9b2,
+    hover: color.scale(#04d9b2, $lightness: 30%),
+    press: color.scale(#04d9b2, $lightness: -30%),
+    disabled: rgba(#04d9b2, 0.3),
+    secondary: color.scale(#04d9b2, $lightness: 80%),
+  ),
+  "red": (
+    base: #cb4141,
+    hover: color.scale(#cb4141, $lightness: 10%),
+    press: color.scale(#cb4141, $lightness: -30%),
+    disabled: rgba(#cb4141, 0.3),
+    secondary: color.scale(#cb4141, $lightness: 80%),
+  ),
+  "gray": (
+    base: #545F71,
+    hover: color.scale(#545F71, $lightness: 10%),
+    press: color.scale(#545F71, $lightness: -30%),
+    disabled: rgba(#E0E0E0, 0.3),
+    secondary: color.scale(#E0E0E0, $lightness: 80%),
+  ),
+);
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 100px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &__spinner {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+
+  // CLASES DE TAMAÑOS
+  @each $size, $values in $btn-sizes {
+    &--#{$size} {
+      padding: map-get($values, padding);
+      font-size: map-get($values, font-size);
+
+      .btn__spinner {
+        width: map-get($values, spinner-size);
+        height: map-get($values, spinner-size);
+        border-width: map-get($values, spinner-border);
+      }
+    }
+  }
+
+  // CLASES DE COLORES
+  @each $color-name, $color-values in $button-colors {
+    &--#{$color-name} {
+      &.btn--primary {
+        background-color: map-get($color-values, base);
+        color: #f2f2f2;
+
+        &:hover:not(:disabled) {
+          background-color: map-get($color-values, hover);
+        }
+
+        &:active:not(:disabled) {
+          background-color: map-get($color-values, press);
+        }
+
+        &:disabled {
+          background-color: map-get($color-values, disabled);
+        }
+      }
+
+      &.btn--secondary {
+        background-color: map-get($color-values, secondary);
+        color: map-get($color-values, base);
+
+        &:hover:not(:disabled) {
+          border-color: map-get($color-values, hover);
+        }
+
+        &:active:not(:disabled) {
+          border-color: map-get($color-values, press);
+        }
+
+        &:disabled {
+          border-color: map-get($color-values, disabled);
+        }
+      }
+
+      &.btn--outline {
+        background-color: transparent;
+        color: map-get($color-values, base);
+        border: 1px solid map-get($color-values, base);
+
+        &:hover:not(:disabled) {
+          background-color: transparent;
+          border-color: map-get($color-values, hover);
+          color: map-get($color-values, hover);
+        }
+
+        &:active:not(:disabled) {
+          color: map-get($color-values, press);
+          background-color: rgba(map-get($color-values, base), 0.1);
+        }
+
+        &:disabled {
+          background-color: transparent;
+          border-color: map-get($color-values, disabled);
+          color: map-get($color-values, disabled);
+        }
+      }
+
+      &.btn--ghost {
+        background-color: transparent;
+        color: map-get($color-values, base);
+
+        &:hover:not(:disabled) {
+          background-color: rgba(map-get($color-values, base), 0.05);
+        }
+
+        &:active:not(:disabled) {
+          background-color: rgba(map-get($color-values, base), 0.1);
+        }
+
+        &:disabled {
+          color: map-get($color-values, disabled);
+        }
+      }
+    }
+  }
+
+  &--loading {
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &--square {
+    min-width: 40px;
+    width: 40px;
+    font-size: 0;
+  }
+
+  &--ultra-large {
+    width: 448px;
+    height: 48px;
+  }
+  &--ultra-large-minor-height {
+    width: 448px;
+    height: 36px;
+  }
+  &.bg--white {
+    background-color: #ffffff;
+  }
+  &.btn--gray {
+    border: 1px solid #d1d5db;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
