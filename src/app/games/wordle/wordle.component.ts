@@ -1,8 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
+import { GameManagerService } from '../../shared/services/game-manager.service';
+import { GameStorageService } from '../../shared/services/game-storage.service';
+import { catchError, of } from 'rxjs';
+
+interface WordleWord {
+  id: number;
+  word: string;
+  length: number;
+}
 
 /**
  * Componente del juego Wordle
@@ -11,107 +21,8 @@ import { GameProgress } from '../../shared/models/game.model';
 @Component({
   selector: 'app-wordle',
   standalone: true,
-  imports: [CommonModule, FormsModule, BaseGameComponent],
-  template: `
-    <app-base-game 
-      [gameId]="'wordle'" 
-      (gameCompleted)="onGameCompleted($event)"
-    >
-      <!-- Mensaje si ya se jugó hoy -->
-      <div *ngIf="isGamePlayedToday()" class="text-center py-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">
-          ¡Ya jugaste Wordle hoy!
-        </h2>
-        <p class="text-gray-600">
-          Vuelve mañana para un nuevo desafío.
-        </p>
-      </div>
-
-      <!-- Mensaje de progreso guardado -->
-      <div *ngIf="hasSavedProgress && !isGamePlayedToday()" class="text-center py-8">
-        <h2 class="text-2xl font-bold text-blue-600 mb-4">
-          🎮 ¡Tienes un juego en progreso!
-        </h2>
-        <p class="text-gray-600 mb-4">
-          Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
-        </p>
-        <button
-          (click)="continueGame()"
-          class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          Continuar juego
-        </button>
-      </div>
-
-      <!-- Juego activo -->
-      <div *ngIf="!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts && !hasSavedProgress" class="space-y-6">
-        <!-- Instrucciones -->
-        <div class="text-center mb-6">
-          <h2 class="text-xl font-semibold mb-2">Adivina la palabra de 5 letras</h2>
-          <p class="text-gray-600">Tienes 6 intentos</p>
-        </div>
-
-        <!-- Tablero del juego -->
-        <div class="flex justify-center">
-          <div class="grid grid-cols-5 gap-2">
-            <div 
-              *ngFor="let row of board; let rowIndex = index"
-              class="grid grid-cols-5 gap-2"
-            >
-              <div 
-                *ngFor="let cell of row; let colIndex = index"
-                class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center text-xl font-bold uppercase"
-                [class]="getCellClass(rowIndex, colIndex)"
-              >
-                {{ cell }}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Input para la palabra -->
-        <div class="flex justify-center">
-          <div class="flex space-x-2">
-            <input
-              type="text"
-              [(ngModel)]="currentGuess"
-              (keyup.enter)="submitGuess()"
-              (input)="onInputChange($event)"
-              maxlength="5"
-              class="px-4 py-2 border-2 border-gray-300 rounded-lg text-center text-xl font-bold uppercase tracking-widest"
-              placeholder="Escribe aquí"
-              [disabled]="gameWon || currentAttempt >= maxAttempts"
-            >
-            <button
-              (click)="submitGuess()"
-              [disabled]="currentGuess.length !== 5 || gameWon || currentAttempt >= maxAttempts"
-              class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
-            >
-              Enviar
-            </button>
-          </div>
-        </div>
-
-        <!-- Mensaje de error -->
-        <div *ngIf="errorMessage" class="text-center text-red-600">
-          {{ errorMessage }}
-        </div>
-      </div>
-
-      <!-- Resultado del juego -->
-      <div *ngIf="gameWon || currentAttempt >= maxAttempts" class="text-center py-8">
-        <h2 class="text-2xl font-bold mb-4" [class]="gameWon ? 'text-green-600' : 'text-red-600'">
-          {{ gameWon ? '¡Felicidades! ¡Ganaste!' : '¡Game Over!' }}
-        </h2>
-        <p class="text-gray-600 mb-4">
-          La palabra era: <span class="font-bold text-blue-600">{{ targetWord }}</span>
-        </p>
-        <p class="text-gray-600">
-          Intentos: {{ currentAttempt }}/{{ maxAttempts }}
-        </p>
-      </div>
-    </app-base-game>
-  `,
+  imports: [FormsModule, BaseGameComponent],
+  templateUrl: './wordle.component.html',
   styles: []
 })
 export class WordleComponent extends BaseGameComponent implements OnInit {
@@ -125,15 +36,27 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
   errorMessage: string = '';
   targetWord: string = '';
   hasSavedProgress: boolean = false;
+  isLoading: boolean = false;
 
-  // Lista de palabras de ejemplo (en un juego real, esto vendría de una API)
-  private readonly wordList = [
-    'CASA', 'PERRO', 'GATO', 'MESA', 'SILLA', 'LIBRO', 'LAPIZ', 'PUERTA', 'VENTANA', 'COCHE',
-    'ARBOL', 'FLOR', 'SOL', 'LUNA', 'ESTRELLA', 'MAR', 'MONTAÑA', 'RIO', 'BOSQUE', 'CIUDAD'
-  ];
+  // Lista de palabras optimizada con IDs
+  private wordList: WordleWord[] = [];
+  private wordMap: Map<string, WordleWord> = new Map();
+
+  private http = inject(HttpClient);
+
+  constructor(
+    router: Router,
+    gameManager: GameManagerService,
+    gameStorage: GameStorageService
+  ) {
+    super(router, gameManager, gameStorage);
+  }
 
   override ngOnInit(): void {
     super.ngOnInit();
+    
+    // Cargar palabras desde el JSON
+    this.loadWordsFromJson();
     
     // Escuchar cuando se carga el progreso
     this.progressLoaded.subscribe((progress) => {
@@ -141,8 +64,52 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
         this.restoreProgress(progress);
       }
     });
+  }
+
+  /**
+   * Carga las palabras desde el archivo JSON
+   */
+  private loadWordsFromJson(): void {
+    this.isLoading = true;
     
-    this.initializeGame();
+    this.http.get<WordleWord[]>('/palabras_wordle.json')
+      .pipe(
+        catchError(error => {
+          console.error('Error al cargar palabras desde JSON:', error);
+          // Fallback a palabras básicas si falla la carga
+          const fallbackWords: WordleWord[] = [
+            { id: 1, word: 'CASA', length: 5 },
+            { id: 2, word: 'PERRO', length: 5 },
+            { id: 3, word: 'GATO', length: 5 },
+            { id: 4, word: 'MESA', length: 5 },
+            { id: 5, word: 'SILLA', length: 5 }
+          ];
+          this.wordList = fallbackWords;
+          this.buildWordMap();
+          this.isLoading = false;
+          this.initializeGame();
+          return of([]);
+        })
+      )
+      .subscribe(words => {
+        if (words && words.length > 0) {
+          this.wordList = words;
+          this.buildWordMap();
+          console.log(`Cargadas ${words.length} palabras desde JSON`);
+        }
+        this.isLoading = false;
+        this.initializeGame();
+      });
+  }
+
+  /**
+   * Construye el mapa de palabras para búsqueda eficiente
+   */
+  private buildWordMap(): void {
+    this.wordMap.clear();
+    this.wordList.forEach(wordObj => {
+      this.wordMap.set(wordObj.word, wordObj);
+    });
   }
 
   /**
@@ -192,9 +159,6 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
       return;
     }
 
-    // Seleccionar palabra del día (basada en la fecha)
-    this.targetWord = this.getWordOfTheDay();
-    
     // Inicializar tablero
     this.board = Array(this.maxAttempts).fill(null).map(() => 
       Array(this.wordLength).fill('')
@@ -205,17 +169,25 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     this.errorMessage = '';
     this.hasSavedProgress = false;
 
-    // Guardar progreso inicial
-    this.saveCurrentProgress();
+    // Obtener palabra del día desde la API
+    this.getWordOfTheDay();
   }
 
   /**
-   * Obtiene la palabra del día basada en la fecha
+   * Obtiene la palabra del día desde la lista local
    */
-  private getWordOfTheDay(): string {
-    const today = new Date();
-    const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
-    return this.wordList[dayOfYear % this.wordList.length];
+  private getWordOfTheDay(): void {
+    if (this.wordList.length === 0) {
+      console.error('No hay palabras disponibles');
+      return;
+    }
+    
+    // Usar la fecha para seleccionar una palabra consistente por día
+    const wordIndex = Math.floor(Math.random() * this.wordList.length);
+
+    this.targetWord = this.wordList[wordIndex].word;
+    console.log('Palabra del día seleccionada:', this.targetWord);
+    this.saveCurrentProgress();
   }
 
   /**
@@ -235,8 +207,8 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
       return;
     }
 
-    // Verificar si la palabra está en la lista (en un juego real, esto sería más robusto)
-    if (!this.wordList.includes(this.currentGuess)) {
+    // Verificar si la palabra está en la lista usando el mapa para búsqueda eficiente
+    if (!this.wordMap.has(this.currentGuess)) {
       this.errorMessage = 'Palabra no válida';
       return;
     }

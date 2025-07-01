@@ -1,0 +1,122 @@
+<app-base-game [gameId]="'wordle'" (gameCompleted)="onGameCompleted($event)">
+  <!-- Mensaje si ya se jugó hoy -->
+  @if (isGamePlayedToday() && !isLoading) {
+  <div class="text-center py-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">
+      ¡Ya jugaste Wordle hoy!
+    </h2>
+    <p class="text-gray-600">Vuelve mañana para un nuevo desafío.</p>
+  </div>
+  }
+
+  <!-- Mensaje de progreso guardado -->
+  @if (hasSavedProgress && !isGamePlayedToday() && !isLoading) {
+  <div class="text-center py-8">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">
+      🎮 ¡Tienes un juego en progreso!
+    </h2>
+    <p class="text-gray-600 mb-4">
+      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
+    </p>
+    <button
+      (click)="continueGame()"
+      class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+    >
+      Continuar juego
+    </button>
+  </div>
+  }
+
+  <!-- Indicador de carga -->
+  @if (isLoading) {
+  <div class="text-center py-8">
+    <div
+      class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"
+    ></div>
+    <p class="mt-2 text-gray-600">Cargando palabras...</p>
+  </div>
+  }
+
+  <!-- Juego activo -->
+  @if (!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts &&
+  !hasSavedProgress && !isLoading) {
+  <div class="space-y-6">
+    <!-- Instrucciones -->
+    <div class="text-center mb-6">
+      <h2 class="text-xl font-semibold mb-2">Adivina la palabra de 5 letras</h2>
+      <p class="text-gray-600">Tienes 6 intentos</p>
+    </div>
+
+    <!-- Tablero del juego -->
+    <div class="flex justify-center">
+      <div class="my-2">
+        @for (row of board; track $index; let rowIndex = $index) {
+        <div class="grid grid-cols-5">
+          @for (cell of row; track $index; let colIndex = $index) {
+          <div
+            class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center text-xl font-bold uppercase my-1"
+            [class]="getCellClass(rowIndex, colIndex)"
+          >
+            {{ cell }}
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Input para la palabra -->
+    <div class="flex justify-center">
+      <div class="flex space-x-2">
+        <input
+          type="text"
+          [(ngModel)]="currentGuess"
+          (keyup.enter)="submitGuess()"
+          (input)="onInputChange($event)"
+          maxlength="5"
+          class="px-4 py-2 border-2 border-gray-300 rounded-lg text-center text-xl font-bold uppercase tracking-widest"
+          placeholder="Escribe aquí"
+          [disabled]="gameWon || currentAttempt >= maxAttempts"
+        />
+        <button
+          (click)="submitGuess()"
+          [disabled]="
+            currentGuess.length !== 5 ||
+            gameWon ||
+            currentAttempt >= maxAttempts
+          "
+          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        >
+          Enviar
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensaje de error -->
+    @if (errorMessage) {
+    <div class="text-center text-red-600">
+      {{ errorMessage }}
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Resultado del juego -->
+  @if (gameWon || currentAttempt >= maxAttempts) {
+  <div class="text-center py-8">
+    <h2
+      class="text-2xl font-bold mb-4"
+      [class]="gameWon ? 'text-green-600' : 'text-red-600'"
+    >
+      {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
+    </h2>
+    <p class="text-gray-600 mb-4">
+      La palabra era:
+      <span class="font-bold text-blue-600">{{ targetWord }}</span>
+    </p>
+    <p class="text-gray-600">
+      Intentos: {{ currentAttempt }}/{{ maxAttempts }}
+    </p>
+  </div>
+  }
+</app-base-game>

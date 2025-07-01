@@ -74,7 +74,7 @@
         <div>
           <h3 class="text-lg font-semibold mb-3">Distribución de Intentos</h3>
           <div class="space-y-2">
-            @for (count of game?.stats?.guessDistribution || []; track $index) {
+            @for (count of game?.stats?.guessDistribution; track $index) {
             <div class="flex items-center">
               <span class="w-8 text-sm font-medium">{{ $index + 1 }}</span>
               <div class="flex-1 bg-gray-200 rounded-full h-6 mx-2">
