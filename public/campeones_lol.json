@@ -1,0 +1,3593 @@
+[
+    {
+        "id": 1,
+        "nombre": "Aatrox",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Darkin"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Runaterra",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 2,
+        "nombre": "Ahri",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 3,
+        "nombre": "Akali",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 4,
+        "nombre": "Akshan",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2021
+    },
+    {
+        "id": 5,
+        "nombre": "Alistar",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Minotauro"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 6,
+        "nombre": "Ambessa",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus",
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2024
+    },
+    {
+        "id": 7,
+        "nombre": "Amumu",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "No muerto",
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 8,
+        "nombre": "Anivia",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Dios",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 9,
+        "nombre": "Annie",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 10,
+        "nombre": "Aphelios",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2019
+    },
+    {
+        "id": 11,
+        "nombre": "Ashe",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 12,
+        "nombre": "Aurelion Sol",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Celestial",
+            "Dragón"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra",
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 13,
+        "nombre": "Aurora",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2024
+    },
+    {
+        "id": 14,
+        "nombre": "Azir",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Dios-Guerrero"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 15,
+        "nombre": "Bardo",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Celestial"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 16,
+        "nombre": "Bel'Veth",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2022
+    },
+    {
+        "id": 17,
+        "nombre": "Blitzcrank",
+        "genero": "Otros",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 18,
+        "nombre": "Brand",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 19,
+        "nombre": "Braum",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 20,
+        "nombre": "Briar",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Consume vida"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2023
+    },
+    {
+        "id": 21,
+        "nombre": "Caitlyn",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 22,
+        "nombre": "Camille",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Cíborg",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 23,
+        "nombre": "Cassiopeia",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 24,
+        "nombre": "Cho'Gath",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 25,
+        "nombre": "Corki",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior",
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle",
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 26,
+        "nombre": "Darius",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 27,
+        "nombre": "Diana",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 28,
+        "nombre": "Dr. Mundo",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Consume vida"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 29,
+        "nombre": "Draven",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 30,
+        "nombre": "Ekko",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 31,
+        "nombre": "Elise",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 32,
+        "nombre": "Evelynn",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Demonio",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 33,
+        "nombre": "Ezreal",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 34,
+        "nombre": "Fiddlesticks",
+        "genero": "Otros",
+        "posicion": [
+            "Jungla",
+            "Soporte"
+        ],
+        "especie": [
+            "Demonio",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 35,
+        "nombre": "Fiora",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 36,
+        "nombre": "Fizz",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 37,
+        "nombre": "Miss Fortune",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 38,
+        "nombre": "Twisted Fate",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 39,
+        "nombre": "Galio",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 40,
+        "nombre": "Gangplank",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 41,
+        "nombre": "Garen",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 42,
+        "nombre": "Gnar",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Rabia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 43,
+        "nombre": "Gragas",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 44,
+        "nombre": "Graves",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 45,
+        "nombre": "Gwen",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Camavor",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2021
+    },
+    {
+        "id": 46,
+        "nombre": "Renata Glasc",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2022
+    },
+    {
+        "id": 47,
+        "nombre": "Hecarim",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "No muerto"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Camavor",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 48,
+        "nombre": "Heimerdinger",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 49,
+        "nombre": "Hwei",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2023
+    },
+    {
+        "id": 50,
+        "nombre": "Illaoi",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 51,
+        "nombre": "Irelia",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 52,
+        "nombre": "Ivern",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord",
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 53,
+        "nombre": "Jarvan IV",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 54,
+        "nombre": "Janna",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Dios",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 55,
+        "nombre": "Jax",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Desconocido"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Icathia",
+            "Runaterra",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 56,
+        "nombre": "Jayce",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 57,
+        "nombre": "Jhin",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 58,
+        "nombre": "Jinx",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 59,
+        "nombre": "K'Sante",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2022
+    },
+    {
+        "id": 60,
+        "nombre": "Kai'Sa",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima",
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2018
+    },
+    {
+        "id": 61,
+        "nombre": "Kalista",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "No muerto"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Camavor",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 62,
+        "nombre": "Karma",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 63,
+        "nombre": "Karthus",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "No muerto"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 64,
+        "nombre": "Kassadin",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima",
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 65,
+        "nombre": "Katarina",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 66,
+        "nombre": "Kayle",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Demacia",
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 67,
+        "nombre": "Kayn",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Darkin",
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia",
+            "Noxus",
+            "Runaterra",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2017
+    },
+    {
+        "id": 68,
+        "nombre": "Kennen",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 69,
+        "nombre": "Kha'Zix",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 70,
+        "nombre": "Kindred",
+        "genero": "Otros",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Dios",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 71,
+        "nombre": "Kled",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Valor"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 72,
+        "nombre": "Kog'Maw",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 73,
+        "nombre": "Tahm Kench",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte",
+            "Superior"
+        ],
+        "especie": [
+            "Demonio",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 74,
+        "nombre": "LeBlanc",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 75,
+        "nombre": "Lee Sin",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 76,
+        "nombre": "Leona",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 77,
+        "nombre": "Lillia",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 78,
+        "nombre": "Lissandra",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 79,
+        "nombre": "Lucian",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 80,
+        "nombre": "Lulu",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 81,
+        "nombre": "Lux",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 82,
+        "nombre": "Malphite",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Ixtal",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 83,
+        "nombre": "Malzahar",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima",
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 84,
+        "nombre": "Maokai",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 85,
+        "nombre": "Maestro Yi",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 86,
+        "nombre": "Mel",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2025
+    },
+    {
+        "id": 87,
+        "nombre": "Milio",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2023
+    },
+    {
+        "id": 88,
+        "nombre": "Mordekaiser",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Renacido"
+        ],
+        "recurso": [
+            "Escudo"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 89,
+        "nombre": "Morgana",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia",
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 90,
+        "nombre": "Naafiri",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Darkin",
+            "Perro"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2023
+    },
+    {
+        "id": 91,
+        "nombre": "Nami",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Aguas Estancadas",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 92,
+        "nombre": "Nasus",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Dios-Guerrero"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 93,
+        "nombre": "Nautilus",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Renacido"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 94,
+        "nombre": "Neeko",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Soporte"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2018
+    },
+    {
+        "id": 95,
+        "nombre": "Nidalee",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 96,
+        "nombre": "Nilah",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2022
+    },
+    {
+        "id": 97,
+        "nombre": "Nocturne",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Demonio",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 98,
+        "nombre": "Nunu y Willump",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Yeti"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 99,
+        "nombre": "Olaf",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 100,
+        "nombre": "Orianna",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 101,
+        "nombre": "Ornn",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Dios",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2017
+    },
+    {
+        "id": 102,
+        "nombre": "Pantheon",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Soporte",
+            "Superior"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 103,
+        "nombre": "Poppy",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Soporte",
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 104,
+        "nombre": "Pyke",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Renacido"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2018
+    },
+    {
+        "id": 105,
+        "nombre": "Qiyana",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2019
+    },
+    {
+        "id": 106,
+        "nombre": "Quinn",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 107,
+        "nombre": "Rakan",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2017
+    },
+    {
+        "id": 108,
+        "nombre": "Rammus",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Desconocido"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 109,
+        "nombre": "Rek'Sai",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Rabia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima",
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 110,
+        "nombre": "Rell",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 111,
+        "nombre": "Renekton",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Dios-Guerrero"
+        ],
+        "recurso": [
+            "Furia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 112,
+        "nombre": "Rengar",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Ferocidad"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Ixtal",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 113,
+        "nombre": "Riven",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia",
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 114,
+        "nombre": "Rumble",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Calor"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Ciudad de Bandle"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 115,
+        "nombre": "Ryze",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 116,
+        "nombre": "Samira",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 117,
+        "nombre": "Sejuani",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 118,
+        "nombre": "Senna",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "No muerto"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2019
+    },
+    {
+        "id": 119,
+        "nombre": "Seraphine",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 120,
+        "nombre": "Sett",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Vastaya"
+        ],
+        "recurso": [
+            "Determinación"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 121,
+        "nombre": "Shaco",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Soporte"
+        ],
+        "especie": [
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 122,
+        "nombre": "Shen",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 123,
+        "nombre": "Shyvana",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Dragón",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Furia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 124,
+        "nombre": "Singed",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Piltover",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 125,
+        "nombre": "Sion",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Renacido"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 126,
+        "nombre": "Sivir",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 127,
+        "nombre": "Skarner",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Brackern"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 128,
+        "nombre": "Smolder",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Dragón"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Camavor",
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2024
+    },
+    {
+        "id": 129,
+        "nombre": "Sona",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia",
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 130,
+        "nombre": "Soraka",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Celestial"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia",
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 131,
+        "nombre": "Swain",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 132,
+        "nombre": "Sylas",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia",
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2019
+    },
+    {
+        "id": 133,
+        "nombre": "Syndra",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 134,
+        "nombre": "Taliyah",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2016
+    },
+    {
+        "id": 135,
+        "nombre": "Talon",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 136,
+        "nombre": "Taric",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia",
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 137,
+        "nombre": "Teemo",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 138,
+        "nombre": "Thresh",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "No muerto"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 139,
+        "nombre": "Tristana",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 140,
+        "nombre": "Trundle",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Nacido del Hielo",
+            "Trol"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 141,
+        "nombre": "Tryndamere",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Furia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 142,
+        "nombre": "Twitch",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Rata"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 143,
+        "nombre": "Udyr",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano",
+            "Espiritualista"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord",
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 144,
+        "nombre": "Urgot",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Cíborg",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 145,
+        "nombre": "Varus",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Darkin",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia",
+            "Runaterra",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 146,
+        "nombre": "Vayne",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 147,
+        "nombre": "Veigar",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle",
+            "Runaterra",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2009
+    },
+    {
+        "id": 148,
+        "nombre": "Vel'Koz",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Soporte"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2014
+    },
+    {
+        "id": 149,
+        "nombre": "Vex",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2021
+    },
+    {
+        "id": 150,
+        "nombre": "Vi",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Piltover",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2012
+    },
+    {
+        "id": 151,
+        "nombre": "Viego",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "No muerto"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Camavor",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2021
+    },
+    {
+        "id": 152,
+        "nombre": "Viktor",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Cíborg",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover",
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 153,
+        "nombre": "Vladimir",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Sed de sangre"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Camavor",
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 153,
+        "nombre": "Vladimir",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Sed de sangre"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Camavor",
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 155,
+        "nombre": "Volibear",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Dios",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 153,
+        "nombre": "Vladimir",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Sed de sangre"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Camavor",
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 157,
+        "nombre": "Xayah",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2017
+    },
+    {
+        "id": 158,
+        "nombre": "Xerath",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Soporte"
+        ],
+        "especie": [
+            "Baccai"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 159,
+        "nombre": "Xin Zhao",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia",
+            "Jonia",
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2010
+    },
+    {
+        "id": 160,
+        "nombre": "Yasuo",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Flujo"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2013
+    },
+    {
+        "id": 161,
+        "nombre": "Yone",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2020
+    },
+    {
+        "id": 162,
+        "nombre": "Yorick",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2011
+    }
+]

@@ -13,11 +13,6 @@ export class GameStorageService {
   private readonly GAMES_KEY = 'games';
   private readonly PROGRESS_KEY = 'game-progress';
 
-  constructor() {
-    // Limpiar progresos antiguos al inicializar el servicio
-    this.cleanOldProgress();
-  }
-
   /**
    * Obtiene todos los juegos almacenados
    */
@@ -223,29 +218,6 @@ export class GameStorageService {
     }
   }
 
-  /**
-   * Limpia todos los progresos antiguos (no del día actual)
-   */
-  cleanOldProgress(): void {
-    try {
-      const allProgress = this.getAllProgress();
-      const today = new Date().toISOString().split('T')[0];
-      let hasChanges = false;
-
-      Object.keys(allProgress).forEach(gameId => {
-        if (allProgress[gameId].date !== today) {
-          delete allProgress[gameId];
-          hasChanges = true;
-        }
-      });
-
-      if (hasChanges) {
-        localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(allProgress));
-      }
-    } catch (error) {
-      console.error('Error al limpiar progresos antiguos:', error);
-    }
-  }
 
   /**
    * Obtiene todos los progresos almacenados

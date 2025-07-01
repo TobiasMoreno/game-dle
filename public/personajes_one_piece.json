@@ -1,0 +1,1734 @@
+[
+    {
+        "id": 1,
+        "nombre": "Nico Robin",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 130000000,
+        "altura": 188,
+        "origen": "West Blue",
+        "primer_arco": "Whisky Peak"
+    },
+    {
+        "id": 2,
+        "nombre": "Tony Tony Chopper",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [],
+        "ultima_recompensa": 100,
+        "altura": 90,
+        "origen": "Grand Line",
+        "primer_arco": "Drum Island"
+    },
+    {
+        "id": 3,
+        "nombre": "Franky",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 94000000,
+        "altura": 240,
+        "origen": "South Blue",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 4,
+        "nombre": "Marco",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbablanca",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 1374000000,
+        "altura": 203,
+        "origen": "Grand Line",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 5,
+        "nombre": "Usopp",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion"
+        ],
+        "ultima_recompensa": 200000000,
+        "altura": 176,
+        "origen": "East Blue",
+        "primer_arco": "Syrup Village"
+    },
+    {
+        "id": 6,
+        "nombre": "Pedro",
+        "genero": "Masculino",
+        "afiliacion": "Ducado de Mokomo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 382000000,
+        "altura": 233,
+        "origen": "Grand Line",
+        "primer_arco": "Zou"
+    },
+    {
+        "id": 7,
+        "nombre": "Portgas D. Ace",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbablanca",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 550000000,
+        "altura": 185,
+        "origen": "South Blue",
+        "primer_arco": "Drum Island"
+    },
+    {
+        "id": 8,
+        "nombre": "Edward Newgate",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbablanca",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 5046000000,
+        "altura": 666,
+        "origen": "Grand Line",
+        "primer_arco": "Arabasta"
+    },
+    {
+        "id": 9,
+        "nombre": "Kuzan",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbanegra",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 298,
+        "origen": "South Blue",
+        "primer_arco": "Long Ring\nLong Land"
+    },
+    {
+        "id": 10,
+        "nombre": "Sakazuki",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 306,
+        "origen": "North Blue",
+        "primer_arco": "Enies Lobby"
+    },
+    {
+        "id": 11,
+        "nombre": "Marshall D. Teach",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbanegra",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 2247600000,
+        "altura": 344,
+        "origen": "Grand Line",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 12,
+        "nombre": "Oars",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Thriller Bark",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 67,
+        "origen": "North Blue",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 13,
+        "nombre": "Arlong",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Arlong",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 20000000,
+        "altura": 263,
+        "origen": "Grand Line",
+        "primer_arco": "Arlong Park"
+    },
+    {
+        "id": 14,
+        "nombre": "Krieg",
+        "genero": "Masculino",
+        "afiliacion": "Krieg Piratas",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 17000000,
+        "altura": 243,
+        "origen": "East Blue",
+        "primer_arco": "Baratie"
+    },
+    {
+        "id": 15,
+        "nombre": "Dorry",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Gigantes Guerreros",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 100000000,
+        "altura": 2260,
+        "origen": "Grand Line",
+        "primer_arco": "Little Garden"
+    },
+    {
+        "id": 16,
+        "nombre": "Ashura Doji",
+        "genero": "Masculino",
+        "afiliacion": "Ladrones del Monte Atama",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 544,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 17,
+        "nombre": "Boa Hancock",
+        "genero": "Femenino",
+        "afiliacion": "Kuja",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 80000000,
+        "altura": 191,
+        "origen": "Calm Belt",
+        "primer_arco": "Amazon Lily"
+    },
+    {
+        "id": 18,
+        "nombre": "Smoker",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 209,
+        "origen": "Grand Line",
+        "primer_arco": "Loguetown"
+    },
+    {
+        "id": 19,
+        "nombre": "Brook",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 83000000,
+        "altura": 277,
+        "origen": "West Blue",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 20,
+        "nombre": "Bartolomeo",
+        "genero": "Masculino",
+        "afiliacion": "Barto Club",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 200000000,
+        "altura": 220,
+        "origen": "East Blue",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 21,
+        "nombre": "Buggy",
+        "genero": "Masculino",
+        "afiliacion": "Gremio de la Cruz",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 15000000,
+        "altura": 192,
+        "origen": "Grand Line",
+        "primer_arco": "Orange Town"
+    },
+    {
+        "id": 22,
+        "nombre": "Kaidou",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de las Bestias",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 4611100000,
+        "altura": 710,
+        "origen": "Grand Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 23,
+        "nombre": "Monkey D. Luffy",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 3000000000,
+        "altura": 174,
+        "origen": "East Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 24,
+        "nombre": "Bentham",
+        "genero": "Masculino",
+        "afiliacion": "Okama",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 32000000,
+        "altura": 238,
+        "origen": "East Blue",
+        "primer_arco": "Little Garden"
+    },
+    {
+        "id": 25,
+        "nombre": "X Drake",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 222000000,
+        "altura": 233,
+        "origen": "North Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 26,
+        "nombre": "Benn Beckman",
+        "genero": "Masculino",
+        "afiliacion": "Piratas del Pelirrojo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 206,
+        "origen": "North Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 27,
+        "nombre": "Borsalino",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 302,
+        "origen": "North Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 28,
+        "nombre": "Bepo",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Heart",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 500,
+        "altura": 240,
+        "origen": "Grand Line",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 29,
+        "nombre": "Morgans",
+        "genero": "Masculino",
+        "afiliacion": "Diario de Economía Mundial",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 305,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 30,
+        "nombre": "Cavendish",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Hermosos",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 330000000,
+        "altura": 208,
+        "origen": "Grand Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 31,
+        "nombre": "Bell-mère",
+        "genero": "Femenino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 186,
+        "origen": "East Blue",
+        "primer_arco": "Arlong Park"
+    },
+    {
+        "id": 32,
+        "nombre": "Basil Hawkins",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Hawkins",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 320000000,
+        "altura": 210,
+        "origen": "North Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 33,
+        "nombre": "Jewelry Bonney",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Bonney",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Armadura"
+        ],
+        "ultima_recompensa": 140000000,
+        "altura": 174,
+        "origen": "South Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 34,
+        "nombre": "Charlotte Linlin",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 4388000000,
+        "altura": 880,
+        "origen": "Grand Line",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 35,
+        "nombre": "Bartholomew Kuma",
+        "genero": "Masculino",
+        "afiliacion": "Ejército Revolucionario",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Armadura"
+        ],
+        "ultima_recompensa": 296000000,
+        "altura": 689,
+        "origen": "South Blue",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 36,
+        "nombre": "Blueno",
+        "genero": "Masculino",
+        "afiliacion": "CP0",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 258,
+        "origen": "North Blue",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 37,
+        "nombre": "Bellamy",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 195000000,
+        "altura": 240,
+        "origen": "North Blue",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 38,
+        "nombre": "Capone Bege",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Fire Tank",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 350000000,
+        "altura": 166,
+        "origen": "West Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 39,
+        "nombre": "Sengoku",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 278,
+        "origen": "South Blue",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 40,
+        "nombre": "Daz Bonez",
+        "genero": "Masculino",
+        "afiliacion": "Gremio de la Cruz",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 75000000,
+        "altura": 212,
+        "origen": "West Blue",
+        "primer_arco": "Arabasta"
+    },
+    {
+        "id": 41,
+        "nombre": "Charlotte Brulee",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 350,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 42,
+        "nombre": "Mont Blanc Noland",
+        "genero": "Masculino",
+        "afiliacion": "Reino de Lvneel",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 220,
+        "origen": "North Blue",
+        "primer_arco": "Skypiea"
+    },
+    {
+        "id": 43,
+        "nombre": "Mont Blanc Cricket",
+        "genero": "Masculino",
+        "afiliacion": "Alianza Saruyama",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 25000000,
+        "altura": 242,
+        "origen": "North Blue",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 44,
+        "nombre": "Jesus Burgess",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Barbanegra",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 20000000,
+        "altura": 355,
+        "origen": "Grand Line",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 45,
+        "nombre": "Brogy",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Gigantes Guerreros",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 100000000,
+        "altura": 2130,
+        "origen": "Grand Line",
+        "primer_arco": "Little Garden"
+    },
+    {
+        "id": 46,
+        "nombre": "Roronoa Zoro",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 320000000,
+        "altura": 181,
+        "origen": "East Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 47,
+        "nombre": "Carrot",
+        "genero": "Femenino",
+        "afiliacion": "Ducado de Mokomo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 161,
+        "origen": "Grand Line",
+        "primer_arco": "Zou"
+    },
+    {
+        "id": 48,
+        "nombre": "Jinbe",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 438000000,
+        "altura": 301,
+        "origen": "Grand Line",
+        "primer_arco": "Impel Down"
+    },
+    {
+        "id": 49,
+        "nombre": "Charlotte Katakuri",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 1057000000,
+        "altura": 509,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 50,
+        "nombre": "Donquixote Doflamingo",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 340000000,
+        "altura": 305,
+        "origen": "Red Line",
+        "primer_arco": "Jaya"
+    },
+    {
+        "id": 51,
+        "nombre": "Eustass Kid",
+        "genero": "Masculino",
+        "afiliacion": "Niños Piratas",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 3000000000,
+        "altura": 205,
+        "origen": "South Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 52,
+        "nombre": "Charlotte Pudding",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 166,
+        "origen": "Grand Line",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 53,
+        "nombre": "Trafalgar D. Water Law",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Heart",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 3000000000,
+        "altura": 191,
+        "origen": "North Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 54,
+        "nombre": "Dracule Mihawk",
+        "genero": "Masculino",
+        "afiliacion": "Gremio de la Cruz",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 198,
+        "origen": "Desconocido",
+        "primer_arco": "Baratie"
+    },
+    {
+        "id": 55,
+        "nombre": "Donquixote Rosinante",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 293,
+        "origen": "Red Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 56,
+        "nombre": "Crocodile",
+        "genero": "Masculino",
+        "afiliacion": "Gremio de la Cruz",
+        "fruta_del_diablo": "Logia",
+        "hakis": [],
+        "ultima_recompensa": 81000000,
+        "altura": 253,
+        "origen": "Grand Line",
+        "primer_arco": "Little Garden"
+    },
+    {
+        "id": 57,
+        "nombre": "Monkey D. Dragon",
+        "genero": "Masculino",
+        "afiliacion": "Ejército Revolucionario",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 256,
+        "origen": "East Blue",
+        "primer_arco": "Loguetown"
+    },
+    {
+        "id": 58,
+        "nombre": "Caesar Clown",
+        "genero": "Masculino",
+        "afiliacion": "Reino de Germa",
+        "fruta_del_diablo": "Logia",
+        "hakis": [],
+        "ultima_recompensa": 300000000,
+        "altura": 309,
+        "origen": "Grand Line",
+        "primer_arco": "Punk Hazard"
+    },
+    {
+        "id": 59,
+        "nombre": "Charlotte Perospero",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 700000000,
+        "altura": 333,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 60,
+        "nombre": "Charlotte Mont-d'Or",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 120000000,
+        "altura": 260,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 61,
+        "nombre": "Camie",
+        "genero": "Femenino",
+        "afiliacion": "Takoyaki 8",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 197,
+        "origen": "Grand Line",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 62,
+        "nombre": "Kuro",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Gato Negro",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 16000000,
+        "altura": 207,
+        "origen": "East Blue",
+        "primer_arco": "Syrup Village"
+    },
+    {
+        "id": 63,
+        "nombre": "Diamante",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 99000000,
+        "altura": 525,
+        "origen": "North Blue",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 64,
+        "nombre": "Caribou",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Caribú",
+        "fruta_del_diablo": "Logia",
+        "hakis": [],
+        "ultima_recompensa": 210000000,
+        "altura": 228,
+        "origen": "North Blue",
+        "primer_arco": "Return to Sabaody"
+    },
+    {
+        "id": 65,
+        "nombre": "Charlotte Chiffon",
+        "genero": "Femenino",
+        "afiliacion": "Piratas Fire Tank",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 215,
+        "origen": "Grand Line",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 66,
+        "nombre": "Sabo",
+        "genero": "Masculino",
+        "afiliacion": "Ejército Revolucionario",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 602000000,
+        "altura": 187,
+        "origen": "East Blue",
+        "primer_arco": "Post-War"
+    },
+    {
+        "id": 67,
+        "nombre": "Enel",
+        "genero": "Masculino",
+        "afiliacion": "Autómata",
+        "fruta_del_diablo": "Logia",
+        "hakis": [
+            "Observacion"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 266,
+        "origen": "Islas del Cielo",
+        "primer_arco": "Skypiea"
+    },
+    {
+        "id": 68,
+        "nombre": "Rob Lucci",
+        "genero": "Masculino",
+        "afiliacion": "CP0",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 212,
+        "origen": "Grand Line",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 69,
+        "nombre": "Kin'emon",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 295,
+        "origen": "Grand Line",
+        "primer_arco": "Punk Hazard"
+    },
+    {
+        "id": 70,
+        "nombre": "Kaku",
+        "genero": "Masculino",
+        "afiliacion": "CP0",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 193,
+        "origen": "East Blue",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 71,
+        "nombre": "Kawamatsu",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 271,
+        "origen": "Desconocido",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 72,
+        "nombre": "Gin",
+        "genero": "Masculino",
+        "afiliacion": "Krieg Piratas",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 12000000,
+        "altura": 186,
+        "origen": "East Blue",
+        "primer_arco": "Baratie"
+    },
+    {
+        "id": 73,
+        "nombre": "Silvers Rayleigh",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Roger",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 188,
+        "origen": "Desconocido",
+        "primer_arco": "Orange Town"
+    },
+    {
+        "id": 74,
+        "nombre": "Gol D. Roger",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Roger",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 5564800000,
+        "altura": 274,
+        "origen": "East Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 75,
+        "nombre": "Kikunojo",
+        "genero": "Femenino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 287,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 76,
+        "nombre": "Koby",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 167,
+        "origen": "East Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 77,
+        "nombre": "Monkey D. Garp",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 287,
+        "origen": "East Blue",
+        "primer_arco": "Arlong Park"
+    },
+    {
+        "id": 78,
+        "nombre": "Killer",
+        "genero": "Masculino",
+        "afiliacion": "Niños Piratas",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 200000000,
+        "altura": 195,
+        "origen": "South Blue",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 79,
+        "nombre": "Denjiro",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 306,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 80,
+        "nombre": "Wyper",
+        "genero": "Masculino",
+        "afiliacion": "Shandia",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 183,
+        "origen": "Islas del Cielo",
+        "primer_arco": "Skypiea"
+    },
+    {
+        "id": 81,
+        "nombre": "Kyros",
+        "genero": "Masculino",
+        "afiliacion": "Familia Riku",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 298,
+        "origen": "Grand Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 82,
+        "nombre": "Inuarashi",
+        "genero": "Masculino",
+        "afiliacion": "Ducado de Mokomo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 511,
+        "origen": "Grand Line",
+        "primer_arco": "Zou"
+    },
+    {
+        "id": 83,
+        "nombre": "Kurozumi Kanjuro",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kurozumi",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 347,
+        "origen": "Desconocido",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 84,
+        "nombre": "Raizo",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 311,
+        "origen": "Grand Line",
+        "primer_arco": "Zou"
+    },
+    {
+        "id": 85,
+        "nombre": "Shimotsuki Ryuma",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Thriller Bark",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 179,
+        "origen": "Grand Line",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 86,
+        "nombre": "Shanks",
+        "genero": "Masculino",
+        "afiliacion": "Piratas del Pelirrojo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 4048900000,
+        "altura": 199,
+        "origen": "West Blue",
+        "primer_arco": "Romance Dawn"
+    },
+    {
+        "id": 87,
+        "nombre": "Kozuki Oden",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 382,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 88,
+        "nombre": "Pell",
+        "genero": "Masculino",
+        "afiliacion": "Reino de Arabasta",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 189,
+        "origen": "Grand Line",
+        "primer_arco": "Arabasta"
+    },
+    {
+        "id": 89,
+        "nombre": "Emporio Ivankov",
+        "genero": "Masculino",
+        "afiliacion": "Ejército Revolucionario",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 100000000,
+        "altura": 449,
+        "origen": "Grand Line",
+        "primer_arco": "Impel Down"
+    },
+    {
+        "id": 90,
+        "nombre": "Issho",
+        "genero": "Masculino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 270,
+        "origen": "Grand Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 91,
+        "nombre": "Foxy",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Foxy",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 24000000,
+        "altura": 180,
+        "origen": "South Blue",
+        "primer_arco": "Long Ring\nLong Land"
+    },
+    {
+        "id": 92,
+        "nombre": "Nami",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 66000000,
+        "altura": 170,
+        "origen": "East Blue",
+        "primer_arco": "Orange Town"
+    },
+    {
+        "id": 93,
+        "nombre": "Perona",
+        "genero": "Femenino",
+        "afiliacion": "Dracule Mihawk",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 160,
+        "origen": "West Blue",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 94,
+        "nombre": "Gecko Moria",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Thriller Bark",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 320000000,
+        "altura": 692,
+        "origen": "West Blue",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 95,
+        "nombre": "Galdino",
+        "genero": "Masculino",
+        "afiliacion": "Gremio de la Cruz",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 24000000,
+        "altura": 179,
+        "origen": "South Blue",
+        "primer_arco": "Little Garden"
+    },
+    {
+        "id": 96,
+        "nombre": "Vinsmoke Judge",
+        "genero": "Masculino",
+        "afiliacion": "Familia Vinsmoke",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 272,
+        "origen": "North Blue",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 97,
+        "nombre": "Kozuki Hiyori",
+        "genero": "Femenino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 170,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 98,
+        "nombre": "Hiriluk",
+        "genero": "Masculino",
+        "afiliacion": "Ninguno",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 213,
+        "origen": "Grand Line",
+        "primer_arco": "Drum Island"
+    },
+    {
+        "id": 99,
+        "nombre": "Hody Jones",
+        "genero": "Masculino",
+        "afiliacion": "Nuevos Piratas Gyojin",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 331,
+        "origen": "Grand Line",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 100,
+        "nombre": "Hogback",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Thriller Bark",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 223,
+        "origen": "West Blue",
+        "primer_arco": "Thriller Bark"
+    },
+    {
+        "id": 101,
+        "nombre": "Rebecca",
+        "genero": "Femenino",
+        "afiliacion": "Dressrosa",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 171,
+        "origen": "Grand Line",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 102,
+        "nombre": "Iceburg",
+        "genero": "Masculino",
+        "afiliacion": "Galley-La Company",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 199,
+        "origen": "Grand Line",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 103,
+        "nombre": "Jabra",
+        "genero": "Masculino",
+        "afiliacion": "CP9",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 212,
+        "origen": "North Blue",
+        "primer_arco": "Enies Lobby"
+    },
+    {
+        "id": 104,
+        "nombre": "Yamato",
+        "genero": "Femenino",
+        "afiliacion": "Alianza Ninja-Pirata-Mink-Samurai",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Conquistar",
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 263,
+        "origen": "Desconocido",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 105,
+        "nombre": "Kurozumi Tama",
+        "genero": "Femenino",
+        "afiliacion": "Familia Kurozumi",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 108,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 106,
+        "nombre": "Koala",
+        "genero": "Femenino",
+        "afiliacion": "Ejército Revolucionario",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 160,
+        "origen": "Desconocido",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 107,
+        "nombre": "Kozuki Momonosuke",
+        "genero": "Masculino",
+        "afiliacion": "Familia Kozuki",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 110,
+        "origen": "Grand Line",
+        "primer_arco": "Punk Hazard"
+    },
+    {
+        "id": 108,
+        "nombre": "Kalifa",
+        "genero": "Femenino",
+        "afiliacion": "CP0",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 185,
+        "origen": "Grand Line",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 109,
+        "nombre": "Kureha",
+        "genero": "Femenino",
+        "afiliacion": "Reino de Sakura",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 188,
+        "origen": "Grand Line",
+        "primer_arco": "Drum Island"
+    },
+    {
+        "id": 110,
+        "nombre": "Kaya",
+        "genero": "Femenino",
+        "afiliacion": "Ninguno",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 169,
+        "origen": "East Blue",
+        "primer_arco": "Syrup Village"
+    },
+    {
+        "id": 111,
+        "nombre": "Urouge",
+        "genero": "Masculino",
+        "afiliacion": "Monje Pirata Caído",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 108000000,
+        "altura": 388,
+        "origen": "Islas del Cielo",
+        "primer_arco": "Sabaody Archipelago"
+    },
+    {
+        "id": 112,
+        "nombre": "Monet",
+        "genero": "Femenino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Logia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 227,
+        "origen": "North Blue",
+        "primer_arco": "Punk Hazard"
+    },
+    {
+        "id": 113,
+        "nombre": "Nefertari Vivi",
+        "genero": "Femenino",
+        "afiliacion": "Reino de Arabasta",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 169,
+        "origen": "Grand Line",
+        "primer_arco": "Reverse Mountain"
+    },
+    {
+        "id": 114,
+        "nombre": "Magellan",
+        "genero": "Masculino",
+        "afiliacion": "Impel Down",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 491,
+        "origen": "Grand Line",
+        "primer_arco": "Impel Down"
+    },
+    {
+        "id": 115,
+        "nombre": "Nekomamushi",
+        "genero": "Masculino",
+        "afiliacion": "Ducado de Mokomo",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 522,
+        "origen": "Grand Line",
+        "primer_arco": "Zou"
+    },
+    {
+        "id": 116,
+        "nombre": "Pekoms",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Big Mom",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 330000000,
+        "altura": 232,
+        "origen": "Grand Line",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 117,
+        "nombre": "Nojiko",
+        "genero": "Femenino",
+        "afiliacion": "Ninguno",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 170,
+        "origen": "East Blue",
+        "primer_arco": "Arlong Park"
+    },
+    {
+        "id": 118,
+        "nombre": "Vinsmoke Reiju",
+        "genero": "Femenino",
+        "afiliacion": "Familia Vinsmoke",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 173,
+        "origen": "North Blue",
+        "primer_arco": "Whole Cake Island"
+    },
+    {
+        "id": 119,
+        "nombre": "Paulie",
+        "genero": "Masculino",
+        "afiliacion": "Galley-La Company",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 195,
+        "origen": "Grand Line",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 120,
+        "nombre": "Shirahoshi",
+        "genero": "Femenino",
+        "afiliacion": "Familia Neptune",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 1187,
+        "origen": "Grand Line",
+        "primer_arco": "Fish-Man Island"
+    },
+    {
+        "id": 121,
+        "nombre": "Zeff",
+        "genero": "Masculino",
+        "afiliacion": "Baratie",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 189,
+        "origen": "East Blue",
+        "primer_arco": "Baratie"
+    },
+    {
+        "id": 122,
+        "nombre": "Senor Pink",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [],
+        "ultima_recompensa": 58000000,
+        "altura": 244,
+        "origen": "North Blue",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 123,
+        "nombre": "Pica",
+        "genero": "Masculino",
+        "afiliacion": "Piratas Donquixote",
+        "fruta_del_diablo": "Paramecia",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 99000000,
+        "altura": 470,
+        "origen": "North Blue",
+        "primer_arco": "Dressrosa"
+    },
+    {
+        "id": 124,
+        "nombre": "Vinsmoke Sanji",
+        "genero": "Masculino",
+        "afiliacion": "Piratas de Sombrero de Paja",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 330000000,
+        "altura": 180,
+        "origen": "North Blue",
+        "primer_arco": "Baratie"
+    },
+    {
+        "id": 125,
+        "nombre": "Spandam",
+        "genero": "Masculino",
+        "afiliacion": "CP0",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [],
+        "ultima_recompensa": 0,
+        "altura": 192,
+        "origen": "Grand Line",
+        "primer_arco": "Water 7"
+    },
+    {
+        "id": 126,
+        "nombre": "Ulti",
+        "genero": "Femenino",
+        "afiliacion": "Piratas de las Bestias",
+        "fruta_del_diablo": "Zoan",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 400000000,
+        "altura": 173,
+        "origen": "Grand Line",
+        "primer_arco": "Wano Country"
+    },
+    {
+        "id": 127,
+        "nombre": "Tashigi",
+        "genero": "Femenino",
+        "afiliacion": "Marina",
+        "fruta_del_diablo": "Ninguno",
+        "hakis": [
+            "Observacion",
+            "Armadura"
+        ],
+        "ultima_recompensa": 0,
+        "altura": 170,
+        "origen": "East Blue",
+        "primer_arco": "Loguetown"
+    }
+]
