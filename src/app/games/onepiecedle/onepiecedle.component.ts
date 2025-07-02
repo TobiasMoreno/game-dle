@@ -3,7 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
-import { OnePieceGameService, OnePieceCharacter, CompareStatus, Arrow, GuessResult } from './onepiece-game.service';
+import {
+  OnePieceGameService,
+  OnePieceCharacter,
+  CompareStatus,
+  GuessResult,
+} from './onepiece-game.service';
 
 @Component({
   selector: 'app-onepiecedle',
@@ -51,7 +56,8 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
         const targetData = progress.gameData.targetCharacter;
         this.targetCharacter =
           this.characters.find(
-            (char) => char.id === targetData.id && char.nombre === targetData.nombre
+            (char) =>
+              char.id === targetData.id && char.nombre === targetData.nombre
           ) || null;
       }
     } catch (error) {
@@ -85,29 +91,25 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
 
   private loadCharacters(): void {
     console.log('🔄 Iniciando carga de personajes...');
-    this.http
-      .get<OnePieceCharacter[]>('personajes_one_piece.json')
-      .subscribe({
-        next: (characters) => {
-          console.log('📥 Personajes cargados desde JSON:', characters.length);
-          this.characters = characters.filter(
-            (char) =>
-              char.nombre &&
-              char.nombre.trim() !== ''
-          );
-          console.log('✅ Personajes filtrados:', this.characters.length);
-          console.log('📋 Primeros 3 personajes:', this.characters.slice(0, 3));
-          this.charactersLoaded = true;
-          this.filteredCharacters = this.characters;
-          console.log('🎮 Inicializando juego después de cargar personajes...');
-          this.initializeGame();
-        },
-        error: (error) => {
-          console.error('❌ Error loading characters:', error);
-          this.errorMessage =
-            'Error al cargar los personajes. Intenta recargar la página.';
-        },
-      });
+    this.http.get<OnePieceCharacter[]>('personajes_one_piece.json').subscribe({
+      next: (characters) => {
+        console.log('📥 Personajes cargados desde JSON:', characters.length);
+        this.characters = characters.filter(
+          (char) => char.nombre && char.nombre.trim() !== ''
+        );
+        console.log('✅ Personajes filtrados:', this.characters.length);
+        console.log('📋 Primeros 3 personajes:', this.characters.slice(0, 3));
+        this.charactersLoaded = true;
+        this.filteredCharacters = this.characters;
+        console.log('🎮 Inicializando juego después de cargar personajes...');
+        this.initializeGame();
+      },
+      error: (error) => {
+        console.error('❌ Error loading characters:', error);
+        this.errorMessage =
+          'Error al cargar los personajes. Intenta recargar la página.';
+      },
+    });
   }
 
   private initializeGame(): void {
@@ -131,7 +133,10 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
   onInputChange(event: any): void {
     this.currentGuess = event.target.value;
     this.errorMessage = '';
-    this.filteredCharacters = this.onePieceService.filterCharacters(this.characters, this.currentGuess);
+    this.filteredCharacters = this.onePieceService.filterCharacters(
+      this.characters,
+      this.currentGuess
+    );
   }
 
   submitGuess(): void {
@@ -139,7 +144,10 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
       this.errorMessage = 'Por favor ingresa un nombre';
       return;
     }
-    let guessedCharacter = this.onePieceService.findCharacterByName(this.characters, this.currentGuess);
+    let guessedCharacter = this.onePieceService.findCharacterByName(
+      this.characters,
+      this.currentGuess
+    );
     if (!guessedCharacter && this.filteredCharacters.length > 0) {
       guessedCharacter = this.filteredCharacters[0];
       this.currentGuess = guessedCharacter.nombre;

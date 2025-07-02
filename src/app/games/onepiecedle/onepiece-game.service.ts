@@ -9,6 +9,7 @@ export interface OnePieceCharacter {
   hakis: string[];
   ultima_recompensa: number;
   altura: number;
+  origen:string;
   primer_arco: string;
 }
 
@@ -23,6 +24,7 @@ export interface GuessResult {
   hakis: { value: string; status: CompareStatus };
   ultima_recompensa: { value: string; status: CompareStatus; arrow: Arrow };
   altura: { value: string; status: CompareStatus; arrow: Arrow };
+  origen: { value: string; status: CompareStatus };
   primer_arco: { value: string; status: CompareStatus };
 }
 
@@ -150,6 +152,14 @@ export class OnePieceGameService {
       altura: {
         value: this.formatHeight(guess.altura || 0),
         ...this.compareNumeric(guess.altura || 0, target.altura || 0),
+      },
+      origen: {
+        value: guess.origen || 'N/A',
+        status: this.compareText(
+          guess.origen || '',
+          target.origen || '',
+          true
+        ),
       },
       primer_arco: {
         value: guess.primer_arco || 'N/A',
