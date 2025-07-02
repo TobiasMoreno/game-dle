@@ -1,0 +1,89 @@
+footer {
+  position: relative;
+  overflow: hidden;
+  z-index: 40;
+  margin-top: auto;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* One Piece theme shimmer */
+footer.bg-gradient-to-r.from-orange-900.to-red-900::before {
+  background: linear-gradient(90deg, transparent, #f7931e, #ff6b35, #f7931e, transparent);
+}
+
+/* Wordle theme shimmer */
+footer.bg-gray-900::before {
+  background: linear-gradient(90deg, transparent, #10b981, #059669, #10b981, transparent);
+}
+
+/* Colorle theme shimmer */
+footer.bg-gradient-to-r.from-purple-900.to-pink-900::before {
+  background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, #ec4899, transparent);
+}
+
+/* Numberle theme shimmer */
+footer.bg-gradient-to-r.from-blue-900.to-indigo-900::before {
+  background: linear-gradient(90deg, transparent, #3b82f6, #6366f1, #3b82f6, transparent);
+}
+
+/* Default theme shimmer */
+footer.bg-gray-950::before {
+  background: linear-gradient(90deg, transparent, #6b7280, #374151, #6b7280, transparent);
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+footer a {
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: width 0.3s ease;
+}
+
+/* One Piece theme underline */
+footer.bg-gradient-to-r.from-orange-900.to-red-900 a::after {
+  background: #fbbf24;
+}
+
+/* Wordle theme underline */
+footer.bg-gray-900 a::after {
+  background: #10b981;
+}
+
+/* Colorle theme underline */
+footer.bg-gradient-to-r.from-purple-900.to-pink-900 a::after {
+  background: #ec4899;
+}
+
+/* Numberle theme underline */
+footer.bg-gradient-to-r.from-blue-900.to-indigo-900 a::after {
+  background: #3b82f6;
+}
+
+/* Default theme underline */
+footer.bg-gray-950 a::after {
+  background: #6b7280;
+}
+
+footer a:hover::after {
+  width: 100%;
+}

@@ -1,4 +1,6 @@
-<app-base-game (gameCompleted)="onGameCompleted($event)">
+<app-base-game 
+  (gameCompleted)="onGameCompleted($event)"
+  [footerTheme]="'wordle'">
   <!-- Mensaje si ya se jugó hoy -->
   @if (isGamePlayedToday() && !isLoading) {
   <div class="text-center py-8">

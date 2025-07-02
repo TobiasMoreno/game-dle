@@ -1,23 +1,37 @@
-<app-base-game>
+<app-base-game
+  [customBackground]="'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'"
+  [customHeaderBg]="'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)'"
+  [customCardBg]="'rgba(255, 255, 255, 0.9)'"
+  [customTextColor]="'#1f2937'"
+  [customButtonBg]="'#f7931e'"
+  [customButtonTextColor]="'white'"
+  [customAccentColor]="'#ff6b35'"
+  [hideHeader]="false"
+  [hideStats]="false"
+  [hideDailyState]="false"
+  [footerTheme]="'onepiece'">
+  
   <!-- Mensaje si ya se jugó hoy -->
   @if(isGamePlayedTodaySafe()) {
-  <div class="text-center py-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">
+  <div class="text-center py-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg p-6 shadow-lg">
+    <div class="text-4xl mb-4">🏴‍☠️</div>
+    <h2 class="text-2xl font-bold text-white mb-4">
       ¡Ya jugaste One Piece DLE hoy!
     </h2>
-    <p class="text-gray-600">Vuelve mañana para un nuevo desafío.</p>
+    <p class="text-orange-100">Vuelve mañana para un nuevo desafío pirata.</p>
   </div>
   }
   <!-- Mensaje de progreso guardado -->
   @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
-  <div class="text-center py-8">
+  <div class="text-center py-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg p-6 shadow-lg">
     <!-- Controles de música -->
     <div class="flex justify-center items-center space-x-4 mb-6">
       <button
         (click)="toggleMusic()"
-        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        class="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
         [class.bg-red-500]="isMusicMuted"
         [class.hover:bg-red-600]="isMusicMuted"
+        [class.text-white]="isMusicMuted"
       >
         @if (isMusicMuted) {
         <span>🔇</span>
@@ -29,7 +43,7 @@
       </button>
       @if (!isMusicMuted) {
       <div class="flex items-center space-x-2">
-        <span class="text-sm text-gray-600">Volumen:</span>
+        <span class="text-sm text-white font-semibold">Volumen:</span>
         <input
           type="range"
           min="0"
@@ -37,23 +51,24 @@
           step="0.1"
           [value]="musicVolume"
           (input)="onVolumeChange($event)"
-          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          class="w-20 h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
         />
       </div>
       }
     </div>
 
-    <h2 class="text-2xl font-bold text-blue-600 mb-4">
+    <div class="text-4xl mb-4">⚓</div>
+    <h2 class="text-2xl font-bold text-white mb-4">
       🎮 ¡Tienes un juego en progreso!
     </h2>
-    <p class="text-gray-600 mb-4">
+    <p class="text-blue-100 mb-4">
       Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
     </p>
     <button
       (click)="continueGame()"
-      class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+      class="px-6 py-3 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
     >
-      Continuar juego
+      🚢 Continuar aventura
     </button>
   </div>
   }
@@ -65,9 +80,10 @@
     <div class="flex justify-center items-center space-x-4 mb-4">
       <button
         (click)="toggleMusic()"
-        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        class="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
         [class.bg-red-500]="isMusicMuted"
         [class.hover:bg-red-600]="isMusicMuted"
+        [class.text-white]="isMusicMuted"
       >
         @if (isMusicMuted) {
         <span>🔇</span>
@@ -79,7 +95,7 @@
       </button>
       @if (!isMusicMuted) {
       <div class="flex items-center space-x-2">
-        <span class="text-sm text-gray-600">Volumen:</span>
+        <span class="text-sm text-gray-700 font-semibold">Volumen:</span>
         <input
           type="range"
           min="0"
@@ -87,18 +103,19 @@
           step="0.1"
           [value]="musicVolume"
           (input)="onVolumeChange($event)"
-          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          class="w-20 h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
         />
       </div>
       }
     </div>
 
     <!-- Instrucciones -->
-    <div class="text-center mb-6">
-      <h2 class="text-xl font-semibold mb-2">
+    <div class="text-center mb-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-lg p-6 shadow-lg">
+      <div class="text-5xl mb-4">🏴‍☠️</div>
+      <h2 class="text-2xl font-semibold mb-2 text-white">
         Adivina el personaje de One Piece
       </h2>
-      <p class="text-gray-600">
+      <p class="text-orange-100 font-medium">
         Tienes 6 intentos - Compara con el personaje del día
       </p>
     </div>
@@ -113,7 +130,7 @@
           [(ngModel)]="currentGuess"
           (keyup.enter)="submitGuess()"
           (input)="onInputChange($event)"
-          class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-t-lg rounded-b-none text-center focus:z-30 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          class="flex-1 px-4 py-3 border-2 border-orange-300 rounded-t-lg rounded-b-none text-center focus:z-30 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-orange-50 placeholder-orange-400 font-medium"
           placeholder="Escribe el nombre del personaje..."
           [disabled]="
             gameWon || currentAttempt >= maxAttempts || !charactersLoaded
@@ -128,23 +145,23 @@
             currentAttempt >= maxAttempts ||
             !charactersLoaded
           "
-          class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed font-bold"
         >
-          Adivinar
+          ⚔️ Adivinar
         </button>
       </div>
       <!-- Autocompletado bonito -->
       @if (filteredCharacters.length > 0 && currentGuess.trim() && !gameWon &&
       currentAttempt < maxAttempts) {
       <ul
-        class="autocomplete-dropdown w-full bg-white border-x-2 border-b-2 border-gray-300 rounded-b-lg shadow-md z-20 absolute left-0 top-full"
+        class="autocomplete-dropdown w-full bg-orange-50 border-x-2 border-b-2 border-orange-300 rounded-b-lg shadow-md z-20 absolute left-0 top-full"
       >
         @for (character of filteredCharacters; track $index) {
         <li
           (click)="selectCharacter(character.nombre)"
-          class="px-4 py-2 cursor-pointer hover:bg-blue-100 transition-colors duration-150 flex items-center autocomplete-item"
+          class="px-4 py-2 cursor-pointer hover:bg-orange-200 transition-colors duration-150 flex items-center autocomplete-item font-medium"
         >
-          <span>{{ character.nombre }}</span>
+          <span>👤 {{ character.nombre }}</span>
         </li>
         }
       </ul>
@@ -155,17 +172,17 @@
     <div class="max-w-9xl space-y-2 mx-auto overflow-x-auto">
       <!-- Headers fijos -->
       <div
-        class="grid grid-cols-9 min-w-[900px] place-items-center text-xs font-bold text-center mb-1 gap-2"
+        class="grid grid-cols-9 min-w-[900px] place-items-center text-xs font-bold text-center mb-1 gap-2 bg-gradient-to-r from-yellow-400 to-orange-400 p-2 rounded-lg"
       >
-        <div>Nombre</div>
-        <div>Género</div>
-        <div>Afiliación</div>
-        <div>Fruta</div>
-        <div>Hakis</div>
-        <div>Recompensa</div>
-        <div>Altura</div>
-        <div>Origen</div>
-        <div>Primer Arco</div>
+        <div class="text-white">👤 Nombre</div>
+        <div class="text-white">⚧ Género</div>
+        <div class="text-white">🏴 Afiliación</div>
+        <div class="text-white">🍎 Fruta</div>
+        <div class="text-white">⚡ Hakis</div>
+        <div class="text-white">💰 Recompensa</div>
+        <div class="text-white">📏 Altura</div>
+        <div class="text-white">🗺️ Origen</div>
+        <div class="text-white">📚 Primer Arco</div>
       </div>
       <!-- Intentos -->
       @for (guess of guesses.slice().reverse(); track $index) {
@@ -173,17 +190,23 @@
         <!-- Nombre -->
         @if ($index !== 0 || revealedColumns[0] > 0) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-all duration-300 opacity-0 font-medium character-name-cell relative overflow-hidden"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 0"
-          [class]="getComparisonClass(guess.name.status)"
+          [class.has-image]="hasCharacterImage(guess.name.value)"
+          [style.background-image]="hasCharacterImage(guess.name.value) ? 'url(' + getCharacterImageUrl(guess.name.value) + ')' : 'none'"
+          [style.background-size]="'cover'"
+          [style.background-position]="'center'"
+          [style.background-repeat]="'no-repeat'"
         >
-          {{ guess.name.value }}
+          <div class="character-name-overlay" [class.always-visible]="!hasCharacterImage(guess.name.value)">
+            {{ guess.name.value }}
+          </div>
         </div>
         }
         <!-- Género -->
         @if ($index !== 0 || revealedColumns[0] > 1) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 1"
           [class]="getComparisonClass(guess.genero.status)"
         >
@@ -193,7 +216,7 @@
         <!-- Afiliación -->
         @if ($index !== 0 || revealedColumns[0] > 2) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 2"
           [class]="getComparisonClass(guess.afiliacion.status)"
         >
@@ -203,7 +226,7 @@
         <!-- Fruta -->
         @if ($index !== 0 || revealedColumns[0] > 3) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 3"
           [class]="getComparisonClass(guess.fruta_del_diablo.status)"
         >
@@ -212,7 +235,7 @@
         }<!-- Hakis -->
         @if ($index !== 0 || revealedColumns[0] > 4) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 4"
           [class]="getComparisonClass(guess.hakis.status)"
         >
@@ -222,7 +245,7 @@
         <!-- Recompensa -->
         @if ($index !== 0 || revealedColumns[0] > 5) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 5"
           [class]="getComparisonClass(guess.ultima_recompensa.status)"
         >
@@ -237,7 +260,7 @@
         <!-- Altura -->
         @if ($index !== 0 || revealedColumns[0] > 6) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 6"
           [class]="getComparisonClass(guess.altura.status)"
         >
@@ -252,16 +275,16 @@
         <!-- Origen -->
         @if ($index !== 0 || revealedColumns[0] > 7) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 7"
-          [class]="getComparisonClass(guess.primer_arco.status)"
+          [class]="getComparisonClass(guess.origen.status)"
         >
-          {{ guess.primer_arco.value || "N/A" }}
+          {{ guess.origen.value || "N/A" }}
         </div>
         <!-- Primer Arco -->
         @if ($index !== 0 || revealedColumns[0] > 8) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 8"
           [class]="getComparisonClass(guess.primer_arco.status)"
         >
@@ -274,14 +297,16 @@
 
     <!-- Mensaje de error -->
     @if(errorMessage) {
-    <div class="text-center text-red-600">
-      {{ errorMessage }}
+    <div class="text-center text-red-600 bg-red-100 p-3 rounded-lg font-medium">
+      ⚠️ {{ errorMessage }}
     </div>
     }
 
     <!-- Loading -->
     @if (!charactersLoaded) {
-    <div class="text-center text-gray-600">Cargando personajes...</div>
+    <div class="text-center text-gray-600 bg-yellow-100 p-4 rounded-lg font-medium">
+      ⚓ Cargando personajes piratas...
+    </div>
     }
   </div>
   }
@@ -292,9 +317,10 @@
     <div class="flex justify-center items-center space-x-4 mb-6">
       <button
         (click)="toggleMusic()"
-        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        class="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
         [class.bg-red-500]="isMusicMuted"
         [class.hover:bg-red-600]="isMusicMuted"
+        [class.text-white]="isMusicMuted"
       >
         @if (isMusicMuted) {
         <span>🔇</span>
@@ -306,7 +332,7 @@
       </button>
       @if (!isMusicMuted) {
       <div class="flex items-center space-x-2">
-        <span class="text-sm text-gray-600">Volumen:</span>
+        <span class="text-sm text-gray-700 font-semibold">Volumen:</span>
         <input
           type="range"
           min="0"
@@ -314,39 +340,45 @@
           step="0.1"
           [value]="musicVolume"
           (input)="onVolumeChange($event)"
-          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          class="w-20 h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
         />
       </div>
       }
     </div>
 
-    <h2
-      class="text-2xl font-bold mb-4"
-      [class]="gameWon ? 'text-green-600' : 'text-red-600'"
-    >
-      {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
-    </h2>
-    <div class="bg-gray-50 rounded-lg p-6 max-w-md mx-auto">
-      <h3 class="text-lg font-semibold mb-4">El personaje era:</h3>
-      <div class="text-left space-y-2">
-        <div><strong>Nombre:</strong> {{ targetCharacter?.nombre }}</div>
+    <div class="bg-gradient-to-br from-orange-400 to-red-500 rounded-lg p-6 shadow-lg mb-6">
+      <div class="text-6xl mb-4">
+        {{ gameWon ? "🏆" : "💀" }}
+      </div>
+      <h2
+        class="text-2xl font-bold mb-4 text-white"
+        [class]="gameWon ? 'text-yellow-300' : 'text-red-200'"
+      >
+        {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
+      </h2>
+    </div>
+
+    <div class="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg p-6 max-w-md mx-auto shadow-lg border-2 border-orange-300">
+      <h3 class="text-lg font-semibold mb-4 text-orange-800">🏴‍☠️ El personaje era:</h3>
+      <div class="text-left space-y-2 text-orange-700">
+        <div><strong>👤 Nombre:</strong> {{ targetCharacter?.nombre }}</div>
         <div>
-          <strong>Genero:</strong> {{ targetCharacter?.genero || "N/A" }}
+          <strong>⚧ Genero:</strong> {{ targetCharacter?.genero || "N/A" }}
         </div>
         <div>
-          <strong>Afiliacion:</strong>
+          <strong>🏴 Afiliacion:</strong>
           {{ targetCharacter?.afiliacion || "N/A" }}
         </div>
         <div>
-          <strong>Fruta:</strong>
+          <strong>🍎 Fruta:</strong>
           {{ targetCharacter?.fruta_del_diablo || "N/A" }}
         </div>
         <div>
-          <strong>Hakis:</strong>
+          <strong>⚡ Hakis:</strong>
           {{ targetCharacter?.hakis?.join(", ") || "N/A" }}
         </div>
         <div>
-          <strong>Ultima recompensa:</strong>
+          <strong>💰 Ultima recompensa:</strong>
           {{
             getFormattedValue(
               "ultima_recompensa",
@@ -355,37 +387,19 @@
           }}
         </div>
         <div>
-          <strong>Altura:</strong>
+          <strong>📏 Altura:</strong>
           {{ getFormattedValue("altura", targetCharacter?.altura) }}
         </div>
         <div>
-          <strong>Origen:</strong> {{ targetCharacter?.primer_arco || "N/A" }}
+          <strong>🗺️ Origen:</strong> {{ targetCharacter?.origen || "N/A" }}
         </div>
       </div>
     </div>
-    <p class="text-gray-600 mt-4">
-      Intentos: {{ currentAttempt }}/{{ maxAttempts }}
+    <p class="text-gray-600 mt-4 font-medium">
+      ⚓ Intentos: {{ currentAttempt }}/{{ maxAttempts }}
     </p>
   </div>
   }
 </app-base-game>
 
-<!-- Estilos para el autocompletado -->
-<style>
-  .autocomplete-dropdown {
-    margin-top: -2px; /* une visualmente con el input */
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
-    border-top: none;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    max-height: 220px;
-    overflow-y: auto;
-  }
-  .autocomplete-item:last-child {
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-  }
-  .autocomplete-item {
-    transition: background 0.15s;
-  }
-</style>
+

@@ -11,6 +11,7 @@ export interface OnePieceCharacter {
   altura: number;
   origen:string;
   primer_arco: string;
+  img_url: string;
 }
 
 export type CompareStatus = 'correct' | 'partial' | 'wrong';
@@ -19,6 +20,7 @@ export type Arrow = 'up' | 'down' | null;
 export interface GuessResult {
   name: { value: string; status: CompareStatus };
   genero: { value: string; status: CompareStatus };
+  img_url: string;
   afiliacion: { value: string; status: CompareStatus };
   fruta_del_diablo: { value: string; status: CompareStatus };
   hakis: { value: string; status: CompareStatus };
@@ -129,6 +131,7 @@ export class OnePieceGameService {
           false
         ),
       },
+      img_url: guess.img_url,
       afiliacion: {
         value: guess.afiliacion || 'N/A',
         status: this.compareText(

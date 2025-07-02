@@ -13,6 +13,7 @@ import { BaseGameComponent } from '../../shared/components/base-game/base-game.c
   template: `
     <app-base-game 
       (gameCompleted)="onGameCompleted($event)"
+      [footerTheme]="'numberle'"
     >
       <div class="text-center py-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">

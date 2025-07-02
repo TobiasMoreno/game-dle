@@ -1,0 +1,75 @@
+  .autocomplete-dropdown {
+    margin-top: -2px; /* une visualmente con el input */
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow-y: auto;
+  }
+  .autocomplete-item:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  .autocomplete-item {
+    transition: background 0.15s;
+  }
+
+  /* Estilos para las celdas de nombre con imagen */
+  .character-name-cell {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .character-name-cell.has-image {
+    background-blend-mode: overlay;
+  }
+
+  .character-name-overlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    opacity: 0;
+    transition: all 0.2s ease;
+    text-align: center;
+    padding: 4px 8px;
+    line-height: 1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    max-width: 80%;
+  }
+
+  .character-name-cell:hover .character-name-overlay {
+    opacity: 1;
+  }
+
+  .character-name-overlay.always-visible {
+    opacity: 1;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+  }
+
+  /* Asegurar que las imágenes se vean bien en las celdas */
+  .character-name-cell.has-image {
+    background-blend-mode: normal;
+  }
+
+  /* Mejorar la legibilidad del texto en hover */
+  .character-name-cell:hover .character-name-overlay {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Efecto de zoom sutil en hover para celdas con imagen */
+  .character-name-cell.has-image:hover {
+    z-index: 10;
+  }

@@ -2,6 +2,7 @@
     {
         "id": 1,
         "nombre": "Nico Robin",
+        "img_url": "img_op/Nico_Robin.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Paramecia",
@@ -14,6 +15,7 @@
     {
         "id": 2,
         "nombre": "Tony Tony Chopper",
+        "img_url": "img_op/Tony_Tony_Chopper.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Zoan",
@@ -26,6 +28,7 @@
     {
         "id": 3,
         "nombre": "Franky",
+        "img_url": "img_op/Franky.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -38,6 +41,7 @@
     {
         "id": 4,
         "nombre": "Marco",
+        "img_url": "img_op/Marco.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbablanca",
         "fruta_del_diablo": "Zoan",
@@ -53,6 +57,7 @@
     {
         "id": 5,
         "nombre": "Usopp",
+        "img_url": "img_op/Usopp.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -67,6 +72,7 @@
     {
         "id": 6,
         "nombre": "Pedro",
+        "img_url": "img_op/Pedro.png",
         "genero": "Masculino",
         "afiliacion": "Ducado de Mokomo",
         "fruta_del_diablo": "Ninguno",
@@ -82,6 +88,7 @@
     {
         "id": 7,
         "nombre": "Portgas D. Ace",
+        "img_url": "img_op/Portgas_D_Ace.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbablanca",
         "fruta_del_diablo": "Logia",
@@ -98,6 +105,7 @@
     {
         "id": 8,
         "nombre": "Edward Newgate",
+        "img_url": "img_op/Edward_Newgate.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbablanca",
         "fruta_del_diablo": "Paramecia",
@@ -114,6 +122,7 @@
     {
         "id": 9,
         "nombre": "Kuzan",
+        "img_url": "img_op/Kuzan.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbanegra",
         "fruta_del_diablo": "Logia",
@@ -129,6 +138,7 @@
     {
         "id": 10,
         "nombre": "Sakazuki",
+        "img_url": "img_op/Sakazuki.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Logia",
@@ -144,6 +154,7 @@
     {
         "id": 11,
         "nombre": "Marshall D. Teach",
+        "img_url": "img_op/Marshall_D_Teach.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbanegra",
         "fruta_del_diablo": "Logia",
@@ -159,6 +170,7 @@
     {
         "id": 12,
         "nombre": "Oars",
+        "img_url": "img_op/Oars.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Thriller Bark",
         "fruta_del_diablo": "Ninguno",
@@ -171,6 +183,7 @@
     {
         "id": 13,
         "nombre": "Arlong",
+        "img_url": "img_op/Arlong.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Arlong",
         "fruta_del_diablo": "Ninguno",
@@ -183,6 +196,7 @@
     {
         "id": 14,
         "nombre": "Krieg",
+        "img_url": "img_op/Krieg.png",
         "genero": "Masculino",
         "afiliacion": "Krieg Piratas",
         "fruta_del_diablo": "Ninguno",
@@ -195,6 +209,7 @@
     {
         "id": 15,
         "nombre": "Dorry",
+        "img_url": "img_op/Dorry.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Gigantes Guerreros",
         "fruta_del_diablo": "Ninguno",
@@ -207,6 +222,7 @@
     {
         "id": 16,
         "nombre": "Ashura Doji",
+        "img_url": "img_op/Ashura_Doji.png",
         "genero": "Masculino",
         "afiliacion": "Ladrones del Monte Atama",
         "fruta_del_diablo": "Ninguno",
@@ -222,6 +238,7 @@
     {
         "id": 17,
         "nombre": "Boa Hancock",
+        "img_url": "img_op/Boa_Hancock.png",
         "genero": "Femenino",
         "afiliacion": "Kuja",
         "fruta_del_diablo": "Paramecia",
@@ -238,6 +255,7 @@
     {
         "id": 18,
         "nombre": "Smoker",
+        "img_url": "img_op/Smoker.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Logia",
@@ -253,6 +271,7 @@
     {
         "id": 19,
         "nombre": "Brook",
+        "img_url": "img_op/Brook.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Paramecia",
@@ -265,6 +284,7 @@
     {
         "id": 20,
         "nombre": "Bartolomeo",
+        "img_url": "img_op/Bartolomeo.png",
         "genero": "Masculino",
         "afiliacion": "Barto Club",
         "fruta_del_diablo": "Paramecia",
@@ -277,6 +297,7 @@
     {
         "id": 21,
         "nombre": "Buggy",
+        "img_url": "img_op/Buggy.png",
         "genero": "Masculino",
         "afiliacion": "Gremio de la Cruz",
         "fruta_del_diablo": "Paramecia",
@@ -289,6 +310,7 @@
     {
         "id": 22,
         "nombre": "Kaidou",
+        "img_url": "img_op/Kaidou.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de las Bestias",
         "fruta_del_diablo": "Zoan",
@@ -305,6 +327,7 @@
     {
         "id": 23,
         "nombre": "Monkey D. Luffy",
+        "img_url": "img_op/Monkey_D_Luffy.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Paramecia",
@@ -321,6 +344,7 @@
     {
         "id": 24,
         "nombre": "Bentham",
+        "img_url": "img_op/Bentham.png",
         "genero": "Masculino",
         "afiliacion": "Okama",
         "fruta_del_diablo": "Paramecia",
@@ -333,6 +357,7 @@
     {
         "id": 25,
         "nombre": "X Drake",
+        "img_url": "img_op/X_Drake.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Zoan",
@@ -348,6 +373,7 @@
     {
         "id": 26,
         "nombre": "Benn Beckman",
+        "img_url": "img_op/Benn_Beckman.png",
         "genero": "Masculino",
         "afiliacion": "Piratas del Pelirrojo",
         "fruta_del_diablo": "Ninguno",
@@ -362,6 +388,7 @@
     {
         "id": 27,
         "nombre": "Borsalino",
+        "img_url": "img_op/Borsalino.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Logia",
@@ -377,6 +404,7 @@
     {
         "id": 28,
         "nombre": "Bepo",
+        "img_url": "img_op/Bepo.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Heart",
         "fruta_del_diablo": "Ninguno",
@@ -389,6 +417,7 @@
     {
         "id": 29,
         "nombre": "Morgans",
+        "img_url": "img_op/Morgans.png",
         "genero": "Masculino",
         "afiliacion": "Diario de Economía Mundial",
         "fruta_del_diablo": "Zoan",
@@ -401,6 +430,7 @@
     {
         "id": 30,
         "nombre": "Cavendish",
+        "img_url": "img_op/Cavendish.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Hermosos",
         "fruta_del_diablo": "Ninguno",
@@ -416,6 +446,7 @@
     {
         "id": 31,
         "nombre": "Bell-mère",
+        "img_url": "img_op/Bell_mère.png",
         "genero": "Femenino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Ninguno",
@@ -428,6 +459,7 @@
     {
         "id": 32,
         "nombre": "Basil Hawkins",
+        "img_url": "img_op/Basil_Hawkins.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Hawkins",
         "fruta_del_diablo": "Paramecia",
@@ -443,6 +475,7 @@
     {
         "id": 33,
         "nombre": "Jewelry Bonney",
+        "img_url": "img_op/Jewelry_Bonney.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Bonney",
         "fruta_del_diablo": "Paramecia",
@@ -457,6 +490,7 @@
     {
         "id": 34,
         "nombre": "Charlotte Linlin",
+        "img_url": "img_op/Charlotte_Linlin.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -473,6 +507,7 @@
     {
         "id": 35,
         "nombre": "Bartholomew Kuma",
+        "img_url": "img_op/Bartholomew_Kuma.png",
         "genero": "Masculino",
         "afiliacion": "Ejército Revolucionario",
         "fruta_del_diablo": "Paramecia",
@@ -487,6 +522,7 @@
     {
         "id": 36,
         "nombre": "Blueno",
+        "img_url": "img_op/Blueno.png",
         "genero": "Masculino",
         "afiliacion": "CP0",
         "fruta_del_diablo": "Paramecia",
@@ -502,6 +538,7 @@
     {
         "id": 37,
         "nombre": "Bellamy",
+        "img_url": "img_op/Bellamy.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Paramecia",
@@ -517,6 +554,7 @@
     {
         "id": 38,
         "nombre": "Capone Bege",
+        "img_url": "img_op/Capone_Bege.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Fire Tank",
         "fruta_del_diablo": "Paramecia",
@@ -529,6 +567,7 @@
     {
         "id": 39,
         "nombre": "Sengoku",
+        "img_url": "img_op/Sengoku.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Zoan",
@@ -545,6 +584,7 @@
     {
         "id": 40,
         "nombre": "Daz Bonez",
+        "img_url": "img_op/Daz_Bonez.png",
         "genero": "Masculino",
         "afiliacion": "Gremio de la Cruz",
         "fruta_del_diablo": "Paramecia",
@@ -557,6 +597,7 @@
     {
         "id": 41,
         "nombre": "Charlotte Brulee",
+        "img_url": "img_op/Charlotte_Brulee.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -569,6 +610,7 @@
     {
         "id": 42,
         "nombre": "Mont Blanc Noland",
+        "img_url": "img_op/Mont_Blanc_Noland.png",
         "genero": "Masculino",
         "afiliacion": "Reino de Lvneel",
         "fruta_del_diablo": "Ninguno",
@@ -581,6 +623,7 @@
     {
         "id": 43,
         "nombre": "Mont Blanc Cricket",
+        "img_url": "img_op/Mont_Blanc_Cricket.png",
         "genero": "Masculino",
         "afiliacion": "Alianza Saruyama",
         "fruta_del_diablo": "Ninguno",
@@ -593,6 +636,7 @@
     {
         "id": 44,
         "nombre": "Jesus Burgess",
+        "img_url": "img_op/Jesus_Burgess.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Barbanegra",
         "fruta_del_diablo": "Paramecia",
@@ -608,6 +652,7 @@
     {
         "id": 45,
         "nombre": "Brogy",
+        "img_url": "img_op/Brogy.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Gigantes Guerreros",
         "fruta_del_diablo": "Ninguno",
@@ -620,6 +665,7 @@
     {
         "id": 46,
         "nombre": "Roronoa Zoro",
+        "img_url": "img_op/Roronoa_Zoro.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -636,6 +682,7 @@
     {
         "id": 47,
         "nombre": "Carrot",
+        "img_url": "img_op/Carrot.png",
         "genero": "Femenino",
         "afiliacion": "Ducado de Mokomo",
         "fruta_del_diablo": "Ninguno",
@@ -648,6 +695,7 @@
     {
         "id": 48,
         "nombre": "Jinbe",
+        "img_url": "img_op/Jinbe.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -663,6 +711,7 @@
     {
         "id": 49,
         "nombre": "Charlotte Katakuri",
+        "img_url": "img_op/Charlotte_Katakuri.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -679,6 +728,7 @@
     {
         "id": 50,
         "nombre": "Donquixote Doflamingo",
+        "img_url": "img_op/Donquixote_Doflamingo.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Paramecia",
@@ -695,6 +745,7 @@
     {
         "id": 51,
         "nombre": "Eustass Kid",
+        "img_url": "img_op/Eustass_Kid.png",
         "genero": "Masculino",
         "afiliacion": "Niños Piratas",
         "fruta_del_diablo": "Paramecia",
@@ -711,6 +762,7 @@
     {
         "id": 52,
         "nombre": "Charlotte Pudding",
+        "img_url": "img_op/Charlotte_Pudding.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -723,6 +775,7 @@
     {
         "id": 53,
         "nombre": "Trafalgar D. Water Law",
+        "img_url": "img_op/Trafalgar_D_Water_Law.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Heart",
         "fruta_del_diablo": "Paramecia",
@@ -738,6 +791,7 @@
     {
         "id": 54,
         "nombre": "Dracule Mihawk",
+        "img_url": "img_op/Dracule_Mihawk.png",
         "genero": "Masculino",
         "afiliacion": "Gremio de la Cruz",
         "fruta_del_diablo": "Ninguno",
@@ -753,6 +807,7 @@
     {
         "id": 55,
         "nombre": "Donquixote Rosinante",
+        "img_url": "img_op/Donquixote_Rosinante.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Paramecia",
@@ -765,6 +820,7 @@
     {
         "id": 56,
         "nombre": "Crocodile",
+        "img_url": "img_op/Crocodile.png",
         "genero": "Masculino",
         "afiliacion": "Gremio de la Cruz",
         "fruta_del_diablo": "Logia",
@@ -777,6 +833,7 @@
     {
         "id": 57,
         "nombre": "Monkey D. Dragon",
+        "img_url": "img_op/Monkey_D_Dragon.png",
         "genero": "Masculino",
         "afiliacion": "Ejército Revolucionario",
         "fruta_del_diablo": "Ninguno",
@@ -789,6 +846,7 @@
     {
         "id": 58,
         "nombre": "Caesar Clown",
+        "img_url": "img_op/Caesar_Clown.png",
         "genero": "Masculino",
         "afiliacion": "Reino de Germa",
         "fruta_del_diablo": "Logia",
@@ -801,6 +859,7 @@
     {
         "id": 59,
         "nombre": "Charlotte Perospero",
+        "img_url": "img_op/Charlotte_Perospero.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -816,6 +875,7 @@
     {
         "id": 60,
         "nombre": "Charlotte Mont-d'Or",
+        "img_url": "img_op/Charlotte_Mont_d_Or.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Paramecia",
@@ -828,6 +888,7 @@
     {
         "id": 61,
         "nombre": "Camie",
+        "img_url": "img_op/Camie.png",
         "genero": "Femenino",
         "afiliacion": "Takoyaki 8",
         "fruta_del_diablo": "Ninguno",
@@ -840,6 +901,7 @@
     {
         "id": 62,
         "nombre": "Kuro",
+        "img_url": "img_op/Kuro.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Gato Negro",
         "fruta_del_diablo": "Ninguno",
@@ -852,6 +914,7 @@
     {
         "id": 63,
         "nombre": "Diamante",
+        "img_url": "img_op/Diamante.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Paramecia",
@@ -867,6 +930,7 @@
     {
         "id": 64,
         "nombre": "Caribou",
+        "img_url": "img_op/Caribou.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Caribú",
         "fruta_del_diablo": "Logia",
@@ -879,6 +943,7 @@
     {
         "id": 65,
         "nombre": "Charlotte Chiffon",
+        "img_url": "img_op/Charlotte_Chiffon.png",
         "genero": "Femenino",
         "afiliacion": "Piratas Fire Tank",
         "fruta_del_diablo": "Ninguno",
@@ -891,6 +956,7 @@
     {
         "id": 66,
         "nombre": "Sabo",
+        "img_url": "img_op/Sabo.png",
         "genero": "Masculino",
         "afiliacion": "Ejército Revolucionario",
         "fruta_del_diablo": "Logia",
@@ -906,6 +972,7 @@
     {
         "id": 67,
         "nombre": "Enel",
+        "img_url": "img_op/Enel.png",
         "genero": "Masculino",
         "afiliacion": "Autómata",
         "fruta_del_diablo": "Logia",
@@ -920,6 +987,7 @@
     {
         "id": 68,
         "nombre": "Rob Lucci",
+        "img_url": "img_op/Rob_Lucci.png",
         "genero": "Masculino",
         "afiliacion": "CP0",
         "fruta_del_diablo": "Zoan",
@@ -935,6 +1003,7 @@
     {
         "id": 69,
         "nombre": "Kin'emon",
+        "img_url": "img_op/Kin_emon.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Paramecia",
@@ -950,6 +1019,7 @@
     {
         "id": 70,
         "nombre": "Kaku",
+        "img_url": "img_op/Kaku.png",
         "genero": "Masculino",
         "afiliacion": "CP0",
         "fruta_del_diablo": "Zoan",
@@ -965,6 +1035,7 @@
     {
         "id": 71,
         "nombre": "Kawamatsu",
+        "img_url": "img_op/Kawamatsu.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Ninguno",
@@ -980,6 +1051,7 @@
     {
         "id": 72,
         "nombre": "Gin",
+        "img_url": "img_op/Gin.png",
         "genero": "Masculino",
         "afiliacion": "Krieg Piratas",
         "fruta_del_diablo": "Ninguno",
@@ -992,6 +1064,7 @@
     {
         "id": 73,
         "nombre": "Silvers Rayleigh",
+        "img_url": "img_op/Silvers_Rayleigh.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Roger",
         "fruta_del_diablo": "Ninguno",
@@ -1008,6 +1081,7 @@
     {
         "id": 74,
         "nombre": "Gol D. Roger",
+        "img_url": "img_op/Gol_D_Roger.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Roger",
         "fruta_del_diablo": "Ninguno",
@@ -1024,6 +1098,7 @@
     {
         "id": 75,
         "nombre": "Kikunojo",
+        "img_url": "img_op/Kikunojo.png",
         "genero": "Femenino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Ninguno",
@@ -1039,6 +1114,7 @@
     {
         "id": 76,
         "nombre": "Koby",
+        "img_url": "img_op/Koby.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Ninguno",
@@ -1054,6 +1130,7 @@
     {
         "id": 77,
         "nombre": "Monkey D. Garp",
+        "img_url": "img_op/Monkey_D_Garp.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Ninguno",
@@ -1070,6 +1147,7 @@
     {
         "id": 78,
         "nombre": "Killer",
+        "img_url": "img_op/Killer.png",
         "genero": "Masculino",
         "afiliacion": "Niños Piratas",
         "fruta_del_diablo": "Zoan",
@@ -1085,6 +1163,7 @@
     {
         "id": 79,
         "nombre": "Denjiro",
+        "img_url": "img_op/Denjiro.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Ninguno",
@@ -1100,6 +1179,7 @@
     {
         "id": 80,
         "nombre": "Wyper",
+        "img_url": "img_op/Wyper.png",
         "genero": "Masculino",
         "afiliacion": "Shandia",
         "fruta_del_diablo": "Ninguno",
@@ -1112,6 +1192,7 @@
     {
         "id": 81,
         "nombre": "Kyros",
+        "img_url": "img_op/Kyros.png",
         "genero": "Masculino",
         "afiliacion": "Familia Riku",
         "fruta_del_diablo": "Ninguno",
@@ -1124,6 +1205,7 @@
     {
         "id": 82,
         "nombre": "Inuarashi",
+        "img_url": "img_op/Inuarashi.png",
         "genero": "Masculino",
         "afiliacion": "Ducado de Mokomo",
         "fruta_del_diablo": "Ninguno",
@@ -1139,6 +1221,7 @@
     {
         "id": 83,
         "nombre": "Kurozumi Kanjuro",
+        "img_url": "img_op/Kurozumi_Kanjuro.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kurozumi",
         "fruta_del_diablo": "Paramecia",
@@ -1154,6 +1237,7 @@
     {
         "id": 84,
         "nombre": "Raizo",
+        "img_url": "img_op/Raizo.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Paramecia",
@@ -1169,6 +1253,7 @@
     {
         "id": 85,
         "nombre": "Shimotsuki Ryuma",
+        "img_url": "img_op/Shimotsuki_Ryuma.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Thriller Bark",
         "fruta_del_diablo": "Ninguno",
@@ -1183,6 +1268,7 @@
     {
         "id": 86,
         "nombre": "Shanks",
+        "img_url": "img_op/Shanks.png",
         "genero": "Masculino",
         "afiliacion": "Piratas del Pelirrojo",
         "fruta_del_diablo": "Ninguno",
@@ -1199,6 +1285,7 @@
     {
         "id": 87,
         "nombre": "Kozuki Oden",
+        "img_url": "img_op/Kozuki_Oden.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Ninguno",
@@ -1215,6 +1302,7 @@
     {
         "id": 88,
         "nombre": "Pell",
+        "img_url": "img_op/Pell.png",
         "genero": "Masculino",
         "afiliacion": "Reino de Arabasta",
         "fruta_del_diablo": "Zoan",
@@ -1227,6 +1315,7 @@
     {
         "id": 89,
         "nombre": "Emporio Ivankov",
+        "img_url": "img_op/Emporio_Ivankov.png",
         "genero": "Masculino",
         "afiliacion": "Ejército Revolucionario",
         "fruta_del_diablo": "Paramecia",
@@ -1239,6 +1328,7 @@
     {
         "id": 90,
         "nombre": "Issho",
+        "img_url": "img_op/Issho.png",
         "genero": "Masculino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Paramecia",
@@ -1254,6 +1344,7 @@
     {
         "id": 91,
         "nombre": "Foxy",
+        "img_url": "img_op/Foxy.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Foxy",
         "fruta_del_diablo": "Paramecia",
@@ -1266,6 +1357,7 @@
     {
         "id": 92,
         "nombre": "Nami",
+        "img_url": "img_op/Nami.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -1278,6 +1370,7 @@
     {
         "id": 93,
         "nombre": "Perona",
+        "img_url": "img_op/Perona.png",
         "genero": "Femenino",
         "afiliacion": "Dracule Mihawk",
         "fruta_del_diablo": "Paramecia",
@@ -1290,6 +1383,7 @@
     {
         "id": 94,
         "nombre": "Gecko Moria",
+        "img_url": "img_op/Gecko_Moria.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Thriller Bark",
         "fruta_del_diablo": "Paramecia",
@@ -1302,6 +1396,7 @@
     {
         "id": 95,
         "nombre": "Galdino",
+        "img_url": "img_op/Galdino.png",
         "genero": "Masculino",
         "afiliacion": "Gremio de la Cruz",
         "fruta_del_diablo": "Paramecia",
@@ -1314,6 +1409,7 @@
     {
         "id": 96,
         "nombre": "Vinsmoke Judge",
+        "img_url": "img_op/Vinsmoke_Judge.png",
         "genero": "Masculino",
         "afiliacion": "Familia Vinsmoke",
         "fruta_del_diablo": "Ninguno",
@@ -1328,6 +1424,7 @@
     {
         "id": 97,
         "nombre": "Kozuki Hiyori",
+        "img_url": "img_op/Kozuki_Hiyori.png",
         "genero": "Femenino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Ninguno",
@@ -1340,6 +1437,7 @@
     {
         "id": 98,
         "nombre": "Hiriluk",
+        "img_url": "img_op/Hiriluk.png",
         "genero": "Masculino",
         "afiliacion": "Ninguno",
         "fruta_del_diablo": "Ninguno",
@@ -1352,6 +1450,7 @@
     {
         "id": 99,
         "nombre": "Hody Jones",
+        "img_url": "img_op/Hody_Jones.png",
         "genero": "Masculino",
         "afiliacion": "Nuevos Piratas Gyojin",
         "fruta_del_diablo": "Ninguno",
@@ -1364,6 +1463,7 @@
     {
         "id": 100,
         "nombre": "Hogback",
+        "img_url": "img_op/Hogback.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Thriller Bark",
         "fruta_del_diablo": "Ninguno",
@@ -1376,6 +1476,7 @@
     {
         "id": 101,
         "nombre": "Rebecca",
+        "img_url": "img_op/Rebecca.png",
         "genero": "Femenino",
         "afiliacion": "Dressrosa",
         "fruta_del_diablo": "Ninguno",
@@ -1390,6 +1491,7 @@
     {
         "id": 102,
         "nombre": "Iceburg",
+        "img_url": "img_op/Iceburg.png",
         "genero": "Masculino",
         "afiliacion": "Galley-La Company",
         "fruta_del_diablo": "Ninguno",
@@ -1402,6 +1504,7 @@
     {
         "id": 103,
         "nombre": "Jabra",
+        "img_url": "img_op/Jabra.png",
         "genero": "Masculino",
         "afiliacion": "CP9",
         "fruta_del_diablo": "Zoan",
@@ -1417,6 +1520,7 @@
     {
         "id": 104,
         "nombre": "Yamato",
+        "img_url": "img_op/Yamato.png",
         "genero": "Femenino",
         "afiliacion": "Alianza Ninja-Pirata-Mink-Samurai",
         "fruta_del_diablo": "Zoan",
@@ -1433,6 +1537,7 @@
     {
         "id": 105,
         "nombre": "Kurozumi Tama",
+        "img_url": "img_op/Kurozumi_Tama.png",
         "genero": "Femenino",
         "afiliacion": "Familia Kurozumi",
         "fruta_del_diablo": "Paramecia",
@@ -1445,6 +1550,7 @@
     {
         "id": 106,
         "nombre": "Koala",
+        "img_url": "img_op/Koala.png",
         "genero": "Femenino",
         "afiliacion": "Ejército Revolucionario",
         "fruta_del_diablo": "Ninguno",
@@ -1457,6 +1563,7 @@
     {
         "id": 107,
         "nombre": "Kozuki Momonosuke",
+        "img_url": "img_op/Kozuki_Momonosuke.png",
         "genero": "Masculino",
         "afiliacion": "Familia Kozuki",
         "fruta_del_diablo": "Zoan",
@@ -1471,6 +1578,7 @@
     {
         "id": 108,
         "nombre": "Kalifa",
+        "img_url": "img_op/Kalifa.png",
         "genero": "Femenino",
         "afiliacion": "CP0",
         "fruta_del_diablo": "Paramecia",
@@ -1486,6 +1594,7 @@
     {
         "id": 109,
         "nombre": "Kureha",
+        "img_url": "img_op/Kureha.png",
         "genero": "Femenino",
         "afiliacion": "Reino de Sakura",
         "fruta_del_diablo": "Ninguno",
@@ -1498,6 +1607,7 @@
     {
         "id": 110,
         "nombre": "Kaya",
+        "img_url": "img_op/Kaya.png",
         "genero": "Femenino",
         "afiliacion": "Ninguno",
         "fruta_del_diablo": "Ninguno",
@@ -1510,6 +1620,7 @@
     {
         "id": 111,
         "nombre": "Urouge",
+        "img_url": "img_op/Urouge.png",
         "genero": "Masculino",
         "afiliacion": "Monje Pirata Caído",
         "fruta_del_diablo": "Paramecia",
@@ -1522,6 +1633,7 @@
     {
         "id": 112,
         "nombre": "Monet",
+        "img_url": "img_op/Monet.png",
         "genero": "Femenino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Logia",
@@ -1534,6 +1646,7 @@
     {
         "id": 113,
         "nombre": "Nefertari Vivi",
+        "img_url": "img_op/Nefertari_Vivi.png",
         "genero": "Femenino",
         "afiliacion": "Reino de Arabasta",
         "fruta_del_diablo": "Ninguno",
@@ -1546,6 +1659,7 @@
     {
         "id": 114,
         "nombre": "Magellan",
+        "img_url": "img_op/Magellan.png",
         "genero": "Masculino",
         "afiliacion": "Impel Down",
         "fruta_del_diablo": "Paramecia",
@@ -1558,6 +1672,7 @@
     {
         "id": 115,
         "nombre": "Nekomamushi",
+        "img_url": "img_op/Nekomamushi.png",
         "genero": "Masculino",
         "afiliacion": "Ducado de Mokomo",
         "fruta_del_diablo": "Ninguno",
@@ -1573,6 +1688,7 @@
     {
         "id": 116,
         "nombre": "Pekoms",
+        "img_url": "img_op/Pekoms.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Big Mom",
         "fruta_del_diablo": "Zoan",
@@ -1588,6 +1704,7 @@
     {
         "id": 117,
         "nombre": "Nojiko",
+        "img_url": "img_op/Nojiko.png",
         "genero": "Femenino",
         "afiliacion": "Ninguno",
         "fruta_del_diablo": "Ninguno",
@@ -1600,6 +1717,7 @@
     {
         "id": 118,
         "nombre": "Vinsmoke Reiju",
+        "img_url": "img_op/Vinsmoke_Reiju.png",
         "genero": "Femenino",
         "afiliacion": "Familia Vinsmoke",
         "fruta_del_diablo": "Ninguno",
@@ -1612,6 +1730,7 @@
     {
         "id": 119,
         "nombre": "Paulie",
+        "img_url": "img_op/Paulie.png",
         "genero": "Masculino",
         "afiliacion": "Galley-La Company",
         "fruta_del_diablo": "Ninguno",
@@ -1624,6 +1743,7 @@
     {
         "id": 120,
         "nombre": "Shirahoshi",
+        "img_url": "img_op/Shirahoshi.png",
         "genero": "Femenino",
         "afiliacion": "Familia Neptune",
         "fruta_del_diablo": "Ninguno",
@@ -1638,6 +1758,7 @@
     {
         "id": 121,
         "nombre": "Zeff",
+        "img_url": "img_op/Zeff.png",
         "genero": "Masculino",
         "afiliacion": "Baratie",
         "fruta_del_diablo": "Ninguno",
@@ -1650,6 +1771,7 @@
     {
         "id": 122,
         "nombre": "Senor Pink",
+        "img_url": "img_op/Senor_Pink.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Paramecia",
@@ -1662,6 +1784,7 @@
     {
         "id": 123,
         "nombre": "Pica",
+        "img_url": "img_op/Pica.png",
         "genero": "Masculino",
         "afiliacion": "Piratas Donquixote",
         "fruta_del_diablo": "Paramecia",
@@ -1677,6 +1800,7 @@
     {
         "id": 124,
         "nombre": "Vinsmoke Sanji",
+        "img_url": "img_op/Vinsmoke_Sanji.png",
         "genero": "Masculino",
         "afiliacion": "Piratas de Sombrero de Paja",
         "fruta_del_diablo": "Ninguno",
@@ -1692,6 +1816,7 @@
     {
         "id": 125,
         "nombre": "Spandam",
+        "img_url": "img_op/Spandam.png",
         "genero": "Masculino",
         "afiliacion": "CP0",
         "fruta_del_diablo": "Ninguno",
@@ -1704,6 +1829,7 @@
     {
         "id": 126,
         "nombre": "Ulti",
+        "img_url": "img_op/Ulti.png",
         "genero": "Femenino",
         "afiliacion": "Piratas de las Bestias",
         "fruta_del_diablo": "Zoan",
@@ -1719,6 +1845,7 @@
     {
         "id": 127,
         "nombre": "Tashigi",
+        "img_url": "img_op/Tashigi.png",
         "genero": "Femenino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Ninguno",

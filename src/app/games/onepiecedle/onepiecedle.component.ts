@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
@@ -14,7 +15,7 @@ import {
   selector: 'app-onepiecedle',
   imports: [FormsModule, BaseGameComponent],
   templateUrl: './onepiecedle.component.html',
-  styles: [],
+  styleUrls: ['./onepiecedle.component.css'],
 })
 export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, OnDestroy {
   readonly maxAttempts = 6;
@@ -37,7 +38,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   // Propiedades para el audio
   private audio: HTMLAudioElement | null = null;
   isMusicPlaying: boolean = false;
-  isMusicMuted: boolean = false;
+  isMusicMuted: boolean = true;
   musicVolume: number = 0.3;
 
   ngOnInit(): void {
@@ -61,14 +62,12 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   private initializeAudio(): void {
     try {
       // URL del archivo MP3 local
-      const musicUrl = 'one-piece-soundtrack.mp3'; // Ajusta el nombre del archivo según lo que pusiste
-      
+      const musicUrl = 'one-piece-soundtrack.mp3';
       this.audio = new Audio(musicUrl);
       this.audio.loop = true;
       this.audio.volume = this.musicVolume;
       this.audio.preload = 'auto';
-      
-      this.startMusic();
+      // No iniciar música automáticamente
     } catch (error) {
       console.error('❌ Error al inicializar audio:', error);
     }
@@ -298,9 +297,28 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     if (status === 'partial') return 'bg-yellow-400 text-white';
     return 'bg-red-500 text-white';
   }
+
+  getCharacterImageUrl(characterName: string): string {
+    const character = this.characters.find(char => char.nombre === characterName);
+    if (character?.img_url) {
+      return character.img_url;
+    }
+    // Fallback: buscar por nombre similar si no se encuentra exacto
+    const similarCharacter = this.characters.find(char => 
+      char.nombre.toLowerCase().includes(characterName.toLowerCase()) ||
+      characterName.toLowerCase().includes(char.nombre.toLowerCase())
+    );
+    return similarCharacter?.img_url || '';
+  }
+
+  hasCharacterImage(characterName: string): boolean {
+    return !!this.getCharacterImageUrl(characterName);
+  }
+
   continueGame(): void {
     this.hasSavedProgress = false;
   }
+
   protected isGamePlayedTodaySafe(): boolean {
     return this.isGamePlayedToday();
   }

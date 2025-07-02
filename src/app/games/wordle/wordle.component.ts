@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
@@ -21,7 +22,7 @@ interface WordleWord {
 @Component({
   selector: 'app-wordle',
   standalone: true,
-  imports: [FormsModule, BaseGameComponent],
+  imports: [CommonModule, FormsModule, BaseGameComponent],
   templateUrl: './wordle.component.html',
   styles: []
 })

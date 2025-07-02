@@ -1,8 +1,11 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, output, input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { GameState, DailyGameState, GameProgress } from '../../models/game.model';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
+import { FooterComponent } from '../footer/footer.component';
+import { ThemeService } from '../../services/theme.service';
 
 /**
  * Componente base para todos los juegos
@@ -10,11 +13,24 @@ import { GameStorageService } from '../../services/game-storage.service';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './base-game.component.html',
   styles: []
 })
 export class BaseGameComponent {
+  // Inputs para personalización temática
+  customBackground = input<string>('');
+  customHeaderBg = input<string>('');
+  customCardBg = input<string>('');
+  customTextColor = input<string>('');
+  customButtonBg = input<string>('');
+  customButtonTextColor = input<string>('');
+  customAccentColor = input<string>('');
+  hideHeader = input<boolean>(false);
+  hideStats = input<boolean>(false);
+  hideDailyState = input<boolean>(false);
+  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle'>('default');
+
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();
 
@@ -26,6 +42,7 @@ export class BaseGameComponent {
   private router = inject(Router);
   private gameManager = inject(GameManagerService);
   protected gameStorage = inject(GameStorageService);
+  private themeService = inject(ThemeService);
 
   /**
    * Establece el gameId y inicializa el componente
@@ -35,6 +52,7 @@ export class BaseGameComponent {
     console.log('✅ GameId establecido:', gameId);
     this.loadGame();
     this.loadProgress();
+    this.setFooterTheme();
   }
 
   /**
@@ -186,6 +204,31 @@ export class BaseGameComponent {
    */
   protected hasProgress(): boolean {
     return this.currentProgress !== null;
+  }
+
+  /**
+   * Establece el tema del footer basado en el juego
+   */
+  private setFooterTheme(): void {
+    const gameId = this.getGameIdSafely();
+    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' = 'default';
+    switch (gameId) {
+      case 'onepiecedle':
+        theme = 'onepiece';
+        break;
+      case 'wordle':
+        theme = 'wordle';
+        break;
+      case 'colorle':
+        theme = 'colorle';
+        break;
+      case 'numberle':
+        theme = 'numberle';
+        break;
+      default:
+        theme = 'default';
+    }
+    this.themeService.setFooterTheme(theme);
   }
 
   /**
