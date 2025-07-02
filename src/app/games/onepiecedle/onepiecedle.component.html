@@ -1,9 +1,6 @@
-<app-base-game
-  [gameId]="'onepiecedle'"
-  (gameCompleted)="onGameCompleted($event)"
->
+<app-base-game>
   <!-- Mensaje si ya se jugó hoy -->
-  @if(isGamePlayedToday()) {
+  @if(isGamePlayedTodaySafe()) {
   <div class="text-center py-8">
     <h2 class="text-2xl font-bold text-gray-900 mb-4">
       ¡Ya jugaste One Piece DLE hoy!
@@ -12,7 +9,7 @@
   </div>
   }
   <!-- Mensaje de progreso guardado -->
-  @if(hasSavedProgress && !isGamePlayedToday()) {
+  @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
   <div class="text-center py-8">
     <h2 class="text-2xl font-bold text-blue-600 mb-4">
       🎮 ¡Tienes un juego en progreso!
@@ -29,7 +26,7 @@
   </div>
   }
   <!-- Juego activo -->
-  @if(!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts &&
+  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
     <!-- Instrucciones -->
@@ -44,10 +41,8 @@
 
     <!-- Tablero de intentos -->
     <div class="space-y-4">
-      <div
-        *ngFor="let guess of guesses; let attemptIndex = index"
-        class="bg-gray-50 rounded-lg p-4"
-      >
+      @for (guess of guesses; track $index) {
+      <div class="bg-gray-50 rounded-lg p-4">
         <div
           class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 text-sm"
         >
@@ -56,7 +51,7 @@
             <div class="font-semibold text-gray-700 mb-1">Nombre</div>
             <div
               class="p-2 rounded"
-              [ngClass]="getComparisonClass(guess.name.status)"
+              [class]="getComparisonClass(guess.name.status)"
             >
               {{ guess.name.value }}
             </div>
@@ -67,7 +62,7 @@
             <div class="font-semibold text-gray-700 mb-1">Afiliacion</div>
             <div
               class="p-2 rounded"
-              [ngClass]="getComparisonClass(guess.genero.status)"
+              [class]="getComparisonClass(guess.genero.status)"
             >
               {{ guess.genero.value || "N/A" }}
             </div>
@@ -78,7 +73,7 @@
             <div class="font-semibold text-gray-700 mb-1">Fruta</div>
             <div
               class="p-2 rounded"
-              [ngClass]="getComparisonClass(guess.fruta_del_diablo.status)"
+              [class]="getComparisonClass(guess.fruta_del_diablo.status)"
             >
               {{ guess.fruta_del_diablo.value || "N/A" }}
             </div>
@@ -89,7 +84,7 @@
             <div class="font-semibold text-gray-700 mb-1">Recompensa</div>
             <div
               class="p-2 rounded flex items-center justify-center gap-1"
-              [ngClass]="getComparisonClass(guess.ultima_recompensa.status)"
+              [class]="getComparisonClass(guess.ultima_recompensa.status)"
             >
               {{ guess.ultima_recompensa.value || "N/A" }}
               @if (guess.ultima_recompensa.status === 'wrong') { @if
@@ -106,7 +101,7 @@
             <div class="font-semibold text-gray-700 mb-1">Altura</div>
             <div
               class="p-2 rounded flex items-center justify-center gap-1"
-              [ngClass]="getComparisonClass(guess.altura.status)"
+              [class]="getComparisonClass(guess.altura.status)"
             >
               {{ guess.altura.value || "N/A" }}
               @if (guess.altura.status === 'wrong') { @if (guess.altura.arrow
@@ -123,7 +118,7 @@
             <div class="font-semibold text-gray-700 mb-1">Hakis</div>
             <div
               class="p-2 rounded"
-              [ngClass]="getComparisonClass(guess.hakis.status)"
+              [class]="getComparisonClass(guess.hakis.status)"
             >
               {{ guess.hakis.value || "N/A" }}
             </div>
@@ -134,13 +129,14 @@
             <div class="font-semibold text-gray-700 mb-1">Origen</div>
             <div
               class="p-2 rounded"
-              [ngClass]="getComparisonClass(guess.primer_arco.status)"
+              [class]="getComparisonClass(guess.primer_arco.status)"
             >
               {{ guess.primer_arco.value || "N/A" }}
             </div>
           </div>
         </div>
       </div>
+      }
     </div>
 
     <!-- Input para adivinar -->
@@ -193,25 +189,16 @@
     </div>
 
     <!-- Mensaje de error -->
-    <div *ngIf="errorMessage" class="text-center text-red-600">
+    @if(errorMessage) {
+    <div class="text-center text-red-600">
       {{ errorMessage }}
     </div>
+    }
 
     <!-- Loading -->
     @if (!charactersLoaded) {
-    <div class="text-center text-gray-600">
-      Cargando personajes...
-    </div>
-  }
-    <!-- Botón de debug temporal -->
-    <div class="text-center mt-4">
-      <button
-        (click)="debugLocalStorage()"
-        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
-      >
-        Debug localStorage
-      </button>
-    </div>
+    <div class="text-center text-gray-600">Cargando personajes...</div>
+    }
   </div>
   }
   <!-- Resultado del juego -->
@@ -244,10 +231,10 @@
         </div>
         <div>
           <strong>Ultima recompensa:</strong>
-          {{ targetCharacter?.ultima_recompensa || "N/A" }}
+          {{ getFormattedValue('ultima_recompensa', targetCharacter?.ultima_recompensa) }}
         </div>
         <div>
-          <strong>Altura:</strong> {{ targetCharacter?.altura || "N/A" }}
+          <strong>Altura:</strong> {{ getFormattedValue('altura', targetCharacter?.altura) }}
         </div>
         <div>
           <strong>Origen:</strong> {{ targetCharacter?.primer_arco || "N/A" }}
@@ -258,5 +245,5 @@
       Intentos: {{ currentAttempt }}/{{ maxAttempts }}
     </p>
   </div>
-}
+  }
 </app-base-game>

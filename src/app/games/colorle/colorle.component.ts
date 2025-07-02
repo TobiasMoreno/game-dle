@@ -12,7 +12,6 @@ import { BaseGameComponent } from '../../shared/components/base-game/base-game.c
   imports: [CommonModule, BaseGameComponent],
   template: `
     <app-base-game 
-      [gameId]="'colorle'" 
       (gameCompleted)="onGameCompleted($event)"
     >
       <div class="text-center py-8">
@@ -33,8 +32,10 @@ import { BaseGameComponent } from '../../shared/components/base-game/base-game.c
   styles: []
 })
 export class ColorleComponent extends BaseGameComponent implements OnInit {
-  override ngOnInit(): void {
-    super.ngOnInit();
+  private readonly gameId = 'colorle';
+
+  ngOnInit(): void {
+    this.setGameId(this.gameId);
   }
 
   onGameCompleted(result: {won: boolean, attempts: number, gameData?: any}): void {

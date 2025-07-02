@@ -28,6 +28,7 @@ interface WordleWord {
 export class WordleComponent extends BaseGameComponent implements OnInit {
   readonly maxAttempts = 6;
   private readonly wordLength = 5;
+  private readonly gameId = 'wordle';
 
   board: string[][] = [];
   currentGuess: string = '';
@@ -48,9 +49,8 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     super();
   }
 
-  override ngOnInit(): void {
-    super.ngOnInit();
-    
+  ngOnInit(): void {
+    this.setGameId(this.gameId);
     // Cargar palabras desde el JSON
     this.loadWordsFromJson();
     

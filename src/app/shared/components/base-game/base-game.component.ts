@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameState, DailyGameState, GameProgress } from '../../models/game.model';
 import { GameManagerService } from '../../services/game-manager.service';
@@ -15,31 +15,44 @@ import { GameStorageService } from '../../services/game-storage.service';
   styles: []
 })
 export class BaseGameComponent {
-  gameId = input<string>();
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();
 
   game: GameState | null = null;
   dailyState: DailyGameState | null = null;
   currentProgress: GameProgress | null = null;
+  private _gameId: string | null = null;
 
   private router = inject(Router);
   private gameManager = inject(GameManagerService);
   protected gameStorage = inject(GameStorageService);
 
-  ngOnInit(): void {
+  /**
+   * Establece el gameId y inicializa el componente
+   */
+  public setGameId(gameId: string): void {
+    this._gameId = gameId;
+    console.log('✅ GameId establecido:', gameId);
     this.loadGame();
     this.loadProgress();
+  }
+
+  /**
+   * Obtiene el gameId de forma segura
+   */
+  protected getGameIdSafely(): string | null {
+    return this._gameId;
   }
 
   /**
    * Carga el juego y su estado
    */
   protected loadGame(): void {
-    if (!this.gameId()) return;
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) return;
 
-    this.game = this.gameManager.getGame(this.gameId()!);
-    this.dailyState = this.gameManager.getTodayGameState(this.gameId()!);
+    this.game = this.gameManager.getGame(gameIdValue);
+    this.dailyState = this.gameManager.getTodayGameState(gameIdValue);
 
     if (!this.game) {
       this.goHome();
@@ -50,9 +63,10 @@ export class BaseGameComponent {
    * Carga el progreso actual del juego
    */
   protected loadProgress(): void {
-    if (!this.gameId) return;
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) return;
 
-    this.currentProgress = this.gameStorage.getGameProgress(this.gameId()!);
+    this.currentProgress = this.gameStorage.getGameProgress(gameIdValue);
     this.progressLoaded.emit(this.currentProgress);
   }
 
@@ -60,50 +74,69 @@ export class BaseGameComponent {
    * Guarda el progreso actual del juego
    */
   protected saveProgress(progress: Partial<GameProgress>): void {
-    if (!this.gameId) return;
+    try {
+      const gameIdValue = this.getGameIdSafely();
+      if (!gameIdValue) {
+        console.log('⚠️ gameId no disponible en saveProgress');
+        return;
+      }
 
-    const today = new Date().toISOString().split('T')[0];
-    const fullProgress: GameProgress = {
-      date: today,
-      currentAttempt: 0,
-      maxAttempts: 6,
-      gameWon: false,
-      gameLost: false,
-      attempts: [],
-      lastUpdated: Date.now(),
-      ...progress
-    };
+      const today = new Date().toISOString().split('T')[0];
+      const fullProgress: GameProgress = {
+        date: today,
+        currentAttempt: 0,
+        maxAttempts: 6,
+        gameWon: false,
+        gameLost: false,
+        attempts: [],
+        lastUpdated: Date.now(),
+        ...progress
+      };
 
-    this.gameStorage.saveGameProgress(this.gameId()!, fullProgress);
-    this.currentProgress = fullProgress;
+      this.gameStorage.saveGameProgress(gameIdValue, fullProgress);
+      this.currentProgress = fullProgress;
+    } catch (error) {
+      console.error('Error en saveProgress:', error);
+    }
   }
 
   /**
    * Actualiza el progreso del juego
    */
   protected updateProgress(updates: Partial<GameProgress>): void {
-    if (!this.currentProgress) {
-      this.saveProgress(updates);
-      return;
+    try {
+      const gameIdValue = this.getGameIdSafely();
+      if (!gameIdValue) {
+        console.log('⚠️ gameId no disponible en updateProgress');
+        return;
+      }
+
+      if (!this.currentProgress) {
+        this.saveProgress(updates);
+        return;
+      }
+
+      const updatedProgress = {
+        ...this.currentProgress,
+        ...updates,
+        lastUpdated: Date.now()
+      };
+
+      this.gameStorage.saveGameProgress(gameIdValue, updatedProgress);
+      this.currentProgress = updatedProgress;
+    } catch (error) {
+      console.error('Error en updateProgress:', error);
     }
-
-    const updatedProgress = {
-      ...this.currentProgress,
-      ...updates,
-      lastUpdated: Date.now()
-    };
-
-    this.gameStorage.saveGameProgress(this.gameId()!, updatedProgress);
-    this.currentProgress = updatedProgress;
   }
 
   /**
    * Limpia el progreso del juego (cuando se completa)
    */
   protected clearProgress(): void {
-    if (!this.gameId) return;
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) return;
 
-    this.gameStorage.clearGameProgress(this.gameId()!);
+    this.gameStorage.clearGameProgress(gameIdValue);
     this.currentProgress = null;
   }
 
@@ -111,9 +144,10 @@ export class BaseGameComponent {
    * Completa el juego y actualiza estadísticas
    */
   protected completeGame(won: boolean, attempts: number, gameData?: any): void {
-    if (!this.gameId) return;
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) return;
 
-    this.gameManager.completeGame(this.gameId()!, won, attempts, gameData);
+    this.gameManager.completeGame(gameIdValue, won, attempts, gameData);
     this.gameCompleted.emit({ won, attempts, gameData });
     
     // Limpiar progreso al completar el juego
@@ -142,7 +176,9 @@ export class BaseGameComponent {
    * Verifica si el juego ya fue jugado hoy
    */
   protected isGamePlayedToday(): boolean {
-    return this.gameManager.isGamePlayedToday(this.gameId()!);
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) return false;
+    return this.gameManager.isGamePlayedToday(gameIdValue);
   }
 
   /**
@@ -157,5 +193,12 @@ export class BaseGameComponent {
    */
   protected getCurrentProgress(): GameProgress | null {
     return this.currentProgress;
+  }
+
+  /**
+   * Función de tracking para el bucle de distribución de intentos
+   */
+  protected trackGuessDistribution(index: number, count: number): number {
+    return index;
   }
 } 

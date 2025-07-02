@@ -135,7 +135,6 @@ export class GameStorageService {
    */
   saveGameProgress(gameId: string, progress: GameProgress): void {
     try {
-      console.log(`Guardando progreso para ${gameId}:`, progress);
       
       const allProgress = this.getAllProgress();
       allProgress[gameId] = {
@@ -144,13 +143,11 @@ export class GameStorageService {
       };
       
       const dataToSave = JSON.stringify(allProgress);
-      console.log(`Datos a guardar en localStorage:`, dataToSave);
       
       localStorage.setItem(this.PROGRESS_KEY, dataToSave);
       
       // Verificar que se guardó correctamente
       const savedData = localStorage.getItem(this.PROGRESS_KEY);
-      console.log(`Datos guardados en localStorage:`, savedData);
       
       if (savedData === dataToSave) {
         console.log('Progreso guardado exitosamente en localStorage');

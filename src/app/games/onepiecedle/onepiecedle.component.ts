@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
@@ -34,13 +33,13 @@ interface GuessResult {
 
 @Component({
   selector: 'app-onepiecedle',
-  standalone: true,
-  imports: [CommonModule, FormsModule, BaseGameComponent, HighlightPipe],
+  imports: [FormsModule, BaseGameComponent, HighlightPipe],
   templateUrl: './onepiecedle.component.html',
   styles: [],
 })
 export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
   readonly maxAttempts = 6;
+  readonly gameId = 'onepiecedle';
   private http: HttpClient = inject(HttpClient);
 
   characters: OnePieceCharacter[] = [];
@@ -54,13 +53,20 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
   charactersLoaded: boolean = false;
   hasSavedProgress: boolean = false;
 
-  override ngOnInit(): void {
-    super.ngOnInit();
+  ngOnInit(): void {
+    console.log('🚀 OnePieceDLE ngOnInit iniciado');
+    
+    // Establecer el gameId inmediatamente
+    this.setGameId(this.gameId);
+    
+    // Cargar personajes
     this.loadCharacters();
 
     // Escuchar cuando se carga el progreso
     this.progressLoaded.subscribe((progress) => {
+      console.log('📊 Progreso cargado:', progress);
       if (progress) {
+        console.log('🔄 Restaurando progreso...');
         this.restoreProgress(progress);
       }
     });
@@ -209,11 +215,11 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
         status: this.compareHakis(guess.hakis || [], target.hakis || []),
       },
       ultima_recompensa: {
-        value: guess.ultima_recompensa.toString() || 'N/A',
+        value: this.formatReward(guess.ultima_recompensa || 0),
         ...this.compareNumeric(guess.ultima_recompensa || 0, target.ultima_recompensa || 0),
       },
       altura: {
-        value: (guess.altura || 0).toString(),
+        value: this.formatHeight(guess.altura || 0),
         ...this.compareNumeric(guess.altura || 0, target.altura || 0),
       },
       primer_arco: {
@@ -231,23 +237,29 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
    * Carga los personajes desde la API
    */
   private loadCharacters(): void {
+    console.log('🔄 Iniciando carga de personajes...');
     this.http
       .get<OnePieceCharacter[]>('personajes_one_piece.json')
       .subscribe({
         next: (characters) => {
+          console.log('📥 Personajes cargados desde JSON:', characters.length);
           this.characters = characters.filter(
             (char) =>
               char.nombre &&
               char.nombre.trim() !== ''
           );
+          console.log('✅ Personajes filtrados:', this.characters.length);
+          console.log('📋 Primeros 3 personajes:', this.characters.slice(0, 3));
+          
           this.charactersLoaded = true;
           this.filteredCharacters = this.characters;
 
           // Inicializar juego después de cargar personajes
+          console.log('🎮 Inicializando juego después de cargar personajes...');
           this.initializeGame();
         },
         error: (error) => {
-          console.error('Error loading characters:', error);
+          console.error('❌ Error loading characters:', error);
           this.errorMessage =
             'Error al cargar los personajes. Intenta recargar la página.';
         },
@@ -258,24 +270,14 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
    * Inicializa el juego
    */
   private initializeGame(): void {
-    // Si ya hay progreso guardado, no inicializar
-    if (this.hasProgress()) {
-      return;
-    }
-
-    // Si ya se jugó hoy, no inicializar
-    if (this.isGamePlayedToday()) {
-      return;
-    }
-
     // Verificar que los personajes estén cargados
     if (this.characters.length === 0) {
+      console.log('❌ No hay personajes cargados, no inicializando');
       return;
     }
 
     // Seleccionar personaje aleatorio
     this.targetCharacter = this.getRandomCharacter();
-    console.log(this.targetCharacter);
 
     this.currentAttempt = 0;
     this.gameWon = false;
@@ -283,7 +285,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
     this.guesses = [];
     this.hasSavedProgress = false;
 
-    // Guardar progreso inicial
+    // Intentar guardar progreso inicial (puede fallar si gameId no está disponible)
     this.saveCurrentProgress();
   }
 
@@ -383,34 +385,66 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
     if (status === 'partial') return 'bg-yellow-400 text-white';
     return 'bg-red-500 text-white';
   }
-
-  /**
-   * Maneja la finalización del juego
-   */
-  onGameCompleted(result: {
-    won: boolean;
-    attempts: number;
-    gameData?: any;
-  }): void {
-  }
-
   /**
    * Continúa el juego guardado
    */
   continueGame(): void {
     this.hasSavedProgress = false;
   }
+  /**
+   * Verifica si el juego ya fue jugado hoy de forma segura
+   */
+  protected isGamePlayedTodaySafe(): boolean {
+    return this.isGamePlayedToday();
+  }
 
   /**
-   * Método de debug para verificar el estado del localStorage
+   * Verifica si hay progreso guardado de forma segura
    */
-  debugLocalStorage(): void {
-    if (typeof localStorage !== 'undefined') {
-      const gamesData = localStorage.getItem('game-dle-data');
+  protected hasProgressSafe(): boolean {
+    return this.hasProgress();
+  }
 
-      const progressData = localStorage.getItem('game-progress');
+  /**
+   * Convierte una recompensa numérica a formato legible (ej: 3000000 -> 3M)
+   */
+  private formatReward(reward: number): string {
+    if (!reward || reward === 0) return 'N/A';
+    
+    if (reward >= 1000000) {
+      const millions = reward / 1000000;
+      return millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
+    } else if (reward >= 1000) {
+      const thousands = reward / 1000;
+      return thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
+    }
+    
+    return reward.toString();
+  }
 
-      const onepieceProgress = this.gameStorage.getGameProgress('onepiecedle');
+  /**
+   * Convierte altura de centímetros a metros (ej: 174 -> 1.74M)
+   */
+  private formatHeight(height: number): string {
+    if (!height || height === 0) return 'N/A';
+    
+    const meters = height / 100;
+    return `${meters.toFixed(2)}M`;
+  }
+
+  /**
+   * Obtiene el valor formateado para mostrar en la interfaz
+   */
+  getFormattedValue(field: string, value: any): string {
+    if (!value || value === 'N/A') return 'N/A';
+    
+    switch (field) {
+      case 'ultima_recompensa':
+        return this.formatReward(value);
+      case 'altura':
+        return this.formatHeight(value);
+      default:
+        return value.toString();
     }
   }
 }
