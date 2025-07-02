@@ -44,12 +44,8 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
 
   private http = inject(HttpClient);
 
-  constructor(
-    router: Router,
-    gameManager: GameManagerService,
-    gameStorage: GameStorageService
-  ) {
-    super(router, gameManager, gameStorage);
+  constructor() {
+    super();
   }
 
   override ngOnInit(): void {

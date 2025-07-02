@@ -1,207 +1,262 @@
-<app-base-game 
-[gameId]="'onepiecedle'" 
-(gameCompleted)="onGameCompleted($event)"
+<app-base-game
+  [gameId]="'onepiecedle'"
+  (gameCompleted)="onGameCompleted($event)"
 >
-<!-- Mensaje si ya se jugó hoy -->
-<div *ngIf="isGamePlayedToday()" class="text-center py-8">
-  <h2 class="text-2xl font-bold text-gray-900 mb-4">
-    ¡Ya jugaste One Piece DLE hoy!
-  </h2>
-  <p class="text-gray-600">
-    Vuelve mañana para un nuevo desafío.
-  </p>
-</div>
-
-<!-- Mensaje de progreso guardado -->
-<div *ngIf="hasSavedProgress && !isGamePlayedToday()" class="text-center py-8">
-  <h2 class="text-2xl font-bold text-blue-600 mb-4">
-    🎮 ¡Tienes un juego en progreso!
-  </h2>
-  <p class="text-gray-600 mb-4">
-    Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
-  </p>
-  <button
-    (click)="continueGame()"
-    class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-  >
-    Continuar juego
-  </button>
-</div>
-
-<!-- Juego activo -->
-<div *ngIf="!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts && !hasSavedProgress" class="space-y-6">
-  <!-- Instrucciones -->
-  <div class="text-center mb-6">
-    <h2 class="text-xl font-semibold mb-2">Adivina el personaje de One Piece</h2>
-    <p class="text-gray-600">Tienes 6 intentos - Compara con el personaje del día</p>
+  <!-- Mensaje si ya se jugó hoy -->
+  @if(isGamePlayedToday()) {
+  <div class="text-center py-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">
+      ¡Ya jugaste One Piece DLE hoy!
+    </h2>
+    <p class="text-gray-600">Vuelve mañana para un nuevo desafío.</p>
   </div>
-
-  <!-- Tablero de intentos -->
-  <div class="space-y-4">
-    <div 
-      *ngFor="let guess of guesses; let attemptIndex = index"
-      class="bg-gray-50 rounded-lg p-4"
+  }
+  <!-- Mensaje de progreso guardado -->
+  @if(hasSavedProgress && !isGamePlayedToday()) {
+  <div class="text-center py-8">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">
+      🎮 ¡Tienes un juego en progreso!
+    </h2>
+    <p class="text-gray-600 mb-4">
+      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
+    </p>
+    <button
+      (click)="continueGame()"
+      class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
     >
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 text-sm">
-        <!-- Nombre -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Nombre</div>
-          <div 
-            class="p-2 rounded"
-            [ngClass]="getComparisonClass(guess.name.status)"
-          >
-            {{ guess.name.value }}
-          </div>
-        </div>
+      Continuar juego
+    </button>
+  </div>
+  }
+  <!-- Juego activo -->
+  @if(!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts &&
+  !hasSavedProgress) {
+  <div class="space-y-6">
+    <!-- Instrucciones -->
+    <div class="text-center mb-6">
+      <h2 class="text-xl font-semibold mb-2">
+        Adivina el personaje de One Piece
+      </h2>
+      <p class="text-gray-600">
+        Tienes 6 intentos - Compara con el personaje del día
+      </p>
+    </div>
 
-        <!-- Tripulación -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Afiliacion</div>
-          <div 
-            class="p-2 rounded"
-            [ngClass]="getComparisonClass(guess.genero.status)"
-          >
-            {{ guess.genero.value || 'N/A' }}
+    <!-- Tablero de intentos -->
+    <div class="space-y-4">
+      <div
+        *ngFor="let guess of guesses; let attemptIndex = index"
+        class="bg-gray-50 rounded-lg p-4"
+      >
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 text-sm"
+        >
+          <!-- Nombre -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Nombre</div>
+            <div
+              class="p-2 rounded"
+              [ngClass]="getComparisonClass(guess.name.status)"
+            >
+              {{ guess.name.value }}
+            </div>
           </div>
-        </div>
 
-        <!-- Fruta del Diablo -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Fruta</div>
-          <div 
-            class="p-2 rounded"
-            [ngClass]="getComparisonClass(guess.fruta_del_diablo.status)"
-          >
-            {{ guess.fruta_del_diablo.value || 'N/A' }}
+          <!-- Tripulación -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Afiliacion</div>
+            <div
+              class="p-2 rounded"
+              [ngClass]="getComparisonClass(guess.genero.status)"
+            >
+              {{ guess.genero.value || "N/A" }}
+            </div>
           </div>
-        </div>
 
-        <!-- Recompensa -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Recompensa</div>
-          <div 
-            class="p-2 rounded flex items-center justify-center gap-1"
-            [ngClass]="getComparisonClass(guess.ultima_recompensa.status)"
-          >
-            {{ guess.ultima_recompensa.value || 'N/A' }}
-            <ng-container *ngIf="guess.ultima_recompensa.status === 'wrong'">
-              <span *ngIf="guess.ultima_recompensa.arrow === 'up'">⬆️</span>
-              <span *ngIf="guess.ultima_recompensa.arrow === 'down'">⬇️</span>
-            </ng-container>
+          <!-- Fruta del Diablo -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Fruta</div>
+            <div
+              class="p-2 rounded"
+              [ngClass]="getComparisonClass(guess.fruta_del_diablo.status)"
+            >
+              {{ guess.fruta_del_diablo.value || "N/A" }}
+            </div>
           </div>
-        </div>
 
-        <!-- Altura -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Altura</div>
-          <div 
-            class="p-2 rounded flex items-center justify-center gap-1"
-            [ngClass]="getComparisonClass(guess.altura.status)"
-          >
-            {{ guess.altura.value || 'N/A' }}
-            <ng-container *ngIf="guess.altura.status === 'wrong'">
-              <span *ngIf="guess.altura.arrow === 'up'">⬆️</span>
-              <span *ngIf="guess.altura.arrow === 'down'">⬇️</span>
-            </ng-container>
+          <!-- Recompensa -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Recompensa</div>
+            <div
+              class="p-2 rounded flex items-center justify-center gap-1"
+              [ngClass]="getComparisonClass(guess.ultima_recompensa.status)"
+            >
+              {{ guess.ultima_recompensa.value || "N/A" }}
+              @if (guess.ultima_recompensa.status === 'wrong') { @if
+              (guess.ultima_recompensa.arrow === 'up') {
+              <span>⬆️</span>
+              } @if (guess.ultima_recompensa.arrow === 'down') {
+              <span>⬇️</span>
+              } }
+            </div>
           </div>
-        </div>
 
-        <!-- Hakis -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Hakis</div>
-          <div 
-            class="p-2 rounded"
-            [ngClass]="getComparisonClass(guess.hakis.status)"
-          >
-            {{ guess.hakis.value || 'N/A' }}
+          <!-- Altura -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Altura</div>
+            <div
+              class="p-2 rounded flex items-center justify-center gap-1"
+              [ngClass]="getComparisonClass(guess.altura.status)"
+            >
+              {{ guess.altura.value || "N/A" }}
+              @if (guess.altura.status === 'wrong') { @if (guess.altura.arrow
+              === 'up') {
+              <span>⬆️</span>
+              } @if (guess.altura.arrow === 'down') {
+              <span>⬇️</span>
+              } }
+            </div>
           </div>
-        </div>
 
-        <!-- Origen -->
-        <div class="text-center">
-          <div class="font-semibold text-gray-700 mb-1">Origen</div>
-          <div 
-            class="p-2 rounded"
-            [ngClass]="getComparisonClass(guess.primer_arco.status)"
-          >
-            {{ guess.primer_arco.value || 'N/A' }}
+          <!-- Hakis -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Hakis</div>
+            <div
+              class="p-2 rounded"
+              [ngClass]="getComparisonClass(guess.hakis.status)"
+            >
+              {{ guess.hakis.value || "N/A" }}
+            </div>
+          </div>
+
+          <!-- Origen -->
+          <div class="text-center">
+            <div class="font-semibold text-gray-700 mb-1">Origen</div>
+            <div
+              class="p-2 rounded"
+              [ngClass]="getComparisonClass(guess.primer_arco.status)"
+            >
+              {{ guess.primer_arco.value || "N/A" }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Input para adivinar -->
-  <div class="flex flex-col items-center relative">
-    <div class="flex space-x-2 max-w-md w-full">
-      <input
-        type="text"
-        [(ngModel)]="currentGuess"
-        (keyup.enter)="submitGuess()"
-        (input)="onInputChange($event)"
-        class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg text-center"
-        placeholder="Escribe el nombre del personaje..."
-        [disabled]="gameWon || currentAttempt >= maxAttempts || !charactersLoaded"
-        autocomplete="off"
+    <!-- Input para adivinar -->
+    <div class="flex flex-col items-center relative">
+      <div class="flex space-x-2 max-w-md w-full">
+        <input
+          type="text"
+          [(ngModel)]="currentGuess"
+          (keyup.enter)="submitGuess()"
+          (input)="onInputChange($event)"
+          class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg text-center"
+          placeholder="Escribe el nombre del personaje..."
+          [disabled]="
+            gameWon || currentAttempt >= maxAttempts || !charactersLoaded
+          "
+          autocomplete="off"
+        />
+        <button
+          (click)="submitGuess()"
+          [disabled]="
+            !currentGuess.trim() ||
+            gameWon ||
+            currentAttempt >= maxAttempts ||
+            !charactersLoaded
+          "
+          class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        >
+          Adivinar
+        </button>
+      </div>
+      <!-- Autocompletado bonito -->
+      @if (filteredCharacters.length > 0 && currentGuess.trim() && !gameWon &&
+      currentAttempt < maxAttempts) {
+
+      <ul
+        class="absolute top-full left-0 w-full max-w-md bg-white border border-gray-300 rounded-lg shadow-lg mt-1 z-20"
       >
+        @for (character of filteredCharacters; track $index) {
+        <li
+          (click)="selectCharacter(character.nombre)"
+          class="px-4 py-2 cursor-pointer hover:bg-blue-100 flex items-center"
+        >
+          <span
+            [innerHTML]="character.nombre | highlight : currentGuess"
+          ></span>
+        </li>
+        }
+      </ul>
+      }
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="text-center text-red-600">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Loading -->
+    @if (!charactersLoaded) {
+    <div class="text-center text-gray-600">
+      Cargando personajes...
+    </div>
+  }
+    <!-- Botón de debug temporal -->
+    <div class="text-center mt-4">
       <button
-        (click)="submitGuess()"
-        [disabled]="!currentGuess.trim() || gameWon || currentAttempt >= maxAttempts || !charactersLoaded"
-        class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        (click)="debugLocalStorage()"
+        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
       >
-        Adivinar
+        Debug localStorage
       </button>
     </div>
-    <!-- Autocompletado bonito -->
-    <ul *ngIf="filteredCharacters.length > 0 && currentGuess.trim() && !gameWon && currentAttempt < maxAttempts" class="absolute top-full left-0 w-full max-w-md bg-white border border-gray-300 rounded-lg shadow-lg mt-1 z-20">
-      <li *ngFor="let char of filteredCharacters" (click)="selectCharacter(char.nombre)"
-          class="px-4 py-2 cursor-pointer hover:bg-blue-100 flex items-center">
-        <span [innerHTML]="char.nombre | highlight:currentGuess"></span>
-      </li>
-    </ul>
   </div>
-
-  <!-- Mensaje de error -->
-  <div *ngIf="errorMessage" class="text-center text-red-600">
-    {{ errorMessage }}
-  </div>
-
-  <!-- Loading -->
-  <div *ngIf="!charactersLoaded" class="text-center text-gray-600">
-    Cargando personajes...
-  </div>
-
-  <!-- Botón de debug temporal -->
-  <div class="text-center mt-4">
-    <button
-      (click)="debugLocalStorage()"
-      class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
+  }
+  <!-- Resultado del juego -->
+  @if (gameWon || currentAttempt >= maxAttempts) {
+  <div class="text-center py-8">
+    <h2
+      class="text-2xl font-bold mb-4"
+      [class]="gameWon ? 'text-green-600' : 'text-red-600'"
     >
-      Debug localStorage
-    </button>
-  </div>
-</div>
-
-<!-- Resultado del juego -->
-<div *ngIf="gameWon || currentAttempt >= maxAttempts" class="text-center py-8">
-  <h2 class="text-2xl font-bold mb-4" [class]="gameWon ? 'text-green-600' : 'text-red-600'">
-    {{ gameWon ? '¡Felicidades! ¡Ganaste!' : '¡Game Over!' }}
-  </h2>
-  <div class="bg-gray-50 rounded-lg p-6 max-w-md mx-auto">
-    <h3 class="text-lg font-semibold mb-4">El personaje era:</h3>
-    <div class="text-left space-y-2">
-      <div><strong>Nombre:</strong> {{ targetCharacter?.nombre }}</div>
-      <div><strong>Genero:</strong> {{ targetCharacter?.genero || 'N/A' }}</div>
-      <div><strong>Afiliacion:</strong> {{ targetCharacter?.afiliacion || 'N/A' }}</div>
-      <div><strong>Fruta:</strong> {{ targetCharacter?.fruta_del_diablo || 'N/A' }}</div>
-      <div><strong>Hakis:</strong> {{ targetCharacter?.hakis?.join(', ') || 'N/A' }}</div>
-      <div><strong>Ultima recompensa:</strong> {{ targetCharacter?.ultima_recompensa || 'N/A' }}</div>
-      <div><strong>Altura:</strong> {{ targetCharacter?.altura || 'N/A' }}</div>
-      <div><strong>Origen:</strong> {{ targetCharacter?.primer_arco || 'N/A' }}</div>
+      {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
+    </h2>
+    <div class="bg-gray-50 rounded-lg p-6 max-w-md mx-auto">
+      <h3 class="text-lg font-semibold mb-4">El personaje era:</h3>
+      <div class="text-left space-y-2">
+        <div><strong>Nombre:</strong> {{ targetCharacter?.nombre }}</div>
+        <div>
+          <strong>Genero:</strong> {{ targetCharacter?.genero || "N/A" }}
+        </div>
+        <div>
+          <strong>Afiliacion:</strong>
+          {{ targetCharacter?.afiliacion || "N/A" }}
+        </div>
+        <div>
+          <strong>Fruta:</strong>
+          {{ targetCharacter?.fruta_del_diablo || "N/A" }}
+        </div>
+        <div>
+          <strong>Hakis:</strong>
+          {{ targetCharacter?.hakis?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>Ultima recompensa:</strong>
+          {{ targetCharacter?.ultima_recompensa || "N/A" }}
+        </div>
+        <div>
+          <strong>Altura:</strong> {{ targetCharacter?.altura || "N/A" }}
+        </div>
+        <div>
+          <strong>Origen:</strong> {{ targetCharacter?.primer_arco || "N/A" }}
+        </div>
+      </div>
     </div>
+    <p class="text-gray-600 mt-4">
+      Intentos: {{ currentAttempt }}/{{ maxAttempts }}
+    </p>
   </div>
-  <p class="text-gray-600 mt-4">
-    Intentos: {{ currentAttempt }}/{{ maxAttempts }}
-  </p>
-</div>
+}
 </app-base-game>

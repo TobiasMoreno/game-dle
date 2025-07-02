@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameState, DailyGameState, GameProgress } from '../../models/game.model';
 import { GameManagerService } from '../../services/game-manager.service';
@@ -15,19 +15,17 @@ import { GameStorageService } from '../../services/game-storage.service';
   styles: []
 })
 export class BaseGameComponent {
-  @Input() gameId: string = '';
-  @Output() gameCompleted = new EventEmitter<{won: boolean, attempts: number, gameData?: any}>();
-  @Output() progressLoaded = new EventEmitter<GameProgress | null>();
+  gameId = input<string>();
+  gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
+  progressLoaded = output<GameProgress | null>();
 
   game: GameState | null = null;
   dailyState: DailyGameState | null = null;
   currentProgress: GameProgress | null = null;
 
-  constructor(
-    protected router: Router,
-    protected gameManager: GameManagerService,
-    protected gameStorage: GameStorageService
-  ) {}
+  private router = inject(Router);
+  private gameManager = inject(GameManagerService);
+  protected gameStorage = inject(GameStorageService);
 
   ngOnInit(): void {
     this.loadGame();
@@ -38,10 +36,10 @@ export class BaseGameComponent {
    * Carga el juego y su estado
    */
   protected loadGame(): void {
-    if (!this.gameId) return;
+    if (!this.gameId()) return;
 
-    this.game = this.gameManager.getGame(this.gameId);
-    this.dailyState = this.gameManager.getTodayGameState(this.gameId);
+    this.game = this.gameManager.getGame(this.gameId()!);
+    this.dailyState = this.gameManager.getTodayGameState(this.gameId()!);
 
     if (!this.game) {
       this.goHome();
@@ -54,7 +52,7 @@ export class BaseGameComponent {
   protected loadProgress(): void {
     if (!this.gameId) return;
 
-    this.currentProgress = this.gameStorage.getGameProgress(this.gameId);
+    this.currentProgress = this.gameStorage.getGameProgress(this.gameId()!);
     this.progressLoaded.emit(this.currentProgress);
   }
 
@@ -76,7 +74,7 @@ export class BaseGameComponent {
       ...progress
     };
 
-    this.gameStorage.saveGameProgress(this.gameId, fullProgress);
+    this.gameStorage.saveGameProgress(this.gameId()!, fullProgress);
     this.currentProgress = fullProgress;
   }
 
@@ -95,7 +93,7 @@ export class BaseGameComponent {
       lastUpdated: Date.now()
     };
 
-    this.gameStorage.saveGameProgress(this.gameId, updatedProgress);
+    this.gameStorage.saveGameProgress(this.gameId()!, updatedProgress);
     this.currentProgress = updatedProgress;
   }
 
@@ -105,7 +103,7 @@ export class BaseGameComponent {
   protected clearProgress(): void {
     if (!this.gameId) return;
 
-    this.gameStorage.clearGameProgress(this.gameId);
+    this.gameStorage.clearGameProgress(this.gameId()!);
     this.currentProgress = null;
   }
 
@@ -115,7 +113,7 @@ export class BaseGameComponent {
   protected completeGame(won: boolean, attempts: number, gameData?: any): void {
     if (!this.gameId) return;
 
-    this.gameManager.completeGame(this.gameId, won, attempts, gameData);
+    this.gameManager.completeGame(this.gameId()!, won, attempts, gameData);
     this.gameCompleted.emit({ won, attempts, gameData });
     
     // Limpiar progreso al completar el juego
@@ -144,7 +142,7 @@ export class BaseGameComponent {
    * Verifica si el juego ya fue jugado hoy
    */
   protected isGamePlayedToday(): boolean {
-    return this.gameManager.isGamePlayedToday(this.gameId);
+    return this.gameManager.isGamePlayedToday(this.gameId()!);
   }
 
   /**

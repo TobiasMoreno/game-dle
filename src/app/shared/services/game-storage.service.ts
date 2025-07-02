@@ -173,13 +173,9 @@ export class GameStorageService {
    */
   getGameProgress(gameId: string): GameProgress | null {
     try {
-      console.log(`Obteniendo progreso para ${gameId}...`);
       
       const allProgress = this.getAllProgress();
-      console.log('Todos los progresos almacenados:', allProgress);
-      
       const progress = allProgress[gameId];
-      console.log(`Progreso encontrado para ${gameId}:`, progress);
       
       if (!progress) {
         console.log(`No hay progreso guardado para ${gameId}`);
@@ -188,16 +184,12 @@ export class GameStorageService {
 
       // Verificar si el progreso es del día actual
       const today = new Date().toISOString().split('T')[0];
-      console.log(`Fecha del progreso: ${progress.date}, Hoy: ${today}`);
       
       if (progress.date !== today) {
-        console.log(`Progreso es de otro día, limpiando...`);
         // Limpiar progreso antiguo
         this.clearGameProgress(gameId);
         return null;
       }
-
-      console.log(`Progreso válido encontrado para ${gameId}:`, progress);
       return progress;
     } catch (error) {
       console.error('Error al cargar progreso del juego:', error);
