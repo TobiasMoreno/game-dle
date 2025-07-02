@@ -11,6 +11,38 @@
   <!-- Mensaje de progreso guardado -->
   @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
   <div class="text-center py-8">
+    <!-- Controles de música -->
+    <div class="flex justify-center items-center space-x-4 mb-6">
+      <button
+        (click)="toggleMusic()"
+        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        [class.bg-red-500]="isMusicMuted"
+        [class.hover:bg-red-600]="isMusicMuted"
+      >
+        @if (isMusicMuted) {
+        <span>🔇</span>
+        <span>Activar música</span>
+        } @else {
+        <span>🎵</span>
+        <span>Silenciar música</span>
+        }
+      </button>
+      @if (!isMusicMuted) {
+      <div class="flex items-center space-x-2">
+        <span class="text-sm text-gray-600">Volumen:</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          [value]="musicVolume"
+          (input)="onVolumeChange($event)"
+          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+      </div>
+      }
+    </div>
+
     <h2 class="text-2xl font-bold text-blue-600 mb-4">
       🎮 ¡Tienes un juego en progreso!
     </h2>
@@ -29,6 +61,38 @@
   @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
+    <!-- Controles de música -->
+    <div class="flex justify-center items-center space-x-4 mb-4">
+      <button
+        (click)="toggleMusic()"
+        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        [class.bg-red-500]="isMusicMuted"
+        [class.hover:bg-red-600]="isMusicMuted"
+      >
+        @if (isMusicMuted) {
+        <span>🔇</span>
+        <span>Activar música</span>
+        } @else {
+        <span>🎵</span>
+        <span>Silenciar música</span>
+        }
+      </button>
+      @if (!isMusicMuted) {
+      <div class="flex items-center space-x-2">
+        <span class="text-sm text-gray-600">Volumen:</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          [value]="musicVolume"
+          (input)="onVolumeChange($event)"
+          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+      </div>
+      }
+    </div>
+
     <!-- Instrucciones -->
     <div class="text-center mb-6">
       <h2 class="text-xl font-semibold mb-2">
@@ -39,134 +103,10 @@
       </p>
     </div>
 
-    <!-- Tablero de intentos -->
-    <div class="space-y-4">
-      @for (guess of guesses; track $index) {
-      <div class="bg-gray-50 rounded-lg p-4">
-        <div
-          class="grid grid-cols-2 lg:grid-cols-9 gap-4 text-sm"
-        >
-          <!-- Nombre -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1">Nombre</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.name.status)"
-            >
-              {{ guess.name.value }}
-            </div>
-          </div>
-
-          <!-- Género -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">
-              Género
-            </div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.genero.status)"
-            >
-              {{ guess.genero.value || "N/A" }}
-            </div>
-          </div>
-
-          <!-- Afiliación -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">
-              Afiliación
-            </div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.afiliacion.status)"
-            >
-              {{ guess.afiliacion.value || "N/A" }}
-            </div>
-          </div>
-
-          <!-- Fruta del Diablo -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">Fruta</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.fruta_del_diablo.status)"
-            >
-              {{ guess.fruta_del_diablo.value || "N/A" }}
-            </div>
-          </div>
-
-          <!-- Hakis -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">Hakis</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.hakis.status)"
-            >
-              {{ guess.hakis.value || "N/A" }}
-            </div>
-          </div>
-
-          <!-- Recompensa -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">
-              Recompensa
-            </div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.ultima_recompensa.status)"
-            >
-              <span>{{ guess.ultima_recompensa.value || "N/A" }}</span>
-              @if (guess.ultima_recompensa.arrow === 'up') {
-              <span>⬆️</span>
-              } @if (guess.ultima_recompensa.arrow === 'down') {
-              <span>⬇️</span>
-              }
-            </div>
-          </div>
-
-          <!-- Altura -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">Altura</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.altura.status)"
-            >
-              <span>{{ guess.altura.value || "N/A" }}</span>
-              @if (guess.altura.arrow === 'up') {
-              <span>⬆️</span>
-              } @if (guess.altura.arrow === 'down') {
-              <span>⬇️</span>
-              }
-            </div>
-          </div>
-
-          <!-- Origen -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">Origen</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.origen.status)"
-            >
-              {{ guess.origen.value || "N/A" }}
-            </div>
-          </div>
-
-          <!-- Primer Arco -->
-          <div class="flex flex-col items-center">
-            <div class="font-semibold text-gray-700 mb-1 text-xs">Primer Arco</div>
-            <div
-              class="w-20 h-20 flex items-center justify-center rounded-lg text-center"
-              [class]="getComparisonClass(guess.primer_arco.status)"
-            >
-              {{ guess.primer_arco.value || "N/A" }}
-            </div>
-          </div>
-        </div>
-      </div>
-      }
-    </div>
-
     <!-- Input para adivinar -->
-    <div class="flex flex-col items-center relative w-full max-w-md mx-auto">
+    <div
+      class="flex flex-col items-center relative w-full max-w-md mx-auto mb-6"
+    >
       <div class="flex space-x-2 w-full">
         <input
           type="text"
@@ -211,6 +151,127 @@
       }
     </div>
 
+    <!-- Tablero de intentos -->
+    <div class="max-w-9xl space-y-2 mx-auto overflow-x-auto">
+      <!-- Headers fijos -->
+      <div
+        class="grid grid-cols-9 min-w-[900px] place-items-center text-xs font-bold text-center mb-1 gap-2"
+      >
+        <div>Nombre</div>
+        <div>Género</div>
+        <div>Afiliación</div>
+        <div>Fruta</div>
+        <div>Hakis</div>
+        <div>Recompensa</div>
+        <div>Altura</div>
+        <div>Origen</div>
+        <div>Primer Arco</div>
+      </div>
+      <!-- Intentos -->
+      @for (guess of guesses.slice().reverse(); track $index) {
+      <div class="grid grid-cols-9 min-w-[900px] place-items-center gap-2">
+        <!-- Nombre -->
+        @if ($index !== 0 || revealedColumns[0] > 0) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 0"
+          [class]="getComparisonClass(guess.name.status)"
+        >
+          {{ guess.name.value }}
+        </div>
+        }
+        <!-- Género -->
+        @if ($index !== 0 || revealedColumns[0] > 1) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 1"
+          [class]="getComparisonClass(guess.genero.status)"
+        >
+          {{ guess.genero.value || "N/A" }}
+        </div>
+        }
+        <!-- Afiliación -->
+        @if ($index !== 0 || revealedColumns[0] > 2) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 2"
+          [class]="getComparisonClass(guess.afiliacion.status)"
+        >
+          {{ guess.afiliacion.value || "N/A" }}
+        </div>
+        }
+        <!-- Fruta -->
+        @if ($index !== 0 || revealedColumns[0] > 3) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 3"
+          [class]="getComparisonClass(guess.fruta_del_diablo.status)"
+        >
+          {{ guess.fruta_del_diablo.value || "N/A" }}
+        </div>
+        }<!-- Hakis -->
+        @if ($index !== 0 || revealedColumns[0] > 4) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 4"
+          [class]="getComparisonClass(guess.hakis.status)"
+        >
+          {{ guess.hakis.value || "N/A" }}
+        </div>
+        }
+        <!-- Recompensa -->
+        @if ($index !== 0 || revealedColumns[0] > 5) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 5"
+          [class]="getComparisonClass(guess.ultima_recompensa.status)"
+        >
+          <span>{{ guess.ultima_recompensa.value || "N/A" }}</span>
+          @if (guess.ultima_recompensa.arrow === 'up') {
+          <span>⬆️</span>
+          } @if (guess.ultima_recompensa.arrow === 'down') {
+          <span>⬇️</span>
+          }
+        </div>
+        }
+        <!-- Altura -->
+        @if ($index !== 0 || revealedColumns[0] > 6) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 6"
+          [class]="getComparisonClass(guess.altura.status)"
+        >
+          <span>{{ guess.altura.value || "N/A" }}</span>
+          @if (guess.altura.arrow === 'up') {
+          <span>⬆️</span>
+          } @if (guess.altura.arrow === 'down') {
+          <span>⬇️</span>
+          }
+        </div>
+        }
+        <!-- Origen -->
+        @if ($index !== 0 || revealedColumns[0] > 7) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 7"
+          [class]="getComparisonClass(guess.primer_arco.status)"
+        >
+          {{ guess.primer_arco.value || "N/A" }}
+        </div>
+        <!-- Primer Arco -->
+        @if ($index !== 0 || revealedColumns[0] > 8) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 8"
+          [class]="getComparisonClass(guess.primer_arco.status)"
+        >
+          {{ guess.primer_arco.value || "N/A" }}
+        </div>
+        } }
+      </div>
+      }
+    </div>
+
     <!-- Mensaje de error -->
     @if(errorMessage) {
     <div class="text-center text-red-600">
@@ -227,6 +288,38 @@
   <!-- Resultado del juego -->
   @if (gameWon || currentAttempt >= maxAttempts) {
   <div class="text-center py-8">
+    <!-- Controles de música -->
+    <div class="flex justify-center items-center space-x-4 mb-6">
+      <button
+        (click)="toggleMusic()"
+        class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        [class.bg-red-500]="isMusicMuted"
+        [class.hover:bg-red-600]="isMusicMuted"
+      >
+        @if (isMusicMuted) {
+        <span>🔇</span>
+        <span>Activar música</span>
+        } @else {
+        <span>🎵</span>
+        <span>Silenciar música</span>
+        }
+      </button>
+      @if (!isMusicMuted) {
+      <div class="flex items-center space-x-2">
+        <span class="text-sm text-gray-600">Volumen:</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          [value]="musicVolume"
+          (input)="onVolumeChange($event)"
+          class="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+      </div>
+      }
+    </div>
+
     <h2
       class="text-2xl font-bold mb-4"
       [class]="gameWon ? 'text-green-600' : 'text-red-600'"

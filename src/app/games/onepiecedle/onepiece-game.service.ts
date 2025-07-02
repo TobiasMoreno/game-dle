@@ -30,10 +30,14 @@ export interface GuessResult {
 
 @Injectable({ providedIn: 'root' })
 export class OnePieceGameService {
-  filterCharacters(characters: OnePieceCharacter[], search: string): OnePieceCharacter[] {
+  filterCharacters(characters: OnePieceCharacter[], search: string, guessedNames: string[] = []): OnePieceCharacter[] {
     const value = search.toLowerCase().trim();
     if (!value) return [];
-    return characters.filter((char) => char.nombre.toLowerCase().includes(value));
+    return characters.filter(
+      (char) =>
+        char.nombre.toLowerCase().includes(value) &&
+        !guessedNames.includes(char.nombre)
+    );
   }
 
   formatReward(reward: number): string {
