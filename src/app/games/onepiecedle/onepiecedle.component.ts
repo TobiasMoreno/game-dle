@@ -320,14 +320,8 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
       return;
     }
     this.filteredCharacters = this.characters.filter((char) =>
-      char.nombre.toLowerCase().startsWith(value)
+      char.nombre.toLowerCase().includes(value)
     );
-  }
-
-  selectCharacter(event: any): void {
-    const value = event && event.target ? event.target.value : event;
-    this.currentGuess = value;
-    this.filteredCharacters = [];
   }
 
   /**
@@ -338,19 +332,22 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
       this.errorMessage = 'Por favor ingresa un nombre';
       return;
     }
-
-    const guessedCharacter = this.findCharacterByName(this.currentGuess);
+    const value = this.currentGuess.toLowerCase().trim();
+    let guessedCharacter = this.findCharacterByName(this.currentGuess);
+    // Si no hay coincidencia exacta pero hay sugerencias, usar la primera
+    if (!guessedCharacter && this.filteredCharacters.length > 0) {
+      guessedCharacter = this.filteredCharacters[0];
+      this.currentGuess = guessedCharacter.nombre;
+    }
     if (!guessedCharacter) {
       this.errorMessage = 'Personaje no encontrado. Intenta con otro nombre.';
       return;
     }
-
     const guessResult = this.compareGuess(
       guessedCharacter,
       this.targetCharacter!
     );
     this.guesses.push(guessResult);
-
     // Verificar si ganó
     if (guessResult.name.status === 'correct') {
       this.gameWon = true;
@@ -360,7 +357,6 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
       });
     } else {
       this.currentAttempt++;
-
       // Verificar si perdió
       if (this.currentAttempt >= this.maxAttempts) {
         this.completeGame(false, this.maxAttempts, {
@@ -372,9 +368,18 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit {
         this.saveCurrentProgress();
       }
     }
-
     this.currentGuess = '';
+  }
+
+  /**
+   * Selecciona un personaje de la lista (por click o autocompletado)
+   */
+  selectCharacter(nombre: string, autoSubmit: boolean = false): void {
+    this.currentGuess = nombre;
     this.filteredCharacters = [];
+    if (autoSubmit) {
+      setTimeout(() => this.submitGuess(), 0);
+    }
   }
 
   /**
