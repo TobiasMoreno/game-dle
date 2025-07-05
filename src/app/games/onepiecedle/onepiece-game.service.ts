@@ -10,8 +10,13 @@ export interface OnePieceCharacter {
   ultima_recompensa: number;
   altura: number;
   origen:string;
-  primer_arco: string;
+  primer_arco_id: number;
   img_url: string;
+}
+
+export interface OnePieceArc {
+  id: number;
+  name: string;
 }
 
 export type CompareStatus = 'correct' | 'partial' | 'wrong';
@@ -27,11 +32,34 @@ export interface GuessResult {
   ultima_recompensa: { value: string; status: CompareStatus; arrow: Arrow };
   altura: { value: string; status: CompareStatus; arrow: Arrow };
   origen: { value: string; status: CompareStatus };
-  primer_arco: { value: string; status: CompareStatus };
+  primer_arco: { value: string; status: CompareStatus; arrow: Arrow };
 }
 
 @Injectable({ providedIn: 'root' })
 export class OnePieceGameService {
+  private arcs: OnePieceArc[] = [];
+
+  constructor() {
+    this.loadArcs();
+  }
+
+  private loadArcs(): void {
+    // Cargar los arcos desde el archivo JSON
+    fetch('arcos.json')
+      .then(response => response.json())
+      .then(data => {
+        this.arcs = data;
+        console.log('Arcos cargados:', this.arcs);
+      })
+      .catch(error => {
+        console.error('Error cargando arcos:', error);
+      });
+  }
+
+  getArcName(arcId: number): string {
+    const arc = this.arcs.find(a => a.id === arcId);
+    return arc ? arc.name : 'N/A';
+  }
   filterCharacters(characters: OnePieceCharacter[], search: string, guessedNames: string[] = []): OnePieceCharacter[] {
     const value = search.toLowerCase().trim();
     if (!value) return [];
@@ -169,12 +197,8 @@ export class OnePieceGameService {
         ),
       },
       primer_arco: {
-        value: guess.primer_arco || 'N/A',
-        status: this.compareText(
-          guess.primer_arco || '',
-          target.primer_arco || '',
-          true
-        ),
+        value: this.getArcName(guess.primer_arco_id || 0),
+        ...this.compareNumeric(guess.primer_arco_id || 0, target.primer_arco_id || 0),
       },
     };
   }

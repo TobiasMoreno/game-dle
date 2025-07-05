@@ -154,14 +154,26 @@
       @if (filteredCharacters.length > 0 && currentGuess.trim() && !gameWon &&
       currentAttempt < maxAttempts) {
       <ul
-        class="autocomplete-dropdown w-full bg-orange-50 border-x-2 border-b-2 border-orange-300 rounded-b-lg shadow-md z-20 absolute left-0 top-full"
+        class="autocomplete-dropdown w-full bg-orange-50 border-x-2 border-b-2 border-orange-300 rounded-b-lg shadow-md z-20 absolute left-0 top-full max-h-60 overflow-y-auto"
       >
         @for (character of filteredCharacters; track $index) {
         <li
           (click)="selectCharacter(character.nombre)"
-          class="px-4 py-2 cursor-pointer hover:bg-orange-200 transition-colors duration-150 flex items-center autocomplete-item font-medium"
+          class="px-4 py-3 cursor-pointer hover:bg-orange-200 transition-colors duration-150 flex items-center autocomplete-item font-medium border-b border-orange-200 last:border-b-0"
         >
-          <span>👤 {{ character.nombre }}</span>
+          <div class="w-8 h-8 rounded-full mr-3 border-2 border-orange-300 flex items-center justify-center bg-orange-100">
+            @if (hasCharacterImage(character.nombre)) {
+            <img 
+              [src]="getCharacterImageUrl(character.nombre)" 
+              [alt]="character.nombre"
+              class="w-full h-full rounded-full object-cover"
+              (error)="onImageError($event)"
+            >
+            } @else {
+            <span class="text-orange-600 text-xs font-bold">👤</span>
+            }
+          </div>
+          <span class="flex-1">{{ character.nombre }}</span>
         </li>
         }
       </ul>
@@ -206,7 +218,7 @@
         <!-- Género -->
         @if ($index !== 0 || revealedColumns[0] > 1) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 1"
           [class]="getComparisonClass(guess.genero.status)"
         >
@@ -216,7 +228,7 @@
         <!-- Afiliación -->
         @if ($index !== 0 || revealedColumns[0] > 2) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 2"
           [class]="getComparisonClass(guess.afiliacion.status)"
         >
@@ -226,7 +238,7 @@
         <!-- Fruta -->
         @if ($index !== 0 || revealedColumns[0] > 3) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 3"
           [class]="getComparisonClass(guess.fruta_del_diablo.status)"
         >
@@ -235,7 +247,7 @@
         }<!-- Hakis -->
         @if ($index !== 0 || revealedColumns[0] > 4) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 4"
           [class]="getComparisonClass(guess.hakis.status)"
         >
@@ -245,37 +257,45 @@
         <!-- Recompensa -->
         @if ($index !== 0 || revealedColumns[0] > 5) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-bold relative overflow-hidden"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 5"
           [class]="getComparisonClass(guess.ultima_recompensa.status)"
         >
-          <span>{{ guess.ultima_recompensa.value || "N/A" }}</span>
           @if (guess.ultima_recompensa.arrow === 'up') {
-          <span>⬆️</span>
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2 10a1 1 0 0 1 0-1.41l8-8a1 1 0 0 1 1.41 0l8 8A1 1 0 0 1 18 10h-4v7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-7H2z" clip-rule="evenodd"></path>
+          </svg>
           } @if (guess.ultima_recompensa.arrow === 'down') {
-          <span>⬇️</span>
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a1 1 0 0 1 0 1.41l-8 8a1 1 0 0 1-1.41 0l-8-8A1 1 0 0 1 2 10h4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7h4z" clip-rule="evenodd"></path>
+          </svg>
           }
+          <span class="relative z-10 text-white font-bold">{{ guess.ultima_recompensa.value || "N/A" }}</span>
         </div>
         }
         <!-- Altura -->
         @if ($index !== 0 || revealedColumns[0] > 6) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-bold relative overflow-hidden"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 6"
           [class]="getComparisonClass(guess.altura.status)"
         >
-          <span>{{ guess.altura.value || "N/A" }}</span>
           @if (guess.altura.arrow === 'up') {
-          <span>⬆️</span>
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2 10a1 1 0 0 1 0-1.41l8-8a1 1 0 0 1 1.41 0l8 8A1 1 0 0 1 18 10h-4v7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-7H2z" clip-rule="evenodd"></path>
+          </svg>
           } @if (guess.altura.arrow === 'down') {
-          <span>⬇️</span>
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a1 1 0 0 1 0 1.41l-8 8a1 1 0 0 1-1.41 0l-8-8A1 1 0 0 1 2 10h4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7h4z" clip-rule="evenodd"></path>
+          </svg>
           }
+          <span class="relative z-10 text-white font-bold">{{ guess.altura.value || "N/A" }}</span>
         </div>
         }
         <!-- Origen -->
         @if ($index !== 0 || revealedColumns[0] > 7) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 7"
           [class]="getComparisonClass(guess.origen.status)"
         >
@@ -284,11 +304,20 @@
         <!-- Primer Arco -->
         @if ($index !== 0 || revealedColumns[0] > 8) {
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-bold relative overflow-hidden"
           [class.opacity-100]="$index !== 0 || revealedColumns[0] > 8"
           [class]="getComparisonClass(guess.primer_arco.status)"
         >
-          {{ guess.primer_arco.value || "N/A" }}
+          @if (guess.primer_arco.arrow === 'up') {
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2 10a1 1 0 0 1 0-1.41l8-8a1 1 0 0 1 1.41 0l8 8A1 1 0 0 1 18 10h-4v7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-7H2z" clip-rule="evenodd"></path>
+          </svg>
+          } @if (guess.primer_arco.arrow === 'down') {
+          <svg class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a1 1 0 0 1 0 1.41l-8 8a1 1 0 0 1-1.41 0l-8-8A1 1 0 0 1 2 10h4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7h4z" clip-rule="evenodd"></path>
+          </svg>
+          }
+          <span class="relative z-10 text-white font-bold">{{ guess.primer_arco.value || "N/A" }}</span>
         </div>
         } }
       </div>
@@ -360,6 +389,7 @@
 
     <div class="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg p-6 max-w-md mx-auto shadow-lg border-2 border-orange-300">
       <h3 class="text-lg font-semibold mb-4 text-orange-800">🏴‍☠️ El personaje era:</h3>
+      <img [src]="getCharacterImageUrl(targetCharacter?.nombre || '')" alt="Personaje" class="w-28 h-28 rounded-lg mx-auto">
       <div class="text-left space-y-2 text-orange-700">
         <div><strong>👤 Nombre:</strong> {{ targetCharacter?.nombre }}</div>
         <div>

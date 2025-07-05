@@ -10,7 +10,7 @@
         "ultima_recompensa": 130000000,
         "altura": 188,
         "origen": "West Blue",
-        "primer_arco": "Whisky Peak"
+        "primer_arco_id": 8
     },
     {
         "id": 2,
@@ -23,7 +23,7 @@
         "ultima_recompensa": 100,
         "altura": 90,
         "origen": "Grand Line",
-        "primer_arco": "Drum Island"
+        "primer_arco_id": 10
     },
     {
         "id": 3,
@@ -36,7 +36,7 @@
         "ultima_recompensa": 94000000,
         "altura": 240,
         "origen": "South Blue",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 4,
@@ -52,7 +52,7 @@
         "ultima_recompensa": 1374000000,
         "altura": 203,
         "origen": "Grand Line",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 5,
@@ -67,7 +67,7 @@
         "ultima_recompensa": 200000000,
         "altura": 176,
         "origen": "East Blue",
-        "primer_arco": "Syrup Village"
+        "primer_arco_id": 3
     },
     {
         "id": 6,
@@ -83,7 +83,7 @@
         "ultima_recompensa": 382000000,
         "altura": 233,
         "origen": "Grand Line",
-        "primer_arco": "Zou"
+        "primer_arco_id": 28
     },
     {
         "id": 7,
@@ -100,7 +100,7 @@
         "ultima_recompensa": 550000000,
         "altura": 185,
         "origen": "South Blue",
-        "primer_arco": "Drum Island"
+        "primer_arco_id": 10
     },
     {
         "id": 8,
@@ -117,7 +117,7 @@
         "ultima_recompensa": 5046000000,
         "altura": 666,
         "origen": "Grand Line",
-        "primer_arco": "Arabasta"
+        "primer_arco_id": 11
     },
     {
         "id": 9,
@@ -133,7 +133,7 @@
         "ultima_recompensa": 0,
         "altura": 298,
         "origen": "South Blue",
-        "primer_arco": "Long Ring\nLong Land"
+        "primer_arco_id": 14
     },
     {
         "id": 10,
@@ -149,7 +149,7 @@
         "ultima_recompensa": 0,
         "altura": 306,
         "origen": "North Blue",
-        "primer_arco": "Enies Lobby"
+        "primer_arco_id": 16
     },
     {
         "id": 11,
@@ -165,7 +165,7 @@
         "ultima_recompensa": 2247600000,
         "altura": 344,
         "origen": "Grand Line",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 12,
@@ -178,7 +178,7 @@
         "ultima_recompensa": 0,
         "altura": 67,
         "origen": "North Blue",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 13,
@@ -191,7 +191,7 @@
         "ultima_recompensa": 20000000,
         "altura": 263,
         "origen": "Grand Line",
-        "primer_arco": "Arlong Park"
+        "primer_arco_id": 5
     },
     {
         "id": 14,
@@ -204,7 +204,7 @@
         "ultima_recompensa": 17000000,
         "altura": 243,
         "origen": "East Blue",
-        "primer_arco": "Baratie"
+        "primer_arco_id": 4
     },
     {
         "id": 15,
@@ -217,7 +217,7 @@
         "ultima_recompensa": 100000000,
         "altura": 2260,
         "origen": "Grand Line",
-        "primer_arco": "Little Garden"
+        "primer_arco_id": 9
     },
     {
         "id": 16,
@@ -233,7 +233,7 @@
         "ultima_recompensa": 0,
         "altura": 544,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 17,
@@ -250,7 +250,7 @@
         "ultima_recompensa": 80000000,
         "altura": 191,
         "origen": "Calm Belt",
-        "primer_arco": "Amazon Lily"
+        "primer_arco_id": 20
     },
     {
         "id": 18,
@@ -266,7 +266,7 @@
         "ultima_recompensa": 0,
         "altura": 209,
         "origen": "Grand Line",
-        "primer_arco": "Loguetown"
+        "primer_arco_id": 6
     },
     {
         "id": 19,
@@ -279,7 +279,7 @@
         "ultima_recompensa": 83000000,
         "altura": 277,
         "origen": "West Blue",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 20,
@@ -292,7 +292,7 @@
         "ultima_recompensa": 200000000,
         "altura": 220,
         "origen": "East Blue",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 21,
@@ -305,7 +305,7 @@
         "ultima_recompensa": 15000000,
         "altura": 192,
         "origen": "Grand Line",
-        "primer_arco": "Orange Town"
+        "primer_arco_id": 2
     },
     {
         "id": 22,
@@ -322,7 +322,7 @@
         "ultima_recompensa": 4611100000,
         "altura": 710,
         "origen": "Grand Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 23,
@@ -339,7 +339,7 @@
         "ultima_recompensa": 3000000000,
         "altura": 174,
         "origen": "East Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 24,
@@ -352,7 +352,7 @@
         "ultima_recompensa": 32000000,
         "altura": 238,
         "origen": "East Blue",
-        "primer_arco": "Little Garden"
+        "primer_arco_id": 9
     },
     {
         "id": 25,
@@ -368,7 +368,7 @@
         "ultima_recompensa": 222000000,
         "altura": 233,
         "origen": "North Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 26,
@@ -383,7 +383,7 @@
         "ultima_recompensa": 0,
         "altura": 206,
         "origen": "North Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 27,
@@ -399,7 +399,7 @@
         "ultima_recompensa": 0,
         "altura": 302,
         "origen": "North Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 28,
@@ -412,7 +412,7 @@
         "ultima_recompensa": 500,
         "altura": 240,
         "origen": "Grand Line",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 29,
@@ -425,7 +425,7 @@
         "ultima_recompensa": 0,
         "altura": 305,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 30,
@@ -441,12 +441,12 @@
         "ultima_recompensa": 330000000,
         "altura": 208,
         "origen": "Grand Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 31,
-        "nombre": "Bell-mère",
-        "img_url": "img_op/Bell_mère.png",
+        "nombre": "Bell-mere",
+        "img_url": "img_op/Bell_mere.png",
         "genero": "Femenino",
         "afiliacion": "Marina",
         "fruta_del_diablo": "Ninguno",
@@ -454,7 +454,7 @@
         "ultima_recompensa": 0,
         "altura": 186,
         "origen": "East Blue",
-        "primer_arco": "Arlong Park"
+        "primer_arco_id": 5
     },
     {
         "id": 32,
@@ -470,7 +470,7 @@
         "ultima_recompensa": 320000000,
         "altura": 210,
         "origen": "North Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 33,
@@ -485,7 +485,7 @@
         "ultima_recompensa": 140000000,
         "altura": 174,
         "origen": "South Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 34,
@@ -502,7 +502,7 @@
         "ultima_recompensa": 4388000000,
         "altura": 880,
         "origen": "Grand Line",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 35,
@@ -517,7 +517,7 @@
         "ultima_recompensa": 296000000,
         "altura": 689,
         "origen": "South Blue",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 36,
@@ -533,7 +533,7 @@
         "ultima_recompensa": 0,
         "altura": 258,
         "origen": "North Blue",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 37,
@@ -549,7 +549,7 @@
         "ultima_recompensa": 195000000,
         "altura": 240,
         "origen": "North Blue",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 38,
@@ -562,7 +562,7 @@
         "ultima_recompensa": 350000000,
         "altura": 166,
         "origen": "West Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 39,
@@ -579,7 +579,7 @@
         "ultima_recompensa": 0,
         "altura": 278,
         "origen": "South Blue",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 40,
@@ -592,7 +592,7 @@
         "ultima_recompensa": 75000000,
         "altura": 212,
         "origen": "West Blue",
-        "primer_arco": "Arabasta"
+        "primer_arco_id": 11
     },
     {
         "id": 41,
@@ -605,7 +605,7 @@
         "ultima_recompensa": 0,
         "altura": 350,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 42,
@@ -618,7 +618,7 @@
         "ultima_recompensa": 0,
         "altura": 220,
         "origen": "North Blue",
-        "primer_arco": "Skypiea"
+        "primer_arco_id": 13
     },
     {
         "id": 43,
@@ -631,7 +631,7 @@
         "ultima_recompensa": 25000000,
         "altura": 242,
         "origen": "North Blue",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 44,
@@ -647,7 +647,7 @@
         "ultima_recompensa": 20000000,
         "altura": 355,
         "origen": "Grand Line",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 45,
@@ -660,7 +660,7 @@
         "ultima_recompensa": 100000000,
         "altura": 2130,
         "origen": "Grand Line",
-        "primer_arco": "Little Garden"
+        "primer_arco_id": 9
     },
     {
         "id": 46,
@@ -677,7 +677,7 @@
         "ultima_recompensa": 320000000,
         "altura": 181,
         "origen": "East Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 47,
@@ -690,7 +690,7 @@
         "ultima_recompensa": 0,
         "altura": 161,
         "origen": "Grand Line",
-        "primer_arco": "Zou"
+        "primer_arco_id": 28
     },
     {
         "id": 48,
@@ -706,7 +706,7 @@
         "ultima_recompensa": 438000000,
         "altura": 301,
         "origen": "Grand Line",
-        "primer_arco": "Impel Down"
+        "primer_arco_id": 21
     },
     {
         "id": 49,
@@ -723,7 +723,7 @@
         "ultima_recompensa": 1057000000,
         "altura": 509,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 50,
@@ -740,7 +740,7 @@
         "ultima_recompensa": 340000000,
         "altura": 305,
         "origen": "Red Line",
-        "primer_arco": "Jaya"
+        "primer_arco_id": 12
     },
     {
         "id": 51,
@@ -757,7 +757,7 @@
         "ultima_recompensa": 3000000000,
         "altura": 205,
         "origen": "South Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 52,
@@ -770,7 +770,7 @@
         "ultima_recompensa": 0,
         "altura": 166,
         "origen": "Grand Line",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 53,
@@ -786,7 +786,7 @@
         "ultima_recompensa": 3000000000,
         "altura": 191,
         "origen": "North Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 54,
@@ -802,7 +802,7 @@
         "ultima_recompensa": 0,
         "altura": 198,
         "origen": "Desconocido",
-        "primer_arco": "Baratie"
+        "primer_arco_id": 4
     },
     {
         "id": 55,
@@ -815,7 +815,7 @@
         "ultima_recompensa": 0,
         "altura": 293,
         "origen": "Red Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 56,
@@ -828,7 +828,7 @@
         "ultima_recompensa": 81000000,
         "altura": 253,
         "origen": "Grand Line",
-        "primer_arco": "Little Garden"
+        "primer_arco_id": 9
     },
     {
         "id": 57,
@@ -841,7 +841,7 @@
         "ultima_recompensa": 0,
         "altura": 256,
         "origen": "East Blue",
-        "primer_arco": "Loguetown"
+        "primer_arco_id": 6
     },
     {
         "id": 58,
@@ -854,7 +854,7 @@
         "ultima_recompensa": 300000000,
         "altura": 309,
         "origen": "Grand Line",
-        "primer_arco": "Punk Hazard"
+        "primer_arco_id": 26
     },
     {
         "id": 59,
@@ -870,7 +870,7 @@
         "ultima_recompensa": 700000000,
         "altura": 333,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 60,
@@ -883,7 +883,7 @@
         "ultima_recompensa": 120000000,
         "altura": 260,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 61,
@@ -896,7 +896,7 @@
         "ultima_recompensa": 0,
         "altura": 197,
         "origen": "Grand Line",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 62,
@@ -909,7 +909,7 @@
         "ultima_recompensa": 16000000,
         "altura": 207,
         "origen": "East Blue",
-        "primer_arco": "Syrup Village"
+        "primer_arco_id": 3
     },
     {
         "id": 63,
@@ -925,7 +925,7 @@
         "ultima_recompensa": 99000000,
         "altura": 525,
         "origen": "North Blue",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 64,
@@ -938,7 +938,7 @@
         "ultima_recompensa": 210000000,
         "altura": 228,
         "origen": "North Blue",
-        "primer_arco": "Return to Sabaody"
+        "primer_arco_id": 24
     },
     {
         "id": 65,
@@ -951,7 +951,7 @@
         "ultima_recompensa": 0,
         "altura": 215,
         "origen": "Grand Line",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 66,
@@ -967,7 +967,7 @@
         "ultima_recompensa": 602000000,
         "altura": 187,
         "origen": "East Blue",
-        "primer_arco": "Post-War"
+        "primer_arco_id": 23
     },
     {
         "id": 67,
@@ -982,7 +982,7 @@
         "ultima_recompensa": 0,
         "altura": 266,
         "origen": "Islas del Cielo",
-        "primer_arco": "Skypiea"
+        "primer_arco_id": 13
     },
     {
         "id": 68,
@@ -998,7 +998,7 @@
         "ultima_recompensa": 0,
         "altura": 212,
         "origen": "Grand Line",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 69,
@@ -1014,7 +1014,7 @@
         "ultima_recompensa": 0,
         "altura": 295,
         "origen": "Grand Line",
-        "primer_arco": "Punk Hazard"
+        "primer_arco_id": 26
     },
     {
         "id": 70,
@@ -1030,7 +1030,7 @@
         "ultima_recompensa": 0,
         "altura": 193,
         "origen": "East Blue",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 71,
@@ -1046,7 +1046,7 @@
         "ultima_recompensa": 0,
         "altura": 271,
         "origen": "Desconocido",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 72,
@@ -1059,7 +1059,7 @@
         "ultima_recompensa": 12000000,
         "altura": 186,
         "origen": "East Blue",
-        "primer_arco": "Baratie"
+        "primer_arco_id": 4
     },
     {
         "id": 73,
@@ -1076,7 +1076,7 @@
         "ultima_recompensa": 0,
         "altura": 188,
         "origen": "Desconocido",
-        "primer_arco": "Orange Town"
+        "primer_arco_id": 2
     },
     {
         "id": 74,
@@ -1093,7 +1093,7 @@
         "ultima_recompensa": 5564800000,
         "altura": 274,
         "origen": "East Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 75,
@@ -1109,7 +1109,7 @@
         "ultima_recompensa": 0,
         "altura": 287,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 76,
@@ -1125,7 +1125,7 @@
         "ultima_recompensa": 0,
         "altura": 167,
         "origen": "East Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 77,
@@ -1142,7 +1142,7 @@
         "ultima_recompensa": 0,
         "altura": 287,
         "origen": "East Blue",
-        "primer_arco": "Arlong Park"
+        "primer_arco_id": 5
     },
     {
         "id": 78,
@@ -1158,7 +1158,7 @@
         "ultima_recompensa": 200000000,
         "altura": 195,
         "origen": "South Blue",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 79,
@@ -1174,7 +1174,7 @@
         "ultima_recompensa": 0,
         "altura": 306,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 80,
@@ -1187,7 +1187,7 @@
         "ultima_recompensa": 0,
         "altura": 183,
         "origen": "Islas del Cielo",
-        "primer_arco": "Skypiea"
+        "primer_arco_id": 13
     },
     {
         "id": 81,
@@ -1200,7 +1200,7 @@
         "ultima_recompensa": 0,
         "altura": 298,
         "origen": "Grand Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 82,
@@ -1216,7 +1216,7 @@
         "ultima_recompensa": 0,
         "altura": 511,
         "origen": "Grand Line",
-        "primer_arco": "Zou"
+        "primer_arco_id": 28
     },
     {
         "id": 83,
@@ -1232,7 +1232,7 @@
         "ultima_recompensa": 0,
         "altura": 347,
         "origen": "Desconocido",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 84,
@@ -1248,7 +1248,7 @@
         "ultima_recompensa": 0,
         "altura": 311,
         "origen": "Grand Line",
-        "primer_arco": "Zou"
+        "primer_arco_id": 28
     },
     {
         "id": 85,
@@ -1263,7 +1263,7 @@
         "ultima_recompensa": 0,
         "altura": 179,
         "origen": "Grand Line",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 86,
@@ -1280,7 +1280,7 @@
         "ultima_recompensa": 4048900000,
         "altura": 199,
         "origen": "West Blue",
-        "primer_arco": "Romance Dawn"
+        "primer_arco_id": 1
     },
     {
         "id": 87,
@@ -1297,7 +1297,7 @@
         "ultima_recompensa": 0,
         "altura": 382,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 88,
@@ -1310,7 +1310,7 @@
         "ultima_recompensa": 0,
         "altura": 189,
         "origen": "Grand Line",
-        "primer_arco": "Arabasta"
+        "primer_arco_id": 11
     },
     {
         "id": 89,
@@ -1323,7 +1323,7 @@
         "ultima_recompensa": 100000000,
         "altura": 449,
         "origen": "Grand Line",
-        "primer_arco": "Impel Down"
+        "primer_arco_id": 21
     },
     {
         "id": 90,
@@ -1339,7 +1339,7 @@
         "ultima_recompensa": 0,
         "altura": 270,
         "origen": "Grand Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 91,
@@ -1352,7 +1352,7 @@
         "ultima_recompensa": 24000000,
         "altura": 180,
         "origen": "South Blue",
-        "primer_arco": "Long Ring\nLong Land"
+        "primer_arco_id": 14
     },
     {
         "id": 92,
@@ -1365,7 +1365,7 @@
         "ultima_recompensa": 66000000,
         "altura": 170,
         "origen": "East Blue",
-        "primer_arco": "Orange Town"
+        "primer_arco_id": 2
     },
     {
         "id": 93,
@@ -1378,7 +1378,7 @@
         "ultima_recompensa": 0,
         "altura": 160,
         "origen": "West Blue",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 94,
@@ -1391,7 +1391,7 @@
         "ultima_recompensa": 320000000,
         "altura": 692,
         "origen": "West Blue",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 95,
@@ -1404,7 +1404,7 @@
         "ultima_recompensa": 24000000,
         "altura": 179,
         "origen": "South Blue",
-        "primer_arco": "Little Garden"
+        "primer_arco_id": 9
     },
     {
         "id": 96,
@@ -1419,7 +1419,7 @@
         "ultima_recompensa": 0,
         "altura": 272,
         "origen": "North Blue",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 97,
@@ -1432,7 +1432,7 @@
         "ultima_recompensa": 0,
         "altura": 170,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 98,
@@ -1445,7 +1445,7 @@
         "ultima_recompensa": 0,
         "altura": 213,
         "origen": "Grand Line",
-        "primer_arco": "Drum Island"
+        "primer_arco_id": 10
     },
     {
         "id": 99,
@@ -1458,7 +1458,7 @@
         "ultima_recompensa": 0,
         "altura": 331,
         "origen": "Grand Line",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 100,
@@ -1471,7 +1471,7 @@
         "ultima_recompensa": 0,
         "altura": 223,
         "origen": "West Blue",
-        "primer_arco": "Thriller Bark"
+        "primer_arco_id": 18
     },
     {
         "id": 101,
@@ -1486,7 +1486,7 @@
         "ultima_recompensa": 0,
         "altura": 171,
         "origen": "Grand Line",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 102,
@@ -1499,7 +1499,7 @@
         "ultima_recompensa": 0,
         "altura": 199,
         "origen": "Grand Line",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 103,
@@ -1515,7 +1515,7 @@
         "ultima_recompensa": 0,
         "altura": 212,
         "origen": "North Blue",
-        "primer_arco": "Enies Lobby"
+        "primer_arco_id": 16
     },
     {
         "id": 104,
@@ -1532,7 +1532,7 @@
         "ultima_recompensa": 0,
         "altura": 263,
         "origen": "Desconocido",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 105,
@@ -1545,7 +1545,7 @@
         "ultima_recompensa": 0,
         "altura": 108,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 106,
@@ -1558,7 +1558,7 @@
         "ultima_recompensa": 0,
         "altura": 160,
         "origen": "Desconocido",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 107,
@@ -1573,7 +1573,7 @@
         "ultima_recompensa": 0,
         "altura": 110,
         "origen": "Grand Line",
-        "primer_arco": "Punk Hazard"
+        "primer_arco_id": 26
     },
     {
         "id": 108,
@@ -1589,7 +1589,7 @@
         "ultima_recompensa": 0,
         "altura": 185,
         "origen": "Grand Line",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 109,
@@ -1602,7 +1602,7 @@
         "ultima_recompensa": 0,
         "altura": 188,
         "origen": "Grand Line",
-        "primer_arco": "Drum Island"
+        "primer_arco_id": 10
     },
     {
         "id": 110,
@@ -1615,7 +1615,7 @@
         "ultima_recompensa": 0,
         "altura": 169,
         "origen": "East Blue",
-        "primer_arco": "Syrup Village"
+        "primer_arco_id": 3
     },
     {
         "id": 111,
@@ -1628,7 +1628,7 @@
         "ultima_recompensa": 108000000,
         "altura": 388,
         "origen": "Islas del Cielo",
-        "primer_arco": "Sabaody Archipelago"
+        "primer_arco_id": 19
     },
     {
         "id": 112,
@@ -1641,7 +1641,7 @@
         "ultima_recompensa": 0,
         "altura": 227,
         "origen": "North Blue",
-        "primer_arco": "Punk Hazard"
+        "primer_arco_id": 26
     },
     {
         "id": 113,
@@ -1654,7 +1654,7 @@
         "ultima_recompensa": 0,
         "altura": 169,
         "origen": "Grand Line",
-        "primer_arco": "Reverse Mountain"
+        "primer_arco_id": 7
     },
     {
         "id": 114,
@@ -1667,7 +1667,7 @@
         "ultima_recompensa": 0,
         "altura": 491,
         "origen": "Grand Line",
-        "primer_arco": "Impel Down"
+        "primer_arco_id": 21
     },
     {
         "id": 115,
@@ -1683,7 +1683,7 @@
         "ultima_recompensa": 0,
         "altura": 522,
         "origen": "Grand Line",
-        "primer_arco": "Zou"
+        "primer_arco_id": 28
     },
     {
         "id": 116,
@@ -1699,7 +1699,7 @@
         "ultima_recompensa": 330000000,
         "altura": 232,
         "origen": "Grand Line",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 117,
@@ -1712,7 +1712,7 @@
         "ultima_recompensa": 0,
         "altura": 170,
         "origen": "East Blue",
-        "primer_arco": "Arlong Park"
+        "primer_arco_id": 5
     },
     {
         "id": 118,
@@ -1725,7 +1725,7 @@
         "ultima_recompensa": 0,
         "altura": 173,
         "origen": "North Blue",
-        "primer_arco": "Whole Cake Island"
+        "primer_arco_id": 29
     },
     {
         "id": 119,
@@ -1738,7 +1738,7 @@
         "ultima_recompensa": 0,
         "altura": 195,
         "origen": "Grand Line",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 120,
@@ -1753,7 +1753,7 @@
         "ultima_recompensa": 0,
         "altura": 1187,
         "origen": "Grand Line",
-        "primer_arco": "Fish-Man Island"
+        "primer_arco_id": 25
     },
     {
         "id": 121,
@@ -1766,7 +1766,7 @@
         "ultima_recompensa": 0,
         "altura": 189,
         "origen": "East Blue",
-        "primer_arco": "Baratie"
+        "primer_arco_id": 4
     },
     {
         "id": 122,
@@ -1779,7 +1779,7 @@
         "ultima_recompensa": 58000000,
         "altura": 244,
         "origen": "North Blue",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 123,
@@ -1795,7 +1795,7 @@
         "ultima_recompensa": 99000000,
         "altura": 470,
         "origen": "North Blue",
-        "primer_arco": "Dressrosa"
+        "primer_arco_id": 27
     },
     {
         "id": 124,
@@ -1811,7 +1811,7 @@
         "ultima_recompensa": 330000000,
         "altura": 180,
         "origen": "North Blue",
-        "primer_arco": "Baratie"
+        "primer_arco_id": 4
     },
     {
         "id": 125,
@@ -1824,7 +1824,7 @@
         "ultima_recompensa": 0,
         "altura": 192,
         "origen": "Grand Line",
-        "primer_arco": "Water 7"
+        "primer_arco_id": 15
     },
     {
         "id": 126,
@@ -1840,7 +1840,7 @@
         "ultima_recompensa": 400000000,
         "altura": 173,
         "origen": "Grand Line",
-        "primer_arco": "Wano Country"
+        "primer_arco_id": 31
     },
     {
         "id": 127,
@@ -1856,6 +1856,6 @@
         "ultima_recompensa": 0,
         "altura": 170,
         "origen": "East Blue",
-        "primer_arco": "Loguetown"
+        "primer_arco_id": 6
     }
 ]

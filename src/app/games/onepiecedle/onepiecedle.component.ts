@@ -315,6 +315,13 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     return !!this.getCharacterImageUrl(characterName);
   }
 
+  onImageError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    if (target) {
+      target.style.display = 'none';
+    }
+  }
+
   continueGame(): void {
     this.hasSavedProgress = false;
   }
