@@ -19,7 +19,8 @@
             "Runaterra",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Aatrox.jpg"
     },
     {
         "id": 2,
@@ -40,7 +41,8 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Ahri.jpg"
     },
     {
         "id": 3,
@@ -61,7 +63,8 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Akali.jpg"
     },
     {
         "id": 4,
@@ -82,7 +85,8 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2021
+        "anio_de_lanzamiento": 2021,
+        "img_url": "img_lol/Akshan.jpg"
     },
     {
         "id": 5,
@@ -104,7 +108,8 @@
             "Noxus",
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Alistar.jpg"
     },
     {
         "id": 6,
@@ -126,7 +131,8 @@
             "Noxus",
             "Piltover"
         ],
-        "anio_de_lanzamiento": 2024
+        "anio_de_lanzamiento": 2024,
+        "img_url": "img_lol/Ambessa.jpg"
     },
     {
         "id": 7,
@@ -148,7 +154,8 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Amumu.jpg"
     },
     {
         "id": 8,
@@ -170,7 +177,8 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Anivia.jpg"
     },
     {
         "id": 9,
@@ -193,7 +201,8 @@
             "Noxus",
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Annie.jpg"
     },
     {
         "id": 10,
@@ -215,7 +224,8 @@
         "region": [
             "Targon"
         ],
-        "anio_de_lanzamiento": 2019
+        "anio_de_lanzamiento": 2019,
+        "img_url": "img_lol/Aphelios.jpg"
     },
     {
         "id": 11,
@@ -237,7 +247,8 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Ashe.jpg"
     },
     {
         "id": 12,
@@ -260,7 +271,8 @@
             "Runaterra",
             "Targon"
         ],
-        "anio_de_lanzamiento": 2016
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Aurelion_Sol.jpg"
     },
     {
         "id": 13,
@@ -281,7 +293,8 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2024
+        "anio_de_lanzamiento": 2024,
+        "img_url": "img_lol/Aurora.jpg"
     },
     {
         "id": 14,
@@ -302,430 +315,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2014
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/Azir.jpg"
     },
     {
         "id": 15,
-        "nombre": "Bardo",
-        "genero": "Masculino",
-        "posicion": [
-            "Soporte"
-        ],
-        "especie": [
-            "Celestial"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Runaterra"
-        ],
-        "anio_de_lanzamiento": 2015
-    },
-    {
-        "id": 16,
-        "nombre": "Bel'Veth",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla"
-        ],
-        "especie": [
-            "Ser del Vacío"
-        ],
-        "recurso": [
-            "Sin Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "El Vacío"
-        ],
-        "anio_de_lanzamiento": 2022
-    },
-    {
-        "id": 17,
-        "nombre": "Blitzcrank",
-        "genero": "Otros",
-        "posicion": [
-            "Soporte"
-        ],
-        "especie": [
-            "Gólem"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Zaun"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 18,
-        "nombre": "Brand",
-        "genero": "Masculino",
-        "posicion": [
-            "Soporte"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Freljord",
-            "Runaterra"
-        ],
-        "anio_de_lanzamiento": 2011
-    },
-    {
-        "id": 19,
-        "nombre": "Braum",
-        "genero": "Masculino",
-        "posicion": [
-            "Soporte"
-        ],
-        "especie": [
-            "Humano",
-            "Nacido del Hielo"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Freljord"
-        ],
-        "anio_de_lanzamiento": 2014
-    },
-    {
-        "id": 20,
-        "nombre": "Briar",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla"
-        ],
-        "especie": [
-            "Gólem"
-        ],
-        "recurso": [
-            "Consume vida"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Noxus"
-        ],
-        "anio_de_lanzamiento": 2023
-    },
-    {
-        "id": 21,
-        "nombre": "Caitlyn",
-        "genero": "Femenino",
-        "posicion": [
-            "Inferior"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Piltover"
-        ],
-        "anio_de_lanzamiento": 2011
-    },
-    {
-        "id": 22,
-        "nombre": "Camille",
-        "genero": "Femenino",
-        "posicion": [
-            "Superior"
-        ],
-        "especie": [
-            "Cíborg",
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Piltover"
-        ],
-        "anio_de_lanzamiento": 2016
-    },
-    {
-        "id": 23,
-        "nombre": "Cassiopeia",
-        "genero": "Femenino",
-        "posicion": [
-            "Medio",
-            "Superior"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Noxus",
-            "Shurima"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 24,
-        "nombre": "Cho'Gath",
-        "genero": "Masculino",
-        "posicion": [
-            "Medio",
-            "Superior"
-        ],
-        "especie": [
-            "Ser del Vacío"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "El Vacío"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 25,
-        "nombre": "Corki",
-        "genero": "Masculino",
-        "posicion": [
-            "Inferior",
-            "Medio"
-        ],
-        "especie": [
-            "Yordle"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Ciudad de Bandle",
-            "Piltover"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 26,
-        "nombre": "Darius",
-        "genero": "Masculino",
-        "posicion": [
-            "Jungla",
-            "Superior"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Noxus"
-        ],
-        "anio_de_lanzamiento": 2012
-    },
-    {
-        "id": 27,
-        "nombre": "Diana",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla",
-            "Medio"
-        ],
-        "especie": [
-            "Aspecto",
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Targon"
-        ],
-        "anio_de_lanzamiento": 2012
-    },
-    {
-        "id": 28,
-        "nombre": "Dr. Mundo",
-        "genero": "Masculino",
-        "posicion": [
-            "Superior"
-        ],
-        "especie": [
-            "Quimicamente Alterado",
-            "Humano"
-        ],
-        "recurso": [
-            "Consume vida"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Zaun"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 29,
-        "nombre": "Draven",
-        "genero": "Masculino",
-        "posicion": [
-            "Inferior"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Noxus"
-        ],
-        "anio_de_lanzamiento": 2012
-    },
-    {
-        "id": 30,
-        "nombre": "Ekko",
-        "genero": "Masculino",
-        "posicion": [
-            "Jungla",
-            "Medio"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Zaun"
-        ],
-        "anio_de_lanzamiento": 2015
-    },
-    {
-        "id": 31,
-        "nombre": "Elise",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla",
-            "Soporte"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo",
-            "A distancia"
-        ],
-        "region": [
-            "Noxus",
-            "Islas de la Sombra"
-        ],
-        "anio_de_lanzamiento": 2012
-    },
-    {
-        "id": 32,
-        "nombre": "Evelynn",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla"
-        ],
-        "especie": [
-            "Demonio",
-            "Espíritu"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Runaterra"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 33,
-        "nombre": "Ezreal",
-        "genero": "Masculino",
-        "posicion": [
-            "Inferior"
-        ],
-        "especie": [
-            "Humano",
-            "Nacido con magia"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Piltover"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 34,
         "nombre": "Fiddlesticks",
         "genero": "Otros",
         "posicion": [
@@ -748,7 +342,7 @@
         "anio_de_lanzamiento": 2009
     },
     {
-        "id": 35,
+        "id": 16,
         "nombre": "Fiora",
         "genero": "Femenino",
         "posicion": [
@@ -766,10 +360,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Fiora.jpg"
     },
     {
-        "id": 36,
+        "id": 17,
         "nombre": "Fizz",
         "genero": "Masculino",
         "posicion": [
@@ -787,10 +382,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Fizz.jpg"
     },
     {
-        "id": 37,
+        "id": 18,
         "nombre": "Miss Fortune",
         "genero": "Femenino",
         "posicion": [
@@ -808,10 +404,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Miss_Fortune.jpg"
     },
     {
-        "id": 38,
+        "id": 19,
         "nombre": "Twisted Fate",
         "genero": "Masculino",
         "posicion": [
@@ -830,185 +427,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Twisted_Fate.jpg"
     },
     {
-        "id": 39,
-        "nombre": "Galio",
-        "genero": "Masculino",
-        "posicion": [
-            "Medio"
-        ],
-        "especie": [
-            "Gólem"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Demacia"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 40,
-        "nombre": "Gangplank",
-        "genero": "Masculino",
-        "posicion": [
-            "Superior"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Aguas Estancadas"
-        ],
-        "anio_de_lanzamiento": 2009
-    },
-    {
-        "id": 41,
-        "nombre": "Garen",
-        "genero": "Masculino",
-        "posicion": [
-            "Superior"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Sin Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Demacia"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 42,
-        "nombre": "Gnar",
-        "genero": "Masculino",
-        "posicion": [
-            "Superior"
-        ],
-        "especie": [
-            "Yordle"
-        ],
-        "recurso": [
-            "Rabia"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo",
-            "A distancia"
-        ],
-        "region": [
-            "Freljord"
-        ],
-        "anio_de_lanzamiento": 2014
-    },
-    {
-        "id": 43,
-        "nombre": "Gragas",
-        "genero": "Masculino",
-        "posicion": [
-            "Jungla",
-            "Superior"
-        ],
-        "especie": [
-            "Humano",
-            "Nacido del Hielo"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Freljord"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 44,
-        "nombre": "Graves",
-        "genero": "Masculino",
-        "posicion": [
-            "Jungla"
-        ],
-        "especie": [
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Aguas Estancadas"
-        ],
-        "anio_de_lanzamiento": 2011
-    },
-    {
-        "id": 45,
-        "nombre": "Gwen",
-        "genero": "Femenino",
-        "posicion": [
-            "Jungla",
-            "Superior"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "Cuerpo a cuerpo"
-        ],
-        "region": [
-            "Camavor",
-            "Islas de la Sombra"
-        ],
-        "anio_de_lanzamiento": 2021
-    },
-    {
-        "id": 46,
-        "nombre": "Renata Glasc",
-        "genero": "Femenino",
-        "posicion": [
-            "Soporte"
-        ],
-        "especie": [
-            "Quimicamente Alterado",
-            "Humano"
-        ],
-        "recurso": [
-            "Maná"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Zaun"
-        ],
-        "anio_de_lanzamiento": 2022
-    },
-    {
-        "id": 47,
+        "id": 20,
         "nombre": "Hecarim",
         "genero": "Masculino",
         "posicion": [
@@ -1027,10 +450,11 @@
             "Camavor",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Hecarim.jpg"
     },
     {
-        "id": 48,
+        "id": 21,
         "nombre": "Heimerdinger",
         "genero": "Masculino",
         "posicion": [
@@ -1049,10 +473,11 @@
         "region": [
             "Piltover"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Heimerdinger.jpg"
     },
     {
-        "id": 49,
+        "id": 22,
         "nombre": "Hwei",
         "genero": "Masculino",
         "posicion": [
@@ -1071,10 +496,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2023
+        "anio_de_lanzamiento": 2023,
+        "img_url": "img_lol/Hwei.jpg"
     },
     {
-        "id": 50,
+        "id": 23,
         "nombre": "Illaoi",
         "genero": "Femenino",
         "posicion": [
@@ -1093,10 +519,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2015
+        "anio_de_lanzamiento": 2015,
+        "img_url": "img_lol/Illaoi.jpg"
     },
     {
-        "id": 51,
+        "id": 24,
         "nombre": "Irelia",
         "genero": "Femenino",
         "posicion": [
@@ -1116,10 +543,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Irelia.jpg"
     },
     {
-        "id": 52,
+        "id": 25,
         "nombre": "Ivern",
         "genero": "Masculino",
         "posicion": [
@@ -1139,10 +567,11 @@
             "Freljord",
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2016
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Ivern.jpg"
     },
     {
-        "id": 53,
+        "id": 26,
         "nombre": "Jarvan IV",
         "genero": "Masculino",
         "posicion": [
@@ -1160,10 +589,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Jarvan_IV.jpg"
     },
     {
-        "id": 54,
+        "id": 27,
         "nombre": "Janna",
         "genero": "Femenino",
         "posicion": [
@@ -1183,10 +613,11 @@
             "Shurima",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Janna.jpg"
     },
     {
-        "id": 55,
+        "id": 28,
         "nombre": "Jax",
         "genero": "Masculino",
         "posicion": [
@@ -1207,10 +638,11 @@
             "Runaterra",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Jax.jpg"
     },
     {
-        "id": 56,
+        "id": 29,
         "nombre": "Jayce",
         "genero": "Masculino",
         "posicion": [
@@ -1229,10 +661,11 @@
         "region": [
             "Piltover"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Jayce.jpg"
     },
     {
-        "id": 57,
+        "id": 30,
         "nombre": "Jhin",
         "genero": "Masculino",
         "posicion": [
@@ -1251,10 +684,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2016
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Jhin.jpg"
     },
     {
-        "id": 58,
+        "id": 31,
         "nombre": "Jinx",
         "genero": "Femenino",
         "posicion": [
@@ -1273,10 +707,11 @@
         "region": [
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Jinx.jpg"
     },
     {
-        "id": 59,
+        "id": 32,
         "nombre": "K'Sante",
         "genero": "Masculino",
         "posicion": [
@@ -1294,10 +729,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2022
+        "anio_de_lanzamiento": 2022,
+        "img_url": "img_lol/KSante.jpg"
     },
     {
-        "id": 60,
+        "id": 33,
         "nombre": "Kai'Sa",
         "genero": "Femenino",
         "posicion": [
@@ -1317,10 +753,11 @@
             "Shurima",
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2018
+        "anio_de_lanzamiento": 2018,
+        "img_url": "img_lol/KaiSa.jpg"
     },
     {
-        "id": 61,
+        "id": 34,
         "nombre": "Kalista",
         "genero": "Femenino",
         "posicion": [
@@ -1339,10 +776,11 @@
             "Camavor",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2014
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/Kalista.jpg"
     },
     {
-        "id": 62,
+        "id": 35,
         "nombre": "Karma",
         "genero": "Femenino",
         "posicion": [
@@ -1361,10 +799,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Karma.jpg"
     },
     {
-        "id": 63,
+        "id": 36,
         "nombre": "Karthus",
         "genero": "Masculino",
         "posicion": [
@@ -1383,10 +822,11 @@
             "Noxus",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Karthus.jpg"
     },
     {
-        "id": 64,
+        "id": 37,
         "nombre": "Kassadin",
         "genero": "Masculino",
         "posicion": [
@@ -1406,10 +846,11 @@
             "Shurima",
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Kassadin.jpg"
     },
     {
-        "id": 65,
+        "id": 38,
         "nombre": "Katarina",
         "genero": "Femenino",
         "posicion": [
@@ -1427,10 +868,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Katarina.jpg"
     },
     {
-        "id": 66,
+        "id": 39,
         "nombre": "Kayle",
         "genero": "Femenino",
         "posicion": [
@@ -1452,10 +894,11 @@
             "Demacia",
             "Targon"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Kayle.jpg"
     },
     {
-        "id": 67,
+        "id": 40,
         "nombre": "Kayn",
         "genero": "Masculino",
         "posicion": [
@@ -1478,10 +921,11 @@
             "Runaterra",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2017
+        "anio_de_lanzamiento": 2017,
+        "img_url": "img_lol/Kayn.jpg"
     },
     {
-        "id": 68,
+        "id": 41,
         "nombre": "Kennen",
         "genero": "Masculino",
         "posicion": [
@@ -1500,10 +944,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Kennen.jpg"
     },
     {
-        "id": 69,
+        "id": 42,
         "nombre": "Kha'Zix",
         "genero": "Masculino",
         "posicion": [
@@ -1521,10 +966,11 @@
         "region": [
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/KhaZix.jpg"
     },
     {
-        "id": 70,
+        "id": 43,
         "nombre": "Kindred",
         "genero": "Otros",
         "posicion": [
@@ -1543,10 +989,11 @@
         "region": [
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2015
+        "anio_de_lanzamiento": 2015,
+        "img_url": "img_lol/Kindred.jpg"
     },
     {
-        "id": 71,
+        "id": 44,
         "nombre": "Kled",
         "genero": "Masculino",
         "posicion": [
@@ -1564,10 +1011,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2016
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Kled.jpg"
     },
     {
-        "id": 72,
+        "id": 45,
         "nombre": "Kog'Maw",
         "genero": "Masculino",
         "posicion": [
@@ -1585,10 +1033,11 @@
         "region": [
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/KogMaw.jpg"
     },
     {
-        "id": 73,
+        "id": 46,
         "nombre": "Tahm Kench",
         "genero": "Masculino",
         "posicion": [
@@ -1609,10 +1058,11 @@
             "Aguas Estancadas",
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2015
+        "anio_de_lanzamiento": 2015,
+        "img_url": "img_lol/Tahm_Kench.jpg"
     },
     {
-        "id": 74,
+        "id": 47,
         "nombre": "LeBlanc",
         "genero": "Femenino",
         "posicion": [
@@ -1631,10 +1081,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/LeBlanc.jpg"
     },
     {
-        "id": 75,
+        "id": 48,
         "nombre": "Lee Sin",
         "genero": "Masculino",
         "posicion": [
@@ -1653,10 +1104,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Lee_Sin.jpg"
     },
     {
-        "id": 76,
+        "id": 49,
         "nombre": "Leona",
         "genero": "Femenino",
         "posicion": [
@@ -1675,10 +1127,11 @@
         "region": [
             "Targon"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Leona.jpg"
     },
     {
-        "id": 77,
+        "id": 50,
         "nombre": "Lillia",
         "genero": "Femenino",
         "posicion": [
@@ -1696,10 +1149,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Lillia.jpg"
     },
     {
-        "id": 78,
+        "id": 51,
         "nombre": "Lissandra",
         "genero": "Femenino",
         "posicion": [
@@ -1718,10 +1172,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Lissandra.jpg"
     },
     {
-        "id": 79,
+        "id": 52,
         "nombre": "Lucian",
         "genero": "Masculino",
         "posicion": [
@@ -1740,10 +1195,11 @@
             "Demacia",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Lucian.jpg"
     },
     {
-        "id": 80,
+        "id": 53,
         "nombre": "Lulu",
         "genero": "Femenino",
         "posicion": [
@@ -1761,10 +1217,11 @@
         "region": [
             "Ciudad de Bandle"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Lulu.jpg"
     },
     {
-        "id": 81,
+        "id": 54,
         "nombre": "Lux",
         "genero": "Femenino",
         "posicion": [
@@ -1784,10 +1241,34 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Lux.jpg"
     },
     {
-        "id": 82,
+        "id": 55,
+        "nombre": "Dr. Mundo",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Consume vida"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Dr_Mundo.jpg"
+    },
+    {
+        "id": 56,
         "nombre": "Malphite",
         "genero": "Masculino",
         "posicion": [
@@ -1806,10 +1287,11 @@
             "Ixtal",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Malphite.jpg"
     },
     {
-        "id": 83,
+        "id": 57,
         "nombre": "Malzahar",
         "genero": "Masculino",
         "posicion": [
@@ -1829,10 +1311,11 @@
             "Shurima",
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Malzahar.jpg"
     },
     {
-        "id": 84,
+        "id": 58,
         "nombre": "Maokai",
         "genero": "Masculino",
         "posicion": [
@@ -1850,10 +1333,11 @@
         "region": [
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Maokai.jpg"
     },
     {
-        "id": 85,
+        "id": 59,
         "nombre": "Maestro Yi",
         "genero": "Masculino",
         "posicion": [
@@ -1875,7 +1359,7 @@
         "anio_de_lanzamiento": 2009
     },
     {
-        "id": 86,
+        "id": 60,
         "nombre": "Mel",
         "genero": "Femenino",
         "posicion": [
@@ -1896,10 +1380,11 @@
             "Noxus",
             "Piltover"
         ],
-        "anio_de_lanzamiento": 2025
+        "anio_de_lanzamiento": 2025,
+        "img_url": "img_lol/Mel.jpg"
     },
     {
-        "id": 87,
+        "id": 61,
         "nombre": "Milio",
         "genero": "Masculino",
         "posicion": [
@@ -1918,10 +1403,11 @@
         "region": [
             "Ixtal"
         ],
-        "anio_de_lanzamiento": 2023
+        "anio_de_lanzamiento": 2023,
+        "img_url": "img_lol/Milio.jpg"
     },
     {
-        "id": 88,
+        "id": 62,
         "nombre": "Mordekaiser",
         "genero": "Masculino",
         "posicion": [
@@ -1940,10 +1426,11 @@
             "Noxus",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Mordekaiser.jpg"
     },
     {
-        "id": 89,
+        "id": 63,
         "nombre": "Morgana",
         "genero": "Femenino",
         "posicion": [
@@ -1964,10 +1451,11 @@
             "Demacia",
             "Targon"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Morgana.jpg"
     },
     {
-        "id": 90,
+        "id": 64,
         "nombre": "Naafiri",
         "genero": "Femenino",
         "posicion": [
@@ -1987,10 +1475,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2023
+        "anio_de_lanzamiento": 2023,
+        "img_url": "img_lol/Naafiri.jpg"
     },
     {
-        "id": 91,
+        "id": 65,
         "nombre": "Nami",
         "genero": "Femenino",
         "posicion": [
@@ -2009,10 +1498,11 @@
             "Aguas Estancadas",
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Nami.jpg"
     },
     {
-        "id": 92,
+        "id": 66,
         "nombre": "Nasus",
         "genero": "Masculino",
         "posicion": [
@@ -2030,10 +1520,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Nasus.jpg"
     },
     {
-        "id": 93,
+        "id": 67,
         "nombre": "Nautilus",
         "genero": "Masculino",
         "posicion": [
@@ -2051,10 +1542,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Nautilus.jpg"
     },
     {
-        "id": 94,
+        "id": 68,
         "nombre": "Neeko",
         "genero": "Femenino",
         "posicion": [
@@ -2073,10 +1565,11 @@
         "region": [
             "Ixtal"
         ],
-        "anio_de_lanzamiento": 2018
+        "anio_de_lanzamiento": 2018,
+        "img_url": "img_lol/Neeko.jpg"
     },
     {
-        "id": 95,
+        "id": 69,
         "nombre": "Nidalee",
         "genero": "Femenino",
         "posicion": [
@@ -2096,10 +1589,11 @@
         "region": [
             "Ixtal"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Nidalee.jpg"
     },
     {
-        "id": 96,
+        "id": 70,
         "nombre": "Nilah",
         "genero": "Femenino",
         "posicion": [
@@ -2118,10 +1612,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2022
+        "anio_de_lanzamiento": 2022,
+        "img_url": "img_lol/Nilah.jpg"
     },
     {
-        "id": 97,
+        "id": 71,
         "nombre": "Nocturne",
         "genero": "Masculino",
         "posicion": [
@@ -2140,10 +1635,11 @@
         "region": [
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Nocturne.jpg"
     },
     {
-        "id": 98,
+        "id": 72,
         "nombre": "Nunu y Willump",
         "genero": "Masculino",
         "posicion": [
@@ -2162,10 +1658,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Nunu_y_Willump.jpg"
     },
     {
-        "id": 99,
+        "id": 73,
         "nombre": "Olaf",
         "genero": "Masculino",
         "posicion": [
@@ -2184,10 +1681,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Olaf.jpg"
     },
     {
-        "id": 100,
+        "id": 74,
         "nombre": "Orianna",
         "genero": "Femenino",
         "posicion": [
@@ -2205,10 +1703,11 @@
         "region": [
             "Piltover"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Orianna.jpg"
     },
     {
-        "id": 101,
+        "id": 75,
         "nombre": "Ornn",
         "genero": "Masculino",
         "posicion": [
@@ -2227,10 +1726,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2017
+        "anio_de_lanzamiento": 2017,
+        "img_url": "img_lol/Ornn.jpg"
     },
     {
-        "id": 102,
+        "id": 76,
         "nombre": "Pantheon",
         "genero": "Masculino",
         "posicion": [
@@ -2251,10 +1751,11 @@
         "region": [
             "Targon"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Pantheon.jpg"
     },
     {
-        "id": 103,
+        "id": 77,
         "nombre": "Poppy",
         "genero": "Femenino",
         "posicion": [
@@ -2274,10 +1775,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Poppy.jpg"
     },
     {
-        "id": 104,
+        "id": 78,
         "nombre": "Pyke",
         "genero": "Masculino",
         "posicion": [
@@ -2295,10 +1797,11 @@
         "region": [
             "Aguas Estancadas"
         ],
-        "anio_de_lanzamiento": 2018
+        "anio_de_lanzamiento": 2018,
+        "img_url": "img_lol/Pyke.jpg"
     },
     {
-        "id": 105,
+        "id": 79,
         "nombre": "Qiyana",
         "genero": "Femenino",
         "posicion": [
@@ -2317,10 +1820,11 @@
         "region": [
             "Ixtal"
         ],
-        "anio_de_lanzamiento": 2019
+        "anio_de_lanzamiento": 2019,
+        "img_url": "img_lol/Qiyana.jpg"
     },
     {
-        "id": 106,
+        "id": 80,
         "nombre": "Quinn",
         "genero": "Femenino",
         "posicion": [
@@ -2339,10 +1843,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Quinn.jpg"
     },
     {
-        "id": 107,
+        "id": 81,
         "nombre": "Rakan",
         "genero": "Masculino",
         "posicion": [
@@ -2360,10 +1865,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2017
+        "anio_de_lanzamiento": 2017,
+        "img_url": "img_lol/Rakan.jpg"
     },
     {
-        "id": 108,
+        "id": 82,
         "nombre": "Rammus",
         "genero": "Masculino",
         "posicion": [
@@ -2381,10 +1887,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Rammus.jpg"
     },
     {
-        "id": 109,
+        "id": 83,
         "nombre": "Rek'Sai",
         "genero": "Femenino",
         "posicion": [
@@ -2403,10 +1910,11 @@
             "Shurima",
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2014
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/RekSai.jpg"
     },
     {
-        "id": 110,
+        "id": 84,
         "nombre": "Rell",
         "genero": "Femenino",
         "posicion": [
@@ -2426,10 +1934,34 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Rell.jpg"
     },
     {
-        "id": 111,
+        "id": 85,
+        "nombre": "Renata Glasc",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2022,
+        "img_url": "img_lol/Renata_Glasc.jpg"
+    },
+    {
+        "id": 86,
         "nombre": "Renekton",
         "genero": "Masculino",
         "posicion": [
@@ -2447,10 +1979,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Renekton.jpg"
     },
     {
-        "id": 112,
+        "id": 87,
         "nombre": "Rengar",
         "genero": "Masculino",
         "posicion": [
@@ -2469,10 +2002,11 @@
             "Ixtal",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Rengar.jpg"
     },
     {
-        "id": 113,
+        "id": 88,
         "nombre": "Riven",
         "genero": "Femenino",
         "posicion": [
@@ -2491,10 +2025,11 @@
             "Jonia",
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Riven.jpg"
     },
     {
-        "id": 114,
+        "id": 89,
         "nombre": "Rumble",
         "genero": "Masculino",
         "posicion": [
@@ -2512,10 +2047,11 @@
         "region": [
             "Ciudad de Bandle"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Rumble.jpg"
     },
     {
-        "id": 115,
+        "id": 90,
         "nombre": "Ryze",
         "genero": "Masculino",
         "posicion": [
@@ -2535,10 +2071,11 @@
         "region": [
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Ryze.jpg"
     },
     {
-        "id": 116,
+        "id": 91,
         "nombre": "Samira",
         "genero": "Femenino",
         "posicion": [
@@ -2557,10 +2094,11 @@
             "Noxus",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Samira.jpg"
     },
     {
-        "id": 117,
+        "id": 92,
         "nombre": "Sejuani",
         "genero": "Femenino",
         "posicion": [
@@ -2579,10 +2117,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Sejuani.jpg"
     },
     {
-        "id": 118,
+        "id": 93,
         "nombre": "Senna",
         "genero": "Femenino",
         "posicion": [
@@ -2601,10 +2140,11 @@
         "region": [
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2019
+        "anio_de_lanzamiento": 2019,
+        "img_url": "img_lol/Senna.jpg"
     },
     {
-        "id": 119,
+        "id": 94,
         "nombre": "Seraphine",
         "genero": "Femenino",
         "posicion": [
@@ -2624,10 +2164,11 @@
             "Piltover",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Seraphine.jpg"
     },
     {
-        "id": 120,
+        "id": 95,
         "nombre": "Sett",
         "genero": "Masculino",
         "posicion": [
@@ -2646,10 +2187,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Sett.jpg"
     },
     {
-        "id": 121,
+        "id": 96,
         "nombre": "Shaco",
         "genero": "Masculino",
         "posicion": [
@@ -2668,10 +2210,11 @@
         "region": [
             "Runaterra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Shaco.jpg"
     },
     {
-        "id": 122,
+        "id": 97,
         "nombre": "Shen",
         "genero": "Masculino",
         "posicion": [
@@ -2691,10 +2234,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Shen.jpg"
     },
     {
-        "id": 123,
+        "id": 98,
         "nombre": "Shyvana",
         "genero": "Femenino",
         "posicion": [
@@ -2713,10 +2257,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Shyvana.jpg"
     },
     {
-        "id": 124,
+        "id": 99,
         "nombre": "Singed",
         "genero": "Masculino",
         "posicion": [
@@ -2736,10 +2281,11 @@
             "Piltover",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Singed.jpg"
     },
     {
-        "id": 125,
+        "id": 100,
         "nombre": "Sion",
         "genero": "Masculino",
         "posicion": [
@@ -2757,10 +2303,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Sion.jpg"
     },
     {
-        "id": 126,
+        "id": 101,
         "nombre": "Sivir",
         "genero": "Femenino",
         "posicion": [
@@ -2778,10 +2325,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Sivir.jpg"
     },
     {
-        "id": 127,
+        "id": 102,
         "nombre": "Skarner",
         "genero": "Masculino",
         "posicion": [
@@ -2799,10 +2347,11 @@
         "region": [
             "Ixtal"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Skarner.jpg"
     },
     {
-        "id": 128,
+        "id": 103,
         "nombre": "Smolder",
         "genero": "Masculino",
         "posicion": [
@@ -2821,10 +2370,11 @@
             "Camavor",
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2024
+        "anio_de_lanzamiento": 2024,
+        "img_url": "img_lol/Smolder.jpg"
     },
     {
-        "id": 129,
+        "id": 104,
         "nombre": "Sona",
         "genero": "Femenino",
         "posicion": [
@@ -2844,10 +2394,11 @@
             "Demacia",
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Sona.jpg"
     },
     {
-        "id": 130,
+        "id": 105,
         "nombre": "Soraka",
         "genero": "Femenino",
         "posicion": [
@@ -2866,10 +2417,11 @@
             "Jonia",
             "Targon"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Soraka.jpg"
     },
     {
-        "id": 131,
+        "id": 106,
         "nombre": "Swain",
         "genero": "Masculino",
         "posicion": [
@@ -2888,10 +2440,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Swain.jpg"
     },
     {
-        "id": 132,
+        "id": 107,
         "nombre": "Sylas",
         "genero": "Masculino",
         "posicion": [
@@ -2911,10 +2464,11 @@
             "Demacia",
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2019
+        "anio_de_lanzamiento": 2019,
+        "img_url": "img_lol/Sylas.jpg"
     },
     {
-        "id": 133,
+        "id": 108,
         "nombre": "Syndra",
         "genero": "Femenino",
         "posicion": [
@@ -2933,10 +2487,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Syndra.jpg"
     },
     {
-        "id": 134,
+        "id": 109,
         "nombre": "Taliyah",
         "genero": "Femenino",
         "posicion": [
@@ -2955,10 +2510,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2016
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Taliyah.jpg"
     },
     {
-        "id": 135,
+        "id": 110,
         "nombre": "Talon",
         "genero": "Masculino",
         "posicion": [
@@ -2977,10 +2533,11 @@
         "region": [
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Talon.jpg"
     },
     {
-        "id": 136,
+        "id": 111,
         "nombre": "Taric",
         "genero": "Masculino",
         "posicion": [
@@ -3000,10 +2557,11 @@
             "Demacia",
             "Targon"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Taric.jpg"
     },
     {
-        "id": 137,
+        "id": 112,
         "nombre": "Teemo",
         "genero": "Masculino",
         "posicion": [
@@ -3021,10 +2579,11 @@
         "region": [
             "Ciudad de Bandle"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Teemo.jpg"
     },
     {
-        "id": 138,
+        "id": 113,
         "nombre": "Thresh",
         "genero": "Masculino",
         "posicion": [
@@ -3042,10 +2601,11 @@
         "region": [
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Thresh.jpg"
     },
     {
-        "id": 139,
+        "id": 114,
         "nombre": "Tristana",
         "genero": "Femenino",
         "posicion": [
@@ -3063,10 +2623,11 @@
         "region": [
             "Ciudad de Bandle"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Tristana.jpg"
     },
     {
-        "id": 140,
+        "id": 115,
         "nombre": "Trundle",
         "genero": "Masculino",
         "posicion": [
@@ -3086,10 +2647,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Trundle.jpg"
     },
     {
-        "id": 141,
+        "id": 116,
         "nombre": "Tryndamere",
         "genero": "Masculino",
         "posicion": [
@@ -3108,10 +2670,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Tryndamere.jpg"
     },
     {
-        "id": 142,
+        "id": 117,
         "nombre": "Twitch",
         "genero": "Masculino",
         "posicion": [
@@ -3130,10 +2693,11 @@
         "region": [
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Twitch.jpg"
     },
     {
-        "id": 143,
+        "id": 118,
         "nombre": "Udyr",
         "genero": "Masculino",
         "posicion": [
@@ -3153,10 +2717,11 @@
             "Freljord",
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Udyr.jpg"
     },
     {
-        "id": 144,
+        "id": 119,
         "nombre": "Urgot",
         "genero": "Masculino",
         "posicion": [
@@ -3177,10 +2742,11 @@
             "Noxus",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Urgot.jpg"
     },
     {
-        "id": 145,
+        "id": 120,
         "nombre": "Varus",
         "genero": "Masculino",
         "posicion": [
@@ -3201,10 +2767,11 @@
             "Runaterra",
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Varus.jpg"
     },
     {
-        "id": 146,
+        "id": 121,
         "nombre": "Vayne",
         "genero": "Femenino",
         "posicion": [
@@ -3222,10 +2789,11 @@
         "region": [
             "Demacia"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Vayne.jpg"
     },
     {
-        "id": 147,
+        "id": 122,
         "nombre": "Veigar",
         "genero": "Masculino",
         "posicion": [
@@ -3245,10 +2813,11 @@
             "Runaterra",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2009
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Veigar.jpg"
     },
     {
-        "id": 148,
+        "id": 123,
         "nombre": "Vel'Koz",
         "genero": "Masculino",
         "posicion": [
@@ -3267,10 +2836,11 @@
         "region": [
             "El Vacío"
         ],
-        "anio_de_lanzamiento": 2014
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/VelKoz.jpg"
     },
     {
-        "id": 149,
+        "id": 124,
         "nombre": "Vex",
         "genero": "Femenino",
         "posicion": [
@@ -3289,10 +2859,11 @@
             "Ciudad de Bandle",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2021
+        "anio_de_lanzamiento": 2021,
+        "img_url": "img_lol/Vex.jpg"
     },
     {
-        "id": 150,
+        "id": 125,
         "nombre": "Vi",
         "genero": "Femenino",
         "posicion": [
@@ -3311,10 +2882,11 @@
             "Piltover",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2012
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Vi.jpg"
     },
     {
-        "id": 151,
+        "id": 126,
         "nombre": "Viego",
         "genero": "Masculino",
         "posicion": [
@@ -3333,10 +2905,11 @@
             "Camavor",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2021
+        "anio_de_lanzamiento": 2021,
+        "img_url": "img_lol/Viego.jpg"
     },
     {
-        "id": 152,
+        "id": 127,
         "nombre": "Viktor",
         "genero": "Masculino",
         "posicion": [
@@ -3356,10 +2929,11 @@
             "Piltover",
             "Zaun"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Viktor.jpg"
     },
     {
-        "id": 153,
+        "id": 128,
         "nombre": "Vladimir",
         "genero": "Masculino",
         "posicion": [
@@ -3381,35 +2955,11 @@
             "Noxus",
             "Islas de la Sombra"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Vladimir.jpg"
     },
     {
-        "id": 153,
-        "nombre": "Vladimir",
-        "genero": "Masculino",
-        "posicion": [
-            "Medio",
-            "Superior"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Sed de sangre"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Camavor",
-            "Noxus",
-            "Islas de la Sombra"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 155,
+        "id": 129,
         "nombre": "Volibear",
         "genero": "Masculino",
         "posicion": [
@@ -3429,35 +2979,11 @@
         "region": [
             "Freljord"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Volibear.jpg"
     },
     {
-        "id": 153,
-        "nombre": "Vladimir",
-        "genero": "Masculino",
-        "posicion": [
-            "Medio",
-            "Superior"
-        ],
-        "especie": [
-            "Humano",
-            "Mágicamente alterado"
-        ],
-        "recurso": [
-            "Sed de sangre"
-        ],
-        "tipo_de_gama": [
-            "A distancia"
-        ],
-        "region": [
-            "Camavor",
-            "Noxus",
-            "Islas de la Sombra"
-        ],
-        "anio_de_lanzamiento": 2010
-    },
-    {
-        "id": 157,
+        "id": 130,
         "nombre": "Xayah",
         "genero": "Femenino",
         "posicion": [
@@ -3475,10 +3001,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2017
+        "anio_de_lanzamiento": 2017,
+        "img_url": "img_lol/Xayah.jpg"
     },
     {
-        "id": 158,
+        "id": 131,
         "nombre": "Xerath",
         "genero": "Masculino",
         "posicion": [
@@ -3497,10 +3024,11 @@
         "region": [
             "Shurima"
         ],
-        "anio_de_lanzamiento": 2011
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Xerath.jpg"
     },
     {
-        "id": 159,
+        "id": 132,
         "nombre": "Xin Zhao",
         "genero": "Masculino",
         "posicion": [
@@ -3520,10 +3048,11 @@
             "Jonia",
             "Noxus"
         ],
-        "anio_de_lanzamiento": 2010
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Xin_Zhao.jpg"
     },
     {
-        "id": 160,
+        "id": 133,
         "nombre": "Yasuo",
         "genero": "Masculino",
         "posicion": [
@@ -3542,10 +3071,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2013
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Yasuo.jpg"
     },
     {
-        "id": 161,
+        "id": 134,
         "nombre": "Yone",
         "genero": "Masculino",
         "posicion": [
@@ -3565,10 +3095,11 @@
         "region": [
             "Jonia"
         ],
-        "anio_de_lanzamiento": 2020
+        "anio_de_lanzamiento": 2020,
+        "img_url": "img_lol/Yone.jpg"
     },
     {
-        "id": 162,
+        "id": 135,
         "nombre": "Yorick",
         "genero": "Masculino",
         "posicion": [
@@ -3588,6 +3119,813 @@
         "region": [
             "Islas de la Sombra"
         ],
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Yorick.jpg"
+    },
+    {
+        "id": 136,
+        "nombre": "Yuumi",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Gato",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle"
+        ],
+        "anio_de_lanzamiento": 2019,
+        "img_url": "img_lol/Yuumi.jpg"
+    },
+    {
+        "id": 137,
+        "nombre": "Zac",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Consume vida"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2013,
+        "img_url": "img_lol/Zac.jpg"
+    },
+    {
+        "id": 138,
+        "nombre": "Zed",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Energía"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Zed.jpg"
+    },
+    {
+        "id": 139,
+        "nombre": "Zeri",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2022,
+        "img_url": "img_lol/Zeri.jpg"
+    },
+    {
+        "id": 140,
+        "nombre": "Ziggs",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior",
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Ziggs.jpg"
+    },
+    {
+        "id": 141,
+        "nombre": "Zilean",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Icathia",
+            "Runaterra",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Zilean.jpg"
+    },
+    {
+        "id": 142,
+        "nombre": "Zoe",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2017,
+        "img_url": "img_lol/Zoe.jpg"
+    },
+    {
+        "id": 143,
+        "nombre": "Zyra",
+        "genero": "Femenino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Planta"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ixtal"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Zyra.jpg"
+    },
+    {
+        "id": 144,
+        "nombre": "Bardo",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Celestial"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2015
+    },
+    {
+        "id": 145,
+        "nombre": "Bel'Veth",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2022
+    },
+    {
+        "id": 146,
+        "nombre": "Blitzcrank",
+        "genero": "Otros",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Blitzcrank.jpg"
+    },
+    {
+        "id": 147,
+        "nombre": "Brand",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Freljord",
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Brand.jpg"
+    },
+    {
+        "id": 148,
+        "nombre": "Braum",
+        "genero": "Masculino",
+        "posicion": [
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/Braum.jpg"
+    },
+    {
+        "id": 149,
+        "nombre": "Briar",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Consume vida"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2023,
+        "img_url": "img_lol/Briar.jpg"
+    },
+    {
+        "id": 150,
+        "nombre": "Caitlyn",
+        "genero": "Femenino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Caitlyn.jpg"
+    },
+    {
+        "id": 151,
+        "nombre": "Camille",
+        "genero": "Femenino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Cíborg",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2016,
+        "img_url": "img_lol/Camille.jpg"
+    },
+    {
+        "id": 152,
+        "nombre": "Cassiopeia",
+        "genero": "Femenino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Shurima"
+        ],
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Cassiopeia.jpg"
+    },
+    {
+        "id": 153,
+        "nombre": "Cho'Gath",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio",
+            "Superior"
+        ],
+        "especie": [
+            "Ser del Vacío"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "El Vacío"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/ChoGath.jpg"
+    },
+    {
+        "id": 154,
+        "nombre": "Corki",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior",
+            "Medio"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Ciudad de Bandle",
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Corki.jpg"
+    },
+    {
+        "id": 155,
+        "nombre": "Darius",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Darius.jpg"
+    },
+    {
+        "id": 156,
+        "nombre": "Diana",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Aspecto",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Targon"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Diana.jpg"
+    },
+    {
+        "id": 157,
+        "nombre": "Draven",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Noxus"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Draven.jpg"
+    },
+    {
+        "id": 158,
+        "nombre": "Ekko",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Medio"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2015,
+        "img_url": "img_lol/Ekko.jpg"
+    },
+    {
+        "id": 159,
+        "nombre": "Elise",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Soporte"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Noxus",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2012,
+        "img_url": "img_lol/Elise.jpg"
+    },
+    {
+        "id": 160,
+        "nombre": "Evelynn",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Demonio",
+            "Espíritu"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Runaterra"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Evelynn.jpg"
+    },
+    {
+        "id": 161,
+        "nombre": "Ezreal",
+        "genero": "Masculino",
+        "posicion": [
+            "Inferior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido con magia"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Piltover"
+        ],
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Ezreal.jpg"
+    },
+    {
+        "id": 162,
+        "nombre": "Galio",
+        "genero": "Masculino",
+        "posicion": [
+            "Medio"
+        ],
+        "especie": [
+            "Gólem"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Galio.jpg"
+    },
+    {
+        "id": 163,
+        "nombre": "Gangplank",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Gangplank.jpg"
+    },
+    {
+        "id": 164,
+        "nombre": "Gnar",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Yordle"
+        ],
+        "recurso": [
+            "Rabia"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo",
+            "A distancia"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2014,
+        "img_url": "img_lol/Gnar.jpg"
+    },
+    {
+        "id": 165,
+        "nombre": "Gragas",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Nacido del Hielo"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Freljord"
+        ],
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Gragas.jpg"
+    },
+    {
+        "id": 166,
+        "nombre": "Graves",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "A distancia"
+        ],
+        "region": [
+            "Aguas Estancadas"
+        ],
+        "anio_de_lanzamiento": 2011,
+        "img_url": "img_lol/Graves.jpg"
+    },
+    {
+        "id": 167,
+        "nombre": "Gwen",
+        "genero": "Femenino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Humano",
+            "Mágicamente alterado"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Camavor",
+            "Islas de la Sombra"
+        ],
+        "anio_de_lanzamiento": 2021,
+        "img_url": "img_lol/Gwen.jpg"
+    },
+    {
+        "id": 168,
+        "nombre": "Warwick",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla",
+            "Superior"
+        ],
+        "especie": [
+            "Quimicamente Alterado",
+            "Cíborg",
+            "Humano"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Zaun"
+        ],
+        "anio_de_lanzamiento": 2009,
+        "img_url": "img_lol/Warwick.jpg"
+    },
+    {
+        "id": 169,
+        "nombre": "Wukong",
+        "genero": "Masculino",
+        "posicion": [
+            "Jungla"
+        ],
+        "especie": [
+            "Vastaya"
+        ],
+        "recurso": [
+            "Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Jonia"
+        ],
         "anio_de_lanzamiento": 2011
+    },
+    {
+        "id": 170,
+        "nombre": "Garen",
+        "genero": "Masculino",
+        "posicion": [
+            "Superior"
+        ],
+        "especie": [
+            "Humano"
+        ],
+        "recurso": [
+            "Sin Maná"
+        ],
+        "tipo_de_gama": [
+            "Cuerpo a cuerpo"
+        ],
+        "region": [
+            "Demacia"
+        ],
+        "anio_de_lanzamiento": 2010,
+        "img_url": "img_lol/Garen.jpg"
     }
 ]

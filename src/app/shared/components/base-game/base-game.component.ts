@@ -29,7 +29,7 @@ export class BaseGameComponent {
   hideHeader = input<boolean>(false);
   hideStats = input<boolean>(false);
   hideDailyState = input<boolean>(false);
-  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle'>('default');
+  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle'>('default');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();

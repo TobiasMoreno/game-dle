@@ -1,19 +1,21 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
+import { AudioService } from '../../shared/services/audio.service';
+import { MusicControlsComponent, MusicControlsTheme } from '../../shared/components/music-controls/music-controls.component';
 import {
   OnePieceGameService,
   OnePieceCharacter,
   CompareStatus,
   GuessResult,
 } from './onepiece-game.service';
+import { GuessInputComponent, GuessInputTheme } from "../../shared/components/guess-input/guess-input.component";
 
 @Component({
   selector: 'app-onepiecedle',
-  imports: [FormsModule, BaseGameComponent],
+  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent],
   templateUrl: './onepiecedle.component.html',
   styleUrls: ['./onepiecedle.component.css'],
 })
@@ -22,6 +24,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   readonly gameId = 'onepiecedle';
   private http: HttpClient = inject(HttpClient);
   private onePieceService: OnePieceGameService = inject(OnePieceGameService);
+  private audioService: AudioService = inject(AudioService);
 
   characters: OnePieceCharacter[] = [];
   filteredCharacters: OnePieceCharacter[] = [];
@@ -35,17 +38,34 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   hasSavedProgress: boolean = false;
   revealedColumns: number[] = [];
 
-  // Propiedades para el audio
-  private audio: HTMLAudioElement | null = null;
-  isMusicPlaying: boolean = false;
-  isMusicMuted: boolean = true;
-  musicVolume: number = 0.3;
+  // Tema para los controles de música
+  onepieceTheme: MusicControlsTheme = {
+    buttonBg: 'bg-gradient-to-r from-yellow-500 to-orange-500',
+    buttonHoverBg: 'hover:from-yellow-400 hover:to-orange-400',
+    buttonTextColor: 'text-black',
+    volumeTextColor: '#1f2937',
+    sliderBg: '#fef3c7',
+    sliderThumbBg: '#f59e0b'
+  };
+
+  onepieceInputTheme: GuessInputTheme = {
+    inputBg: '#fff7ed',
+    inputBorder: 'border-orange-300',
+    inputText: 'text-orange-700',
+    inputPlaceholder: 'placeholder-orange-400',
+    dropdownBg: 'bg-orange-50',
+    dropdownBorder: 'border-orange-300',
+    dropdownItemHoverBg: 'hover:bg-orange-200',
+    buttonBg: 'bg-red-500',
+    buttonText: 'text-white',
+    buttonHoverBg: 'hover:bg-red-600'
+  };
 
   ngOnInit(): void {
     console.log('🚀 OnePieceDLE ngOnInit iniciado');
     this.setGameId(this.gameId);
     this.loadCharacters();
-    this.initializeAudio();
+    this.audioService.initializeAudio('one-piece-soundtrack.mp3');
     this.progressLoaded.subscribe((progress) => {
       console.log('📊 Progreso cargado:', progress);
       if (progress) {
@@ -56,63 +76,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   ngOnDestroy(): void {
-    this.stopMusic();
-  }
-
-  private initializeAudio(): void {
-    try {
-      // URL del archivo MP3 local
-      const musicUrl = 'one-piece-soundtrack.mp3';
-      this.audio = new Audio(musicUrl);
-      this.audio.loop = true;
-      this.audio.volume = this.musicVolume;
-      this.audio.preload = 'auto';
-      // No iniciar música automáticamente
-    } catch (error) {
-      console.error('❌ Error al inicializar audio:', error);
-    }
-  }
-
-  startMusic(): void {
-    if (this.audio && !this.isMusicPlaying && !this.isMusicMuted) {
-      this.audio.play().then(() => {
-        this.isMusicPlaying = true;
-      }).catch((error) => {
-        console.error('❌ Error al reproducir música:', error);
-      });
-    }
-  }
-
-  stopMusic(): void {
-    if (this.audio && this.isMusicPlaying) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
-      this.isMusicPlaying = false;
-    }
-  }
-
-  toggleMusic(): void {
-    if (this.isMusicMuted) {
-      this.isMusicMuted = false;
-      this.startMusic();
-    } else {
-      this.isMusicMuted = true;
-      this.stopMusic();
-    }
-  }
-
-  setMusicVolume(volume: number): void {
-    this.musicVolume = Math.max(0, Math.min(1, volume));
-    if (this.audio) {
-      this.audio.volume = this.musicVolume;
-    }
-  }
-
-  onVolumeChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    if (target) {
-      this.setMusicVolume(parseFloat(target.value));
-    }
+    this.audioService.cleanup();
   }
 
   private restoreProgress(progress: GameProgress): void {
@@ -199,8 +163,8 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     return this.characters[Math.floor(Math.random() * this.characters.length)];
   }
 
-  onInputChange(event: any): void {
-    this.currentGuess = event.target.value;
+  onInputChange(value: string): void {
+    this.currentGuess = value;
     this.errorMessage = '';
     const guessedNames = this.guesses.map((g) => g.name.value);
     this.filteredCharacters = this.onePieceService.filterCharacters(
@@ -211,11 +175,6 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   submitGuess(): void {
-    // Iniciar música en la primera interacción del usuario
-    if (!this.isMusicPlaying && !this.isMusicMuted) {
-      this.startMusic();
-    }
-
     if (!this.currentGuess.trim()) {
       this.errorMessage = 'Por favor ingresa un nombre';
       return;
@@ -257,6 +216,12 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
       }
     }
     this.currentGuess = '';
+    const guessedNames = this.guesses.map((g) => g.name.value);
+    this.filteredCharacters = this.onePieceService.filterCharacters(
+      this.characters,
+      this.currentGuess,
+      guessedNames
+    );
   }
 
   revealNextColumn(): void {
@@ -276,11 +241,6 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   selectCharacter(nombre: string, autoSubmit: boolean = false): void {
-    // Iniciar música en la primera interacción del usuario
-    if (!this.isMusicPlaying && !this.isMusicMuted) {
-      this.startMusic();
-    }
-
     this.currentGuess = nombre;
     this.filteredCharacters = [];
     if (autoSubmit) {
@@ -331,5 +291,10 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
   protected hasProgressSafe(): boolean {
     return this.hasProgress();
+  }
+
+  onSelectSuggestion(suggestion: { nombre: string }) {
+    this.currentGuess = suggestion.nombre;
+    this.filteredCharacters = [];
   }
 }

@@ -1,0 +1,278 @@
+<app-base-game
+  [customBackground]="'linear-gradient(135deg, #091428 0%, #0A1428 50%, #1E2328 100%)'"
+  [customHeaderBg]="'linear-gradient(135deg, #C89B3C 0%, #F0E6D2 100%)'"
+  [customCardBg]="'rgba(240, 230, 210, 0.95)'"
+  [customTextColor]="'#1E2328'"
+  [customButtonBg]="'#C89B3C'"
+  [customButtonTextColor]="'white'"
+  [customAccentColor]="'#0AC8B9'"
+  [hideHeader]="false"
+  [hideStats]="false"
+  [hideDailyState]="false"
+  [footerTheme]="'loldle'">
+  
+  <!-- Mensaje si ya se jugó hoy -->
+  @if(isGamePlayedTodaySafe()) {
+  <div class="text-center py-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg p-6 shadow-lg border-2 border-yellow-400">
+    <div class="text-4xl mb-4">⚔️</div>
+    <h2 class="text-2xl font-bold text-white mb-4">
+      ¡Ya jugaste LoL DLE hoy!
+    </h2>
+    <p class="text-yellow-100">Vuelve mañana para un nuevo desafío de campeones.</p>
+  </div>
+  }
+  <!-- Mensaje de progreso guardado -->
+  @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
+  <div class="text-center py-8 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-lg p-6 shadow-lg border-2 border-cyan-400">
+    <!-- Controles de música -->
+    <div class="mb-6">
+      <app-music-controls 
+        [theme]="lolTheme"
+        [musicFile]="'warriors-lol.mp3'">
+      </app-music-controls>
+    </div>
+
+    <div class="text-4xl mb-4">🏆</div>
+    <h2 class="text-2xl font-bold text-white mb-4">
+      🎮 ¡Tienes un juego en progreso!
+    </h2>
+    <p class="text-blue-100 mb-4">
+      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
+    </p>
+    <button
+      (click)="continueGame()"
+      class="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg hover:from-yellow-400 hover:to-orange-400 transition-all duration-200 font-bold shadow-lg"
+    >
+      ⚔️ Continuar batalla
+    </button>
+  </div>
+  }
+  <!-- Juego activo -->
+  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < maxAttempts &&
+  !hasSavedProgress) {
+  <div class="space-y-6">
+    <!-- Controles de música -->
+    <div class="mb-4">
+      <app-music-controls 
+        [theme]="lolTheme"
+        [musicFile]="'warriors-lol.mp3'">
+      </app-music-controls>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="text-center mb-6 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-lg p-6 shadow-lg border-2 border-yellow-400">
+      <div class="text-5xl mb-4">⚔️</div>
+      <h2 class="text-2xl font-semibold mb-2 text-white">
+        Adivina el campeón de League of Legends
+      </h2>
+      <p class="text-yellow-100 font-medium">
+        Tienes 6 intentos - Compara con el campeón del día
+      </p>
+    </div>
+
+    <!-- Input para adivinar -->
+    <app-guess-input
+      [placeholder]="'Escribe el nombre del campeón...'"
+      [disabled]="gameWon || currentAttempt >= maxAttempts || !charactersLoaded"
+      [suggestions]="filteredCharacters"
+      [value]="currentGuess"
+      [theme]="lolInputTheme"
+      (valueChange)="onGuessInputChange($event)"
+      (submit)="submitGuess()"
+      (selectSuggestion)="onSelectSuggestion($event)">
+    </app-guess-input>
+
+    <!-- Tablero de intentos -->
+    <div class="max-w-9xl space-y-2 mx-auto overflow-x-auto">
+      <!-- Headers fijos -->
+      <div
+        class="grid grid-cols-8 min-w-[800px] place-items-center text-xs font-bold text-center mb-1 gap-2 bg-gradient-to-r from-yellow-500 to-orange-600 p-2 rounded-lg border border-yellow-400"
+      >
+        <div class="text-white">👤 Nombre</div>
+        <div class="text-white">⚧ Género</div>
+        <div class="text-white">🎯 Posición</div>
+        <div class="text-white">🧬 Especie</div>
+        <div class="text-white">⚡ Recurso</div>
+        <div class="text-white">🗡️ Tipo</div>
+        <div class="text-white">🗺️ Región</div>
+        <div class="text-white">📅 Año</div>
+      </div>
+      <!-- Intentos -->
+      @for (guess of guesses.slice().reverse(); track $index) {
+      <div class="grid grid-cols-8 min-w-[800px] place-items-center gap-2">
+        <!-- Nombre -->
+        @if ($index !== 0 || revealedColumns[0] > 0) {
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-all duration-300 opacity-0 font-medium character-name-cell relative overflow-hidden"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 0"
+          [class.has-image]="hasCharacterImage(guess.name.value)"
+          [style.background-image]="hasCharacterImage(guess.name.value) ? 'url(' + getCharacterImageUrl(guess.name.value) + ')' : 'none'"
+          [style.background-size]="'cover'"
+          [style.background-position]="'center'"
+          [style.background-repeat]="'no-repeat'"
+        >
+          <div class="character-name-overlay" [class.always-visible]="!hasCharacterImage(guess.name.value)">
+            {{ guess.name.value }}
+          </div>
+        </div>
+        }
+        <!-- Género -->
+        @if ($index !== 0 || revealedColumns[0] > 1) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 1"
+          [class]="getComparisonClass(guess.genero.status)"
+        >
+          {{ guess.genero.value || "N/A" }}
+        </div>
+        }
+        <!-- Posición -->
+        @if ($index !== 0 || revealedColumns[0] > 2) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 2"
+          [class]="getComparisonClass(guess.posicion.status)"
+        >
+          {{ guess.posicion.value || "N/A" }}
+        </div>
+        }
+        <!-- Especie -->
+        @if ($index !== 0 || revealedColumns[0] > 3) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 3"
+          [class]="getComparisonClass(guess.especie.status)"
+        >
+          {{ guess.especie.value || "N/A" }}
+        </div>
+        }
+        <!-- Recurso -->
+        @if ($index !== 0 || revealedColumns[0] > 4) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 4"
+          [class]="getComparisonClass(guess.recurso.status)"
+        >
+          {{ guess.recurso.value || "N/A" }}
+        </div>
+        }
+        <!-- Tipo de Gama -->
+        @if ($index !== 0 || revealedColumns[0] > 5) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 5"
+          [class]="getComparisonClass(guess.tipo_de_gama.status)"
+        >
+          {{ guess.tipo_de_gama.value || "N/A" }}
+        </div>
+        }
+        <!-- Región -->
+        @if ($index !== 0 || revealedColumns[0] > 6) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 6"
+          [class]="getComparisonClass(guess.region.status)"
+        >
+          {{ guess.region.value || "N/A" }}
+        </div>
+        }
+        <!-- Año de Lanzamiento -->
+        @if ($index !== 0 || revealedColumns[0] > 7) {
+        <div
+          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-bold relative overflow-hidden bg-center bg-no-repeat bg-contain"
+          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 7"
+          [class]="getComparisonClass(guess.anio_de_lanzamiento.status)"
+          [style.background-image]="
+            guess.anio_de_lanzamiento.arrow === 'up'
+              ? 'url(/img/up-arrow.svg)'
+              : (guess.anio_de_lanzamiento.arrow === 'down'
+                ? 'url(/img/down-arrow.svg)'
+                : 'none')
+          "
+          style="background-color: rgba(0,0,0,0.15);"
+        >
+          <span class="relative z-10 text-white font-bold">{{ guess.anio_de_lanzamiento.value || 'N/A' }}</span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Mensaje de error -->
+    @if(errorMessage) {
+    <div class="text-center text-red-600 bg-red-100 p-3 rounded-lg font-medium border border-red-300">
+      ⚠️ {{ errorMessage }}
+    </div>
+    }
+
+    <!-- Loading -->
+    @if (!charactersLoaded) {
+    <div class="text-center text-gray-600 bg-yellow-100 p-4 rounded-lg font-medium border border-yellow-300">
+      ⚔️ Cargando campeones...
+    </div>
+    }
+  </div>
+  }
+  <!-- Resultado del juego -->
+  @if (gameWon || currentAttempt >= maxAttempts) {
+  <div class="text-center py-8">
+    <!-- Controles de música -->
+    <div class="mb-6">
+      <app-music-controls 
+        [theme]="lolTheme"
+        [musicFile]="'warriors-lol.mp3'">
+      </app-music-controls>
+    </div>
+
+    <div class="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg p-6 shadow-lg mb-6 border-2 border-yellow-400">
+      <div class="text-6xl mb-4">
+        {{ gameWon ? "🏆" : "💀" }}
+      </div>
+      <h2
+        class="text-2xl font-bold mb-4 text-white"
+        [class]="gameWon ? 'text-yellow-200' : 'text-red-200'"
+      >
+        {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
+      </h2>
+    </div>
+
+    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6 max-w-md mx-auto shadow-lg border-2 border-yellow-400">
+      <h3 class="text-lg font-semibold mb-4 text-yellow-800">⚔️ El campeón era:</h3>
+      <img [src]="getCharacterImageUrl(targetCharacter?.nombre || '')" alt="Campeón" class="w-28 h-28 rounded-lg mx-auto border-2 border-yellow-400">
+      <div class="text-left space-y-2 text-yellow-700">
+        <div><strong>👤 Nombre:</strong> {{ targetCharacter?.nombre }}</div>
+        <div>
+          <strong>⚧ Género:</strong> {{ targetCharacter?.genero || "N/A" }}
+        </div>
+        <div>
+          <strong>🎯 Posición:</strong>
+          {{ targetCharacter?.posicion?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>🧬 Especie:</strong>
+          {{ targetCharacter?.especie?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>⚡ Recurso:</strong>
+          {{ targetCharacter?.recurso?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>🗡️ Tipo de Gama:</strong>
+          {{ targetCharacter?.tipo_de_gama?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>🗺️ Región:</strong>
+          {{ targetCharacter?.region?.join(", ") || "N/A" }}
+        </div>
+        <div>
+          <strong>📅 Año de Lanzamiento:</strong>
+          {{ getFormattedValue("anio_de_lanzamiento", targetCharacter?.anio_de_lanzamiento) }}
+        </div>
+      </div>
+    </div>
+    <p class="text-gray-600 mt-4 font-medium">
+      ⚔️ Intentos: {{ currentAttempt }}/{{ maxAttempts }}
+    </p>
+  </div>
+  }
+</app-base-game>

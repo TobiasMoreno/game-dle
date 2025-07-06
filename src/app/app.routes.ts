@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/onepiecedle/onepiecedle.component').then(m => m.OnePieceDLEComponent)
   },
   {
+    path: 'games/loldle',
+    loadComponent: () => import('./games/loldle/loldle.component').then(m => m.LoldleComponent)
+  },
+  {
     path: 'games/numberle',
     loadComponent: () => import('./games/numberle/numberle.component').then(m => m.NumberleComponent)
   },

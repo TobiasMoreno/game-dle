@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { GameState, DailyGameState, GameStats } from '../models/game.model';
 import { GameStorageService } from './game-storage.service';
 
@@ -36,6 +36,20 @@ export class GameManagerService {
       description: 'Adivina el personaje de One Piece',
       route: '/games/onepiecedle',
       icon: 'fas fa-skull-crossbones',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0]
+      }
+    },
+    {
+      id: 'loldle',
+      name: 'LoL DLE',
+      description: 'Adivina el campeón de League of Legends',
+      route: '/games/loldle',
+      icon: 'fas fa-solid fa-l',
       stats: {
         totalGames: 0,
         wins: 0,
