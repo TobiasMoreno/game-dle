@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { GameState, DailyGameState, GameProgress } from '../../models/game.model';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
-import { FooterComponent } from '../footer/footer.component';
 import { ThemeService } from '../../services/theme.service';
 
 /**

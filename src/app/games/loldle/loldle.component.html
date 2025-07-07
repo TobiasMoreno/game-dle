@@ -28,7 +28,7 @@
     <div class="mb-6">
       <app-music-controls 
         [theme]="lolTheme"
-        [musicFile]="'warriors-lol.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
@@ -37,7 +37,7 @@
       🎮 ¡Tienes un juego en progreso!
     </h2>
     <p class="text-blue-100 mb-4">
-      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
+      Tienes {{ currentAttempt }}/{{ config.maxAttempts }} intentos realizados.
     </p>
     <button
       (click)="continueGame()"
@@ -48,14 +48,14 @@
   </div>
   }
   <!-- Juego activo -->
-  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < maxAttempts &&
+  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
     <!-- Controles de música -->
     <div class="mb-4">
       <app-music-controls 
         [theme]="lolTheme"
-        [musicFile]="'warriors-lol.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
@@ -73,7 +73,7 @@
     <!-- Input para adivinar -->
     <app-guess-input
       [placeholder]="'Escribe el nombre del campeón...'"
-      [disabled]="gameWon || currentAttempt >= maxAttempts || !charactersLoaded"
+      [disabled]="gameWon || currentAttempt >= config.maxAttempts || !charactersLoaded"
       [suggestions]="filteredCharacters"
       [value]="currentGuess"
       [theme]="lolInputTheme"
@@ -88,7 +88,7 @@
       [rows]="getBoardRows()"
       [revealedColumns]="revealedColumns"
       [theme]="boardTheme"
-      [maxAttempts]="maxAttempts">
+      [maxAttempts]="config.maxAttempts">
     </app-game-board>
 
     <!-- Mensaje de error -->
@@ -107,65 +107,23 @@
   </div>
   }
   <!-- Resultado del juego -->
-  @if (gameWon || currentAttempt >= maxAttempts) {
-  <div class="text-center py-8">
+  @if (gameWon || currentAttempt >= config.maxAttempts) {
+  <div>
     <!-- Controles de música -->
     <div class="mb-6">
       <app-music-controls 
         [theme]="lolTheme"
-        [musicFile]="'warriors-lol.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
-    <div class="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg p-6 shadow-lg mb-6 border-2 border-yellow-400">
-      <div class="text-6xl mb-4">
-        {{ gameWon ? "🏆" : "💀" }}
-      </div>
-      <h2
-        class="text-2xl font-bold mb-4 text-white"
-        [class]="gameWon ? 'text-yellow-200' : 'text-red-200'"
-      >
-        {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
-      </h2>
-    </div>
-
-    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6 max-w-md mx-auto shadow-lg border-2 border-yellow-400">
-      <h3 class="text-lg font-semibold mb-4 text-yellow-800">⚔️ El campeón era:</h3>
-      <img [src]="getCharacterImageUrl(targetCharacter?.nombre || '')" alt="Campeón" class="w-28 h-28 rounded-lg mx-auto border-2 border-yellow-400">
-      <div class="text-left space-y-2 text-yellow-700">
-        <div><strong>👤 Nombre:</strong> {{ targetCharacter?.nombre }}</div>
-        <div>
-          <strong>⚧ Género:</strong> {{ targetCharacter?.genero || "N/A" }}
-        </div>
-        <div>
-          <strong>🎯 Posición:</strong>
-          {{ targetCharacter?.posicion?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>🧬 Especie:</strong>
-          {{ targetCharacter?.especie?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>⚡ Recurso:</strong>
-          {{ targetCharacter?.recurso?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>🗡️ Tipo de Gama:</strong>
-          {{ targetCharacter?.tipo_de_gama?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>🗺️ Región:</strong>
-          {{ targetCharacter?.region?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>📅 Año de Lanzamiento:</strong>
-          {{ getFormattedValue("anio_de_lanzamiento", targetCharacter?.anio_de_lanzamiento) }}
-        </div>
-      </div>
-    </div>
-    <p class="text-gray-600 mt-4 font-medium">
-      ⚔️ Intentos: {{ currentAttempt }}/{{ maxAttempts }}
-    </p>
+    <!-- Componente genérico de resultado -->
+    <app-game-result
+      [config]="getGameResultConfig()"
+      [characterFields]="getCharacterFields()"
+      [getCharacterImageUrl]="getCharacterImageUrl.bind(this)"
+      (playAgain)="onPlayAgain()">
+    </app-game-result>
   </div>
   }
 </app-base-game>

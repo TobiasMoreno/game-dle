@@ -1,0 +1,32 @@
+/* Estilos para el componente de resultado del juego */
+.game-result-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.character-image {
+  transition: transform 0.3s ease;
+}
+
+.character-image:hover {
+  transform: scale(1.05);
+}
+
+.result-button {
+  transition: all 0.3s ease;
+}
+
+.result-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+} 

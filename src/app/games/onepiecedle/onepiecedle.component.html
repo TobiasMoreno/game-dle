@@ -28,7 +28,7 @@
     <div class="mb-6">
       <app-music-controls 
         [theme]="onepieceTheme"
-        [musicFile]="'one-piece-soundtrack.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
@@ -37,7 +37,7 @@
       🎮 ¡Tienes un juego en progreso!
     </h2>
     <p class="text-blue-100 mb-4">
-      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
+      Tienes {{ currentAttempt }}/{{ config.maxAttempts }} intentos realizados.
     </p>
     <button
       (click)="continueGame()"
@@ -48,14 +48,14 @@
   </div>
   }
   <!-- Juego activo -->
-  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < maxAttempts &&
+  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
     <!-- Controles de música -->
     <div class="mb-4">
       <app-music-controls 
         [theme]="onepieceTheme"
-        [musicFile]="'one-piece-soundtrack.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
@@ -73,7 +73,7 @@
     <!-- Input para adivinar -->
     <app-guess-input
       [placeholder]="'Escribe el nombre del personaje...'"
-      [disabled]="gameWon || currentAttempt >= maxAttempts || !charactersLoaded"
+      [disabled]="gameWon || currentAttempt >= config.maxAttempts || !charactersLoaded"
       [suggestions]="filteredCharacters"
       [value]="currentGuess"
       [theme]="onepieceInputTheme"
@@ -88,7 +88,7 @@
       [rows]="getBoardRows()"
       [revealedColumns]="revealedColumns"
       [theme]="boardTheme"
-      [maxAttempts]="maxAttempts">
+      [maxAttempts]="config.maxAttempts">
     </app-game-board>
 
     <!-- Mensaje de error -->
@@ -107,69 +107,23 @@
   </div>
   }
   <!-- Resultado del juego -->
-  @if (gameWon || currentAttempt >= maxAttempts) {
-  <div class="text-center py-8">
+  @if (gameWon || currentAttempt >= config.maxAttempts) {
+  <div>
     <!-- Controles de música -->
     <div class="mb-6">
       <app-music-controls 
         [theme]="onepieceTheme"
-        [musicFile]="'one-piece-soundtrack.mp3'">
+        [musicFile]="config.musicFile">
       </app-music-controls>
     </div>
 
-    <div class="bg-gradient-to-br from-orange-400 to-red-500 rounded-lg p-6 shadow-lg mb-6">
-      <div class="text-6xl mb-4">
-        {{ gameWon ? "🏆" : "💀" }}
-      </div>
-      <h2
-        class="text-2xl font-bold mb-4 text-white"
-        [class]="gameWon ? 'text-yellow-300' : 'text-red-200'"
-      >
-        {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
-      </h2>
-    </div>
-
-    <div class="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg p-6 max-w-md mx-auto shadow-lg border-2 border-orange-300">
-      <h3 class="text-lg font-semibold mb-4 text-orange-800">🏴‍☠️ El personaje era:</h3>
-      <img [src]="getCharacterImageUrl(targetCharacter?.nombre || '')" alt="Personaje" class="w-28 h-28 rounded-lg mx-auto">
-      <div class="text-left space-y-2 text-orange-700">
-        <div><strong>👤 Nombre:</strong> {{ targetCharacter?.nombre }}</div>
-        <div>
-          <strong>⚧ Genero:</strong> {{ targetCharacter?.genero || "N/A" }}
-        </div>
-        <div>
-          <strong>🏴 Afiliacion:</strong>
-          {{ targetCharacter?.afiliacion || "N/A" }}
-        </div>
-        <div>
-          <strong>🍎 Fruta:</strong>
-          {{ targetCharacter?.fruta_del_diablo || "N/A" }}
-        </div>
-        <div>
-          <strong>⚡ Hakis:</strong>
-          {{ targetCharacter?.hakis?.join(", ") || "N/A" }}
-        </div>
-        <div>
-          <strong>💰 Ultima recompensa:</strong>
-          {{
-            getFormattedValue(
-              "ultima_recompensa",
-              targetCharacter?.ultima_recompensa
-            )
-          }}
-        </div>
-        <div>
-          <strong>📏 Altura:</strong>
-          {{ getFormattedValue("altura", targetCharacter?.altura) }}
-        </div>
-        <div>
-          <strong>🗺️ Origen:</strong> {{ targetCharacter?.origen || "N/A" }}
-        </div>
-      </div>
-    </div>
-    <p class="text-gray-600 mt-4 font-medium">
-      ⚓ Intentos: {{ currentAttempt }}/{{ maxAttempts }}
-    </p>
+    <!-- Componente genérico de resultado -->
+    <app-game-result
+      [config]="getGameResultConfig()"
+      [characterFields]="getCharacterFields()"
+      [getCharacterImageUrl]="getCharacterImageUrl.bind(this)"
+      (playAgain)="onPlayAgain()">
+    </app-game-result>
   </div>
   }
 </app-base-game>

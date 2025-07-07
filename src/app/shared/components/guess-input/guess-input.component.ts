@@ -96,16 +96,21 @@ export class GuessInputComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
+    if (this.filteredSuggestions.length > 0) {
+      this.onSelectSuggestion(this.filteredSuggestions[0], false);
+    }
     this.submit.emit();
     this.showDropdown = false;
   }
 
-  onSelectSuggestion(suggestion: GuessSuggestion) {
+  onSelectSuggestion(suggestion: GuessSuggestion, blurInput: boolean = true) {
     this.inputValue = suggestion.nombre;
     this.valueChange.emit(this.inputValue);
     this.selectSuggestion.emit(suggestion);
     this.showDropdown = false;
-    setTimeout(() => this.inputEl?.nativeElement.blur(), 0);
+    if (blurInput) {
+      setTimeout(() => this.inputEl?.nativeElement.blur(), 0);
+    }
   }
 
   filterSuggestions() {

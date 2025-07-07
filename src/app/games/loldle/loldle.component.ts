@@ -19,19 +19,35 @@ import {
   GameBoardTheme,
 } from '../../shared/components/game-board';
 import { ComparisonStatus } from '../../shared/components/game-cell/game-cell.component';
+import { GuessHandlerService } from '../../shared/services/guess-handler.service';
+import { CharacterGameConfig } from '../../shared/components/base-character-game/base-character-game.component';
+import {
+  GameResultComponent,
+  GameResultConfig,
+  CharacterField,
+} from '../../shared/components/game-result';
 
 @Component({
   selector: 'app-loldle',
-  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent, GameBoardComponent],
+  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent, GameBoardComponent, GameResultComponent],
   templateUrl: './loldle.component.html',
   styleUrls: ['./loldle.component.css'],
 })
 export class LoldleComponent extends BaseGameComponent implements OnInit, OnDestroy {
-  readonly maxAttempts = 6;
-  readonly gameId = 'loldle';
+  // Configuración del juego usando la interfaz generalizada
+  readonly config: CharacterGameConfig = {
+    gameId: 'loldle',
+    maxAttempts: 6,
+    charactersFile: 'campeones_lol.json',
+    musicFile: 'warriors-lol.mp3',
+    characterType: 'campeón'
+  };
+
+  // Servicios inyectados
   private http: HttpClient = inject(HttpClient);
-  private lolService: LoLGameService = inject(LoLGameService);
+  readonly gameService: LoLGameService = inject(LoLGameService);
   private audioService: AudioService = inject(AudioService);
+  private guessHandler: GuessHandlerService = inject(GuessHandlerService);
 
   characters: LoLCharacter[] = [];
   filteredCharacters: LoLCharacter[] = [];
@@ -95,10 +111,86 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
     }
   };
 
+  // Configuración para el componente de resultado
+  getGameResultConfig(): GameResultConfig {
+    return {
+      gameWon: this.gameWon,
+      currentAttempt: this.currentAttempt,
+      maxAttempts: this.config.maxAttempts,
+      targetCharacter: this.targetCharacter,
+      characterType: this.config.characterType,
+      theme: {
+        primaryBg: 'linear-gradient(135deg, #c89b3c 0%, #f0e6d2 100%)',
+        secondaryBg: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+        textColor: '#92400e',
+        borderColor: '#f59e0b',
+        icon: '⚔️',
+        winIcon: '🏆',
+        loseIcon: '💀'
+      }
+    };
+  }
+
+  getCharacterFields(): CharacterField[] {
+    if (!this.targetCharacter) return [];
+    
+    return [
+      {
+        key: 'nombre',
+        label: 'Nombre',
+        icon: '👤',
+        value: this.targetCharacter.nombre
+      },
+      {
+        key: 'genero',
+        label: 'Género',
+        icon: '⚧',
+        value: this.targetCharacter.genero || 'N/A'
+      },
+      {
+        key: 'posicion',
+        label: 'Posición',
+        icon: '🎯',
+        value: this.targetCharacter.posicion?.join(', ') || 'N/A'
+      },
+      {
+        key: 'especie',
+        label: 'Especie',
+        icon: '🧬',
+        value: this.targetCharacter.especie?.join(', ') || 'N/A'
+      },
+      {
+        key: 'recurso',
+        label: 'Recurso',
+        icon: '⚡',
+        value: this.targetCharacter.recurso?.join(', ') || 'N/A'
+      },
+      {
+        key: 'tipo_de_gama',
+        label: 'Tipo de Gama',
+        icon: '🗡️',
+        value: this.targetCharacter.tipo_de_gama?.join(', ') || 'N/A'
+      },
+      {
+        key: 'region',
+        label: 'Región',
+        icon: '🗺️',
+        value: this.targetCharacter.region?.join(', ') || 'N/A'
+      },
+      {
+        key: 'anio_de_lanzamiento',
+        label: 'Año de Lanzamiento',
+        icon: '📅',
+        value: this.targetCharacter.anio_de_lanzamiento,
+        formatter: (value: any) => this.getFormattedValue('anio_de_lanzamiento', value)
+      }
+    ];
+  }
+
   ngOnInit(): void {
-    this.setGameId(this.gameId);
+    this.setGameId(this.config.gameId);
     this.loadCharacters();
-    this.audioService.initializeAudio('warriors-lol.mp3');
+    this.audioService.initializeAudio(this.config.musicFile);
     this.progressLoaded.subscribe((progress) => {
       if (progress) {
         this.restoreProgress(progress);
@@ -140,9 +232,9 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
       const progressData = {
         currentAttempt: this.currentAttempt,
         gameWon: this.gameWon,
-        gameLost: this.currentAttempt >= this.maxAttempts,
+        gameLost: this.currentAttempt >= this.config.maxAttempts,
         attempts: this.guesses,
-        maxAttempts: this.maxAttempts,
+        maxAttempts: this.config.maxAttempts,
         gameData: {
           targetCharacter: targetCharacterData,
         },
@@ -154,7 +246,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   }
 
   private loadCharacters(): void {
-    this.http.get<LoLCharacter[]>('campeones_lol.json').subscribe({
+    this.http.get<LoLCharacter[]>(this.config.charactersFile).subscribe({
       next: (characters) => {
         this.characters = characters.filter(
           (char) => char.nombre && char.nombre.trim() !== ''
@@ -191,11 +283,11 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   onGuessInputChange(value: string) {
     this.currentGuess = value;
     this.errorMessage = '';
-    const guessedNames = this.guesses.map((g) => g.name.value);
-    this.filteredCharacters = this.lolService.filterCharacters(
+    this.filteredCharacters = this.guessHandler.updateFilteredCharacters(
       this.characters,
       value,
-      guessedNames
+      this.guesses,
+      this.gameService
     );
   }
 
@@ -204,52 +296,55 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
     this.filteredCharacters = [];
   }
 
+  onPlayAgain(): void {
+    // Reiniciar el juego
+    this.initializeGame();
+  }
+
   submitGuess(): void {
-    if (!this.currentGuess.trim()) {
-      this.errorMessage = 'Por favor ingresa un nombre';
-      return;
-    }
-    // Validar si el campeón ya fue adivinado
-    const guessedNames = this.guesses.map((g) => g.name.value.toLowerCase());
-    if (guessedNames.includes(this.currentGuess.trim().toLowerCase())) {
-      this.errorMessage = 'Ya adivinaste ese campeón. Intenta con otro.';
-      return;
-    }
-    let guessedCharacter = this.lolService.findCharacterByName(
+    // Validar el intento usando el servicio generalizado
+    const validation = this.guessHandler.validateGuess(
+      this.currentGuess,
       this.characters,
-      this.currentGuess
+      this.guesses,
+      this.gameService,
+      this.config.characterType
     );
-    if (!guessedCharacter && this.filteredCharacters.length > 0) {
-      guessedCharacter = this.filteredCharacters[0];
-      this.currentGuess = guessedCharacter.nombre;
-    }
-    if (!guessedCharacter) {
-      this.errorMessage = 'Campeón no encontrado. Intenta con otro nombre.';
+
+    if (!validation.isValid) {
+      this.errorMessage = validation.errorMessage!;
       return;
     }
-    const guessResult = this.lolService.compareGuess(
+
+    const guessedCharacter = validation.guessedCharacter! as LoLCharacter;
+    this.currentGuess = guessedCharacter.nombre;
+
+    const guessResult = this.gameService.compareGuess(
       guessedCharacter,
       this.targetCharacter!
     );
     this.guesses.push(guessResult);
-    
-    if (guessResult.name.status === 'correct') {
+
+    // Procesar el resultado usando el servicio generalizado
+    const result = this.guessHandler.processGuessResult(
+      guessResult,
+      this.currentAttempt,
+      this.config.maxAttempts,
+      this.targetCharacter!,
+      guessedCharacter
+    );
+
+    if (result.gameWon) {
       this.gameWon = true;
-      this.completeGame(true, this.currentAttempt + 1, {
-        targetCharacter: this.targetCharacter,
-        guessedCharacter: guessedCharacter,
-      });
+      this.completeGame(true, this.currentAttempt + 1, result.gameData);
+    } else if (!result.shouldContinue) {
+      this.currentAttempt++;
+      this.completeGame(false, this.config.maxAttempts, result.gameData);
     } else {
       this.currentAttempt++;
-      if (this.currentAttempt >= this.maxAttempts) {
-        this.completeGame(false, this.maxAttempts, {
-          targetCharacter: this.targetCharacter,
-          guessedCharacter: guessedCharacter,
-        });
-      } else {
-        this.saveCurrentProgress();
-      }
+      this.saveCurrentProgress();
     }
+
     this.currentGuess = '';
   }
 
@@ -278,7 +373,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   }
 
   getFormattedValue(field: string, value: any): string {
-    return this.lolService.getFormattedValue(field, value);
+    return this.gameService.getFormattedValue(field, value);
   }
 
   getComparisonClass(status: LoLCompareStatus): string {

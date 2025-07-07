@@ -25,6 +25,13 @@ import {
   GameBoardTheme,
   ComparisonStatus,
 } from '../../shared/components/game-board';
+import { GuessHandlerService } from '../../shared/services/guess-handler.service';
+import { CharacterGameConfig } from '../../shared/components/base-character-game/base-character-game.component';
+import {
+  GameResultComponent,
+  GameResultConfig,
+  CharacterField,
+} from '../../shared/components/game-result';
 
 @Component({
   selector: 'app-onepiecedle',
@@ -34,6 +41,7 @@ import {
     MusicControlsComponent,
     GuessInputComponent,
     GameBoardComponent,
+    GameResultComponent,
   ],
   templateUrl: './onepiecedle.component.html',
   styleUrls: ['./onepiecedle.component.css'],
@@ -42,11 +50,20 @@ export class OnePieceDLEComponent
   extends BaseGameComponent
   implements OnInit, OnDestroy
 {
-  readonly maxAttempts = 6;
-  readonly gameId = 'onepiecedle';
+  // Configuración del juego usando la interfaz generalizada
+  readonly config: CharacterGameConfig = {
+    gameId: 'onepiecedle',
+    maxAttempts: 6,
+    charactersFile: 'personajes_one_piece.json',
+    musicFile: 'one-piece-soundtrack.mp3',
+    characterType: 'personaje',
+  };
+
+  // Servicios inyectados
   private http: HttpClient = inject(HttpClient);
-  private onePieceService: OnePieceGameService = inject(OnePieceGameService);
+  readonly gameService: OnePieceGameService = inject(OnePieceGameService);
   private audioService: AudioService = inject(AudioService);
+  private guessHandler: GuessHandlerService = inject(GuessHandlerService);
 
   characters: OnePieceCharacter[] = [];
   filteredCharacters: OnePieceCharacter[] = [];
@@ -174,10 +191,88 @@ export class OnePieceDLEComponent
     },
   };
 
+  // Configuración para el componente de resultado
+  getGameResultConfig(): GameResultConfig {
+    return {
+      gameWon: this.gameWon,
+      currentAttempt: this.currentAttempt,
+      maxAttempts: this.config.maxAttempts,
+      targetCharacter: this.targetCharacter,
+      characterType: this.config.characterType,
+      theme: {
+        primaryBg: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+        secondaryBg: 'linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%)',
+        textColor: '#c2410c',
+        borderColor: '#f59e0b',
+        icon: '🏴‍☠️',
+        winIcon: '🏆',
+        loseIcon: '💀',
+      },
+    };
+  }
+
+  getCharacterFields(): CharacterField[] {
+    if (!this.targetCharacter) return [];
+
+    return [
+      {
+        key: 'nombre',
+        label: 'Nombre',
+        icon: '👤',
+        value: this.targetCharacter.nombre,
+      },
+      {
+        key: 'genero',
+        label: 'Género',
+        icon: '⚧',
+        value: this.targetCharacter.genero || 'N/A',
+      },
+      {
+        key: 'afiliacion',
+        label: 'Afiliación',
+        icon: '🏴',
+        value: this.targetCharacter.afiliacion || 'N/A',
+      },
+      {
+        key: 'fruta_del_diablo',
+        label: 'Fruta',
+        icon: '🍎',
+        value: this.targetCharacter.fruta_del_diablo || 'N/A',
+      },
+      {
+        key: 'hakis',
+        label: 'Hakis',
+        icon: '⚡',
+        value: this.targetCharacter.hakis?.join(', ') || 'N/A',
+      },
+      {
+        key: 'ultima_recompensa',
+        label: 'Última recompensa',
+        icon: '💰',
+        value: this.targetCharacter.ultima_recompensa,
+        formatter: (value: any) =>
+          this.getFormattedValue('ultima_recompensa', value),
+      },
+      {
+        key: 'altura',
+        label: 'Altura',
+        icon: '📏',
+        value: this.targetCharacter.altura,
+        formatter: (value: any) => this.getFormattedValue('altura', value),
+      },
+      {
+        key: 'origen',
+        label: 'Origen',
+        icon: '🗺️',
+        value: this.targetCharacter.origen || 'N/A',
+      },
+    ];
+  }
+
   ngOnInit(): void {
-    this.setGameId(this.gameId);
+    this.setGameId(this.config.gameId);
     this.loadCharacters();
-    this.audioService.initializeAudio('one-piece-soundtrack.mp3');
+    this.audioService.initializeAudio(this.config.musicFile);
     this.progressLoaded.subscribe((progress) => {
       if (progress) {
         this.restoreProgress(progress);
@@ -219,9 +314,9 @@ export class OnePieceDLEComponent
       const progressData = {
         currentAttempt: this.currentAttempt,
         gameWon: this.gameWon,
-        gameLost: this.currentAttempt >= this.maxAttempts,
+        gameLost: this.currentAttempt >= this.config.maxAttempts,
         attempts: this.guesses,
-        maxAttempts: this.maxAttempts,
+        maxAttempts: this.config.maxAttempts,
         gameData: {
           targetCharacter: targetCharacterData,
         },
@@ -239,7 +334,11 @@ export class OnePieceDLEComponent
           (char) => char.nombre && char.nombre.trim() !== ''
         );
         this.charactersLoaded = true;
-        this.filteredCharacters = this.characters.slice().sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+        this.filteredCharacters = this.characters
+          .slice()
+          .sort((a, b) =>
+            a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+          );
         this.initializeGame();
       },
       error: (error) => {
@@ -270,63 +369,74 @@ export class OnePieceDLEComponent
   onInputChange(value: string): void {
     this.currentGuess = value;
     this.errorMessage = '';
-    const guessedNames = this.guesses.map((g) => g.name.value);
-    this.filteredCharacters = this.onePieceService
-      .filterCharacters(this.characters, this.currentGuess, guessedNames)
-      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+    this.filteredCharacters = this.guessHandler
+      .updateFilteredCharacters(
+        this.characters,
+        this.currentGuess,
+        this.guesses,
+        this.gameService
+      )
+      .sort((a, b) =>
+        a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+      );
   }
 
   submitGuess(): void {
-    if (!this.currentGuess.trim()) {
-      this.errorMessage = 'Por favor ingresa un nombre';
-      return;
-    }
-    // Validar si el personaje ya fue adivinado
-    const guessedNames = this.guesses.map((g) => g.name.value.toLowerCase());
-    if (guessedNames.includes(this.currentGuess.trim().toLowerCase())) {
-      this.errorMessage = 'Ya adivinaste ese personaje. Intenta con otro.';
-      return;
-    }
-    let guessedCharacter = this.onePieceService.findCharacterByName(
+    // Validar el intento usando el servicio generalizado
+    const validation = this.guessHandler.validateGuess(
+      this.currentGuess,
       this.characters,
-      this.currentGuess
+      this.guesses,
+      this.gameService,
+      this.config.characterType
     );
-    if (!guessedCharacter && this.filteredCharacters.length > 0) {
-      guessedCharacter = this.filteredCharacters[0];
-      this.currentGuess = guessedCharacter.nombre;
-    }
-    if (!guessedCharacter) {
-      this.errorMessage = 'Personaje no encontrado. Intenta con otro nombre.';
+
+    if (!validation.isValid) {
+      this.errorMessage = validation.errorMessage!;
       return;
     }
-    const guessResult = this.onePieceService.compareGuess(
+
+    const guessedCharacter = validation.guessedCharacter! as OnePieceCharacter;
+    this.currentGuess = guessedCharacter.nombre;
+
+    const guessResult = this.gameService.compareGuess(
       guessedCharacter,
       this.targetCharacter!
     );
     this.guesses.push(guessResult);
-    if (guessResult.name.status === 'correct') {
+
+    // Procesar el resultado usando el servicio generalizado
+    const result = this.guessHandler.processGuessResult(
+      guessResult,
+      this.currentAttempt,
+      this.config.maxAttempts,
+      this.targetCharacter!,
+      guessedCharacter
+    );
+
+    if (result.gameWon) {
       this.gameWon = true;
-      this.completeGame(true, this.currentAttempt + 1, {
-        targetCharacter: this.targetCharacter,
-        guessedCharacter: guessedCharacter,
-      });
+      this.completeGame(true, this.currentAttempt + 1, result.gameData);
+    } else if (!result.shouldContinue) {
+      this.currentAttempt++;
+      this.completeGame(false, this.config.maxAttempts, result.gameData);
     } else {
       this.currentAttempt++;
-      if (this.currentAttempt >= this.maxAttempts) {
-        this.completeGame(false, this.maxAttempts, {
-          targetCharacter: this.targetCharacter,
-          guessedCharacter: guessedCharacter,
-        });
-      } else {
-        this.saveCurrentProgress();
-      }
+      this.saveCurrentProgress();
     }
+
     this.currentGuess = '';
-    const guessedNamesAfter = this.guesses.map((g) => g.name.value);
-    this.filteredCharacters = this.onePieceService
-    .filterCharacters(this.characters, this.currentGuess, guessedNamesAfter)
-    .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
-}
+    this.filteredCharacters = this.guessHandler
+      .updateFilteredCharacters(
+        this.characters,
+        this.currentGuess,
+        this.guesses,
+        this.gameService
+      )
+      .sort((a, b) =>
+        a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+      );
+  }
 
   selectCharacter(nombre: string, autoSubmit: boolean = false): void {
     this.currentGuess = nombre;
@@ -337,7 +447,7 @@ export class OnePieceDLEComponent
   }
 
   getFormattedValue(field: string, value: any): string {
-    return this.onePieceService.getFormattedValue(field, value);
+    return this.gameService.getFormattedValue(field, value);
   }
 
   getComparisonClass(status: CompareStatus): string {
@@ -353,7 +463,7 @@ export class OnePieceDLEComponent
     if (character?.img_url) {
       return character.img_url;
     }
-    
+
     return '';
   }
 
@@ -382,6 +492,11 @@ export class OnePieceDLEComponent
   onSelectSuggestion(suggestion: { nombre: string }) {
     this.currentGuess = suggestion.nombre;
     this.filteredCharacters = [];
+  }
+
+  onPlayAgain(): void {
+    // Reiniciar el juego
+    this.initializeGame();
   }
 
   private mapStatus(status: CompareStatus): ComparisonStatus {
