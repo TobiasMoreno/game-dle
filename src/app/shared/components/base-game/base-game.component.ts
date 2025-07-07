@@ -1,6 +1,5 @@
 import { Component, inject, output, input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { GameState, DailyGameState, GameProgress } from '../../models/game.model';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
@@ -12,7 +11,7 @@ import { ThemeService } from '../../services/theme.service';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './base-game.component.html',
   styles: []
 })
@@ -48,7 +47,6 @@ export class BaseGameComponent {
    */
   public setGameId(gameId: string): void {
     this._gameId = gameId;
-    console.log('✅ GameId establecido:', gameId);
     this.loadGame();
     this.loadProgress();
     this.setFooterTheme();
@@ -94,7 +92,6 @@ export class BaseGameComponent {
     try {
       const gameIdValue = this.getGameIdSafely();
       if (!gameIdValue) {
-        console.log('⚠️ gameId no disponible en saveProgress');
         return;
       }
 
@@ -124,7 +121,6 @@ export class BaseGameComponent {
     try {
       const gameIdValue = this.getGameIdSafely();
       if (!gameIdValue) {
-        console.log('⚠️ gameId no disponible en updateProgress');
         return;
       }
 
@@ -165,12 +161,12 @@ export class BaseGameComponent {
     if (!gameIdValue) return;
 
     this.gameManager.completeGame(gameIdValue, won, attempts, gameData);
+    
+    // Actualizar estadísticas personales
+    this.gameStorage.updatePersonalStats(gameIdValue, won);
+    
     this.gameCompleted.emit({ won, attempts, gameData });
     
-    // Limpiar progreso al completar el juego
-    this.clearProgress();
-    
-    // Recargar el estado
     this.loadGame();
   }
 
@@ -242,5 +238,18 @@ export class BaseGameComponent {
    */
   protected trackGuessDistribution(index: number, count: number): number {
     return index;
+  }
+
+  /**
+   * Obtiene las estadísticas personales del juego actual (forzado a 'onepiecedle')
+   */
+  public getPersonalStats(): { played: number; won: number; currentStreak: number; bestStreak: number } {
+    return this.gameStorage.getPersonalStats('onepiecedle');
+    //TODO: Ver por que no me toma el gameIdValue esta como null, por ahora lo forzo a 'onepiecedle'
+    //const gameIdValue = this.getGameIdSafely();
+    //if (!gameIdValue) {
+    //  return { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
+    //}
+    //return this.gameStorage.getPersonalStats(gameIdValue);
   }
 } 

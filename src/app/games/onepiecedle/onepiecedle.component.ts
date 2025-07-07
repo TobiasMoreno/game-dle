@@ -137,6 +137,13 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
 
   private initializeGame(): void {
     if (this.characters.length === 0) return;
+    
+    // Limpiar progreso antiguo antes de iniciar un nuevo juego
+    const gameIdValue = this.getGameIdSafely();
+    if (gameIdValue) {
+      this.gameStorage.clearOldProgress(gameIdValue);
+    }
+    
     this.targetCharacter = this.getRandomCharacter();
     this.currentAttempt = 0;
     this.gameWon = false;

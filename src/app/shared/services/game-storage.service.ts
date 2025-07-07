@@ -9,24 +9,23 @@ import { GameState, DailyGameState, GameStats, GameProgress } from '../models/ga
   providedIn: 'root'
 })
 export class GameStorageService {
-  private readonly STORAGE_KEY = 'game-dle-data';
-  private readonly GAMES_KEY = 'games';
-  private readonly PROGRESS_KEY = 'game-progress';
+  private readonly GAMES_STORAGE_KEY = 'game-dle-games';
+  private readonly PROGRESS_STORAGE_KEY = 'game-dle-progress';
+  private readonly STATS_STORAGE_KEY = 'game-dle-stats';
+
+  // ===== MÉTODOS PARA LOS JUEGOS Y ESTADÍSTICAS =====
 
   /**
    * Obtiene todos los juegos almacenados
    */
   getGames(): GameState[] {
     try {
-      const data = localStorage.getItem(this.STORAGE_KEY);
-      if (data) {
-        const parsed = JSON.parse(data);
-        return parsed[this.GAMES_KEY] || [];
-      }
+      const data = localStorage.getItem(this.GAMES_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
     } catch (error) {
       console.error('Error al cargar juegos del localStorage:', error);
+      return [];
     }
-    return [];
   }
 
   /**
@@ -34,11 +33,7 @@ export class GameStorageService {
    */
   saveGames(games: GameState[]): void {
     try {
-      const data = {
-        [this.GAMES_KEY]: games,
-        lastUpdated: new Date().toISOString()
-      };
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+      localStorage.setItem(this.GAMES_STORAGE_KEY, JSON.stringify(games));
     } catch (error) {
       console.error('Error al guardar juegos en localStorage:', error);
     }
@@ -128,6 +123,68 @@ export class GameStorageService {
     }
   }
 
+  // ===== MÉTODOS PARA ESTADÍSTICAS PERSONALES =====
+
+  /**
+   * Obtiene las estadísticas personales de un juego
+   */
+  getPersonalStats(gameId: string): { played: number; won: number; currentStreak: number; bestStreak: number } {
+    try {
+      const allStats = this.getAllPersonalStats();
+      return allStats[gameId] || { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
+    } catch (error) {
+      console.error(`❌ Error al cargar estadísticas personales para ${gameId}:`, error);
+      return { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
+    }
+  }
+
+  /**
+   * Actualiza las estadísticas personales de un juego
+   */
+  updatePersonalStats(gameId: string, won: boolean): void {
+    try {
+      
+      const allStats = this.getAllPersonalStats();
+      const currentStats = allStats[gameId] || { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
+      
+      // Incrementar partidas jugadas
+      currentStats.played++;
+      
+      if (won) {
+        // Incrementar partidas ganadas
+        currentStats.won++;
+        // Incrementar racha actual
+        currentStats.currentStreak++;
+        // Actualizar mejor racha si es necesario
+        if (currentStats.currentStreak > currentStats.bestStreak) {
+          currentStats.bestStreak = currentStats.currentStreak;
+        }
+      } else {
+        // Resetear racha actual si perdió
+        currentStats.currentStreak = 0;
+      }
+      
+      allStats[gameId] = currentStats;
+      localStorage.setItem(this.STATS_STORAGE_KEY, JSON.stringify(allStats));
+      
+    } catch (error) {
+      console.error(`❌ Error al actualizar estadísticas personales para ${gameId}:`, error);
+    }
+  }
+
+  /**
+   * Obtiene todas las estadísticas personales
+   */
+  private getAllPersonalStats(): { [gameId: string]: { played: number; won: number; currentStreak: number; bestStreak: number } } {
+    try {
+      const data = localStorage.getItem(this.STATS_STORAGE_KEY);
+      return data ? JSON.parse(data) : {};
+    } catch (error) {
+      console.error('❌ Error al cargar estadísticas personales:', error);
+      return {};
+    }
+  }
+
   // ===== MÉTODOS PARA EL PROGRESO ACTUAL DEL JUEGO =====
 
   /**
@@ -135,33 +192,15 @@ export class GameStorageService {
    */
   saveGameProgress(gameId: string, progress: GameProgress): void {
     try {
-      
       const allProgress = this.getAllProgress();
       allProgress[gameId] = {
         ...progress,
         lastUpdated: Date.now()
       };
       
-      const dataToSave = JSON.stringify(allProgress);
-      
-      localStorage.setItem(this.PROGRESS_KEY, dataToSave);
-      
-      // Verificar que se guardó correctamente
-      const savedData = localStorage.getItem(this.PROGRESS_KEY);
-      
-      if (savedData === dataToSave) {
-        console.log('Progreso guardado exitosamente en localStorage');
-      } else {
-        console.error('Error: Los datos guardados no coinciden con los datos originales');
-      }
+      localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
     } catch (error) {
-      console.error('Error al guardar progreso del juego:', error);
-      console.error('Detalles del error:', {
-        gameId,
-        progress,
-        localStorageAvailable: typeof localStorage !== 'undefined',
-        localStorageQuota: this.getLocalStorageQuota()
-      });
+      console.error(`❌ Error al guardar progreso para ${gameId}:`, error);
     }
   }
 
@@ -170,12 +209,10 @@ export class GameStorageService {
    */
   getGameProgress(gameId: string): GameProgress | null {
     try {
-      
       const allProgress = this.getAllProgress();
       const progress = allProgress[gameId];
       
       if (!progress) {
-        console.log(`No hay progreso guardado para ${gameId}`);
         return null;
       }
 
@@ -183,13 +220,12 @@ export class GameStorageService {
       const today = new Date().toISOString().split('T')[0];
       
       if (progress.date !== today) {
-        // Limpiar progreso antiguo
-        this.clearGameProgress(gameId);
-        return null;
+        return progress;
       }
+      
       return progress;
     } catch (error) {
-      console.error('Error al cargar progreso del juego:', error);
+      console.error(`❌ Error al cargar progreso para ${gameId}:`, error);
       return null;
     }
   }
@@ -199,25 +235,38 @@ export class GameStorageService {
    */
   clearGameProgress(gameId: string): void {
     try {
+      
       const allProgress = this.getAllProgress();
       delete allProgress[gameId];
-      localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(allProgress));
+      
+      localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
     } catch (error) {
-      console.error('Error al limpiar progreso del juego:', error);
+      console.error(`❌ Error al limpiar progreso para ${gameId}:`, error);
     }
   }
 
-
   /**
-   * Obtiene todos los progresos almacenados
+   * Limpia solo el progreso antiguo (de días anteriores)
    */
-  private getAllProgress(): { [gameId: string]: GameProgress } {
+  clearOldProgress(gameId: string): void {
     try {
-      const data = localStorage.getItem(this.PROGRESS_KEY);
-      return data ? JSON.parse(data) : {};
+      
+      const allProgress = this.getAllProgress();
+      const progress = allProgress[gameId];
+      
+      if (!progress) {
+        return;
+      }
+
+      const today = new Date().toISOString().split('T')[0];
+      
+      if (progress.date !== today) {
+        delete allProgress[gameId];
+        localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
+      } else {
+      }
     } catch (error) {
-      console.error('Error al cargar progresos:', error);
-      return {};
+      console.error(`❌ Error al limpiar progreso antiguo para ${gameId}:`, error);
     }
   }
 
@@ -229,11 +278,25 @@ export class GameStorageService {
   }
 
   /**
+   * Obtiene todos los progresos almacenados
+   */
+  private getAllProgress(): { [gameId: string]: GameProgress } {
+    try {
+      const data = localStorage.getItem(this.PROGRESS_STORAGE_KEY);
+      return data ? JSON.parse(data) : {};
+    } catch (error) {
+      console.error('❌ Error al cargar progresos:', error);
+      return {};
+    }
+  }
+
+  /**
    * Limpia todos los datos almacenados (útil para testing)
    */
   clearAllData(): void {
-    localStorage.removeItem(this.STORAGE_KEY);
-    localStorage.removeItem(this.PROGRESS_KEY);
+    localStorage.removeItem(this.GAMES_STORAGE_KEY);
+    localStorage.removeItem(this.PROGRESS_STORAGE_KEY);
+    localStorage.removeItem(this.STATS_STORAGE_KEY);
   }
 
   /**

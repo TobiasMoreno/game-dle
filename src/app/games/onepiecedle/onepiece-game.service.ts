@@ -48,7 +48,6 @@ export class OnePieceGameService {
       .then((response) => response.json())
       .then((data) => {
         this.arcs = data;
-        console.log('Arcos cargados:', this.arcs);
       })
       .catch((error) => {
         console.error('Error cargando arcos:', error);

@@ -113,5 +113,44 @@
         </div>
       </div>
       }
+
+      <!-- Estadísticas Personales -->
+      @if (!hideStats()) {
+      <div class="rounded-lg shadow-md p-6 mt-6"
+           [style.background]="customCardBg() || 'black'"
+           [style.color]="customTextColor() || 'white'">
+        <h2 class="text-xl font-semibold mb-4" [style.color]="customTextColor() || '#111827'">🎮 Mis Estadísticas</h2>
+        @if (getPersonalStats(); as personalStats) {
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold" [style.color]="customTextColor() || '#111827'">{{ personalStats.played }}</div>
+            <div class="text-black">Partidas Jugadas</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold" 
+                 [style.color]="customAccentColor() || '#059669'">{{ personalStats.won }}</div>
+            <div class="text-black">Partidas Ganadas</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold" 
+                 [style.color]="customAccentColor() || '#2563eb'">{{ personalStats.currentStreak }}</div>
+            <div class="text-black">Racha Actual</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold" 
+                 [style.color]="customAccentColor() || '#7c3aed'">{{ personalStats.bestStreak }}</div>
+            <div class="text-black">Mejor Racha</div>
+          </div>
+        </div>
+        @if (personalStats.played > 0) {
+        <div class="mt-4 text-center">
+          <div class="text-lg font-semibold" [style.color]="customTextColor() || '#111827'">
+            Porcentaje de victoria: {{ ((personalStats.won / personalStats.played) * 100).toFixed(1) }}%
+          </div>
+        </div>
+        }
+        }
+      </div>
+      }
     </div>
   </div>
