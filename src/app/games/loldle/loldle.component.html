@@ -83,120 +83,13 @@
     </app-guess-input>
 
     <!-- Tablero de intentos -->
-    <div class="max-w-9xl space-y-2 mx-auto overflow-x-auto">
-      <!-- Headers fijos -->
-      <div
-        class="grid grid-cols-8 min-w-[800px] place-items-center text-xs font-bold text-center mb-1 gap-2 bg-gradient-to-r from-yellow-500 to-orange-600 p-2 rounded-lg border border-yellow-400"
-      >
-        <div class="text-white">👤 Nombre</div>
-        <div class="text-white">⚧ Género</div>
-        <div class="text-white">🎯 Posición</div>
-        <div class="text-white">🧬 Especie</div>
-        <div class="text-white">⚡ Recurso</div>
-        <div class="text-white">🗡️ Tipo</div>
-        <div class="text-white">🗺️ Región</div>
-        <div class="text-white">📅 Año</div>
-      </div>
-      <!-- Intentos -->
-      @for (guess of guesses.slice().reverse(); track $index) {
-      <div class="grid grid-cols-8 min-w-[800px] place-items-center gap-2">
-        <!-- Nombre -->
-        @if ($index !== 0 || revealedColumns[0] > 0) {
-        <div
-          class="w-20 h-20 flex items-center justify-center rounded-lg text-center transition-all duration-300 opacity-0 font-medium character-name-cell relative overflow-hidden"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 0"
-          [class.has-image]="hasCharacterImage(guess.name.value)"
-          [style.background-image]="hasCharacterImage(guess.name.value) ? 'url(' + getCharacterImageUrl(guess.name.value) + ')' : 'none'"
-          [style.background-size]="'cover'"
-          [style.background-position]="'center'"
-          [style.background-repeat]="'no-repeat'"
-        >
-          <div class="character-name-overlay" [class.always-visible]="!hasCharacterImage(guess.name.value)">
-            {{ guess.name.value }}
-          </div>
-        </div>
-        }
-        <!-- Género -->
-        @if ($index !== 0 || revealedColumns[0] > 1) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 1"
-          [class]="getComparisonClass(guess.genero.status)"
-        >
-          {{ guess.genero.value || "N/A" }}
-        </div>
-        }
-        <!-- Posición -->
-        @if ($index !== 0 || revealedColumns[0] > 2) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 2"
-          [class]="getComparisonClass(guess.posicion.status)"
-        >
-          {{ guess.posicion.value || "N/A" }}
-        </div>
-        }
-        <!-- Especie -->
-        @if ($index !== 0 || revealedColumns[0] > 3) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 3"
-          [class]="getComparisonClass(guess.especie.status)"
-        >
-          {{ guess.especie.value || "N/A" }}
-        </div>
-        }
-        <!-- Recurso -->
-        @if ($index !== 0 || revealedColumns[0] > 4) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 4"
-          [class]="getComparisonClass(guess.recurso.status)"
-        >
-          {{ guess.recurso.value || "N/A" }}
-        </div>
-        }
-        <!-- Tipo de Gama -->
-        @if ($index !== 0 || revealedColumns[0] > 5) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 5"
-          [class]="getComparisonClass(guess.tipo_de_gama.status)"
-        >
-          {{ guess.tipo_de_gama.value || "N/A" }}
-        </div>
-        }
-        <!-- Región -->
-        @if ($index !== 0 || revealedColumns[0] > 6) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-medium"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 6"
-          [class]="getComparisonClass(guess.region.status)"
-        >
-          {{ guess.region.value || "N/A" }}
-        </div>
-        }
-        <!-- Año de Lanzamiento -->
-        @if ($index !== 0 || revealedColumns[0] > 7) {
-        <div
-          class="w-24 h-24 flex items-center justify-center rounded-lg text-center transition-opacity duration-300 opacity-0 font-bold relative overflow-hidden bg-center bg-no-repeat bg-contain"
-          [class.opacity-100]="$index !== 0 || revealedColumns[0] > 7"
-          [class]="getComparisonClass(guess.anio_de_lanzamiento.status)"
-          [style.background-image]="
-            guess.anio_de_lanzamiento.arrow === 'up'
-              ? 'url(/img/up-arrow.svg)'
-              : (guess.anio_de_lanzamiento.arrow === 'down'
-                ? 'url(/img/down-arrow.svg)'
-                : 'none')
-          "
-          style="background-color: rgba(0,0,0,0.15);"
-        >
-          <span class="relative z-10 text-white font-bold">{{ guess.anio_de_lanzamiento.value || 'N/A' }}</span>
-        </div>
-        }
-      </div>
-      }
-    </div>
+    <app-game-board
+      [columns]="boardColumns"
+      [rows]="getBoardRows()"
+      [revealedColumns]="revealedColumns"
+      [theme]="boardTheme"
+      [maxAttempts]="maxAttempts">
+    </app-game-board>
 
     <!-- Mensaje de error -->
     @if(errorMessage) {

@@ -4,22 +4,44 @@ import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { AudioService } from '../../shared/services/audio.service';
-import { MusicControlsComponent, MusicControlsTheme } from '../../shared/components/music-controls/music-controls.component';
+import {
+  MusicControlsComponent,
+  MusicControlsTheme,
+} from '../../shared/components/music-controls/music-controls.component';
 import {
   OnePieceGameService,
   OnePieceCharacter,
   CompareStatus,
   GuessResult,
 } from './onepiece-game.service';
-import { GuessInputComponent, GuessInputTheme } from "../../shared/components/guess-input/guess-input.component";
+import {
+  GuessInputComponent,
+  GuessInputTheme,
+} from '../../shared/components/guess-input/guess-input.component';
+import {
+  GameBoardComponent,
+  GameColumn,
+  GameRow,
+  GameBoardTheme,
+  ComparisonStatus,
+} from '../../shared/components/game-board';
 
 @Component({
   selector: 'app-onepiecedle',
-  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent],
+  imports: [
+    FormsModule,
+    BaseGameComponent,
+    MusicControlsComponent,
+    GuessInputComponent,
+    GameBoardComponent,
+  ],
   templateUrl: './onepiecedle.component.html',
   styleUrls: ['./onepiecedle.component.css'],
 })
-export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, OnDestroy {
+export class OnePieceDLEComponent
+  extends BaseGameComponent
+  implements OnInit, OnDestroy
+{
   readonly maxAttempts = 6;
   readonly gameId = 'onepiecedle';
   private http: HttpClient = inject(HttpClient);
@@ -45,7 +67,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     buttonTextColor: 'text-black',
     volumeTextColor: '#1f2937',
     sliderBg: '#fef3c7',
-    sliderThumbBg: '#f59e0b'
+    sliderThumbBg: '#f59e0b',
   };
 
   onepieceInputTheme: GuessInputTheme = {
@@ -58,18 +80,106 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     dropdownItemHoverBg: 'hover:bg-orange-200',
     buttonBg: 'bg-red-500',
     buttonText: 'text-white',
-    buttonHoverBg: 'hover:bg-red-600'
+    buttonHoverBg: 'hover:bg-red-600',
+  };
+
+  // Configuración del tablero
+  boardColumns: GameColumn[] = [
+    {
+      key: 'name',
+      label: 'Nombre',
+      icon: '👤',
+      width: 'w-20',
+      height: 'h-20',
+      type: 'image',
+    },
+    {
+      key: 'genero',
+      label: 'Género',
+      icon: '⚧',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'text',
+    },
+    {
+      key: 'afiliacion',
+      label: 'Afiliación',
+      icon: '🏴',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'text',
+    },
+    {
+      key: 'fruta_del_diablo',
+      label: 'Fruta',
+      icon: '🍎',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'text',
+    },
+    {
+      key: 'hakis',
+      label: 'Hakis',
+      icon: '⚡',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'text',
+    },
+    {
+      key: 'ultima_recompensa',
+      label: 'Recompensa',
+      icon: '💰',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'numeric',
+    },
+    {
+      key: 'altura',
+      label: 'Altura',
+      icon: '📏',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'numeric',
+    },
+    {
+      key: 'origen',
+      label: 'Origen',
+      icon: '🗺️',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'text',
+    },
+    {
+      key: 'primer_arco',
+      label: 'Primer Arco',
+      icon: '📚',
+      width: 'w-24',
+      height: 'h-24',
+      type: 'numeric',
+    },
+  ];
+
+  boardTheme: GameBoardTheme = {
+    headerBg: 'bg-gradient-to-r from-yellow-400 to-orange-400',
+    headerText: 'text-white',
+    cellTheme: {
+      correctBg: 'bg-green-500',
+      partialBg: 'bg-yellow-400',
+      incorrectBg: 'bg-red-500',
+      correctText: 'text-white',
+      partialText: 'text-white',
+      incorrectText: 'text-white',
+      imageOverlayBg: 'bg-black bg-opacity-50',
+      imageOverlayText: 'text-white',
+    },
   };
 
   ngOnInit(): void {
-    console.log('🚀 OnePieceDLE ngOnInit iniciado');
     this.setGameId(this.gameId);
     this.loadCharacters();
     this.audioService.initializeAudio('one-piece-soundtrack.mp3');
     this.progressLoaded.subscribe((progress) => {
-      console.log('📊 Progreso cargado:', progress);
       if (progress) {
-        console.log('🔄 Restaurando progreso...');
         this.restoreProgress(progress);
       }
     });
@@ -123,18 +233,13 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   private loadCharacters(): void {
-    console.log('🔄 Iniciando carga de personajes...');
     this.http.get<OnePieceCharacter[]>('personajes_one_piece.json').subscribe({
       next: (characters) => {
-        console.log('📥 Personajes cargados desde JSON:', characters.length);
         this.characters = characters.filter(
           (char) => char.nombre && char.nombre.trim() !== ''
         );
-        console.log('✅ Personajes filtrados:', this.characters.length);
-        console.log('📋 Primeros 3 personajes:', this.characters.slice(0, 3));
         this.charactersLoaded = true;
-        this.filteredCharacters = this.characters;
-        console.log('🎮 Inicializando juego después de cargar personajes...');
+        this.filteredCharacters = this.characters.slice().sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
         this.initializeGame();
       },
       error: (error) => {
@@ -147,7 +252,6 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
 
   private initializeGame(): void {
     if (this.characters.length === 0) {
-      console.log('❌ No hay personajes cargados, no inicializando');
       return;
     }
     this.targetCharacter = this.getRandomCharacter();
@@ -167,16 +271,20 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
     this.currentGuess = value;
     this.errorMessage = '';
     const guessedNames = this.guesses.map((g) => g.name.value);
-    this.filteredCharacters = this.onePieceService.filterCharacters(
-      this.characters,
-      this.currentGuess,
-      guessedNames
-    );
+    this.filteredCharacters = this.onePieceService
+      .filterCharacters(this.characters, this.currentGuess, guessedNames)
+      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   }
 
   submitGuess(): void {
     if (!this.currentGuess.trim()) {
       this.errorMessage = 'Por favor ingresa un nombre';
+      return;
+    }
+    // Validar si el personaje ya fue adivinado
+    const guessedNames = this.guesses.map((g) => g.name.value.toLowerCase());
+    if (guessedNames.includes(this.currentGuess.trim().toLowerCase())) {
+      this.errorMessage = 'Ya adivinaste ese personaje. Intenta con otro.';
       return;
     }
     let guessedCharacter = this.onePieceService.findCharacterByName(
@@ -196,8 +304,6 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
       this.targetCharacter!
     );
     this.guesses.push(guessResult);
-    this.revealedColumns.unshift(0);
-    this.revealNextColumn();
     if (guessResult.name.status === 'correct') {
       this.gameWon = true;
       this.completeGame(true, this.currentAttempt + 1, {
@@ -216,29 +322,11 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
       }
     }
     this.currentGuess = '';
-    const guessedNames = this.guesses.map((g) => g.name.value);
-    this.filteredCharacters = this.onePieceService.filterCharacters(
-      this.characters,
-      this.currentGuess,
-      guessedNames
-    );
-  }
-
-  revealNextColumn(): void {
-    if (this.revealedColumns.length === 0) return;
-    const reveal = (col: number) => {
-      if (col == 0) {
-        setTimeout(() => {}, 0);
-      }
-      if (col < 9) {
-        setTimeout(() => {
-          this.revealedColumns[0] = col + 1;
-          reveal(col + 1);
-        }, 300);
-      }
-    };
-    reveal(0);
-  }
+    const guessedNamesAfter = this.guesses.map((g) => g.name.value);
+    this.filteredCharacters = this.onePieceService
+    .filterCharacters(this.characters, this.currentGuess, guessedNamesAfter)
+    .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+}
 
   selectCharacter(nombre: string, autoSubmit: boolean = false): void {
     this.currentGuess = nombre;
@@ -259,16 +347,14 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   getCharacterImageUrl(characterName: string): string {
-    const character = this.characters.find(char => char.nombre === characterName);
+    const character = this.characters.find(
+      (char) => char.nombre === characterName
+    );
     if (character?.img_url) {
       return character.img_url;
     }
-    // Fallback: buscar por nombre similar si no se encuentra exacto
-    const similarCharacter = this.characters.find(char => 
-      char.nombre.toLowerCase().includes(characterName.toLowerCase()) ||
-      characterName.toLowerCase().includes(char.nombre.toLowerCase())
-    );
-    return similarCharacter?.img_url || '';
+    
+    return '';
   }
 
   hasCharacterImage(characterName: string): boolean {
@@ -296,5 +382,68 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   onSelectSuggestion(suggestion: { nombre: string }) {
     this.currentGuess = suggestion.nombre;
     this.filteredCharacters = [];
+  }
+
+  private mapStatus(status: CompareStatus): ComparisonStatus {
+    switch (status) {
+      case 'correct':
+        return 'correct';
+      case 'partial':
+        return 'partial';
+      case 'wrong':
+        return 'wrong';
+      default:
+        return 'incorrect';
+    }
+  }
+
+  // Método para convertir guesses al formato del tablero
+  getBoardRows(): GameRow[] {
+    return this.guesses
+      .slice()
+      .reverse()
+      .map((guess) => ({
+        name: {
+          value: guess.name.value,
+          status: this.mapStatus(guess.name.status),
+          imageUrl: this.getCharacterImageUrl(guess.name.value),
+          hasImage: this.hasCharacterImage(guess.name.value),
+        },
+        genero: {
+          value: guess.genero.value || 'N/A',
+          status: this.mapStatus(guess.genero.status),
+        },
+        afiliacion: {
+          value: guess.afiliacion.value || 'N/A',
+          status: this.mapStatus(guess.afiliacion.status),
+        },
+        fruta_del_diablo: {
+          value: guess.fruta_del_diablo.value || 'N/A',
+          status: this.mapStatus(guess.fruta_del_diablo.status),
+        },
+        hakis: {
+          value: guess.hakis.value || 'N/A',
+          status: this.mapStatus(guess.hakis.status),
+        },
+        ultima_recompensa: {
+          value: guess.ultima_recompensa.value || 'N/A',
+          status: this.mapStatus(guess.ultima_recompensa.status),
+          arrow: guess.ultima_recompensa.arrow || undefined,
+        },
+        altura: {
+          value: guess.altura.value || 'N/A',
+          status: this.mapStatus(guess.altura.status),
+          arrow: guess.altura.arrow || undefined,
+        },
+        origen: {
+          value: guess.origen.value || 'N/A',
+          status: this.mapStatus(guess.origen.status),
+        },
+        primer_arco: {
+          value: guess.primer_arco.value || 'N/A',
+          status: this.mapStatus(guess.primer_arco.status),
+          arrow: guess.primer_arco.arrow || undefined,
+        },
+      }));
   }
 }

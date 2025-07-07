@@ -9,7 +9,7 @@ export interface OnePieceCharacter {
   hakis: string[];
   ultima_recompensa: number;
   altura: number;
-  origen:string;
+  origen: string;
   primer_arco_id: number;
   img_url: string;
 }
@@ -44,28 +44,33 @@ export class OnePieceGameService {
   }
 
   private loadArcs(): void {
-    // Cargar los arcos desde el archivo JSON
     fetch('arcos.json')
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         this.arcs = data;
         console.log('Arcos cargados:', this.arcs);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error cargando arcos:', error);
       });
   }
 
   getArcName(arcId: number): string {
-    const arc = this.arcs.find(a => a.id === arcId);
+    const arc = this.arcs.find((a) => a.id === arcId);
     return arc ? arc.name : 'N/A';
   }
-  filterCharacters(characters: OnePieceCharacter[], search: string, guessedNames: string[] = []): OnePieceCharacter[] {
+
+  filterCharacters(
+    characters: OnePieceCharacter[],
+    search: string,
+    guessedNames: string[] = []
+  ): OnePieceCharacter[] {
+    //TODO: ordenar alfabeticamente
     const value = search.toLowerCase().trim();
-    if (!value) return [];
     return characters.filter(
       (char) =>
-        char.nombre.toLowerCase().includes(value) &&
+        (char.nombre.toLowerCase().includes(value) ||
+          (char.afiliacion && char.afiliacion.toLowerCase().includes(value))) &&
         !guessedNames.includes(char.nombre)
     );
   }
@@ -100,14 +105,22 @@ export class OnePieceGameService {
     }
   }
 
-  findCharacterByName(characters: OnePieceCharacter[], name: string): OnePieceCharacter | null {
+  findCharacterByName(
+    characters: OnePieceCharacter[],
+    name: string
+  ): OnePieceCharacter | null {
     const normalizedName = name.toLowerCase().trim();
     return (
-      characters.find((char) => char.nombre.toLowerCase() === normalizedName) || null
+      characters.find((char) => char.nombre.toLowerCase() === normalizedName) ||
+      null
     );
   }
 
-  compareText(guess: string, target: string, allowPartial = true): CompareStatus {
+  compareText(
+    guess: string,
+    target: string,
+    allowPartial = true
+  ): CompareStatus {
     if (guess === target) return 'correct';
     if (
       allowPartial &&
@@ -127,7 +140,10 @@ export class OnePieceGameService {
     return 'wrong';
   }
 
-  compareNumeric(guess: number, target: number): { status: CompareStatus; arrow: Arrow } {
+  compareNumeric(
+    guess: number,
+    target: number
+  ): { status: CompareStatus; arrow: Arrow } {
     if (guess === target) return { status: 'correct', arrow: null };
     if (guess < target) return { status: 'wrong', arrow: 'up' };
     return { status: 'wrong', arrow: 'down' };
@@ -135,17 +151,23 @@ export class OnePieceGameService {
 
   compareHakis(guess: string[], target: string[]): CompareStatus {
     if (!guess || !target) return 'wrong';
-    const guessSet = new Set(guess.map(h => h.toLowerCase()));
-    const targetSet = new Set(target.map(h => h.toLowerCase()));
-    if (guessSet.size === targetSet.size && [...guessSet].every(h => targetSet.has(h))) {
+    const guessSet = new Set(guess.map((h) => h.toLowerCase()));
+    const targetSet = new Set(target.map((h) => h.toLowerCase()));
+    if (
+      guessSet.size === targetSet.size &&
+      [...guessSet].every((h) => targetSet.has(h))
+    ) {
       return 'correct';
     }
-    const hasCommon = [...guessSet].some(h => targetSet.has(h));
+    const hasCommon = [...guessSet].some((h) => targetSet.has(h));
     if (hasCommon) return 'partial';
     return 'wrong';
   }
 
-  compareGuess(guess: OnePieceCharacter, target: OnePieceCharacter): GuessResult {
+  compareGuess(
+    guess: OnePieceCharacter,
+    target: OnePieceCharacter
+  ): GuessResult {
     return {
       name: {
         value: guess.nombre,
@@ -182,7 +204,10 @@ export class OnePieceGameService {
       },
       ultima_recompensa: {
         value: this.formatReward(guess.ultima_recompensa || 0),
-        ...this.compareNumeric(guess.ultima_recompensa || 0, target.ultima_recompensa || 0),
+        ...this.compareNumeric(
+          guess.ultima_recompensa || 0,
+          target.ultima_recompensa || 0
+        ),
       },
       altura: {
         value: this.formatHeight(guess.altura || 0),
@@ -190,16 +215,15 @@ export class OnePieceGameService {
       },
       origen: {
         value: guess.origen || 'N/A',
-        status: this.compareText(
-          guess.origen || '',
-          target.origen || '',
-          true
-        ),
+        status: this.compareText(guess.origen || '', target.origen || '', true),
       },
       primer_arco: {
         value: this.getArcName(guess.primer_arco_id || 0),
-        ...this.compareNumeric(guess.primer_arco_id || 0, target.primer_arco_id || 0),
+        ...this.compareNumeric(
+          guess.primer_arco_id || 0,
+          target.primer_arco_id || 0
+        ),
       },
     };
   }
-} 
+}

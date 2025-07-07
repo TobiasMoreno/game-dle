@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+/* Estilos específicos para celdas con imagen */
+.character-name-cell {
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.character-name-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  text-align: center;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  max-width: 80%;
+  opacity: 0;
+}
+
+.character-name-cell:hover .character-name-overlay {
+  opacity: 1;
+}
+
+/* Animación de entrada con delay */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cell-animation {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}

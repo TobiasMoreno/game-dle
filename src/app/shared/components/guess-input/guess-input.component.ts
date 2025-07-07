@@ -3,10 +3,11 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  inject,
-  DestroyRef,
   input,
-  output
+  output,
+  OnChanges,
+  SimpleChanges,
+  HostListener
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -31,67 +32,7 @@ export interface GuessInputTheme {
 @Component({
   selector: 'app-guess-input',
   imports: [FormsModule],
-  template: `
-    <div class="relative w-full max-w-md mx-auto mt-2 ">
-      <div class="flex space-x-2 w-full ">
-        <input
-          #inputEl
-          type="text"
-          [placeholder]="placeholder()"
-          [disabled]="disabled()"
-          [class]="'flex-1 px-4 py-3 rounded-t-lg rounded-b-none text-center focus:z-30 focus:outline-none focus:ring-2 font-medium border-2 rounded-lg' +
-            (theme().inputBorder || 'border-black') + ' ' +
-            (theme().inputText || 'text-gray-700') + ' ' +
-            (theme().inputPlaceholder || 'placeholder-gray-400') + ' ' +
-            (theme().inputBg ? '' : 'bg-gray-50')"
-          [style.background]="theme().inputBg || null"
-          [(ngModel)]="inputValue"
-          (input)="onInput($event)"
-          (keyup.enter)="onSubmit()"
-          (focus)="showDropdown = true"
-          (blur)="onBlur()"
-          autocomplete="off"
-        />
-        <button
-          (click)="onSubmit()"
-          [disabled]="!inputValue.trim() || disabled()"
-          [class]="'px-6 py-3 rounded-lg font-bold ' +
-            (theme().buttonBg || 'bg-blue-600') + ' ' +
-            (theme().buttonText || 'text-white') + ' ' +
-            (theme().buttonHoverBg || 'hover:bg-blue-700') + ' disabled:bg-gray-300 disabled:cursor-not-allowed'"
-        >
-          Adivinar
-        </button>
-      </div>
-      @if (showDropdown && filteredSuggestions.length > 0) {
-        <ul class="autocomplete-dropdown w-full rounded-b-lg shadow-md z-20 absolute left-0 top-full max-h-60 overflow-y-auto"
-          [class]="(theme().dropdownBg || 'bg-white') + ' ' + (theme().dropdownBorder || 'border-x-2 border-b-2 border-gray-300')">
-          @for (suggestion of filteredSuggestions; track suggestion.nombre) {
-            <li
-              (mousedown)="onSelectSuggestion(suggestion)"
-              class="px-4 py-3 cursor-pointer transition-colors duration-150 flex items-center autocomplete-item font-medium border-b last:border-b-0"
-              [class]="(theme().dropdownItemHoverBg || 'hover:bg-blue-100') + ' ' + (theme().dropdownBorder || 'border-gray-200') + ' px-4 py-3 cursor-pointer transition-colors duration-150 flex items-center autocomplete-item font-medium border-b last:border-b-0'"
-            >
-              @if (suggestion.img_url) {
-                <div
-                  class="w-8 h-8 rounded-full mr-3 border-2 flex items-center justify-center"
-                  [class]="theme().inputBorder || 'border-blue-300'"
-                  [style.background]="theme().inputBg || null"
-                >
-                  <img
-                    [src]="suggestion.img_url"
-                    [alt]="suggestion.nombre"
-                    class="w-full h-full rounded-full object-cover"
-                  />
-                </div>
-              }
-              <span class="flex-1">{{ suggestion.nombre }}</span>
-            </li>
-          }
-        </ul>
-      }
-    </div>
-  `,
+  templateUrl: './guess-input.component.html',
   styles: [
     `
       .autocomplete-dropdown {
@@ -118,7 +59,7 @@ export interface GuessInputTheme {
     `,
   ],
 })
-export class GuessInputComponent implements OnInit {
+export class GuessInputComponent implements OnInit, OnChanges {
   placeholder = input<string>('Escribe tu respuesta...');
   disabled = input<boolean>(false);
   suggestions = input<GuessSuggestion[]>([]);
@@ -129,17 +70,22 @@ export class GuessInputComponent implements OnInit {
   selectSuggestion = output<GuessSuggestion>();
 
   @ViewChild('inputEl', { static: true }) inputEl!: ElementRef<HTMLInputElement>;
+  @ViewChild('dropdownEl') dropdownEl?: ElementRef<HTMLUListElement>;
 
   inputValue = '';
   showDropdown = false;
   filteredSuggestions: GuessSuggestion[] = [];
-  private blurTimeout: any;
-  private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.inputValue = this.value();
     this.filterSuggestions();
-    this.destroyRef.onDestroy(() => clearTimeout(this.blurTimeout));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value'] && !changes['value'].firstChange) {
+      this.inputValue = this.value();
+      this.filterSuggestions();
+    }
   }
 
   onInput(event: Event) {
@@ -162,12 +108,6 @@ export class GuessInputComponent implements OnInit {
     setTimeout(() => this.inputEl?.nativeElement.blur(), 0);
   }
 
-  onBlur() {
-    this.blurTimeout = setTimeout(() => {
-      this.showDropdown = false;
-    }, 120);
-  }
-
   filterSuggestions() {
     const val = this.inputValue.trim().toLowerCase();
     if (!val) {
@@ -177,5 +117,22 @@ export class GuessInputComponent implements OnInit {
     this.filteredSuggestions = this.suggestions()
       .filter((s: GuessSuggestion) => s.nombre.toLowerCase().includes(val))
       .slice(0, 10);
+  }
+
+  onFocus() {
+    this.showDropdown = true;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const input = this.inputEl?.nativeElement;
+    const dropdown = this.dropdownEl?.nativeElement;
+    if (
+      input &&
+      !input.contains(event.target as Node) &&
+      (!dropdown || !dropdown.contains(event.target as Node))
+    ) {
+      this.showDropdown = false;
+    }
   }
 }

@@ -1,22 +1,28 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { AudioService } from '../../shared/services/audio.service';
 import { MusicControlsComponent, MusicControlsTheme } from '../../shared/components/music-controls/music-controls.component';
-import { GuessInputComponent } from '../../shared/components/guess-input/guess-input.component';
+import { GuessInputComponent, GuessInputTheme } from '../../shared/components/guess-input/guess-input.component';
 import {
   LoLGameService,
   LoLCharacter,
-  CompareStatus,
+  CompareStatus as LoLCompareStatus,
   GuessResult,
 } from './loldle-game.service';
+import { 
+  GameBoardComponent, 
+  GameColumn, 
+  GameRow, 
+  GameBoardTheme,
+} from '../../shared/components/game-board';
+import { ComparisonStatus } from '../../shared/components/game-cell/game-cell.component';
 
 @Component({
   selector: 'app-loldle',
-  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent],
+  imports: [FormsModule, BaseGameComponent, MusicControlsComponent, GuessInputComponent, GameBoardComponent],
   templateUrl: './loldle.component.html',
   styleUrls: ['./loldle.component.css'],
 })
@@ -49,7 +55,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
     sliderThumbBg: '#c89b3c'
   };
 
-  lolInputTheme = {
+  lolInputTheme: GuessInputTheme = {
     inputBg: '#f0e6d2',
     inputBorder: 'border-yellow-400',
     inputText: 'text-blue-900',
@@ -62,15 +68,39 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
     buttonHoverBg: 'hover:from-orange-400 hover:to-red-500'
   };
 
+  // Configuración del tablero
+  boardColumns: GameColumn[] = [
+    { key: 'name', label: 'Nombre', icon: '👤', width: 'w-24', height: 'h-24', type: 'image' },
+    { key: 'genero', label: 'Género', icon: '⚧', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'posicion', label: 'Posición', icon: '🎯', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'especie', label: 'Especie', icon: '🧬', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'recurso', label: 'Recurso', icon: '⚡', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'tipo_de_gama', label: 'Tipo', icon: '🗡️', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'region', label: 'Región', icon: '🗺️', width: 'w-24', height: 'h-24', type: 'text' },
+    { key: 'anio_de_lanzamiento', label: 'Año', icon: '📅', width: 'w-24', height: 'h-24', type: 'numeric' }
+  ];
+
+  boardTheme: GameBoardTheme = {
+    headerBg: 'bg-gradient-to-r from-yellow-500 to-orange-600',
+    headerText: 'text-white',
+    cellTheme: {
+      correctBg: 'bg-green-500',
+      partialBg: 'bg-yellow-400',
+      incorrectBg: 'bg-red-500',
+      correctText: 'text-white',
+      partialText: 'text-white',
+      incorrectText: 'text-white',
+      imageOverlayBg: 'bg-black bg-opacity-50',
+      imageOverlayText: 'text-white'
+    }
+  };
+
   ngOnInit(): void {
-    console.log('🚀 LoLDLE ngOnInit iniciado');
     this.setGameId(this.gameId);
     this.loadCharacters();
     this.audioService.initializeAudio('warriors-lol.mp3');
     this.progressLoaded.subscribe((progress) => {
-      console.log('📊 Progreso cargado:', progress);
       if (progress) {
-        console.log('🔄 Restaurando progreso...');
         this.restoreProgress(progress);
       }
     });
@@ -124,18 +154,13 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   }
 
   private loadCharacters(): void {
-    console.log('🔄 Iniciando carga de campeones...');
     this.http.get<LoLCharacter[]>('campeones_lol.json').subscribe({
       next: (characters) => {
-        console.log('📥 Campeones cargados desde JSON:', characters.length);
         this.characters = characters.filter(
           (char) => char.nombre && char.nombre.trim() !== ''
         );
-        console.log('✅ Campeones filtrados:', this.characters.length);
-        console.log('📋 Primeros 3 campeones:', this.characters.slice(0, 3));
         this.charactersLoaded = true;
-        this.filteredCharacters = this.characters;
-        console.log('🎮 Inicializando juego después de cargar campeones...');
+        this.filteredCharacters = this.characters.sort((a, b) => a.nombre.localeCompare(b.nombre));
         this.initializeGame();
       },
       error: (error) => {
@@ -148,7 +173,6 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
 
   private initializeGame(): void {
     if (this.characters.length === 0) {
-      console.log('❌ No hay campeones cargados, no inicializando');
       return;
     }
     this.targetCharacter = this.getRandomCharacter();
@@ -185,6 +209,12 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
       this.errorMessage = 'Por favor ingresa un nombre';
       return;
     }
+    // Validar si el campeón ya fue adivinado
+    const guessedNames = this.guesses.map((g) => g.name.value.toLowerCase());
+    if (guessedNames.includes(this.currentGuess.trim().toLowerCase())) {
+      this.errorMessage = 'Ya adivinaste ese campeón. Intenta con otro.';
+      return;
+    }
     let guessedCharacter = this.lolService.findCharacterByName(
       this.characters,
       this.currentGuess
@@ -202,8 +232,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
       this.targetCharacter!
     );
     this.guesses.push(guessResult);
-    this.revealedColumns.unshift(0);
-    this.revealNextColumn();
+    
     if (guessResult.name.status === 'correct') {
       this.gameWon = true;
       this.completeGame(true, this.currentAttempt + 1, {
@@ -252,7 +281,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
     return this.lolService.getFormattedValue(field, value);
   }
 
-  getComparisonClass(status: CompareStatus): string {
+  getComparisonClass(status: LoLCompareStatus): string {
     if (status === 'correct') return 'bg-green-500 text-white';
     if (status === 'partial') return 'bg-yellow-400 text-white';
     return 'bg-red-500 text-white';
@@ -291,5 +320,60 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   }
   protected hasProgressSafe(): boolean {
     return this.hasProgress();
+  }
+
+  // Método para convertir guesses al formato del tablero
+  getBoardRows(): GameRow[] {
+    // El orden y las claves deben coincidir exactamente con boardColumns
+    return this.guesses.slice().reverse().map((guess) => ({
+      name: {
+        value: guess.name.value || 'N/A',
+        status: this.mapStatus(guess.name.status),
+        imageUrl: this.getCharacterImageUrl(guess.name.value),
+        hasImage: this.hasCharacterImage(guess.name.value)
+      },
+      genero: {
+        value: guess.genero.value || 'N/A',
+        status: this.mapStatus(guess.genero.status)
+      },
+      posicion: {
+        value: guess.posicion.value || 'N/A',
+        status: this.mapStatus(guess.posicion.status)
+      },
+      especie: {
+        value: guess.especie.value || 'N/A',
+        status: this.mapStatus(guess.especie.status)
+      },
+      recurso: {
+        value: guess.recurso.value || 'N/A',
+        status: this.mapStatus(guess.recurso.status)
+      },
+      tipo_de_gama: {
+        value: guess.tipo_de_gama.value || 'N/A',
+        status: this.mapStatus(guess.tipo_de_gama.status)
+      },
+      region: {
+        value: Array.isArray(guess.region.value) ? guess.region.value.join(', ') : guess.region.value || 'N/A',
+        status: this.mapStatus(guess.region.status)
+      },
+      anio_de_lanzamiento: {
+        value: guess.anio_de_lanzamiento.value || 'N/A',
+        status: this.mapStatus(guess.anio_de_lanzamiento.status),
+        arrow: guess.anio_de_lanzamiento.arrow || undefined
+      }
+    }));
+  }
+
+  private mapStatus(status: LoLCompareStatus): ComparisonStatus {
+    switch (status) {
+      case 'correct':
+        return 'correct';
+      case 'partial':
+        return 'partial';
+      case 'wrong':
+        return 'incorrect';
+      default:
+        return 'incorrect';
+    }
   }
 }

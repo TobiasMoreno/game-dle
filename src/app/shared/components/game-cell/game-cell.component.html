@@ -1,0 +1,47 @@
+<div
+  class="flex items-center justify-center rounded-lg text-center transition-all duration-300 font-medium relative overflow-hidden cell-animation"
+  [class]="getCellClasses()"
+  [class.opacity-0]="!isRevealed()"
+  [class.opacity-100]="isRevealed()"
+  [style.background-image]="
+    data().hasImage && data().imageUrl ? 'url(' + data().imageUrl + ')' : 'none'
+  "
+  [style.background-size]="'cover'"
+  [style.background-position]="'center'"
+  [style.background-repeat]="'no-repeat'"
+  [style.width]="width()"
+  [style.height]="height()"
+  [style.animation-delay]="getAnimationDelay()"
+>
+  <!-- Arrow indicators for numeric values -->
+  @if (data().arrow === 'up') {
+  <svg
+    class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M2 10a1 1 0 0 1 0-1.41l8-8a1 1 0 0 1 1.41 0l8 8A1 1 0 0 1 18 10h-3.5v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7H2z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+  } @if (data().arrow === 'down') {
+  <svg
+    class="absolute left-1/2 top-1/2 w-5/6 h-5/6 -translate-x-1/2 -translate-y-1/2 text-black opacity-30"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M18 10a1 1 0 0 1 0 1.41l-8 8a1 1 0 0 1-1.41 0l-8-8A1 1 0 0 1 2 10h4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7h4z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+  }
+
+  <!-- Content overlay -->
+  <div class="relative z-10" [class]="getContentClasses()">
+    {{ data().value || "N/A" }}
+  </div>
+</div>
