@@ -32,7 +32,6 @@ export class AudioService {
       
       this.updateState({ currentTrack: musicUrl });
       
-      console.log('✅ Audio inicializado:', musicUrl);
     } catch (error) {
       console.error('❌ Error al inicializar audio:', error);
     }
@@ -45,7 +44,6 @@ export class AudioService {
     if (this.audio && !this.audioStateSubject.value.isPlaying && !this.audioStateSubject.value.isMuted) {
       this.audio.play().then(() => {
         this.updateState({ isPlaying: true });
-        console.log('🎵 Música iniciada');
       }).catch((error) => {
         console.error('❌ Error al reproducir música:', error);
       });
@@ -60,7 +58,6 @@ export class AudioService {
       this.audio.pause();
       this.audio.currentTime = 0;
       this.updateState({ isPlaying: false });
-      console.log('🔇 Música detenida');
     }
   }
 
