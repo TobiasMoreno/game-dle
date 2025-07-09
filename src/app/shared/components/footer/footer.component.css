@@ -1,7 +1,5 @@
 footer {
   position: relative;
-  overflow: hidden;
-  z-index: 40;
   margin-top: auto;
 }
 
@@ -35,9 +33,14 @@ footer.bg-gradient-to-r.from-blue-900.to-indigo-900::before {
   background: linear-gradient(90deg, transparent, #3b82f6, #6366f1, #3b82f6, transparent);
 }
 
-/* Default theme shimmer */
-footer.bg-gray-950::before {
-  background: linear-gradient(90deg, transparent, #6b7280, #374151, #6b7280, transparent);
+/* Default theme shimmer - light mode */
+footer.bg-gray-100::before {
+  background: linear-gradient(90deg, transparent, #3b82f6, #1d4ed8, #3b82f6, transparent);
+}
+
+/* Default theme shimmer - dark mode */
+footer.bg-gray-800::before {
+  background: linear-gradient(90deg, transparent, #60a5fa, #3b82f6, #60a5fa, transparent);
 }
 
 @keyframes shimmer {
@@ -79,9 +82,14 @@ footer.bg-gradient-to-r.from-blue-900.to-indigo-900 a::after {
   background: #3b82f6;
 }
 
-/* Default theme underline */
-footer.bg-gray-950 a::after {
-  background: #6b7280;
+/* Default theme underline - light mode */
+footer.bg-gray-100 a::after {
+  background: #3b82f6;
+}
+
+/* Default theme underline - dark mode */
+footer.bg-gray-800 a::after {
+  background: #60a5fa;
 }
 
 footer a:hover::after {

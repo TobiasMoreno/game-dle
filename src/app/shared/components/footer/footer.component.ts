@@ -21,7 +21,7 @@ export class FooterComponent {
       case 'numberle':
         return 'bg-gradient-to-r from-blue-900 to-indigo-900 text-blue-100 border-blue-500';
       default:
-        return 'bg-gray-950 text-gray-300 border-gray-700';
+        return 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600';
     }
   }
 
@@ -36,7 +36,7 @@ export class FooterComponent {
       case 'numberle':
         return 'text-blue-200 hover:text-indigo-300';
       default:
-        return 'text-gray-400 hover:text-white';
+        return 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400';
     }
   }
 
@@ -51,7 +51,7 @@ export class FooterComponent {
       case 'numberle':
         return 'text-blue-200';
       default:
-        return 'text-gray-500';
+        return 'text-gray-600 dark:text-gray-400';
     }
   }
 
@@ -66,7 +66,7 @@ export class FooterComponent {
       case 'numberle':
         return 'bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-30';
       default:
-        return 'bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-30';
+        return 'bg-gradient-to-r from-transparent via-blue-400 dark:via-blue-500 to-transparent opacity-30';
     }
   }
 

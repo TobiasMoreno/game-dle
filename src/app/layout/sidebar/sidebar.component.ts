@@ -1,28 +1,32 @@
-import { Component, Input, output } from '@angular/core';
+import { Component, inject, input, OnInit, output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {
-  @Input() isOpen: boolean = true;
+export class SidebarComponent implements OnInit {
+  isOpen = input<boolean>(true);
   toggleSidebar = output<void>();
 
   games: GameState[] = [];
 
-  constructor(
-    private router: Router,
-    private gameManager: GameManagerService
-  ) {
-    this.gameManager.games$.subscribe(games => {
+  router = inject(Router);
+  gameManager = inject(GameManagerService);
+  themeService = inject(ThemeService);
+  ngOnInit() {
+    this.gameManager.games$.subscribe((games) => {
       this.games = games;
     });
+  }
+
+  get colorMode() {
+    return this.themeService.getColorMode();
   }
 
   /**
@@ -38,13 +42,13 @@ export class SidebarComponent {
    */
   getGameStatusClass(game: GameState): string {
     if (!game.dailyState) {
-      return 'text-gray-400'; // No jugado hoy
+      return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
     }
-    
+
     if (game.dailyState.won) {
-      return 'text-green-400'; // Ganado
+      return 'text-green-600 dark:text-green-400'; // Ganado
     } else {
-      return 'text-red-400'; // Perdido
+      return 'text-red-600 dark:text-red-400'; // Perdido
     }
   }
 
@@ -55,7 +59,7 @@ export class SidebarComponent {
     if (!game.dailyState) {
       return 'Nuevo';
     }
-    
+
     if (game.dailyState.won) {
       return `✅ ${game.dailyState.attempts}/6`;
     } else {
@@ -85,6 +89,6 @@ export class SidebarComponent {
    * Obtiene la mejor racha entre todos los juegos
    */
   getBestStreak(): number {
-    return Math.max(...this.games.map(game => game.stats?.bestStreak || 0));
+    return Math.max(...this.games.map((game) => game.stats?.bestStreak || 0));
   }
 }
