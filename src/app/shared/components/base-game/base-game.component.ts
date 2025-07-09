@@ -207,7 +207,7 @@ export class BaseGameComponent {
    */
   private setFooterTheme(): void {
     const gameId = this.getGameIdSafely();
-    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' = 'default';
+    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' = 'default';
     switch (gameId) {
       case 'onepiecedle':
         theme = 'onepiece';
@@ -221,10 +221,14 @@ export class BaseGameComponent {
       case 'numberle':
         theme = 'numberle';
         break;
+      case 'loldle':
+        theme = 'loldle';
+        break;
       default:
         theme = 'default';
     }
     this.themeService.setFooterTheme(theme);
+    this.themeService.setHeaderTheme(theme);
   }
 
   /**

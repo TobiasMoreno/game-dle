@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
-export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle';
+export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle';
+export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle';
 export type ColorMode = 'light' | 'dark';
 
 @Injectable({
@@ -8,6 +9,7 @@ export type ColorMode = 'light' | 'dark';
 })
 export class ThemeService {
   private footerTheme = signal<FooterTheme>('onepiece');
+  private headerTheme = signal<HeaderTheme>('default');
   private colorMode = signal<ColorMode>('light');
 
   constructor() {
@@ -25,6 +27,14 @@ export class ThemeService {
 
   setFooterTheme(theme: FooterTheme) {
     this.footerTheme.set(theme);
+  }
+
+  getHeaderTheme() {
+    return this.headerTheme();
+  }
+
+  setHeaderTheme(theme: HeaderTheme) {
+    this.headerTheme.set(theme);
   }
 
   getColorMode() {

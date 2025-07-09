@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
+import { ThemeService } from '../../shared/services/theme.service';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
@@ -14,8 +15,12 @@ export class HomeComponent {
   games: GameState[] = [];
   router = inject(Router);
   gameManager = inject(GameManagerService);
+  private themeService = inject(ThemeService);
 
   ngOnInit() {
+    this.themeService.setHeaderTheme('default');
+    this.themeService.setFooterTheme('default');
+    
     this.gameManager.games$.subscribe((games) => {
       this.games = games;
     });
