@@ -116,120 +116,126 @@
 
     <!-- Estadísticas -->
     @if (game?.stats && !hideStats()) {
-    <div
-      class="rounded-lg shadow-md p-6 mt-6"
-      [style.background]="customCardBg() || 'white'"
-      [style.color]="customTextColor() || 'inherit'"
-    >
-      <h2
-        class="text-xl font-semibold mb-4"
-        [style.color]="customTextColor() || '#111827'"
+    @defer (on viewport) {
+      <div
+        class="rounded-lg shadow-md p-6 mt-6"
+        [style.background]="customCardBg() || 'white'"
+        [style.color]="customTextColor() || 'inherit'"
       >
-        Estadísticas
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div class="text-center">
-          <div
-            class="text-2xl font-bold"
-            [style.color]="customTextColor() || '#111827'"
-          >
-            {{ game?.stats?.totalGames || 0 }}
-          </div>
-          <div
-            [style.color]="
-              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
-            "
-          >
-            Juegos Jugados
-          </div>
-        </div>
-        <div class="text-center">
-          <div
-            class="text-2xl font-bold"
-            [style.color]="customAccentColor() || '#059669'"
-          >
-            {{ game?.stats?.wins || 0 }}
-          </div>
-          <div
-            [style.color]="
-              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
-            "
-          >
-            Victorias
-          </div>
-        </div>
-        <div class="text-center">
-          <div
-            class="text-2xl font-bold"
-            [style.color]="customAccentColor() || '#2563eb'"
-          >
-            {{ game?.stats?.currentStreak || 0 }}
-          </div>
-          <div
-            [style.color]="
-              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
-            "
-          >
-            Racha Actual
-          </div>
-        </div>
-        <div class="text-center">
-          <div
-            class="text-2xl font-bold"
-            [style.color]="customAccentColor() || '#7c3aed'"
-          >
-            {{ game?.stats?.bestStreak || 0 }}
-          </div>
-          <div
-            [style.color]="
-              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
-            "
-          >
-            Mejor Racha
-          </div>
-        </div>
-      </div>
-
-      <!-- Distribución de intentos -->
-      <div>
-        <h3
-          class="text-lg font-semibold mb-3"
+        <h2
+          class="text-xl font-semibold mb-4"
           [style.color]="customTextColor() || '#111827'"
         >
-          Distribución de Intentos
-        </h3>
-        <div class="space-y-2">
-          @for (count of game?.stats?.guessDistribution; track $index) {
-          <div class="flex items-center">
-            <span
-              class="w-8 text-sm font-medium"
-              [style.color]="customTextColor() || '#111827'"
-              >{{ $index + 1 }}</span
-            >
+          Estadísticas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="text-center">
             <div
-              class="flex-1 rounded-full h-6 mx-2"
-              [style.background]="
-                customTextColor() ? 'rgba(255,255,255,0.2)' : 'rgb(229 231 235)'
-              "
+              class="text-2xl font-bold"
+              [style.color]="customTextColor() || '#111827'"
             >
-              <div
-                class="h-6 rounded-full transition-all duration-300"
-                [style.background]="customAccentColor() || '#2563eb'"
-                [style.width.%]="getGuessPercentage(count)"
-              ></div>
+              {{ game?.stats?.totalGames || 0 }}
             </div>
-            <span
-              class="w-8 text-sm"
+            <div
               [style.color]="
                 customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
               "
-              >{{ count }}</span
             >
+              Juegos Jugados
+            </div>
           </div>
-          }
+          <div class="text-center">
+            <div
+              class="text-2xl font-bold"
+              [style.color]="customAccentColor() || '#059669'"
+            >
+              {{ game?.stats?.wins || 0 }}
+            </div>
+            <div
+              [style.color]="
+                customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+              "
+            >
+              Victorias
+            </div>
+          </div>
+          <div class="text-center">
+            <div
+              class="text-2xl font-bold"
+              [style.color]="customAccentColor() || '#2563eb'"
+            >
+              {{ game?.stats?.currentStreak || 0 }}
+            </div>
+            <div
+              [style.color]="
+                customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+              "
+            >
+              Racha Actual
+            </div>
+          </div>
+          <div class="text-center">
+            <div
+              class="text-2xl font-bold"
+              [style.color]="customAccentColor() || '#7c3aed'"
+            >
+              {{ game?.stats?.bestStreak || 0 }}
+            </div>
+            <div
+              [style.color]="
+                customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+              "
+            >
+              Mejor Racha
+            </div>
+          </div>
+        </div>
+
+        <!-- Distribución de intentos -->
+        <div>
+          <h3
+            class="text-lg font-semibold mb-3"
+            [style.color]="customTextColor() || '#111827'"
+          >
+            Distribución de Intentos
+          </h3>
+          <div class="space-y-2">
+            @for (count of game?.stats?.guessDistribution; track $index) {
+            <div class="flex items-center">
+              <span
+                class="w-8 text-sm font-medium"
+                [style.color]="customTextColor() || '#111827'"
+                >{{ $index + 1 }}</span
+              >
+              <div
+                class="flex-1 rounded-full h-6 mx-2"
+                [style.background]="
+                  customTextColor() ? 'rgba(255,255,255,0.2)' : 'rgb(229 231 235)'
+                "
+              >
+                <div
+                  class="h-6 rounded-full transition-all duration-300"
+                  [style.background]="customAccentColor() || '#2563eb'"
+                  [style.width.%]="getGuessPercentage(count)"
+                ></div>
+              </div>
+              <span
+                class="w-8 text-sm"
+                [style.color]="
+                  customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+                "
+                >{{ count }}</span
+              >
+            </div>
+            }
+          </div>
         </div>
       </div>
-    </div>
+    } @placeholder {
+      <div class="rounded-lg shadow-md p-6 mt-6 bg-gray-100 dark:bg-gray-800">
+        Cargando...
+      </div>
+    }
     }
 
     <!-- Estadísticas Personales -->

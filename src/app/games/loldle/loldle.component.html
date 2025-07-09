@@ -83,14 +83,19 @@
     </app-guess-input>
 
     <!-- Tablero de intentos -->
-    <app-game-board
-      [columns]="boardColumns"
-      [rows]="getBoardRows()"
-      [revealedColumns]="revealedColumns"
-      [theme]="boardTheme"
-      [maxAttempts]="config.maxAttempts">
-    </app-game-board>
-
+    @defer (when !isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts) {
+      <app-game-board
+        [columns]="boardColumns"
+        [rows]="getBoardRows()"
+        [revealedColumns]="revealedColumns"
+        [theme]="boardTheme"
+        [maxAttempts]="config.maxAttempts">
+      </app-game-board>
+    } @placeholder {
+      <div class="text-center text-gray-600 bg-yellow-100 p-4 rounded-lg font-medium border border-yellow-300">
+        ⚔️ Preparando tablero de batalla...
+      </div>
+    }
     <!-- Mensaje de error -->
     @if(errorMessage) {
     <div class="text-center text-red-600 bg-red-100 p-3 rounded-lg font-medium border border-red-300">

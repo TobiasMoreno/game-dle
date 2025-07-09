@@ -1,0 +1,41 @@
+@defer (on viewport) {
+<div class="flex justify-center items-center space-x-4">
+  <button
+    (click)="toggleMusic()"
+    class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-bold shadow-lg"
+    [class]="getButtonClasses()"
+  >
+    <span>{{ audioState.isMuted ? "🔇" : "🎵" }}</span>
+    <span>{{
+      audioState.isMuted ? "Activar música" : "Silenciar música"
+    }}</span>
+  </button>
+
+  @if (!audioState.isMuted) {
+  <div class="flex items-center space-x-2">
+    <span
+      class="text-sm font-semibold"
+      [style.color]="theme?.volumeTextColor || '#374151'"
+    >
+      Volumen:
+    </span>
+    <input
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+      [value]="audioState.volume"
+      (input)="onVolumeChange($event)"
+      class="w-20 h-2 rounded-lg appearance-none cursor-pointer"
+      [style.background]="theme?.sliderBg || '#fef3c7'"
+    />
+  </div>
+  }
+</div>
+} @placeholder {
+<button
+  class="mb-6 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg hover:from-yellow-400 hover:to-orange-400 transition-all duration-200 font-bold shadow-lg"
+>
+  🎵 Activar Música
+</button>
+}

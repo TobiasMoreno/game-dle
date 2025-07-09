@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AudioService, AudioState } from '../../services/audio.service';
 import { Subscription } from 'rxjs';
 
@@ -14,94 +13,9 @@ export interface MusicControlsTheme {
 
 @Component({
   selector: 'app-music-controls',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="flex justify-center items-center space-x-4">
-      <button
-        (click)="toggleMusic()"
-        class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-bold shadow-lg"
-        [class]="getButtonClasses()"
-      >
-        <span>{{ audioState.isMuted ? '🔇' : '🎵' }}</span>
-        <span>{{ audioState.isMuted ? 'Activar música' : 'Silenciar música' }}</span>
-      </button>
-      
-      @if (!audioState.isMuted) {
-        <div class="flex items-center space-x-2">
-          <span class="text-sm font-semibold" [style.color]="theme?.volumeTextColor || '#374151'">
-            Volumen:
-          </span>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            [value]="audioState.volume"
-            (input)="onVolumeChange($event)"
-            class="w-20 h-2 rounded-lg appearance-none cursor-pointer"
-            [style.background]="theme?.sliderBg || '#fef3c7'"
-          />
-        </div>
-      }
-    </div>
-  `,
-  styles: [`
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      background: transparent;
-      cursor: pointer;
-      height: 8px;
-      border-radius: 4px;
-    }
-
-    input[type="range"]::-webkit-slider-track {
-      height: 8px;
-      border-radius: 4px;
-      background: #fef3c7;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      background: #f59e0b;
-      border: 3px solid #d97706;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    }
-
-    input[type="range"]::-webkit-slider-thumb:hover {
-      background: #d97706;
-      transform: scale(1.15);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-
-    input[type="range"]::-moz-range-track {
-      height: 8px;
-      border-radius: 4px;
-      border: none;
-      background: #fef3c7;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 3px solid #d97706;
-      background: #f59e0b;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    }
-
-    input[type="range"]::-moz-range-thumb:hover {
-      background: #d97706;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-  `]
+  imports: [],
+  templateUrl: './music-controls.component.html',
+  styleUrls: ['./music-controls.component.css']
 })
 export class MusicControlsComponent implements OnInit, OnDestroy {
   @Input() theme?: MusicControlsTheme;

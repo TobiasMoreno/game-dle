@@ -67,27 +67,33 @@
     </div>
 
     <!-- Estadísticas Generales -->
-    <div class="mb-6">
-      <h2 class="text-sm font-semibold uppercase mb-2 transition-colors duration-200" [class]="getSectionTitleClasses()">
-        Estadísticas
-      </h2>
-      <div class="space-y-2">
-        <div class="text-xs" [class]="getStatsTextClasses()">
-          <div class="flex justify-between">
-            <span>Total de juegos:</span>
-            <span class="font-medium" [class]="getSidebarTextClasses()">{{ getTotalGames() }}</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Victorias:</span>
-            <span class="text-green-600 dark:text-green-400 font-medium">{{ getTotalWins() }}</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Mejor racha:</span>
-            <span class="font-medium" [class]="getSidebarTitleClasses()">{{ getBestStreak() }}</span>
+    @defer (on viewport) {
+      <div class="mb-6">
+        <h2 class="text-sm font-semibold uppercase mb-2 transition-colors duration-200" [class]="getSectionTitleClasses()">
+          Estadísticas
+        </h2>
+        <div class="space-y-2">
+          <div class="text-xs" [class]="getStatsTextClasses()">
+            <div class="flex justify-between">
+              <span>Total de juegos:</span>
+              <span class="font-medium" [class]="getSidebarTextClasses()">{{ getTotalGames() }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Victorias:</span>
+              <span class="text-green-600 dark:text-green-400 font-medium">{{ getTotalWins() }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Mejor racha:</span>
+              <span class="font-medium" [class]="getSidebarTitleClasses()">{{ getBestStreak() }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    } @placeholder {
+      <div class="mb-6">
+        Cargando...
+      </div>
+    }
 
     <!-- Información -->
     <div class="text-xs transition-colors duration-200" [class]="getInfoTextClasses()">

@@ -1,3 +1,4 @@
+@defer (on viewport) {
 <div class="text-center py-8 game-result-container">
   <div class="bg-gradient-to-br rounded-lg p-6 shadow-lg mb-6" 
        [style.background]="config().theme.primaryBg">
@@ -43,3 +44,11 @@
     🎮 Jugar de nuevo
   </button>
 </div> 
+} @placeholder {
+<div class="text-center py-8 game-result-container">
+  <div class="bg-gradient-to-br rounded-lg p-6 shadow-lg mb-6" 
+       [style.background]="config().theme.primaryBg">
+    Cargando...
+  </div>
+</div>
+}

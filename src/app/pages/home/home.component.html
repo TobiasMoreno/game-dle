@@ -26,47 +26,53 @@
       <!-- Juegos Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         @for (game of games; track game.id) {
-          <div
-            (click)="navigateToGame(game)"
-            class="relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
-          >
-            <!-- Fondo dinámico en hover -->
-            @if (game.name === 'One Piece DLE') {
-              <div
-                class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style="background-image: url('img/bg_zoro.png');"
-                loading="lazy"
-              ></div>
-            }
-            @if (game.name === 'LoL DLE') {
-              <div
-                class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style="background-image: url('img/bg_lol.jpeg');"
-                loading="lazy"
-              ></div>
-            }
+          @defer (on viewport) {
+            <div
+              (click)="navigateToGame(game)"
+              class="relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
+            >
+              <!-- Fondo dinámico en hover -->
+              @if (game.name === 'One Piece DLE') {
+                <div
+                  class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background-image: url('img/bg_zoro.png');"
+                  loading="lazy"
+                ></div>
+              }
+              @if (game.name === 'LoL DLE') {
+                <div
+                  class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background-image: url('img/bg_lol.jpeg');"
+                  loading="lazy"
+                ></div>
+              }
 
-            <!-- Contenido de la tarjeta -->
-            <div class="relative z-10">
-              <div class="flex items-center mb-4">
-                <i [class]="game.icon + ' text-2xl text-blue-500 dark:text-blue-400 mr-3'" aria-hidden="true"></i>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
-                  {{ game.name }}
-                </h3>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200">{{ game.description }}</p>
-              <div class="flex items-center justify-between">
-                <span [class]="getGameStatusClass(game)" class="text-sm font-medium">
-                  {{ getGameStatusText(game) }}
-                </span>
-                <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
-                  <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
-                  <div>Victorias: {{ game.stats?.wins || 0 }}</div>
+              <!-- Contenido de la tarjeta -->
+              <div class="relative z-10">
+                <div class="flex items-center mb-4">
+                  <i [class]="game.icon + ' text-2xl text-blue-500 dark:text-blue-400 mr-3'" aria-hidden="true"></i>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
+                    {{ game.name }}
+                  </h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200">{{ game.description }}</p>
+                <div class="flex items-center justify-between">
+                  <span [class]="getGameStatusClass(game)" class="text-sm font-medium">
+                    {{ getGameStatusText(game) }}
+                  </span>
+                  <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
+                    <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
+                    <div>Victorias: {{ game.stats?.wins || 0 }}</div>
+                  </div>
                 </div>
               </div>
+              <!-- Fin contenido -->
             </div>
-            <!-- Fin contenido -->
-          </div>
+          } @placeholder {
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+              Cargando...
+            </div>
+          }
         }
       </div>
 

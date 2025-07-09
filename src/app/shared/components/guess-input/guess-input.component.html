@@ -39,7 +39,8 @@
     </button>
   </div>
   @if (showDropdown && filteredSuggestions.length > 0) {
-  <ul #dropdownEl
+  <ul
+    #dropdownEl
     class="autocomplete-dropdown w-full rounded-b-lg shadow-md z-20 absolute left-0 top-full max-h-60 overflow-y-auto"
     [class]="
       (theme().dropdownBg || 'bg-white') +
@@ -58,7 +59,7 @@
         ' px-4 py-3 cursor-pointer transition-colors duration-150 flex items-center autocomplete-item font-medium border-b last:border-b-0'
       "
     >
-      @if (suggestion.img_url) {
+      @if (suggestion.img_url) { @defer (on viewport) {
       <div
         class="w-8 h-8 rounded-full mr-3 border-2 flex items-center justify-center"
         [class]="theme().inputBorder || 'border-blue-300'"
@@ -70,7 +71,15 @@
           class="w-full h-full rounded-full object-cover"
         />
       </div>
-      }
+      } @placeholder {
+      <div
+        class="w-8 h-8 rounded-full mr-3 border-2 flex items-center justify-center"
+        [class]="theme().inputBorder || 'border-blue-300'"
+        [style.background]="theme().inputBg || null"
+      >
+        Cargando...
+      </div>
+      } }
       <span class="flex-1">{{ suggestion.nombre }}</span>
     </li>
     }
