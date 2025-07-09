@@ -33,6 +33,11 @@ footer.bg-gradient-to-r.from-blue-900.to-indigo-900::before {
   background: linear-gradient(90deg, transparent, #3b82f6, #6366f1, #3b82f6, transparent);
 }
 
+/* LoLdle theme shimmer */
+footer.bg-gradient-to-r.from-blue-900.to-purple-900::before {
+  background: linear-gradient(90deg, transparent, #c89b3c, #f0e6d2, #c89b3c, transparent);
+}
+
 /* Default theme shimmer - light mode */
 footer.bg-gray-100::before {
   background: linear-gradient(90deg, transparent, #3b82f6, #1d4ed8, #3b82f6, transparent);
@@ -80,6 +85,11 @@ footer.bg-gradient-to-r.from-purple-900.to-pink-900 a::after {
 /* Numberle theme underline */
 footer.bg-gradient-to-r.from-blue-900.to-indigo-900 a::after {
   background: #3b82f6;
+}
+
+/* LoLdle theme underline */
+footer.bg-gradient-to-r.from-blue-900.to-purple-900 a::after {
+  background: #c89b3c;
 }
 
 /* Default theme underline - light mode */
