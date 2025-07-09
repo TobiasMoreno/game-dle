@@ -4,6 +4,7 @@ import { GameState, DailyGameState, GameProgress } from '../../models/game.model
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
 import { ThemeService } from '../../services/theme.service';
+import { FooterComponent } from '../footer/footer.component';
 
 /**
  * Componente base para todos los juegos
@@ -11,7 +12,7 @@ import { ThemeService } from '../../services/theme.service';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './base-game.component.html',
   styles: []
 })

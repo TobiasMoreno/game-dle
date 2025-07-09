@@ -7,7 +7,7 @@ import { Component, input } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  theme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle'>('default');
+  theme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle'>('default');
   year = new Date().getFullYear();
 
   getFooterClasses(): string {
@@ -35,6 +35,8 @@ export class FooterComponent {
         return 'text-purple-200 hover:text-pink-300';
       case 'numberle':
         return 'text-blue-200 hover:text-indigo-300';
+      case 'loldle':
+        return 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400';
       default:
         return 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -50,6 +52,8 @@ export class FooterComponent {
         return 'text-purple-200';
       case 'numberle':
         return 'text-blue-200';
+      case 'loldle':
+        return 'text-gray-600 dark:text-gray-400';
       default:
         return 'text-gray-600 dark:text-gray-400';
     }
@@ -65,6 +69,8 @@ export class FooterComponent {
         return 'bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-30';
       case 'numberle':
         return 'bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-30';
+      case 'loldle':
+        return 'bg-gradient-to-r from-transparent via-blue-400 dark:via-blue-500 to-transparent opacity-30';
       default:
         return 'bg-gradient-to-r from-transparent via-blue-400 dark:via-blue-500 to-transparent opacity-30';
     }
@@ -80,6 +86,8 @@ export class FooterComponent {
         return '🌈';
       case 'numberle':
         return '🧮';
+      case 'loldle':
+        return '💼';
       default:
         return '💼';
     }

@@ -1,156 +1,303 @@
-<div class="min-h-screen flex flex-col" [style.background]="customBackground() || 'rgb(243 244 246)'">
-    <div class="container mx-auto px-4 py-8 flex-1">
-      <!-- Header -->
-      @if (!hideHeader()) {
-      <div class="rounded-lg shadow-md p-6 mb-6" 
-           [style.background]="customHeaderBg() || 'white'"
-           [style.color]="customTextColor() || 'inherit'">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-3xl font-bold" [style.color]="customTextColor() || '#111827'">{{ game?.name }}</h1>
-            <p [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">{{ game?.description }}</p>
-          </div>
-          <button
-            (click)="goHome()"
-            class="px-4 py-2 rounded-lg transition-colors"
-            [style.background]="customButtonBg() || 'rgb(107 114 128)'"
-            [style.color]="customButtonTextColor() || 'white'"
-            [style.border]="customButtonBg() ? 'none' : 'none'"
-          >
-            Volver al Inicio
-          </button>
-        </div>
-      </div>
-      }
-
-      <!-- Estado del juego -->
-      @if (dailyState && !hideDailyState()) {
-      <div class="rounded-lg shadow-md p-6 mb-6"
-           [style.background]="customCardBg() || 'white'"
-           [style.color]="customTextColor() || 'inherit'">
-        <h2 class="text-xl font-semibold mb-4" [style.color]="customTextColor() || '#111827'">Estado del Juego</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [class]="dailyState.won ? 'text-green-600' : 'text-red-600'"
-                 [style.color]="customAccentColor() || (dailyState.won ? '#059669' : '#dc2626')">
-              {{ dailyState.won ? '¡Ganaste!' : 'Perdiste' }}
-            </div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Resultado</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#2563eb'">
-              {{ dailyState.attempts }}/{{ dailyState.maxAttempts }}
-            </div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Intentos</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#7c3aed'">
-              {{ game?.stats?.currentStreak || 0 }}
-            </div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Racha Actual</div>
-          </div>
-        </div>
-      </div>
-      }
-      
-      <!-- Contenido del juego -->
-      <div class="rounded-lg shadow-md p-6"
-           [style.background]="customCardBg() || 'white'"
-           [style.color]="customTextColor() || 'inherit'">
-        <ng-content></ng-content>
-      </div>
-
-      <!-- Estadísticas -->
-      @if (game?.stats && !hideStats()) {
-      <div class="rounded-lg shadow-md p-6 mt-6"
-           [style.background]="customCardBg() || 'white'"
-           [style.color]="customTextColor() || 'inherit'">
-        <h2 class="text-xl font-semibold mb-4" [style.color]="customTextColor() || '#111827'">Estadísticas</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div class="text-center">
-            <div class="text-2xl font-bold" [style.color]="customTextColor() || '#111827'">{{ game?.stats?.totalGames || 0 }}</div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Juegos Jugados</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#059669'">{{ game?.stats?.wins || 0 }}</div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Victorias</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#2563eb'">{{ game?.stats?.currentStreak || 0 }}</div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Racha Actual</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#7c3aed'">{{ game?.stats?.bestStreak || 0 }}</div>
-            <div [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">Mejor Racha</div>
-          </div>
-        </div>
-
-        <!-- Distribución de intentos -->
+<div
+  class="min-h-screen flex flex-col"
+  [style.background]="customBackground() || 'rgb(243 244 246)'"
+>
+  <div class="container mx-auto px-4 py-8 flex-1">
+    <!-- Header -->
+    @if (!hideHeader()) {
+    <div
+      class="rounded-lg shadow-md p-6 mb-6"
+      [style.background]="customHeaderBg() || 'white'"
+      [style.color]="customTextColor() || 'inherit'"
+    >
+      <div class="flex items-center justify-between">
         <div>
-          <h3 class="text-lg font-semibold mb-3" [style.color]="customTextColor() || '#111827'">Distribución de Intentos</h3>
-          <div class="space-y-2">
-            @for (count of game?.stats?.guessDistribution; track $index) {
-            <div class="flex items-center">
-              <span class="w-8 text-sm font-medium" [style.color]="customTextColor() || '#111827'">{{ $index + 1 }}</span>
-              <div class="flex-1 rounded-full h-6 mx-2" 
-                   [style.background]="customTextColor() ? 'rgba(255,255,255,0.2)' : 'rgb(229 231 235)'">
-                <div 
-                  class="h-6 rounded-full transition-all duration-300"
-                  [style.background]="customAccentColor() || '#2563eb'"
-                  [style.width.%]="getGuessPercentage(count)"
-                ></div>
-              </div>
-              <span class="w-8 text-sm" [style.color]="customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'">{{ count }}</span>
-            </div>
-            }
-          </div>
+          <h1
+            class="text-3xl font-bold"
+            [style.color]="customTextColor() || '#111827'"
+          >
+            {{ game?.name }}
+          </h1>
+          <p
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            {{ game?.description }}
+          </p>
         </div>
+        <button
+          (click)="goHome()"
+          class="px-4 py-2 rounded-lg transition-colors"
+          [style.background]="customButtonBg() || 'rgb(107 114 128)'"
+          [style.color]="customButtonTextColor() || 'white'"
+          [style.border]="customButtonBg() ? 'none' : 'none'"
+        >
+          Volver al Inicio
+        </button>
       </div>
-      }
-
-      <!-- Estadísticas Personales -->
-      @if (!hideStats()) {
-      <div class="rounded-lg shadow-md p-6 mt-6"
-           [style.background]="customCardBg() || 'black'"
-           [style.color]="customTextColor() || 'white'">
-        <h2 class="text-xl font-semibold mb-4" [style.color]="customTextColor() || '#111827'">🎮 Mis Estadísticas</h2>
-        @if (getPersonalStats(); as personalStats) {
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div class="text-center">
-            <div class="text-2xl font-bold" [style.color]="customTextColor() || '#111827'">{{ personalStats.played }}</div>
-            <div class="text-black">Partidas Jugadas</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#059669'">{{ personalStats.won }}</div>
-            <div class="text-black">Partidas Ganadas</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#2563eb'">{{ personalStats.currentStreak }}</div>
-            <div class="text-black">Racha Actual</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" 
-                 [style.color]="customAccentColor() || '#7c3aed'">{{ personalStats.bestStreak }}</div>
-            <div class="text-black">Mejor Racha</div>
-          </div>
-        </div>
-        @if (personalStats.played > 0) {
-        <div class="mt-4 text-center">
-          <div class="text-lg font-semibold" [style.color]="customTextColor() || '#111827'">
-            Porcentaje de victoria: {{ ((personalStats.won / personalStats.played) * 100).toFixed(1) }}%
-          </div>
-        </div>
-        }
-        }
-      </div>
-      }
     </div>
+    }
+
+    <!-- Estado del juego -->
+    @if (dailyState && !hideDailyState()) {
+    <div
+      class="rounded-lg shadow-md p-6 mb-6"
+      [style.background]="customCardBg() || 'white'"
+      [style.color]="customTextColor() || 'inherit'"
+    >
+      <h2
+        class="text-xl font-semibold mb-4"
+        [style.color]="customTextColor() || '#111827'"
+      >
+        Estado del Juego
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [class]="dailyState.won ? 'text-green-600' : 'text-red-600'"
+            [style.color]="
+              customAccentColor() || (dailyState.won ? '#059669' : '#dc2626')
+            "
+          >
+            {{ dailyState.won ? "¡Ganaste!" : "Perdiste" }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Resultado
+          </div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#2563eb'"
+          >
+            {{ dailyState.attempts }}/{{ dailyState.maxAttempts }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Intentos
+          </div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#7c3aed'"
+          >
+            {{ game?.stats?.currentStreak || 0 }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Racha Actual
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Contenido del juego -->
+    <div
+      class="rounded-lg shadow-md p-6"
+      [style.background]="customCardBg() || 'white'"
+      [style.color]="customTextColor() || 'inherit'"
+    >
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Estadísticas -->
+    @if (game?.stats && !hideStats()) {
+    <div
+      class="rounded-lg shadow-md p-6 mt-6"
+      [style.background]="customCardBg() || 'white'"
+      [style.color]="customTextColor() || 'inherit'"
+    >
+      <h2
+        class="text-xl font-semibold mb-4"
+        [style.color]="customTextColor() || '#111827'"
+      >
+        Estadísticas
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customTextColor() || '#111827'"
+          >
+            {{ game?.stats?.totalGames || 0 }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Juegos Jugados
+          </div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#059669'"
+          >
+            {{ game?.stats?.wins || 0 }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Victorias
+          </div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#2563eb'"
+          >
+            {{ game?.stats?.currentStreak || 0 }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Racha Actual
+          </div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#7c3aed'"
+          >
+            {{ game?.stats?.bestStreak || 0 }}
+          </div>
+          <div
+            [style.color]="
+              customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+            "
+          >
+            Mejor Racha
+          </div>
+        </div>
+      </div>
+
+      <!-- Distribución de intentos -->
+      <div>
+        <h3
+          class="text-lg font-semibold mb-3"
+          [style.color]="customTextColor() || '#111827'"
+        >
+          Distribución de Intentos
+        </h3>
+        <div class="space-y-2">
+          @for (count of game?.stats?.guessDistribution; track $index) {
+          <div class="flex items-center">
+            <span
+              class="w-8 text-sm font-medium"
+              [style.color]="customTextColor() || '#111827'"
+              >{{ $index + 1 }}</span
+            >
+            <div
+              class="flex-1 rounded-full h-6 mx-2"
+              [style.background]="
+                customTextColor() ? 'rgba(255,255,255,0.2)' : 'rgb(229 231 235)'
+              "
+            >
+              <div
+                class="h-6 rounded-full transition-all duration-300"
+                [style.background]="customAccentColor() || '#2563eb'"
+                [style.width.%]="getGuessPercentage(count)"
+              ></div>
+            </div>
+            <span
+              class="w-8 text-sm"
+              [style.color]="
+                customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
+              "
+              >{{ count }}</span
+            >
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Estadísticas Personales -->
+    @if (!hideStats()) {
+    <div
+      class="rounded-lg shadow-md p-6 mt-6"
+      [style.background]="customCardBg() || 'black'"
+      [style.color]="customTextColor() || 'white'"
+    >
+      <h2
+        class="text-xl font-semibold mb-4"
+        [style.color]="customTextColor() || '#111827'"
+      >
+        🎮 Mis Estadísticas
+      </h2>
+      @if (getPersonalStats(); as personalStats) {
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customTextColor() || '#111827'"
+          >
+            {{ personalStats.played }}
+          </div>
+          <div class="text-black">Partidas Jugadas</div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#059669'"
+          >
+            {{ personalStats.won }}
+          </div>
+          <div class="text-black">Partidas Ganadas</div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#2563eb'"
+          >
+            {{ personalStats.currentStreak }}
+          </div>
+          <div class="text-black">Racha Actual</div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-2xl font-bold"
+            [style.color]="customAccentColor() || '#7c3aed'"
+          >
+            {{ personalStats.bestStreak }}
+          </div>
+          <div class="text-black">Mejor Racha</div>
+        </div>
+      </div>
+      @if (personalStats.played > 0) {
+      <div class="mt-4 text-center">
+        <div
+          class="text-lg font-semibold"
+          [style.color]="customTextColor() || '#111827'"
+        >
+          Porcentaje de victoria:
+          {{ ((personalStats.won / personalStats.played) * 100).toFixed(1) }}%
+        </div>
+      </div>
+      } }
+    </div>
+    }
   </div>
+  <!-- Footer -->
+  <app-footer [theme]="footerTheme()"></app-footer>
+</div>

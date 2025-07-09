@@ -1,0 +1,101 @@
+<div class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+  <div class="flex-1 flex flex-col">
+    <div class="container mx-auto px-4 py-8 flex-1 flex flex-col">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2 transition-colors duration-200 tracking-tight">
+          Game-DLE
+        </h1>
+        <p class="text-lg text-gray-500 dark:text-gray-300 transition-colors duration-200">
+          Colección de juegos diarios inspirados en Wordle
+        </p>
+      </div>
+
+      <!-- Novedades -->
+      <div class="my-8 bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-200 dark:border-yellow-700 max-w-2xl mx-auto shadow">
+        <h3 class="font-bold mb-2 text-yellow-800 dark:text-yellow-200 flex items-center gap-2 text-lg">
+          <span>🆕</span> Novedades
+        </h3>
+        <ul class="text-sm text-yellow-800 dark:text-yellow-200 list-disc list-inside space-y-1">
+          <li><span class="font-bold">Colorle:</span> ¡Nuevo modo de colores disponible!</li>
+          <li><span class="font-bold">Modo oscuro:</span> Mejoras visuales y de accesibilidad.</li>
+          <li><span class="font-bold">Estadísticas:</span> Ahora puedes ver tu racha y victorias globales.</li>
+        </ul>
+      </div>
+
+      <!-- Juegos Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        @for (game of games; track game.id) {
+          <div
+            (click)="navigateToGame(game)"
+            class="relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
+          >
+            <!-- Fondo dinámico en hover -->
+            @if (game.name === 'One Piece DLE') {
+              <div
+                class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style="background-image: url('img/bg_zoro.png');"
+                loading="lazy"
+              ></div>
+            }
+            @if (game.name === 'LoL DLE') {
+              <div
+                class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style="background-image: url('img/bg_lol.jpeg');"
+                loading="lazy"
+              ></div>
+            }
+
+            <!-- Contenido de la tarjeta -->
+            <div class="relative z-10">
+              <div class="flex items-center mb-4">
+                <i [class]="game.icon + ' text-2xl text-blue-500 dark:text-blue-400 mr-3'" aria-hidden="true"></i>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
+                  {{ game.name }}
+                </h3>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200">{{ game.description }}</p>
+              <div class="flex items-center justify-between">
+                <span [class]="getGameStatusClass(game)" class="text-sm font-medium">
+                  {{ getGameStatusText(game) }}
+                </span>
+                <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
+                  <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
+                  <div>Victorias: {{ game.stats?.wins || 0 }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin contenido -->
+          </div>
+        }
+      </div>
+
+      <!-- Información y ayuda -->
+      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 text-center border border-blue-200 dark:border-blue-800 mb-4 max-w-2xl mx-auto shadow">
+        <h3 class="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2 transition-colors duration-200 flex items-center justify-center gap-2">
+          <span>❓</span> ¿Cómo funciona?
+        </h3>
+        <p class="text-blue-700 dark:text-blue-300 transition-colors duration-200 mb-2">
+          ¡Tienes desafíos diarios ilimitados! Los juegos se actualizan a las 00:00 y puedes jugar una vez por día en cada uno. ¡Intenta mantener tu racha de victorias!
+        </p>
+        <details class="mt-2">
+          <summary class="cursor-pointer text-blue-600 dark:text-blue-300 font-semibold">Ver reglas y tips</summary>
+          <ul class="text-left text-blue-800 dark:text-blue-200 mt-2 list-disc list-inside text-sm space-y-1">
+            <li>Las pistas de color te ayudarán a acercarte a la respuesta.</li>
+            <li>¡Vuelve cada día para mantener tu racha!</li>
+            <li>Puedes jugar en modo claro u oscuro.</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Contacto -->
+      <div class="mt-6 text-center">
+        <a href="mailto:tobiasmoreno.tm.21@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center justify-center gap-2">
+          <span>✉️</span> ¿Tienes sugerencias? ¡Contáctanos!
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <app-footer [theme]="'default'"></app-footer>
+</div>
