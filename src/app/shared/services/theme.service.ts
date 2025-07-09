@@ -8,7 +8,7 @@ export type ColorMode = 'light' | 'dark';
   providedIn: 'root'
 })
 export class ThemeService {
-  private footerTheme = signal<FooterTheme>('onepiece');
+  private footerTheme = signal<FooterTheme>('default');
   private headerTheme = signal<HeaderTheme>('default');
   private colorMode = signal<ColorMode>('light');
 
