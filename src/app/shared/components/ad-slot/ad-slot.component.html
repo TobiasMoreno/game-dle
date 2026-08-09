@@ -1,0 +1,19 @@
+@if (showDevelopmentPreview()) {
+  <aside class="ad-shell ad-shell--preview" aria-label="Vista previa de publicidad">
+    <span>Publicidad</span>
+    <strong>{{ hasConfiguredSlot() ? 'Unidad preparada' : 'Falta configurar el ID del slot' }}</strong>
+    <small>{{ placement() }}</small>
+  </aside>
+} @else if (hasConfiguredSlot()) {
+  <aside class="ad-shell" aria-label="Publicidad">
+    <span>Publicidad</span>
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      [attr.data-ad-client]="publisherId"
+      [attr.data-ad-slot]="slot()"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+  </aside>
+}

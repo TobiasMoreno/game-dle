@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.ad-shell {
+  width: 100%;
+  max-width: 970px;
+  min-height: 90px;
+  margin-inline: auto;
+  overflow: hidden;
+  color: #6b7280;
+  background: transparent;
+  text-align: center;
+}
+
+.ad-shell > span {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ad-shell--preview {
+  display: grid;
+  min-height: 90px;
+  place-content: center;
+  gap: 0.2rem;
+  border: 1px dashed #9ca3af;
+  border-radius: 0.5rem;
+  background: rgba(107, 114, 128, 0.06);
+}
+
+.ad-shell--preview > span {
+  margin: 0;
+}
+
+.ad-shell--preview strong {
+  color: #4b5563;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.ad-shell--preview small {
+  font-size: 0.68rem;
+}
+
+:host-context(.dark) .ad-shell {
+  color: #a8a29e;
+}
+
+:host-context(.dark) .ad-shell--preview {
+  border-color: #57534e;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+:host-context(.dark) .ad-shell--preview strong {
+  color: #d6d3d1;
+}

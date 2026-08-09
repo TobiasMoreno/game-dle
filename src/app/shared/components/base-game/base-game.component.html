@@ -312,6 +312,14 @@
       } }
     </div>
     }
+
+    @if (!fitViewport()) {
+      <app-ad-slot
+        class="mt-8"
+        [slot]="adSlots.gameFooter"
+        placement="game-footer"
+      />
+    }
   </div>
   <!-- Footer -->
   @if (!hideFooter()) {

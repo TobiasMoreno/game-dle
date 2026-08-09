@@ -5,6 +5,8 @@ import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
 import { ThemeService } from '../../services/theme.service';
 import { FooterComponent } from '../footer/footer.component';
+import { AdSlotComponent } from '../ad-slot/ad-slot.component';
+import { ADSENSE_CONFIG } from '../../config/adsense.config';
 
 /**
  * Componente base para todos los juegos
@@ -12,11 +14,12 @@ import { FooterComponent } from '../footer/footer.component';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [FooterComponent],
+  imports: [FooterComponent, AdSlotComponent],
   templateUrl: './base-game.component.html',
   styles: []
 })
 export class BaseGameComponent {
+  readonly adSlots = ADSENSE_CONFIG.slots;
   // Inputs para personalización temática
   customBackground = input<string>('');
   customHeaderBg = input<string>('');

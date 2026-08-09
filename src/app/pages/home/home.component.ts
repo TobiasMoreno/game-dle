@@ -4,14 +4,17 @@ import { GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
+import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent],
+  imports: [FooterComponent, AdSlotComponent],
   templateUrl: './home.component.html',
   styles: [],
 })
 export class HomeComponent {
+  readonly adSlots = ADSENSE_CONFIG.slots;
   games: GameState[] = [];
   router = inject(Router);
   gameManager = inject(GameManagerService);
