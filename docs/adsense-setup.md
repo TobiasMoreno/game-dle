@@ -2,23 +2,23 @@
 
 El publisher global de `game-dle` es `ca-pub-9225896761341125`. El script de AdSense y la meta de verificación están en `src/index.html`; el inventario autorizado está publicado mediante `public/ads.txt`.
 
-## Unidades pendientes
+## Unidades configuradas
 
-Crear en AdSense dos unidades **Display responsive**:
+Las dos unidades **Display responsive** están configuradas en `src/app/shared/config/adsense.config.ts`:
 
-1. `game-dle-home`
-2. `game-dle-game-footer`
+1. `game-dle-home`: `1844562103`
+2. `game-dle-game-footer`: `6525063208`
 
-Copiar únicamente el valor numérico de `data-ad-slot` de cada unidad en `src/app/shared/config/adsense.config.ts`:
+La configuración resultante es:
 
 ```ts
 slots: {
-  home: 'ID_NUMERICO_DE_HOME',
-  gameFooter: 'ID_NUMERICO_DE_GAME_FOOTER',
+  home: '1844562103',
+  gameFooter: '6525063208',
 }
 ```
 
-No usar el publisher ID como slot. Mientras los valores estén vacíos, desarrollo muestra una maqueta identificada y producción no realiza solicitudes de anuncios.
+Desarrollo muestra una maqueta identificada y no solicita anuncios reales. El build de producción inicializa cada unidad una sola vez.
 
 ## Ubicaciones
 

@@ -1,8 +1,8 @@
 export const ADSENSE_CONFIG = {
   publisherId: 'ca-pub-9225896761341125',
   slots: {
-    home: '',
-    gameFooter: '',
+    home: '1844562103',
+    gameFooter: '6525063208',
   },
 } as const;
 
