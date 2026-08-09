@@ -5,9 +5,15 @@
   --studio-amber: #f59e0b;
   --studio-paper: #fef3c7;
   display: block;
+  height: 100%;
+  min-height: 0;
 }
 
 .musicdle-studio {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
   color: var(--studio-paper);
   font-family: "Avenir Next", "Segoe UI", sans-serif;
 }
@@ -125,9 +131,11 @@
 
 .game-grid {
   display: grid;
+  flex: 1;
   grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: start;
+  min-height: 0;
 }
 
 .listening-deck,
@@ -244,6 +252,7 @@
 
 .result-stage {
   display: grid;
+  flex: 1;
   grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
@@ -312,26 +321,7 @@
 
 @keyframes studio-spin { to { transform: rotate(360deg); } }
 
-@media (max-width: 900px) {
-  .game-grid,
-  .result-stage { grid-template-columns: 1fr; }
-  .answer-console { margin-top: 0.5rem; }
-}
-
-@media (max-width: 640px) {
-  .studio-header { align-items: stretch; flex-direction: column; gap: 1.25rem; }
-  .studio-header h2 { font-size: 2.8rem; }
-  .attempt-meter { gap: 0.2rem; }
-  .meter-step { min-height: 2.65rem; padding: 0.4rem; justify-content: center; }
-  .meter-step span { display: none; }
-  .deck-labels { align-items: flex-start; flex-direction: column; gap: 0.3rem; }
-  .console-heading span { display: none; }
-  .result-actions { flex-direction: column; }
-  .share-button, .next-button { width: 100%; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .vinyl-loader { animation: none; }
   .play-button { transition: none; }
 }
-

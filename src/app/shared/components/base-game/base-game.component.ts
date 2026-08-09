@@ -26,8 +26,10 @@ export class BaseGameComponent {
   customButtonTextColor = input<string>('');
   customAccentColor = input<string>('');
   hideHeader = input<boolean>(false);
+  hideFooter = input<boolean>(false);
   hideStats = input<boolean>(false);
   hideDailyState = input<boolean>(false);
+  fitViewport = input<boolean>(false);
   footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle'>('default');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();

@@ -5,8 +5,8 @@
 .player-frame {
   position: relative;
   width: 100%;
-  min-height: 220px;
-  aspect-ratio: 16 / 9;
+  height: clamp(130px, 24vh, 220px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid rgba(251, 191, 36, 0.35);
   border-radius: 1.25rem;
@@ -143,6 +143,10 @@
 }
 
 @media (max-width: 480px) {
+  .player-frame {
+    height: clamp(90px, 16vh, 130px);
+  }
+
   .audio-surface {
     grid-template-columns: 4.5rem minmax(0, 1fr);
     gap: 1rem;
@@ -151,5 +155,34 @@
 
   .audio-surface__disc {
     width: 4.5rem;
+  }
+}
+
+@media (max-height: 650px) {
+  .player-frame {
+    height: clamp(72px, 16vh, 105px);
+  }
+
+  .audio-surface {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .audio-surface__disc {
+    width: 3.5rem;
+  }
+
+  .audio-surface__copy strong {
+    font-size: 1.25rem;
+  }
+
+  .audio-wave {
+    height: 1.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .audio-wave i:nth-child(n) {
+    max-height: 1.25rem;
   }
 }

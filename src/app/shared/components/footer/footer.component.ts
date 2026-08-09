@@ -8,6 +8,7 @@ import { Component, input } from '@angular/core';
 })
 export class FooterComponent {
   theme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle'>('default');
+  compact = input<boolean>(false);
   year = new Date().getFullYear();
 
   getFooterClasses(): string {

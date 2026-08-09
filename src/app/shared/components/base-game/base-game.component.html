@@ -1,8 +1,15 @@
 <div
-  class="min-h-screen flex flex-col"
+  class="flex flex-col"
+  [class.min-h-screen]="!fitViewport()"
+  [class.h-full]="fitViewport()"
+  [class.min-h-0]="fitViewport()"
   [style.background]="customBackground() || 'rgb(243 244 246)'"
 >
-  <div class="container mx-auto px-4 py-8 flex-1">
+  <div
+    [class]="fitViewport()
+      ? 'container mx-auto p-3 flex-1 min-h-0 flex flex-col'
+      : 'container mx-auto px-4 py-8 flex-1'"
+  >
     <!-- Header -->
     @if (!hideHeader()) {
     <div
@@ -107,7 +114,9 @@
 
     <!-- Contenido del juego -->
     <div
-      class="rounded-lg shadow-md p-6"
+      [class]="fitViewport()
+        ? 'rounded-lg shadow-md p-4 flex-1 min-h-0'
+        : 'rounded-lg shadow-md p-6'"
       [style.background]="customCardBg() || 'white'"
       [style.color]="customTextColor() || 'inherit'"
     >
@@ -305,5 +314,7 @@
     }
   </div>
   <!-- Footer -->
-  <app-footer [theme]="footerTheme()"></app-footer>
+  @if (!hideFooter()) {
+    <app-footer [theme]="footerTheme()" [compact]="fitViewport()"></app-footer>
+  }
 </div>
