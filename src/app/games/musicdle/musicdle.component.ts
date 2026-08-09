@@ -41,6 +41,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
   readonly maxAttempts = MUSICDLE_MAX_ATTEMPTS;
   readonly secondsPerAttempt = MUSICDLE_SECONDS_PER_ATTEMPT;
+  readonly playbackStartSeconds = 0;
   readonly attemptDurations = Array.from(
     { length: MUSICDLE_MAX_ATTEMPTS },
     (_, index) => (index + 1) * MUSICDLE_SECONDS_PER_ATTEMPT
@@ -351,7 +352,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
   private prepareRevealedVideo(): void {
     if (!this.targetSong) return;
-    const url = `https://www.youtube.com/embed/${this.targetSong.youtubeVideoId}?rel=0&start=${this.targetSong.startSeconds}`;
+    const url = `https://www.youtube.com/embed/${this.targetSong.youtubeVideoId}?rel=0&start=${this.playbackStartSeconds}`;
     this.revealedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 

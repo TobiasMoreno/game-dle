@@ -70,7 +70,7 @@
 
             <app-musicdle-youtube-player
               [videoId]="targetSong.youtubeVideoId"
-              [startSeconds]="targetSong.startSeconds"
+              [startSeconds]="playbackStartSeconds"
               [unlockedSeconds]="round.unlockedSeconds"
               (readyChange)="playerReady = $event"
               (playbackChange)="isPlaying = $event"
