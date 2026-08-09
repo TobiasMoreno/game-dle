@@ -254,18 +254,23 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       : null;
 
     if (storedRound?.version === 2 && storedSong) {
-      this.round = storedRound;
-      this.targetSong = storedSong;
       const nextFilter = storedRound.status === 'active'
         ? storedRound.filter
         : this.musicStorage.getFilter() ?? storedRound.filter;
       const matchingOption = this.filterOptions.find(
         (option) => option.key === this.getFilterKey(nextFilter)
       );
-      this.selectedFilter = matchingOption ?? storedRound.filter;
-      this.selectedFilterKey = this.getFilterKey(this.selectedFilter);
-      if (storedRound.status !== 'active') this.prepareRevealedVideo();
-      return;
+
+      if (storedRound.status === 'active' && !matchingOption) {
+        this.musicStorage.clearRound();
+      } else {
+        this.round = storedRound;
+        this.targetSong = storedSong;
+        this.selectedFilter = matchingOption ?? this.filterOptions[0];
+        this.selectedFilterKey = this.getFilterKey(this.selectedFilter);
+        if (storedRound.status !== 'active') this.prepareRevealedVideo();
+        return;
+      }
     }
 
     const savedFilter = this.musicStorage.getFilter();

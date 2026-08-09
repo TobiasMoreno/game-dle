@@ -15,6 +15,7 @@ describe('MusicdleEngineService', () => {
     title: 'Canción secreta',
     artist: 'Artista secreto',
     aliases: [],
+    collection: 'Rock nacional',
     genres: ['Pop'],
     decade: 2020,
     language: 'Español',

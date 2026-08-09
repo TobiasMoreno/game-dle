@@ -1,4 +1,4 @@
-export type MusicdleFilterKind = 'all' | 'genre' | 'decade' | 'language';
+export type MusicdleFilterKind = 'all' | 'collection' | 'genre' | 'decade' | 'language';
 export type MusicdleRoundStatus = 'active' | 'won' | 'lost';
 export type MusicdleAttemptKind = 'guess' | 'pass';
 
@@ -7,6 +7,7 @@ export interface MusicdleSong {
   title: string;
   artist: string;
   aliases: string[];
+  collection: string;
   genres: string[];
   decade: number;
   language: string;

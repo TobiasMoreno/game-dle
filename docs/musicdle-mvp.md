@@ -16,7 +16,7 @@ MusicDLE es un modo musical original de `game-dle`, pensado para jugar rondas co
 
 ## Selección y persistencia
 
-El usuario puede jugar con todo el catálogo o filtrar por género, década o idioma. La canción se elige al azar dentro del filtro activo.
+El usuario puede jugar con todo el catálogo o elegir una colección. La canción se elige al azar dentro del filtro activo. Las primeras colecciones son `Rock nacional` y `Trap argentino`; género, década e idioma se conservan como metadatos y no generan opciones en el selector.
 
 Las canciones jugadas y los videos reportados como no disponibles entran en una lista de espera individual de 24 horas en `localStorage`. Una vez vencido ese tiempo vuelven automáticamente al conjunto elegible. Si todo el conjunto filtrado está en espera, la interfaz informa que no hay canciones disponibles para ese filtro.
 
@@ -32,6 +32,7 @@ El archivo fuente es `public/musicdle-songs.json`. Cada entrada tiene este esque
   "title": "Título",
   "artist": "Artista",
   "aliases": ["Otra forma de buscarla"],
+  "collection": "Rock nacional",
   "genres": ["Pop"],
   "decade": 2020,
   "language": "Español",
@@ -49,7 +50,7 @@ Para sumar canciones:
 4. Incorporar aliases útiles sin crear respuestas duplicadas.
 5. Ejecutar `npm run validate:musicdle` antes de publicar.
 
-El catálogo inicial contiene 60 canciones en español e inglés. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
+El catálogo contiene 110 canciones en español: 65 de `Rock nacional` y 45 de `Trap argentino`. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
 
 ## Restricciones conocidas
 

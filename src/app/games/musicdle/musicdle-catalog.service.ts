@@ -22,36 +22,23 @@ export class MusicdleCatalogService {
   }
 
   buildFilterOptions(songs: MusicdleSong[]): MusicdleFilterOption[] {
-    const genres = this.unique(songs.flatMap((song) => song.genres));
-    const decades = this.unique(songs.map((song) => String(song.decade)))
-      .sort((a, b) => Number(a) - Number(b));
-    const languages = this.unique(songs.map((song) => song.language));
+    const collections = this.unique(songs.map((song) => song.collection));
 
     return [
       { key: 'all:*', kind: 'all', value: '*', label: 'Todas las canciones' },
-      ...genres.map((genre) => ({
-        key: `genre:${genre}`,
-        kind: 'genre' as const,
-        value: genre,
-        label: `Género · ${genre}`,
-      })),
-      ...decades.map((decade) => ({
-        key: `decade:${decade}`,
-        kind: 'decade' as const,
-        value: decade,
-        label: `Década · ${decade}s`,
-      })),
-      ...languages.map((language) => ({
-        key: `language:${language}`,
-        kind: 'language' as const,
-        value: language,
-        label: `Idioma · ${language}`,
+      ...collections.map((collection) => ({
+        key: `collection:${collection}`,
+        kind: 'collection' as const,
+        value: collection,
+        label: collection,
       })),
     ];
   }
 
   filterSongs(songs: MusicdleSong[], filter: MusicdleFilter): MusicdleSong[] {
     switch (filter.kind) {
+      case 'collection':
+        return songs.filter((song) => song.collection === filter.value);
       case 'genre':
         return songs.filter((song) => song.genres.includes(filter.value));
       case 'decade':
@@ -107,10 +94,10 @@ export class MusicdleCatalogService {
       song.id &&
       song.title &&
       song.artist &&
+      song.collection &&
       /^[\w-]{11}$/.test(song.youtubeVideoId) &&
       Number.isFinite(song.startSeconds) &&
       song.startSeconds >= 0
     );
   }
 }
-

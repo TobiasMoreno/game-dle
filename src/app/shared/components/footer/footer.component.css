@@ -3,6 +3,24 @@ footer {
   margin-top: auto;
 }
 
+footer.musicdle-footer {
+  border-top: 1px solid rgba(245, 158, 11, 0.48);
+  background:
+    radial-gradient(circle at 50% 0, rgba(245, 158, 11, 0.16), transparent 48%),
+    linear-gradient(115deg, #0c0a09 0%, #292016 48%, #0c0a09 100%);
+  box-shadow:
+    0 -18px 50px rgba(120, 53, 15, 0.18),
+    inset 0 1px 0 rgba(254, 243, 199, 0.05);
+}
+
+footer.musicdle-footer a {
+  color: #fde68a;
+}
+
+footer.musicdle-footer a:hover {
+  color: #fbbf24;
+}
+
 footer::before {
   content: '';
   position: absolute;
@@ -36,6 +54,13 @@ footer.bg-gradient-to-r.from-blue-900.to-indigo-900::before {
 /* LoLdle theme shimmer */
 footer.bg-gradient-to-r.from-blue-900.to-purple-900::before {
   background: linear-gradient(90deg, transparent, #c89b3c, #f0e6d2, #c89b3c, transparent);
+}
+
+/* MusicDLE theme shimmer */
+footer.musicdle-footer::before {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 4%, #92400e, #f59e0b, #fde68a, #f59e0b, #92400e, transparent 96%);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.32);
 }
 
 /* Default theme shimmer - light mode */
@@ -90,6 +115,12 @@ footer.bg-gradient-to-r.from-blue-900.to-indigo-900 a::after {
 /* LoLdle theme underline */
 footer.bg-gradient-to-r.from-blue-900.to-purple-900 a::after {
   background: #c89b3c;
+}
+
+/* MusicDLE theme underline */
+footer.musicdle-footer a::after {
+  background: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
 }
 
 /* Default theme underline - light mode */

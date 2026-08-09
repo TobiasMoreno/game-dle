@@ -13,7 +13,7 @@ if (!Array.isArray(songs) || songs.length === 0) {
 for (const [index, song] of songs.entries()) {
   const location = `Canción ${index + 1}`;
 
-  for (const field of ['id', 'title', 'artist', 'language', 'youtubeVideoId']) {
+  for (const field of ['id', 'title', 'artist', 'collection', 'language', 'youtubeVideoId']) {
     if (typeof song[field] !== 'string' || !song[field].trim()) {
       errors.push(`${location}: falta ${field}.`);
     }
@@ -48,6 +48,11 @@ if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  const languages = [...new Set(songs.map((song) => song.language))].join(', ');
-  console.log(`Catálogo MusicDLE válido: ${songs.length} canciones (${languages}).`);
+  const collections = [...new Set(songs.map((song) => song.collection))]
+    .map((collection) => {
+      const count = songs.filter((song) => song.collection === collection).length;
+      return `${collection}: ${count}`;
+    })
+    .join(', ');
+  console.log(`Catálogo MusicDLE válido: ${songs.length} canciones (${collections}).`);
 }
