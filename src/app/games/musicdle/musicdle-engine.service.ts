@@ -7,14 +7,14 @@ import {
 } from './musicdle.models';
 
 export const MUSICDLE_MAX_ATTEMPTS = 6;
-export const MUSICDLE_SECONDS_PER_ATTEMPT = 5;
-export const MUSICDLE_MAX_SECONDS = 30;
+export const MUSICDLE_SECONDS_PER_ATTEMPT = 2;
+export const MUSICDLE_MAX_SECONDS = 12;
 
 @Injectable({ providedIn: 'root' })
 export class MusicdleEngineService {
   createRound(songId: string, filter: MusicdleFilter, now = Date.now()): MusicdleRoundState {
     return {
-      version: 1,
+      version: 2,
       roundId: `${now}-${songId}`,
       songId,
       filter,
@@ -97,4 +97,3 @@ export class MusicdleEngineService {
     };
   }
 }
-

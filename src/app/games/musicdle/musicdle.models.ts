@@ -31,7 +31,7 @@ export interface MusicdleAttempt {
 }
 
 export interface MusicdleRoundState {
-  version: 1;
+  version: 2;
   roundId: string;
   songId: string;
   filter: MusicdleFilter;
@@ -51,4 +51,3 @@ export interface MusicdleCooldownEntry {
 export interface MusicdleFilterOption extends MusicdleFilter {
   key: string;
 }
-

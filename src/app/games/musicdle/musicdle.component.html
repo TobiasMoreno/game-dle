@@ -48,10 +48,10 @@
       </div>
     } @else if (round && targetSong) {
       <div class="attempt-meter" aria-label="Progreso de intentos">
-        @for (_ of [5, 10, 15, 20, 25, 30]; track $index) {
+        @for (seconds of attemptDurations; track seconds) {
           <div class="meter-step" [class]="'meter-step--' + segmentState($index)">
             <span>{{ $index + 1 }}</span>
-            <strong>{{ ($index + 1) * 5 }}s</strong>
+            <strong>{{ seconds }}s</strong>
           </div>
         }
       </div>
@@ -104,7 +104,7 @@
             />
 
             <button type="button" class="pass-button" (click)="passAttempt()">
-              Pasar intento <span>+5s</span>
+              Pasar intento <span>+{{ secondsPerAttempt }}s</span>
             </button>
 
             @if (errorMessage) {

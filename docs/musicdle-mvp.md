@@ -6,8 +6,8 @@ MusicDLE es un modo musical original de `game-dle`, pensado para jugar rondas co
 
 - Ruta: `/games/musicdle`.
 - Rondas ilimitadas, sin niveles.
-- Cada ronda empieza con 5 segundos y permite hasta 6 intentos.
-- Una respuesta incorrecta o pasar consume un intento y suma 5 segundos, hasta un máximo de 30.
+- Cada ronda empieza con 2 segundos y permite hasta 6 intentos.
+- Una respuesta incorrecta o pasar consume un intento y suma 2 segundos, hasta un máximo de 12.
 - Volver a reproducir el fragmento desbloqueado no consume intentos.
 - La respuesta se elige mediante autocompletado; busca por título, artista y aliases.
 - Al ganar o perder se revela la canción y se habilita el video completo de YouTube.
@@ -45,7 +45,7 @@ Para sumar canciones:
 
 1. Usar un ID estable y único.
 2. Confirmar que el video permite reproducción embebida.
-3. Elegir manualmente un `startSeconds` reconocible y verificar el recorte de 5 a 30 segundos.
+3. Elegir manualmente un `startSeconds` reconocible y verificar el recorte progresivo de 2 a 12 segundos.
 4. Incorporar aliases útiles sin crear respuestas duplicadas.
 5. Ejecutar `npm run validate:musicdle` antes de publicar.
 

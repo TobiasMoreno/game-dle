@@ -33,25 +33,25 @@ describe('MusicdleEngineService', () => {
     service = new MusicdleEngineService();
   });
 
-  it('empieza con 5 segundos y seis intentos disponibles', () => {
+  it('empieza con 2 segundos y seis intentos disponibles', () => {
     const round = service.createRound(target.id, filter, 100);
 
-    expect(round.unlockedSeconds).toBe(5);
+    expect(round.unlockedSeconds).toBe(2);
     expect(round.attempts).toEqual([]);
     expect(round.status).toBe('active');
   });
 
-  it('agrega cinco segundos después de una respuesta incorrecta', () => {
+  it('agrega dos segundos después de una respuesta incorrecta', () => {
     const round = service.createRound(target.id, filter, 100);
     const updated = service.submitGuess(round, wrong, target, 200);
 
     expect(updated.attempts.length).toBe(1);
     expect(updated.attempts[0].correct).toBeFalse();
-    expect(updated.unlockedSeconds).toBe(10);
+    expect(updated.unlockedSeconds).toBe(4);
     expect(updated.status).toBe('active');
   });
 
-  it('pierde después de seis pases y nunca desbloquea más de 30 segundos', () => {
+  it('pierde después de seis pases y nunca desbloquea más de 12 segundos', () => {
     let round = service.createRound(target.id, filter, 100);
 
     for (let attempt = 0; attempt < 6; attempt += 1) {
@@ -59,7 +59,7 @@ describe('MusicdleEngineService', () => {
     }
 
     expect(round.attempts.length).toBe(6);
-    expect(round.unlockedSeconds).toBe(30);
+    expect(round.unlockedSeconds).toBe(12);
     expect(round.status).toBe('lost');
   });
 

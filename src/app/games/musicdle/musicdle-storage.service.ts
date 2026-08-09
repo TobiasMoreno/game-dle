@@ -9,12 +9,15 @@ const COOLDOWN_DURATION_MS = 24 * 60 * 60 * 1000;
 
 @Injectable({ providedIn: 'root' })
 export class MusicdleStorageService {
-  private readonly roundKey = 'game-dle-musicdle-round-v1';
+  private readonly roundKey = 'game-dle-musicdle-round-v2';
+  private readonly legacyRoundKey = 'game-dle-musicdle-round-v1';
   private readonly cooldownKey = 'game-dle-musicdle-cooldown-v1';
   private readonly filterKey = 'game-dle-musicdle-filter-v1';
 
   getRound(): MusicdleRoundState | null {
-    return this.read<MusicdleRoundState>(this.roundKey);
+    const round = this.read<MusicdleRoundState>(this.roundKey);
+    if (!round) this.remove(this.legacyRoundKey);
+    return round;
   }
 
   saveRound(round: MusicdleRoundState): void {
@@ -84,4 +87,3 @@ export class MusicdleStorageService {
     }
   }
 }
-

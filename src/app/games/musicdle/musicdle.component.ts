@@ -11,6 +11,7 @@ import {
 import { MusicdleCatalogService } from './musicdle-catalog.service';
 import {
   MUSICDLE_MAX_ATTEMPTS,
+  MUSICDLE_SECONDS_PER_ATTEMPT,
   MusicdleEngineService,
 } from './musicdle-engine.service';
 import {
@@ -38,6 +39,11 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
   private youtubePlayer?: MusicdleYoutubePlayerComponent;
 
   readonly maxAttempts = MUSICDLE_MAX_ATTEMPTS;
+  readonly secondsPerAttempt = MUSICDLE_SECONDS_PER_ATTEMPT;
+  readonly attemptDurations = Array.from(
+    { length: MUSICDLE_MAX_ATTEMPTS },
+    (_, index) => (index + 1) * MUSICDLE_SECONDS_PER_ATTEMPT
+  );
   readonly musicInputTheme: GuessInputTheme = {
     inputBg: 'rgba(28, 25, 23, 0.96)',
     inputBorder: 'border-amber-500/60',
@@ -247,7 +253,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       ? this.songs.find((song) => song.id === storedRound.songId)
       : null;
 
-    if (storedRound?.version === 1 && storedSong) {
+    if (storedRound?.version === 2 && storedSong) {
       this.round = storedRound;
       this.targetSong = storedSong;
       const nextFilter = storedRound.status === 'active'

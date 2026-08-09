@@ -94,7 +94,7 @@ export class GameManagerService {
     {
       id: 'musicdle',
       name: 'MusicDLE',
-      description: 'Reconoce canciones en fragmentos de hasta 30 segundos',
+      description: 'Reconoce canciones en fragmentos de hasta 12 segundos',
       route: '/games/musicdle',
       icon: 'fas fa-headphones',
       mode: 'unlimited'
