@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
-export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle';
-export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle';
+export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle';
+export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle';
 export type ColorMode = 'light' | 'dark';
 
 @Injectable({
@@ -55,4 +55,4 @@ export class ThemeService {
       document.documentElement.classList.remove('dark');
     }
   }
-} 
+}

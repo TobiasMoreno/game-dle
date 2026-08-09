@@ -41,6 +41,8 @@ export class LayoutComponent {
         return 'bg-gradient-to-r from-blue-900 to-indigo-900 border-blue-500';
       case 'loldle':
         return 'bg-gradient-to-r from-blue-900 to-purple-900 border-blue-500';
+      case 'musicdle':
+        return 'bg-stone-950 border-amber-500';
       default:
         return 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700';
     }
@@ -58,6 +60,8 @@ export class LayoutComponent {
         return 'text-blue-100';
       case 'loldle':
         return 'text-blue-100';
+      case 'musicdle':
+        return 'text-amber-100';
       default:
         return 'text-gray-900 dark:text-white';
     }
@@ -75,6 +79,8 @@ export class LayoutComponent {
         return 'text-blue-200 hover:text-indigo-300';
       case 'loldle':
         return 'text-blue-200 hover:text-purple-300';
+      case 'musicdle':
+        return 'text-amber-200 hover:text-amber-400';
       default:
         return 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -92,6 +98,8 @@ export class LayoutComponent {
         return 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-200';
       case 'loldle':
         return 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-200';
+      case 'musicdle':
+        return 'bg-stone-800 hover:bg-stone-700 text-amber-200';
       default:
         return 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
     }

@@ -1,0 +1,168 @@
+<app-base-game
+  [customBackground]="'radial-gradient(circle at 14% 10%, rgba(245, 158, 11, .14), transparent 28%), #0c0a09'"
+  [customHeaderBg]="'rgba(12, 10, 9, .92)'"
+  [customCardBg]="'rgba(28, 25, 23, .92)'"
+  [customTextColor]="'#fef3c7'"
+  [customButtonBg]="'#f59e0b'"
+  [customButtonTextColor]="'#1c1917'"
+  [customAccentColor]="'#f59e0b'"
+  [hideStats]="true"
+  [hideDailyState]="true"
+  [footerTheme]="'musicdle'"
+>
+  <div class="musicdle-studio">
+    <header class="studio-header">
+      <div>
+        <p class="studio-kicker">Modo continuo · sin límite de rondas</p>
+        <h2>Reconoce la señal.</h2>
+      </div>
+      <label class="filter-control">
+        <span>Colección</span>
+        <select
+          [(ngModel)]="selectedFilterKey"
+          (ngModelChange)="onFilterChange($event)"
+          aria-label="Seleccionar categoría musical"
+        >
+          @for (option of filterOptions; track option.key) {
+            <option [value]="option.key">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+    </header>
+
+    @if (message) {
+      <div class="notice" role="status">{{ message }}</div>
+    }
+
+    @if (isLoading) {
+      <div class="loading-state" aria-live="polite">
+        <span class="vinyl-loader" aria-hidden="true"></span>
+        <p>Ordenando el catálogo…</p>
+      </div>
+    } @else if (errorMessage && !round) {
+      <div class="empty-state" role="alert">
+        <span>Sin señal</span>
+        <p>{{ errorMessage }}</p>
+      </div>
+    } @else if (round && targetSong) {
+      <div class="attempt-meter" aria-label="Progreso de intentos">
+        @for (_ of [5, 10, 15, 20, 25, 30]; track $index) {
+          <div class="meter-step" [class]="'meter-step--' + segmentState($index)">
+            <span>{{ $index + 1 }}</span>
+            <strong>{{ ($index + 1) * 5 }}s</strong>
+          </div>
+        }
+      </div>
+
+      @if (isRoundActive) {
+        <div class="game-grid">
+          <section class="listening-deck">
+            <div class="deck-labels">
+              <span>Intento {{ attemptNumber }}/{{ maxAttempts }}</span>
+              <span>{{ round.unlockedSeconds }} segundos disponibles</span>
+            </div>
+
+            <app-musicdle-youtube-player
+              [videoId]="targetSong.youtubeVideoId"
+              [startSeconds]="targetSong.startSeconds"
+              [unlockedSeconds]="round.unlockedSeconds"
+              (readyChange)="playerReady = $event"
+              (playbackChange)="isPlaying = $event"
+              (videoUnavailable)="onVideoUnavailable()"
+              (apiUnavailable)="onYoutubeApiUnavailable()"
+            />
+
+            <button
+              type="button"
+              class="play-button"
+              [disabled]="!playerReady || isPlaying"
+              (click)="playSegment()"
+            >
+              <span class="play-button__icon" aria-hidden="true">{{ isPlaying ? '◼' : '▶' }}</span>
+              <span>{{ isPlaying ? 'Reproduciendo fragmento' : 'Escuchar desde el inicio' }}</span>
+              <strong>{{ round.unlockedSeconds }}s</strong>
+            </button>
+          </section>
+
+          <section class="answer-console">
+            <div class="console-heading">
+              <p>Tu respuesta</p>
+              <span>Busca por canción, artista o alias</span>
+            </div>
+
+            <app-guess-input
+              [placeholder]="'Escribe una canción o artista…'"
+              [disabled]="!playerReady"
+              [suggestions]="suggestions"
+              [value]="currentGuess"
+              [theme]="musicInputTheme"
+              (valueChange)="onGuessInputChange($event)"
+              (selectSuggestion)="onSelectSuggestion($event)"
+              (submit)="submitGuess()"
+            />
+
+            <button type="button" class="pass-button" (click)="passAttempt()">
+              Pasar intento <span>+5s</span>
+            </button>
+
+            @if (errorMessage) {
+              <p class="form-error" role="alert">{{ errorMessage }}</p>
+            }
+
+            <div class="attempt-list">
+              <h3>Historial de la ronda</h3>
+              @if (round.attempts.length === 0) {
+                <p class="attempt-list__empty">Todavía no enviaste respuestas.</p>
+              }
+              @for (attempt of round.attempts; track attempt.createdAt; let index = $index) {
+                <div class="attempt-row" [class.attempt-row--correct]="attempt.correct">
+                  <span class="attempt-row__number">0{{ index + 1 }}</span>
+                  <span class="attempt-row__mark">{{ attemptIcon(attempt.kind, attempt.correct) }}</span>
+                  <span class="attempt-row__label">{{ attempt.label }}</span>
+                  <span class="attempt-row__time">{{ attempt.listenedSeconds }}s</span>
+                </div>
+              }
+            </div>
+          </section>
+        </div>
+      } @else {
+        <section class="result-stage" [class.result-stage--won]="round.status === 'won'">
+          <div class="result-copy">
+            <p class="studio-kicker">Ronda terminada</p>
+            <h2>{{ round.status === 'won' ? 'Frecuencia encontrada.' : 'La señal se escapó.' }}</h2>
+            <div class="song-reveal">
+              <span>La canción era</span>
+              <strong>{{ targetSong.title }}</strong>
+              <p>{{ targetSong.artist }}</p>
+            </div>
+            <p class="result-summary">
+              {{ round.attempts.length }}/{{ maxAttempts }} intentos · {{ round.unlockedSeconds }} segundos
+            </p>
+            <div class="result-actions">
+              <button type="button" class="share-button" (click)="shareResult()">
+                Compartir resultado
+              </button>
+              <button type="button" class="next-button" (click)="nextRound()">
+                Siguiente canción <span>→</span>
+              </button>
+            </div>
+            @if (shareMessage) {
+              <p class="share-message" role="status">{{ shareMessage }}</p>
+            }
+          </div>
+
+          <div class="revealed-player">
+            @if (revealedVideoUrl) {
+              <iframe
+                [src]="revealedVideoUrl"
+                title="Video de la canción revelada"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            }
+          </div>
+        </section>
+      }
+    }
+  </div>
+</app-base-game>

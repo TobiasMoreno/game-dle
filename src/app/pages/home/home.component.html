@@ -7,7 +7,7 @@
           Game-DLE
         </h1>
         <p class="text-lg text-gray-500 dark:text-gray-300 transition-colors duration-200">
-          Colección de juegos diarios inspirados en Wordle
+          Desafíos diarios y partidas ilimitadas para poner a prueba lo que sabes
         </p>
       </div>
 
@@ -46,6 +46,12 @@
                   loading="lazy"
                 ></div>
               }
+              @if (game.id === 'musicdle') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 20% 20%, rgba(245, 158, 11, .35), transparent 42%), repeating-linear-gradient(90deg, rgba(245, 158, 11, .08) 0 2px, transparent 2px 14px), #0c0a09;"
+                ></div>
+              }
 
               <!-- Contenido de la tarjeta -->
               <div class="relative z-10">
@@ -60,10 +66,17 @@
                   <span [class]="getGameStatusClass(game)" class="text-sm font-medium">
                     {{ getGameStatusText(game) }}
                   </span>
-                  <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
-                    <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
-                    <div>Victorias: {{ game.stats?.wins || 0 }}</div>
-                  </div>
+                  @if (game.mode === 'unlimited') {
+                    <div class="text-xs text-amber-600 dark:text-amber-300 transition-colors duration-200">
+                      <div>Hasta 30 segundos</div>
+                      <div>6 intentos</div>
+                    </div>
+                  } @else {
+                    <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
+                      <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
+                      <div>Victorias: {{ game.stats?.wins || 0 }}</div>
+                    </div>
+                  }
                 </div>
               </div>
               <!-- Fin contenido -->
@@ -82,7 +95,7 @@
           <span>❓</span> ¿Cómo funciona?
         </h3>
         <p class="text-blue-700 dark:text-blue-300 transition-colors duration-200 mb-2">
-          ¡Tienes desafíos diarios ilimitados! Los juegos se actualizan cada vez que ingresas a la página. ¡Intenta mantener tu racha de victorias!
+          Elige un desafío diario o juega tantas rondas como quieras en nuestros modos ilimitados.
         </p>
         <details class="mt-2">
           <summary class="cursor-pointer text-blue-600 dark:text-blue-300 font-semibold">Ver reglas y tips</summary>

@@ -1,0 +1,32 @@
+<div class="player-frame" [class.player-frame--failed]="loadFailed">
+  <div class="player-host" aria-hidden="true">
+    <div #playerHost></div>
+  </div>
+
+  <div class="audio-surface" aria-label="Reproductor en modo solo audio">
+    <div class="audio-surface__disc" aria-hidden="true">
+      <span></span>
+    </div>
+    <div class="audio-surface__copy">
+      <span>Señal oculta</span>
+      <strong>Solo audio</strong>
+        <div class="audio-wave" aria-hidden="true">
+          @for (bar of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track bar) {
+            <i></i>
+          }
+        </div>
+    </div>
+  </div>
+
+  @if (!isReady && !loadFailed) {
+    <div class="player-loading" aria-live="polite">
+      <span class="loading-disc" aria-hidden="true"></span>
+      <span>Preparando video…</span>
+    </div>
+  }
+  @if (loadFailed) {
+    <div class="player-loading player-loading--error" role="alert">
+      No pudimos preparar el reproductor.
+    </div>
+  }
+</div>

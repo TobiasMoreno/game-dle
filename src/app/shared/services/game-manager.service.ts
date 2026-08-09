@@ -22,6 +22,7 @@ export class GameManagerService {
       description: 'Adivina la palabra en 6 intentos',
       route: '/games/wordle',
       icon: 'fas fa-font',
+      mode: 'daily',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -36,6 +37,7 @@ export class GameManagerService {
       description: 'Adivina el personaje de One Piece',
       route: '/games/onepiecedle',
       icon: 'fas fa-skull-crossbones',
+      mode: 'daily',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -50,6 +52,7 @@ export class GameManagerService {
       description: 'Adivina el campeón de League of Legends',
       route: '/games/loldle',
       icon: 'fas fa-solid fa-l',
+      mode: 'daily',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -64,6 +67,7 @@ export class GameManagerService {
       description: 'Adivina el número en 6 intentos',
       route: '/games/numberle',
       icon: 'fas fa-hashtag',
+      mode: 'daily',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -78,6 +82,7 @@ export class GameManagerService {
       description: 'Adivina el color en 6 intentos',
       route: '/games/colorle',
       icon: 'fas fa-palette',
+      mode: 'daily',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -85,6 +90,14 @@ export class GameManagerService {
         bestStreak: 0,
         guessDistribution: [0, 0, 0, 0, 0, 0]
       }
+    },
+    {
+      id: 'musicdle',
+      name: 'MusicDLE',
+      description: 'Reconoce canciones en fragmentos de hasta 30 segundos',
+      route: '/games/musicdle',
+      icon: 'fas fa-headphones',
+      mode: 'unlimited'
     }
   ];
 
@@ -239,4 +252,4 @@ export class GameManagerService {
     this.storageService.clearAllData();
     this.initializeGames();
   }
-} 
+}

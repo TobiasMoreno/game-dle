@@ -28,7 +28,7 @@ export class BaseGameComponent {
   hideHeader = input<boolean>(false);
   hideStats = input<boolean>(false);
   hideDailyState = input<boolean>(false);
-  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle'>('default');
+  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle'>('default');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();
@@ -207,7 +207,7 @@ export class BaseGameComponent {
    */
   private setFooterTheme(): void {
     const gameId = this.getGameIdSafely();
-    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' = 'default';
+    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle' = 'default';
     switch (gameId) {
       case 'onepiecedle':
         theme = 'onepiece';
@@ -223,6 +223,9 @@ export class BaseGameComponent {
         break;
       case 'loldle':
         theme = 'loldle';
+        break;
+      case 'musicdle':
+        theme = 'musicdle';
         break;
       default:
         theme = 'default';
@@ -257,4 +260,4 @@ export class BaseGameComponent {
     //}
     //return this.gameStorage.getPersonalStats(gameIdValue);
   }
-} 
+}

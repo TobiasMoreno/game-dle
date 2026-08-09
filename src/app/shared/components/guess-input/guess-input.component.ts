@@ -12,8 +12,10 @@ import {
 import { FormsModule } from '@angular/forms';
 
 export interface GuessSuggestion {
+  id?: string | number;
   nombre: string;
   img_url?: string;
+  searchText?: string;
 }
 
 export interface GuessInputTheme {
@@ -86,6 +88,9 @@ export class GuessInputComponent implements OnInit, OnChanges {
       this.inputValue = this.value();
       this.filterSuggestions();
     }
+    if (changes['suggestions'] && !changes['suggestions'].firstChange) {
+      this.filterSuggestions();
+    }
   }
 
   onInput(event: Event) {
@@ -120,7 +125,9 @@ export class GuessInputComponent implements OnInit, OnChanges {
       return;
     }
     this.filteredSuggestions = this.suggestions()
-      .filter((s: GuessSuggestion) => s.nombre.toLowerCase().includes(val))
+      .filter((s: GuessSuggestion) =>
+        (s.searchText || s.nombre).toLowerCase().includes(val)
+      )
       .slice(0, 10);
   }
 

@@ -46,6 +46,8 @@ export class SidebarComponent implements OnInit {
         return 'bg-gradient-to-b from-blue-900 to-indigo-900 border-blue-500';
       case 'loldle':
         return 'bg-gradient-to-b from-blue-900 to-purple-900 border-blue-500';
+      case 'musicdle':
+        return 'bg-stone-950 border-amber-500';
       default:
         return 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700';
     }
@@ -63,6 +65,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-100';
       case 'loldle':
         return 'text-blue-100';
+      case 'musicdle':
+        return 'text-amber-100';
       default:
         return 'text-gray-900 dark:text-white';
     }
@@ -80,6 +84,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
+      case 'musicdle':
+        return 'text-amber-300';
       default:
         return 'text-blue-600 dark:text-blue-400';
     }
@@ -97,6 +103,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200 hover:text-indigo-300';
       case 'loldle':
         return 'text-blue-200 hover:text-purple-300';
+      case 'musicdle':
+        return 'text-amber-200 hover:text-amber-400';
       default:
         return 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -114,6 +122,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-100 hover:bg-blue-800/50 hover:text-indigo-200';
       case 'loldle':
         return 'text-blue-100 hover:bg-blue-800/50 hover:text-purple-200';
+      case 'musicdle':
+        return 'text-stone-200 hover:bg-amber-500/10 hover:text-amber-200';
       default:
         return 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -131,6 +141,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-300';
       case 'loldle':
         return 'text-blue-300';
+      case 'musicdle':
+        return 'text-amber-400';
       default:
         return 'text-blue-500 dark:text-blue-400';
     }
@@ -148,6 +160,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
+      case 'musicdle':
+        return 'text-amber-300';
       default:
         return 'text-gray-600 dark:text-gray-400';
     }
@@ -165,6 +179,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
+      case 'musicdle':
+        return 'text-stone-300';
       default:
         return 'text-gray-600 dark:text-gray-400';
     }
@@ -182,6 +198,8 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-300';
       case 'loldle':
         return 'text-blue-300';
+      case 'musicdle':
+        return 'text-stone-400';
       default:
         return 'text-gray-500 dark:text-gray-500';
     }
@@ -199,6 +217,10 @@ export class SidebarComponent implements OnInit {
    * Obtiene la clase CSS para el estado del juego
    */
   getGameStatusClass(game: GameState): string {
+    if (game.mode === 'unlimited') {
+      return 'text-amber-600 dark:text-amber-400';
+    }
+
     if (!game.dailyState) {
       return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
     }
@@ -214,6 +236,10 @@ export class SidebarComponent implements OnInit {
    * Obtiene el texto del estado del juego
    */
   getGameStatusText(game: GameState): string {
+    if (game.mode === 'unlimited') {
+      return '∞ rondas';
+    }
+
     if (!game.dailyState) {
       return 'Nuevo';
     }

@@ -12,6 +12,8 @@ export interface GameState {
   route: string;
   /** Icono del juego (clase CSS) */
   icon: string;
+  /** Modalidad de juego: desafío diario o rondas continuas */
+  mode?: 'daily' | 'unlimited';
   /** Fecha de la última jugada */
   lastPlayed?: string;
   /** Estado del juego del día actual */
@@ -77,4 +79,4 @@ export interface GameStats {
   bestStreak: number;
   /** Distribución de intentos (índice = intentos, valor = cantidad) */
   guessDistribution: number[];
-} 
+}

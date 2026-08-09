@@ -37,6 +37,10 @@ export class HomeComponent {
    * Obtiene la clase CSS para el estado del juego
    */
   getGameStatusClass(game: GameState): string {
+    if (game.mode === 'unlimited') {
+      return 'text-amber-600 dark:text-amber-400';
+    }
+
     if (!game.dailyState) {
       return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
     }
@@ -52,6 +56,10 @@ export class HomeComponent {
    * Obtiene el texto del estado del juego
    */
   getGameStatusText(game: GameState): string {
+    if (game.mode === 'unlimited') {
+      return 'Rondas ilimitadas';
+    }
+
     if (!game.dailyState) {
       return 'Nuevo juego disponible';
     }

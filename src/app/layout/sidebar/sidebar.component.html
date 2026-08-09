@@ -39,7 +39,7 @@
     <!-- Juegos Disponibles -->
     <div class="mb-6">
       <h2 class="text-sm font-semibold uppercase mb-2 transition-colors duration-200" [class]="getSectionTitleClasses()">
-        Juegos Diarios
+        Juegos
       </h2>
       <div class="space-y-1">
         @for (game of games; track game.id) {
@@ -97,7 +97,7 @@
 
     <!-- Información -->
     <div class="text-xs transition-colors duration-200" [class]="getInfoTextClasses()">
-      <p>Los juegos se actualizan diariamente a las 00:00</p>
+      <p>Los desafíos diarios se renuevan a las 00:00. MusicDLE no tiene límite de rondas.</p>
     </div>
   </div>
 </aside>
