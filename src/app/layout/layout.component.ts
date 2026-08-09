@@ -2,16 +2,19 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThemeService } from '../shared/services/theme.service';
+import { SupportDialogComponent } from '../shared/components/support-dialog/support-dialog.component';
+import { SupportDialogService } from '../shared/services/support-dialog.service';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, SupportDialogComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent {
   isSidebarOpen = false;
   private themeService = inject(ThemeService);
+  readonly supportDialog = inject(SupportDialogService);
 
   get colorMode() {
     return this.themeService.getColorMode();
@@ -42,7 +45,9 @@ export class LayoutComponent {
       case 'loldle':
         return 'bg-gradient-to-r from-blue-900 to-purple-900 border-blue-500';
       case 'musicdle':
-        return 'bg-stone-950 border-amber-500';
+        return this.colorMode === 'dark'
+          ? 'bg-stone-950 border-amber-500'
+          : 'bg-amber-50 border-amber-300';
       default:
         return 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700';
     }
@@ -61,7 +66,7 @@ export class LayoutComponent {
       case 'loldle':
         return 'text-blue-100';
       case 'musicdle':
-        return 'text-amber-100';
+        return this.colorMode === 'dark' ? 'text-amber-100' : 'text-amber-950';
       default:
         return 'text-gray-900 dark:text-white';
     }
@@ -80,7 +85,9 @@ export class LayoutComponent {
       case 'loldle':
         return 'text-blue-200 hover:text-purple-300';
       case 'musicdle':
-        return 'text-amber-200 hover:text-amber-400';
+        return this.colorMode === 'dark'
+          ? 'text-amber-200 hover:text-amber-400'
+          : 'text-amber-800 hover:text-amber-950';
       default:
         return 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -99,7 +106,9 @@ export class LayoutComponent {
       case 'loldle':
         return 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-200';
       case 'musicdle':
-        return 'bg-stone-800 hover:bg-stone-700 text-amber-200';
+        return this.colorMode === 'dark'
+          ? 'bg-stone-800 hover:bg-stone-700 text-amber-200'
+          : 'bg-amber-100 hover:bg-amber-200 text-amber-900';
       default:
         return 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
     }

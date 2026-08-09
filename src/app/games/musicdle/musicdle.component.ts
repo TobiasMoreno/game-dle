@@ -22,6 +22,7 @@ import {
 } from './musicdle.models';
 import { MusicdleStorageService } from './musicdle-storage.service';
 import { MusicdleYoutubePlayerComponent } from './musicdle-youtube-player.component';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-musicdle',
@@ -44,7 +45,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     { length: MUSICDLE_MAX_ATTEMPTS },
     (_, index) => (index + 1) * MUSICDLE_SECONDS_PER_ATTEMPT
   );
-  readonly musicInputTheme: GuessInputTheme = {
+  private readonly darkMusicInputTheme: GuessInputTheme = {
     inputBg: 'rgba(28, 25, 23, 0.96)',
     inputBorder: 'border-amber-500/60',
     inputText: 'text-amber-50',
@@ -55,6 +56,18 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     buttonBg: 'bg-amber-500',
     buttonText: 'text-stone-950',
     buttonHoverBg: 'hover:bg-amber-400',
+  };
+  private readonly lightMusicInputTheme: GuessInputTheme = {
+    inputBg: 'rgba(255, 251, 235, 0.98)',
+    inputBorder: 'border-amber-700/40',
+    inputText: 'text-stone-900',
+    inputPlaceholder: 'placeholder-stone-500',
+    dropdownBg: 'bg-amber-50',
+    dropdownBorder: 'border-amber-700/25',
+    dropdownItemHoverBg: 'hover:bg-amber-700/10',
+    buttonBg: 'bg-amber-700',
+    buttonText: 'text-amber-50',
+    buttonHoverBg: 'hover:bg-amber-800',
   };
 
   songs: MusicdleSong[] = [];
@@ -82,7 +95,16 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
   private readonly engine = inject(MusicdleEngineService);
   private readonly musicStorage = inject(MusicdleStorageService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly musicThemeService = inject(ThemeService);
   private readonly subscriptions = new Subscription();
+
+  get isDarkMode(): boolean {
+    return this.musicThemeService.getColorMode() === 'dark';
+  }
+
+  get musicInputTheme(): GuessInputTheme {
+    return this.isDarkMode ? this.darkMusicInputTheme : this.lightMusicInputTheme;
+  }
 
   ngOnInit(): void {
     this.setGameId('musicdle');

@@ -44,6 +44,18 @@
         </svg>
         @if (!compact()) { <span>Gmail</span> }
       </a>
+      <button
+        type="button"
+        class="inline-flex items-center gap-2 rounded-full border border-current bg-white/10 px-3 py-1.5 font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 motion-reduce:transition-none"
+        title="Apoyar GameDLE"
+        aria-haspopup="dialog"
+        (click)="supportDialog.open()"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25s-7.5-4.35-7.5-10.12A4.38 4.38 0 0 1 12 7.04a4.38 4.38 0 0 1 7.5 3.09c0 5.77-7.5 10.12-7.5 10.12Z"/>
+        </svg>
+        @if (!compact()) { <span>Apoyar GameDLE</span> }
+      </button>
     </div>
 
     <!-- Marca / Copyright -->

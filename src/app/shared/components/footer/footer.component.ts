@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { SupportDialogService } from '../../services/support-dialog.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,6 +8,7 @@ import { Component, input } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  readonly supportDialog = inject(SupportDialogService);
   theme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle'>('default');
   compact = input<boolean>(false);
   year = new Date().getFullYear();
