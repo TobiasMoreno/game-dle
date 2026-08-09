@@ -24,7 +24,7 @@ Desarrollo muestra una maqueta identificada y no solicita anuncios reales. El bu
 
 - Home: después del listado de juegos y antes de la ayuda.
 - Juegos diarios: al final de estadísticas y contenido, antes del footer.
-- MusicDLE: excluido durante el MVP porque su tablero ocupa el viewport completo y sus botones de reproducción, respuesta y siguiente canción no dejan una separación segura.
+- MusicDLE: debajo del tablero y antes del footer, con una reserva compacta para conservar el layout de viewport completo.
 
 Las unidades se inicializan una sola vez al entrar a una página. No se refrescan con intentos, respuestas o rondas.
 

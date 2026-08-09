@@ -313,13 +313,12 @@
     </div>
     }
 
-    @if (!fitViewport()) {
-      <app-ad-slot
-        class="mt-8"
-        [slot]="adSlots.gameFooter"
-        placement="game-footer"
-      />
-    }
+    <app-ad-slot
+      [class]="fitViewport() ? 'mt-3 shrink-0' : 'mt-8'"
+      [slot]="adSlots.gameFooter"
+      [compact]="fitViewport()"
+      [placement]="fitViewport() ? 'game-footer-compact' : 'game-footer'"
+    />
   </div>
   <!-- Footer -->
   @if (!hideFooter()) {

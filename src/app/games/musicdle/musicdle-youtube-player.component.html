@@ -10,12 +10,29 @@
     <div class="audio-surface__copy">
       <span>Señal oculta</span>
       <strong>Solo audio</strong>
-        <div class="audio-wave" aria-hidden="true">
-          @for (bar of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track bar) {
-            <i></i>
-          }
-        </div>
+      <div class="audio-wave" aria-hidden="true">
+        @for (bar of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track bar) {
+          <i></i>
+        }
+      </div>
     </div>
+
+    <label class="volume-control">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 9v6h4l5 4V5L8 9H4Zm11.5 3a3.5 3.5 0 0 0-1.5-2.87v5.74A3.5 3.5 0 0 0 15.5 12Zm0-7.05v2.06a6 6 0 0 1 0 9.98v2.06a8 8 0 0 0 0-14.1Z" />
+      </svg>
+      <span class="sr-only">Volumen del fragmento</span>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        [value]="volume"
+        [attr.aria-valuetext]="volume + '%'"
+        (input)="onVolumeInput($event)"
+      />
+      <output>{{ volume }}%</output>
+    </label>
   </div>
 
   @if (!isReady && !loadFailed) {

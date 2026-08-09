@@ -15,6 +15,7 @@ export interface MusicdleYoutubePlayer {
   loadVideoById(options: { videoId: string; startSeconds: number; endSeconds: number }): void;
   pauseVideo(): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
+  setVolume(volume: number): void;
   getCurrentTime(): number;
   destroy(): void;
 }
@@ -48,4 +49,3 @@ export class YoutubeIframeService {
     return this.apiPromise;
   }
 }
-

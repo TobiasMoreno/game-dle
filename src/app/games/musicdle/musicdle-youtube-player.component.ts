@@ -34,6 +34,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
 
   isReady = false;
   loadFailed = false;
+  volume = 100;
 
   private readonly youtubeApi = inject(YoutubeIframeService);
   private player: MusicdleYoutubePlayer | null = null;
@@ -58,6 +59,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
             onReady: () => {
               this.isReady = true;
               this.loadFailed = false;
+              this.player?.setVolume(this.volume);
               this.cueSegment();
               this.readyChange.emit(true);
             },
@@ -91,6 +93,12 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
       startSeconds: this.startSeconds(),
       endSeconds: this.segmentEnd,
     });
+  }
+
+  onVolumeInput(event: Event): void {
+    const nextVolume = Number((event.target as HTMLInputElement).value);
+    this.volume = Math.min(100, Math.max(0, nextVolume));
+    this.player?.setVolume(this.volume);
   }
 
   private get segmentEnd(): number {
