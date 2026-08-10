@@ -44,4 +44,22 @@ describe('MusicdleStorageService', () => {
     expect(storedEntries.length).toBe(1);
     expect(storedEntries[0].reason).toBe('unavailable');
   });
+
+  it('mantiene el volumen elegido entre instancias', () => {
+    expect(service.getVolume()).toBe(100);
+
+    service.saveVolume(15);
+    const restoredService = new MusicdleStorageService();
+
+    expect(restoredService.getVolume()).toBe(15);
+    expect(localStorage.getItem('game-dle-musicdle-volume-v1')).toBe('15');
+  });
+
+  it('limita el volumen persistido al rango permitido', () => {
+    service.saveVolume(125);
+    expect(service.getVolume()).toBe(100);
+
+    service.saveVolume(-10);
+    expect(service.getVolume()).toBe(0);
+  });
 });

@@ -14,6 +14,7 @@ import {
   MusicdleYoutubePlayer,
   YoutubeIframeService,
 } from './youtube-iframe.service';
+import { MusicdleStorageService } from './musicdle-storage.service';
 
 @Component({
   selector: 'app-musicdle-youtube-player',
@@ -32,9 +33,11 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
 
   @ViewChild('playerHost', { static: true }) playerHost!: ElementRef<HTMLElement>;
 
+  private readonly storage = inject(MusicdleStorageService);
+
   isReady = false;
   loadFailed = false;
-  volume = 100;
+  volume = this.storage.getVolume();
 
   private readonly youtubeApi = inject(YoutubeIframeService);
   private player: MusicdleYoutubePlayer | null = null;
@@ -99,6 +102,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
     const nextVolume = Number((event.target as HTMLInputElement).value);
     this.volume = Math.min(100, Math.max(0, nextVolume));
     this.player?.setVolume(this.volume);
+    this.storage.saveVolume(this.volume);
   }
 
   private get segmentEnd(): number {

@@ -6,6 +6,7 @@ import {
 } from './musicdle.models';
 
 const COOLDOWN_DURATION_MS = 24 * 60 * 60 * 1000;
+const DEFAULT_VOLUME = 100;
 
 @Injectable({ providedIn: 'root' })
 export class MusicdleStorageService {
@@ -13,6 +14,7 @@ export class MusicdleStorageService {
   private readonly legacyRoundKey = 'game-dle-musicdle-round-v1';
   private readonly cooldownKey = 'game-dle-musicdle-cooldown-v1';
   private readonly filterKey = 'game-dle-musicdle-filter-v1';
+  private readonly volumeKey = 'game-dle-musicdle-volume-v1';
 
   getRound(): MusicdleRoundState | null {
     const round = this.read<MusicdleRoundState>(this.roundKey);
@@ -34,6 +36,14 @@ export class MusicdleStorageService {
 
   saveFilter(filter: MusicdleFilter): void {
     this.write(this.filterKey, filter);
+  }
+
+  getVolume(): number {
+    return this.normalizeVolume(this.read<number>(this.volumeKey));
+  }
+
+  saveVolume(volume: number): void {
+    this.write(this.volumeKey, this.normalizeVolume(volume));
   }
 
   addCooldown(
@@ -85,5 +95,10 @@ export class MusicdleStorageService {
     } catch (error) {
       console.error(`No se pudo eliminar ${key}:`, error);
     }
+  }
+
+  private normalizeVolume(volume: unknown): number {
+    if (typeof volume !== 'number' || !Number.isFinite(volume)) return DEFAULT_VOLUME;
+    return Math.min(100, Math.max(0, volume));
   }
 }
