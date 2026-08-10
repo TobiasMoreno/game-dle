@@ -120,15 +120,14 @@ export class GuessInputComponent implements OnInit, OnChanges {
 
   filterSuggestions() {
     const val = this.inputValue.trim().toLowerCase();
-    if (!val) {
-      this.filteredSuggestions = this.suggestions().slice(0, 10);
+    if (val.length < 2) {
+      this.filteredSuggestions = [];
       return;
     }
     this.filteredSuggestions = this.suggestions()
       .filter((s: GuessSuggestion) =>
         (s.searchText || s.nombre).toLowerCase().includes(val)
-      )
-      .slice(0, 10);
+      );
   }
 
   onFocus() {
