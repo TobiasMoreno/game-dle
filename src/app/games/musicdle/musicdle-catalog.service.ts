@@ -53,11 +53,10 @@ export class MusicdleCatalogService {
   searchSongs(
     songs: MusicdleSong[],
     query: string,
-    excludedSongIds: Set<string>,
-    limit = 10
+    excludedSongIds: Set<string>
   ): MusicdleSong[] {
     const normalizedQuery = this.normalize(query);
-    if (!normalizedQuery) return [];
+    if (normalizedQuery.length < 2) return [];
 
     return songs
       .filter((song) => !excludedSongIds.has(song.id))
@@ -66,8 +65,7 @@ export class MusicdleCatalogService {
           .map((value) => this.normalize(value))
           .join(' ');
         return haystack.includes(normalizedQuery);
-      })
-      .slice(0, limit);
+      });
   }
 
   pickRandomSong(songs: MusicdleSong[], excludedSongIds: Set<string>): MusicdleSong | null {

@@ -44,6 +44,31 @@ describe('MusicdleCatalogService', () => {
 
     expect(filtered.map((song) => song.id)).toEqual(['trap-1']);
   });
+
+  it('no busca canciones hasta ingresar al menos dos caracteres', () => {
+    expect(service.searchSongs(songs, 'r', new Set())).toEqual([]);
+  });
+
+  it('devuelve todas las coincidencias sin ocultar resultados posteriores', () => {
+    const firstMatches = Array.from({ length: 11 }, (_, index) => ({
+      ...createSong(`tema-${index}`, 'Cuarteto'),
+      title: `Tema de prueba ${index}`,
+    }));
+    const desaktaSong = {
+      ...createSong('desakta2-la-diabla', 'Cuarteto'),
+      title: 'La diabla',
+      artist: 'DesaKTa2',
+    };
+
+    const results = service.searchSongs(
+      [...firstMatches, desaktaSong],
+      'de',
+      new Set()
+    );
+
+    expect(results.length).toBe(12);
+    expect(results).toContain(desaktaSong);
+  });
 });
 
 function createSong(id: string, collection: string): MusicdleSong {
