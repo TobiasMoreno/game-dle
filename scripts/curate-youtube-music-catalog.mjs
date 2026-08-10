@@ -10,7 +10,12 @@ const limit = limitArg ? Number(limitArg.split('=')[1]) : Number.POSITIVE_INFINI
 const idArg = process.argv.find((arg) => arg.startsWith('--id='));
 const requestedId = idArg?.slice('--id='.length);
 const songs = JSON.parse(await readFile(catalogUrl, 'utf8'));
-const selectedSongs = (requestedId ? songs.filter((song) => song.id === requestedId) : songs).slice(0, limit);
+const pendingOnly = args.has('--pending');
+const selectedSongs = (requestedId
+  ? songs.filter((song) => song.id === requestedId)
+  : pendingOnly
+    ? songs.filter((song) => song.youtubeVideoId.startsWith('pending'))
+    : songs).slice(0, limit);
 const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36';
 const songFilter = decodeURIComponent('EgWKAQIIAWoKEAkQBRAKEAMQBA%3D%3D');
 
@@ -63,6 +68,14 @@ const manualSelections = {
   'ysy-a-flechazo-en-el-centro': 'qGD2fpTfM70',
   'bhavi-ysy-a-tuuyo': '-1C4IPmnB70',
   'neo-pistea-tumbando-el-club-remix': 'jGhYpX0xjNw',
+  'duki-khea-hitboy': 'JOUugt8mGTU',
+  'duki-myke-towers-nueva-era': 'D5SJbQYQoWI',
+  'ysy-a-full-ice': 'YE3C-5ltpb8',
+  'ysy-a-buenos-aires-es-amor': 'DatAcj4zFTY',
+  'latin-mafia-humbe-patadas-de-ahogado': 'fszdwQhFih8',
+  'khea-ayer-me-llamo-mi-ex': 'aSPLjhySCCw',
+  'neo-pistea-tony-the-kid': '85VsqfOCxD4',
+  'bhavi-besame': 'EmbJpVZSqAw',
 };
 
 const homeResponse = await fetch('https://music.youtube.com/?hl=es&gl=AR', {
