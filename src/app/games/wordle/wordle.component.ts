@@ -45,22 +45,23 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
   private wordMap: Map<string, WordleWord> = new Map();
 
   private http = inject(HttpClient);
+  private wordleGameManager = inject(GameManagerService);
 
   constructor() {
     super();
   }
 
   ngOnInit(): void {
-    this.setGameId(this.gameId);
-    // Cargar palabras desde el JSON
-    this.loadWordsFromJson();
-    
     // Escuchar cuando se carga el progreso
     this.progressLoaded.subscribe((progress) => {
       if (progress) {
         this.restoreProgress(progress);
       }
     });
+
+    this.setGameId(this.gameId);
+    // Cargar palabras desde el JSON
+    this.loadWordsFromJson();
   }
 
   /**
@@ -75,10 +76,10 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
           console.error('Error al cargar palabras desde JSON:', error);
           // Fallback a palabras básicas si falla la carga
           const fallbackWords: WordleWord[] = [
-            { id: 1, word: 'CASA', length: 5 },
+            { id: 1, word: 'NUBES', length: 5 },
             { id: 2, word: 'PERRO', length: 5 },
-            { id: 3, word: 'GATO', length: 5 },
-            { id: 4, word: 'MESA', length: 5 },
+            { id: 3, word: 'TIGRE', length: 5 },
+            { id: 4, word: 'LLAVE', length: 5 },
             { id: 5, word: 'SILLA', length: 5 }
           ];
           this.wordList = fallbackWords;
@@ -92,6 +93,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
         if (words && words.length > 0) {
           this.wordList = words;
           this.buildWordMap();
+          this.resetInvalidSavedProgress();
           console.log(`Cargadas ${words.length} palabras desde JSON`);
         }
         this.isLoading = false;
@@ -191,8 +193,29 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
    * Maneja el cambio en el input
    */
   onInputChange(event: any): void {
-    this.currentGuess = event.target.value.toUpperCase();
+    this.currentGuess = event.target.value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toUpperCase();
     this.errorMessage = '';
+  }
+
+  /**
+   * Descarta progresos creados con un diccionario anterior o incompleto.
+   */
+  private resetInvalidSavedProgress(): void {
+    if (!this.currentProgress) {
+      return;
+    }
+
+    if (!this.targetWord || !this.wordMap.has(this.targetWord)) {
+      this.clearProgress();
+      this.hasSavedProgress = false;
+      this.currentAttempt = 0;
+      this.gameWon = false;
+      this.board = [];
+      this.targetWord = '';
+    }
   }
 
   /**
@@ -215,14 +238,15 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     
     // Verificar si ganó
     if (this.currentGuess === this.targetWord) {
+      this.currentAttempt++;
       this.gameWon = true;
-      this.completeGame(true, this.currentAttempt + 1, { targetWord: this.targetWord });
+      this.finishGame(true);
     } else {
       this.currentAttempt++;
       
       // Verificar si perdió
       if (this.currentAttempt >= this.maxAttempts) {
-        this.completeGame(false, this.maxAttempts, { targetWord: this.targetWord });
+        this.finishGame(false);
       } else {
         // Guardar progreso después de cada intento
         this.saveCurrentProgress();
@@ -230,6 +254,24 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     }
 
     this.currentGuess = '';
+  }
+
+  private finishGame(won: boolean): void {
+    this.clearProgress();
+    this.completeGame(won, this.currentAttempt, { targetWord: this.targetWord });
+  }
+
+  playAgain(): void {
+    this.wordleGameManager.resetGameDailyState(this.gameId);
+    this.clearProgress();
+    this.dailyState = null;
+    this.currentAttempt = 0;
+    this.currentGuess = '';
+    this.gameWon = false;
+    this.hasSavedProgress = false;
+    this.targetWord = '';
+    this.board = [];
+    this.initializeGame();
   }
 
   /**
