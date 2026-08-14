@@ -1,0 +1,109 @@
+<div class="serpentile-page">
+  <main class="game-shell">
+    <header class="game-intro">
+      <div>
+        <p class="eyebrow">Desafío diario · {{ formattedDate }}</p>
+        <h1>Serpentile</h1>
+        <p class="intro-copy">La serpiente no se detiene. Girá los bloques con un clic y abrile camino hasta cada luciérnaga sin dejarla escapar del tablero.</p>
+      </div>
+      <div class="score-card" aria-live="polite">
+        <span>Puntaje</span><strong>{{ score }}</strong>
+        <small>{{ state.collected }}/{{ state.targetCount }} objetivos · {{ state.moves }} pasos</small>
+      </div>
+    </header>
+
+    <section class="play-layout">
+      <div class="board-panel">
+        <div class="board-toolbar">
+          <div><span class="status-dot" [class.paused]="state.status === 'paused'"></span>
+            @switch (state.status) {
+              @case ('running') { La serpiente está corriendo }
+              @case ('paused') { Recorrido en pausa }
+              @case ('won') { ¡Recorrido completado! }
+              @case ('lost') { La serpiente salió del dibujo }
+            }
+          </div>
+          <span>Girás cada bloque con un clic</span>
+        </div>
+
+        <div class="board-wrap">
+          <svg class="board" viewBox="0 0 720 620" role="img" aria-label="Tablero hexagonal interactivo">
+            <defs>
+              <radialGradient id="targetGlow">
+                <stop offset="0" stop-color="#fff7ad"/><stop offset=".35" stop-color="#ffd166"/><stop offset="1" stop-color="#ff8a5b"/>
+              </radialGradient>
+              <linearGradient id="snakeGradient" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#1f6f4b" stop-opacity="0"/>
+                <stop offset=".35" stop-color="#36b877"/>
+                <stop offset="1" stop-color="#a8ffd0"/>
+              </linearGradient>
+            </defs>
+            @for (cell of boardCells; track cell.key) {
+              @if (placementAt(cell); as placement) {
+                @if (tileById(placement.tileId); as tile) {
+                  <g [attr.transform]="'translate(' + cell.x + ' ' + cell.y + ')'">
+                    <g class="placed-tile" [class.trail]="isTrail(cell)" [class.route-in-use]="isActiveTile(placement)" (click)="rotateTile(placement, $event)">
+                      <polygon [attr.points]="hexPoints" class="tile-surface" />
+                      <g class="tile-routes" [attr.transform]="'rotate(' + placement.rotation * 60 + ')'">
+                        @for (path of tile.paths; track path.from) {
+                          <path [attr.d]="pathD(path)" class="tile-path tile-path-shadow" />
+                          <path
+                            [attr.d]="pathD(path)"
+                            class="tile-path"
+                            [class.route-active]="isActivePath(placement, path)"
+                            [class.route-muted]="isActiveTile(placement) && !isActivePath(placement, path)"
+                            [attr.stroke]="pathColor(path)"
+                          />
+                        }
+                      </g>
+                      <circle r="4" class="tile-pin" />
+                    </g>
+
+                    @if (isTarget(cell)) {
+                      <g class="target-marker" aria-label="Objetivo">
+                        <circle r="17" class="target-halo"/><circle r="8" fill="url(#targetGlow)"/><circle cx="-2" cy="-2" r="2" fill="#fff"/>
+                      </g>
+                    }
+                  </g>
+                }
+              }
+            }
+            <polyline class="snake-line-shadow" [attr.points]="snakeLinePoints" />
+            <polyline class="snake-line" [attr.points]="snakeLinePoints" />
+            <circle class="snake-head" [attr.cx]="displayHead.x" [attr.cy]="displayHead.y" r="9" />
+          </svg>
+        </div>
+
+        <div class="board-actions">
+          <button type="button" (click)="togglePause()" [disabled]="state.status === 'won' || state.status === 'lost'">
+            <i [class]="state.status === 'paused' ? 'fa-solid fa-play' : 'fa-solid fa-pause'" aria-hidden="true"></i>
+            {{ state.status === 'paused' ? 'Continuar' : 'Pausar' }}
+          </button>
+          <button type="button" (click)="restart()"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reiniciar</button>
+          @if (state.status === 'won' || state.status === 'lost') {
+            <button type="button" class="share-button" (click)="share()"><i class="fa-solid fa-arrow-up-from-bracket"></i> Compartir</button>
+          }
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <section class="rules-card">
+          <span class="card-number">01</span>
+          <div><h2>Prepará el camino</h2><p>Cada clic gira un bloque 60°. La serpiente sigue el cauce por el que entró.</p></div>
+        </section>
+        <section class="legend-card">
+          <div><span class="legend-dot snake"></span><strong>Serpiente</strong><small>se desliza sin detenerse</small></div>
+          <div><span class="legend-dot target"></span><strong>Luciérnaga</strong><small>aparece otra al recogerla</small></div>
+        </section>
+        <section class="progress-card">
+          <div class="progress-label"><span>Objetivos</span><strong>{{ state.collected }}/{{ state.targetCount }}</strong></div>
+          <div class="progress-track"><span [style.width.%]="progressPercent"></span></div>
+          @if (state.status === 'won') { <p class="result win">Dominaste el recorrido.</p> }
+          @if (state.status === 'lost') { <p class="result lost">El último cauce apuntaba fuera del dibujo.</p> }
+          @if (shareMessage) { <p class="share-message">{{ shareMessage }}</p> }
+        </section>
+      </aside>
+    </section>
+  </main>
+  <app-footer theme="serpentile" [compact]="true" />
+</div>

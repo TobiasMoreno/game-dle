@@ -14,6 +14,20 @@ footer.musicdle-footer {
     inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
+footer.serpentile-footer {
+  border-top-color: rgba(85, 230, 165, 0.25);
+  background: #091a12;
+  color: #d9eadf;
+}
+
+footer.serpentile-footer::before {
+  background: linear-gradient(90deg, transparent, #55e6a5, #ffd166, #ff6b5f, transparent);
+}
+
+footer.serpentile-footer a::after {
+  background: #55e6a5;
+}
+
 footer.musicdle-footer a {
   color: #78350f;
 }

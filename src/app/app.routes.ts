@@ -35,6 +35,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/musicdle/musicdle.component').then(m => m.MusicdleComponent)
   },
   {
+    path: 'games/serpentile',
+    loadComponent: () => import('./games/serpentile/serpentile.component').then(m => m.SerpentileComponent)
+  },
+  {
     path: '**',
     redirectTo: '/home'
   }

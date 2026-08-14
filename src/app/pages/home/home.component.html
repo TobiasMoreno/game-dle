@@ -52,6 +52,12 @@
                   style="background: radial-gradient(circle at 20% 20%, rgba(245, 158, 11, .35), transparent 42%), repeating-linear-gradient(90deg, rgba(245, 158, 11, .08) 0 2px, transparent 2px 14px), #0c0a09;"
                 ></div>
               }
+              @if (game.id === 'serpentile') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 25% 20%, rgba(85, 230, 165, .28), transparent 42%), repeating-linear-gradient(60deg, rgba(255, 209, 102, .08) 0 1px, transparent 1px 18px), #102b20;"
+                ></div>
+              }
 
               <!-- Contenido de la tarjeta -->
               <div class="relative z-10">
@@ -71,7 +77,7 @@
                       <div>Hasta 12 segundos</div>
                       <div>6 intentos</div>
                     </div>
-                  } @else {
+                  } @else if (!game.scoreBased) {
                     <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
                       <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
                       <div>Victorias: {{ game.stats?.wins || 0 }}</div>

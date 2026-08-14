@@ -14,6 +14,8 @@ export interface GameState {
   icon: string;
   /** Modalidad de juego: desafío diario o rondas continuas */
   mode?: 'daily' | 'unlimited';
+  /** Indica que el resultado diario se expresa como puntaje y no como victoria. */
+  scoreBased?: boolean;
   /** Fecha de la última jugada */
   lastPlayed?: string;
   /** Estado del juego del día actual */

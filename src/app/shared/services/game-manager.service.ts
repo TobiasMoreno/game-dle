@@ -98,6 +98,22 @@ export class GameManagerService {
       route: '/games/musicdle',
       icon: 'fas fa-headphones',
       mode: 'unlimited'
+    },
+    {
+      id: 'serpentile',
+      name: 'Serpentile',
+      description: 'Girá los bloques y guiá a la serpiente sin salir del tablero',
+      route: '/games/serpentile',
+      icon: 'fas fa-bezier-curve',
+      mode: 'daily',
+      scoreBased: true,
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: []
+      }
     }
   ];
 
@@ -191,6 +207,33 @@ export class GameManagerService {
     this.storageService.updateStats(gameId, stats);
 
     // Actualizar el observable
+    this.updateGameInList(gameId, { dailyState, stats });
+  }
+
+  /** Completa un desafío diario cuyo resultado principal es un puntaje. */
+  completeScoreGame(gameId: string, score: number, gameData?: any, date?: string): void {
+    const game = this.getGame(gameId);
+    if (!game) return;
+
+    const today = date ?? new Date().toISOString().split('T')[0];
+    const dailyState: DailyGameState = {
+      date: today,
+      completed: true,
+      gameData: { ...gameData, score }
+    };
+    const previousStats = game.stats ?? {
+      totalGames: 0,
+      wins: 0,
+      currentStreak: 0,
+      bestStreak: 0,
+      guessDistribution: []
+    };
+    const stats: GameStats = {
+      ...previousStats,
+      totalGames: previousStats.totalGames + 1
+    };
+
+    this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
     this.updateGameInList(gameId, { dailyState, stats });
   }
 

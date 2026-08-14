@@ -48,6 +48,10 @@ export class HomeComponent {
       return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
     }
 
+    if (game.scoreBased) {
+      return 'text-emerald-600 dark:text-emerald-400';
+    }
+
     if (game.dailyState.won) {
       return 'text-green-600 dark:text-green-400'; // Ganado
     } else {
@@ -65,6 +69,10 @@ export class HomeComponent {
 
     if (!game.dailyState) {
       return 'Nuevo juego disponible';
+    }
+
+    if (game.scoreBased) {
+      return `Puntaje de hoy: ${game.dailyState.gameData?.score ?? 0}`;
     }
 
     if (game.dailyState.won) {
