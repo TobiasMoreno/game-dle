@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
+import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { GameStorageService } from '../../shared/services/game-storage.service';
@@ -22,9 +23,9 @@ interface WordleWord {
 @Component({
   selector: 'app-wordle',
   standalone: true,
-  imports: [CommonModule, FormsModule, BaseGameComponent],
+  imports: [CommonModule, FormsModule, BaseGameComponent, BackHomeButtonComponent],
   templateUrl: './wordle.component.html',
-  styles: []
+  styleUrl: './wordle.component.css'
 })
 export class WordleComponent extends BaseGameComponent implements OnInit {
   readonly maxAttempts = 6;
@@ -279,19 +280,31 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
    */
   getCellClass(rowIndex: number, colIndex: number): string {
     if (rowIndex >= this.currentAttempt) {
-      return 'border-gray-300 bg-white';
+      return rowIndex === this.currentAttempt ? 'wordle-cell--active' : 'wordle-cell--empty';
     }
 
     const letter = this.board[rowIndex][colIndex];
     const targetLetter = this.targetWord[colIndex];
 
     if (letter === targetLetter) {
-      return 'border-green-500 bg-green-500 text-white';
+      return 'wordle-cell--correct';
     } else if (this.targetWord.includes(letter)) {
-      return 'border-yellow-500 bg-yellow-500 text-white';
+      return 'wordle-cell--present';
     } else {
-      return 'border-gray-500 bg-gray-500 text-white';
+      return 'wordle-cell--absent';
     }
+  }
+
+  getCellLetter(rowIndex: number, colIndex: number): string {
+    if (rowIndex === this.currentAttempt) {
+      return this.currentGuess[colIndex] || '';
+    }
+
+    return this.board[rowIndex]?.[colIndex] || '';
+  }
+
+  get attemptProgress(): number {
+    return (this.currentAttempt / this.maxAttempts) * 100;
   }
 
   /**

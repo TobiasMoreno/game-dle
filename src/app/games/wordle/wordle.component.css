@@ -1,0 +1,207 @@
+:host {
+  --ink: #17221d;
+  --paper: #f7f1e5;
+  --paper-deep: #e7decd;
+  --moss: #2f6f55;
+  --moss-dark: #214d3c;
+  --mustard: #d6a842;
+  --muted: #746f65;
+  display: block;
+}
+
+.wordle-page {
+  position: relative;
+  min-height: 38rem;
+  overflow: hidden;
+  border: 1px solid rgba(23, 34, 29, .15);
+  border-radius: .75rem;
+  padding: clamp(1.15rem, 3vw, 2.6rem);
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(47, 111, 85, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 111, 85, .035) 1px, transparent 1px),
+    var(--paper);
+  background-size: 24px 24px;
+  box-shadow: inset 0 0 70px rgba(91, 73, 46, .06);
+}
+
+.wordle-page::after {
+  content: '5 LETRAS · 6 INTENTOS';
+  position: absolute;
+  right: -2.7rem;
+  bottom: 3.1rem;
+  color: rgba(23, 34, 29, .09);
+  font: 900 .65rem/1 'Trebuchet MS', sans-serif;
+  letter-spacing: .28em;
+  transform: rotate(-90deg);
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 0 auto 1.6rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: .8rem;
+}
+
+.eyebrow {
+  margin: 0 0 .25rem;
+  color: var(--moss);
+  font: 900 .64rem/1 'Trebuchet MS', sans-serif;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.masthead h2 {
+  margin: 0;
+  font: 500 clamp(2.5rem, 7vw, 4.5rem)/.82 Georgia, serif;
+  letter-spacing: -.075em;
+}
+
+.masthead h2 span { color: var(--moss); font-style: italic; }
+
+.masthead-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edition {
+  display: grid;
+  justify-items: end;
+  gap: .2rem;
+  color: var(--muted);
+  font: 800 .64rem/1.2 'Trebuchet MS', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.edition strong { color: var(--ink); font-size: 1rem; }
+
+.game-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
+  max-width: 48rem;
+  margin: auto;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.board-wrap { display: grid; justify-items: center; gap: .65rem; }
+.board { display: grid; gap: .42rem; }
+.board-row { display: grid; grid-template-columns: repeat(5, 3.35rem); gap: .42rem; }
+
+.wordle-cell {
+  display: grid;
+  width: 3.35rem;
+  height: 3.35rem;
+  place-items: center;
+  border: 1px solid #bdb4a3;
+  color: var(--ink);
+  background: rgba(255, 252, 245, .72);
+  font: 900 1.5rem/1 'Trebuchet MS', sans-serif;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 rgba(23, 34, 29, .08);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.wordle-cell:not(:empty) { animation: letter-in 140ms ease-out both; }
+.wordle-cell--active { border-color: var(--moss); box-shadow: inset 0 0 0 1px var(--moss), 2px 2px 0 rgba(47, 111, 85, .12); }
+.wordle-cell--empty { background: rgba(231, 222, 205, .34); }
+.wordle-cell--correct { border-color: var(--moss-dark); color: #fffdf5; background: var(--moss); }
+.wordle-cell--present { border-color: #a77d1f; color: var(--ink); background: var(--mustard); }
+.wordle-cell--absent { border-color: #565b56; color: #fff; background: #656b65; }
+
+.legend { display: flex; gap: .85rem; color: var(--muted); font-size: .67rem; }
+.legend span { display: inline-flex; align-items: center; gap: .3rem; }
+.legend i { width: .58rem; height: .58rem; border-radius: 50%; background: #656b65; }
+.legend span:first-child i { background: var(--moss); }
+.legend span:nth-child(2) i { background: var(--mustard); }
+
+.play-panel { border-left: 1px solid #c7bdab; padding-left: clamp(1.2rem, 3vw, 2rem); }
+.play-panel h3 { margin: 0; font: 500 1.65rem/1.1 Georgia, serif; }
+.play-panel > p { margin: .55rem 0 1.25rem; color: var(--muted); font: italic .85rem/1.5 Georgia, serif; }
+
+.attempt-line { display: flex; justify-content: space-between; margin-bottom: .35rem; font-size: .65rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.progress-track { height: .32rem; margin-bottom: 1.25rem; overflow: hidden; background: var(--paper-deep); }
+.progress-track span { display: block; height: 100%; background: var(--moss); transition: width 280ms ease; }
+
+.guess-label { display: block; margin-bottom: .4rem; font-size: .64rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.guess-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  padding: .55rem .15rem;
+  color: var(--ink);
+  background: transparent;
+  outline: none;
+  font: 900 1.35rem/1 'Trebuchet MS', sans-serif;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+.guess-input::placeholder { color: #a9a193; font-weight: 500; letter-spacing: .08em; }
+.guess-input:focus { border-color: var(--moss); }
+
+.submit-button, .state-button {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid var(--ink);
+  padding: .8rem 1rem;
+  color: #fffdf5;
+  background: var(--ink);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 var(--mustard);
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+.submit-button:hover:not(:disabled), .state-button:hover { background: var(--moss-dark); transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--mustard); }
+.submit-button:disabled { cursor: not-allowed; opacity: .35; box-shadow: none; }
+
+.error-note { margin: .85rem 0 0; border-left: 3px solid #a43e32; padding-left: .65rem; color: #8d3027; font-size: .78rem; font-weight: 700; animation: shake 250ms ease; }
+
+.state-card {
+  display: grid;
+  max-width: 36rem;
+  min-height: 25rem;
+  margin: 1.5rem auto;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+}
+.state-mark { display: grid; width: 3.8rem; height: 3.8rem; place-items: center; margin-bottom: 1rem; border: 1px solid var(--ink); border-radius: 50%; color: var(--moss); font: 500 1.6rem Georgia, serif; box-shadow: 4px 4px 0 var(--mustard); }
+.state-card h3 { margin: 0; font: 500 clamp(2rem, 6vw, 3.6rem)/1 Georgia, serif; letter-spacing: -.04em; }
+.state-card p { max-width: 26rem; margin: .75rem 0 0; color: var(--muted); }
+.state-card strong { color: var(--moss-dark); }
+.state-button { width: auto; min-width: 12rem; margin-top: 1.4rem; }
+.loader { width: 2.5rem; height: 2.5rem; margin-bottom: 1rem; border: 2px solid var(--paper-deep); border-top-color: var(--moss); border-radius: 50%; animation: spin .8s linear infinite; }
+
+@keyframes letter-in { from { transform: scale(.82); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+
+@media (max-width: 700px) {
+  .wordle-page { min-height: 0; padding: 1rem .75rem 1.5rem; }
+  .wordle-page::after { display: none; }
+  .masthead { margin-bottom: 1.1rem; }
+  .masthead h2 { font-size: 2.7rem; }
+  .masthead-actions { gap: .55rem; }
+  .edition span { display: none; }
+  .edition { display: none; }
+  .game-layout { grid-template-columns: 1fr; gap: 1.2rem; }
+  .board-row { grid-template-columns: repeat(5, clamp(2.75rem, 14vw, 3.25rem)); }
+  .wordle-cell { width: clamp(2.75rem, 14vw, 3.25rem); height: clamp(2.75rem, 14vw, 3.25rem); }
+  .play-panel { width: min(22rem, 100%); margin: auto; border-top: 1px solid #c7bdab; border-left: 0; padding: 1rem 0 0; }
+  .play-panel > p { margin-bottom: .8rem; }
+  .progress-track { margin-bottom: .8rem; }
+  .state-card { min-height: 22rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

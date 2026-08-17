@@ -1,130 +1,118 @@
-<app-base-game 
+<app-base-game
   (gameCompleted)="onGameCompleted($event)"
-  [footerTheme]="'wordle'">
-  <!-- Mensaje si ya se jugó hoy -->
-  @if (isGamePlayedToday() && !isLoading && !gameWon && currentAttempt < maxAttempts) {
-  <div class="text-center py-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">
-      ¡Ya jugaste Wordle hoy!
-    </h2>
-    <p class="text-gray-600">Vuelve mañana para un nuevo desafío.</p>
-  </div>
-  }
-
-  <!-- Mensaje de progreso guardado -->
-  @if (hasSavedProgress && !isGamePlayedToday() && !isLoading) {
-  <div class="text-center py-8">
-    <h2 class="text-2xl font-bold text-blue-600 mb-4">
-      🎮 ¡Tienes un juego en progreso!
-    </h2>
-    <p class="text-gray-600 mb-4">
-      Tienes {{ currentAttempt }}/{{ maxAttempts }} intentos realizados.
-    </p>
-    <button
-      (click)="continueGame()"
-      class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-    >
-      Continuar juego
-    </button>
-  </div>
-  }
-
-  <!-- Indicador de carga -->
-  @if (isLoading) {
-  <div class="text-center py-8">
-    <div
-      class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"
-    ></div>
-    <p class="mt-2 text-gray-600">Cargando palabras...</p>
-  </div>
-  }
-
-  <!-- Juego activo -->
-  @if (!isGamePlayedToday() && !gameWon && currentAttempt < maxAttempts &&
-  !hasSavedProgress && !isLoading) {
-  <div class="space-y-6">
-    <!-- Instrucciones -->
-    <div class="text-center mb-6">
-      <h2 class="text-xl font-semibold mb-2">Adivina la palabra de 5 letras</h2>
-      <p class="text-gray-600">Tienes 6 intentos</p>
-    </div>
-
-    <!-- Tablero del juego -->
-    <div class="flex justify-center">
-      <div class="my-2">
-        @for (row of board; track $index; let rowIndex = $index) {
-        <div class="grid grid-cols-5">
-          @for (cell of row; track $index; let colIndex = $index) {
-          <div
-            class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center text-xl font-bold uppercase my-1"
-            [class]="getCellClass(rowIndex, colIndex)"
-          >
-            {{ cell }}
-          </div>
-          }
+  [footerTheme]="'wordle'"
+  [hideHeader]="true"
+  [hideDailyState]="true"
+  [hideStats]="true"
+  [customBackground]="'linear-gradient(135deg, #eee6d7 0%, #f8f4eb 48%, #e5ddce 100%)'"
+  [customCardBg]="'#eee6d7'">
+  <main class="wordle-page">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">El acertijo diario de Game-DLE</p>
+        <h2>Palabra<span>.</span></h2>
+      </div>
+      <div class="masthead-actions">
+        <div class="edition" aria-label="Edición del juego">
+          <span>Edición diaria</span>
+          <strong>#{{ currentAttempt < maxAttempts ? currentAttempt + 1 : maxAttempts }}</strong>
         </div>
-        }
+        <app-back-home-button
+          [background]="'#17221d'"
+          [textColor]="'#fffdf5'" />
       </div>
-    </div>
+    </header>
 
-    <!-- Input para la palabra -->
-    <div class="flex justify-center">
-      <div class="flex space-x-2">
-        <input
-          type="text"
-          [(ngModel)]="currentGuess"
-          (keyup.enter)="submitGuess()"
-          (input)="onInputChange($event)"
-          maxlength="5"
-          class="px-4 py-2 border-2 border-gray-300 rounded-lg text-center text-xl font-bold uppercase tracking-widest"
-          placeholder="Escribe aquí"
-          [disabled]="gameWon || currentAttempt >= maxAttempts"
-        />
-        <button
-          (click)="submitGuess()"
-          [disabled]="
-            currentGuess.length !== 5 ||
-            gameWon ||
-            currentAttempt >= maxAttempts
-          "
-          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
-        >
-          Enviar
-        </button>
-      </div>
-    </div>
+    @if (isLoading) {
+      <section class="state-card" aria-live="polite">
+        <div class="loader" aria-hidden="true"></div>
+        <h3>Preparando el reto</h3>
+        <p>Estamos eligiendo las cinco letras de hoy.</p>
+      </section>
+    } @else if (hasSavedProgress && !isGamePlayedToday()) {
+      <section class="state-card">
+        <div class="state-mark" aria-hidden="true">↗</div>
+        <p class="eyebrow">Partida en pausa</p>
+        <h3>Tu palabra te espera.</h3>
+        <p>Llevas <strong>{{ currentAttempt }} de {{ maxAttempts }}</strong> intentos. Retoma exactamente donde la dejaste.</p>
+        <button type="button" class="state-button" (click)="continueGame()">Continuar partida</button>
+      </section>
+    } @else if (gameWon || currentAttempt >= maxAttempts) {
+      <section class="state-card">
+        <div class="state-mark" aria-hidden="true">{{ gameWon ? '✓' : '×' }}</div>
+        <p class="eyebrow">{{ gameWon ? 'Caso resuelto' : 'Fin del recorrido' }}</p>
+        <h3>{{ gameWon ? 'Una deducción impecable.' : 'Mañana habrá revancha.' }}</h3>
+        <p>La palabra era <strong>{{ targetWord }}</strong>. Completaste la partida en {{ currentAttempt }} de {{ maxAttempts }} intentos.</p>
+        <button type="button" class="state-button" (click)="playAgain()">Jugar otra vez</button>
+      </section>
+    } @else if (isGamePlayedToday()) {
+      <section class="state-card">
+        <div class="state-mark" aria-hidden="true">24</div>
+        <p class="eyebrow">Desafío completado</p>
+        <h3>La próxima palabra llega mañana.</h3>
+        <p>Tu resultado de hoy ya quedó registrado. Vuelve para una nueva edición.</p>
+      </section>
+    } @else {
+      <section class="game-layout">
+        <div class="board-wrap">
+          <div class="board" aria-label="Tablero de Wordle">
+            @for (row of board; track $index; let rowIndex = $index) {
+              <div class="board-row" [attr.aria-label]="'Intento ' + (rowIndex + 1)">
+                @for (cell of row; track $index; let colIndex = $index) {
+                  <div class="wordle-cell" [class]="getCellClass(rowIndex, colIndex)">
+                    {{ getCellLetter(rowIndex, colIndex) }}
+                  </div>
+                }
+              </div>
+            }
+          </div>
+          <div class="legend" aria-label="Significado de los colores">
+            <span><i></i>Exacta</span>
+            <span><i></i>Desubicada</span>
+            <span><i></i>Ausente</span>
+          </div>
+        </div>
 
-    <!-- Mensaje de error -->
-    @if (errorMessage) {
-    <div class="text-center text-red-600">
-      {{ errorMessage }}
-    </div>
+        <aside class="play-panel">
+          <h3>Cinco letras.<br>Una palabra.</h3>
+          <p>Cada intento revela qué tan cerca estás de la solución.</p>
+
+          <div class="attempt-line">
+            <span>Progreso</span>
+            <span>{{ currentAttempt }} / {{ maxAttempts }}</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span [style.width.%]="attemptProgress"></span>
+          </div>
+
+          <label class="guess-label" for="wordle-guess">Tu próximo intento</label>
+          <input
+            id="wordle-guess"
+            class="guess-input"
+            type="text"
+            [(ngModel)]="currentGuess"
+            (keyup.enter)="submitGuess()"
+            (input)="onInputChange($event)"
+            maxlength="5"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            placeholder="PALABRA"
+            [disabled]="gameWon || currentAttempt >= maxAttempts"
+          />
+          <button
+            type="button"
+            class="submit-button"
+            (click)="submitGuess()"
+            [disabled]="currentGuess.length !== 5 || gameWon || currentAttempt >= maxAttempts">
+            Comprobar palabra
+          </button>
+
+          @if (errorMessage) {
+            <p class="error-note" role="alert">{{ errorMessage }}</p>
+          }
+        </aside>
+      </section>
     }
-  </div>
-  }
-
-  <!-- Resultado del juego -->
-  @if (gameWon || currentAttempt >= maxAttempts) {
-  <div class="text-center py-8">
-    <h2
-      class="text-2xl font-bold mb-4"
-      [class]="gameWon ? 'text-green-600' : 'text-red-600'"
-    >
-      {{ gameWon ? "¡Felicidades! ¡Ganaste!" : "¡Game Over!" }}
-    </h2>
-    <p class="text-gray-600 mb-4">
-      La palabra era:
-      <span class="font-bold text-blue-600">{{ targetWord }}</span>
-    </p>
-    <p class="text-gray-600">
-      Intentos: {{ currentAttempt }}/{{ maxAttempts }}
-    </p>
-    <button
-      (click)="playAgain()"
-      class="mt-5 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-    >
-      Jugar otra vez
-    </button>
-  </div>
-  }
+  </main>
 </app-base-game>
