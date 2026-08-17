@@ -30,6 +30,7 @@ export class AdSlotComponent implements AfterViewInit {
   slot = input.required<string>();
   placement = input<string>('display-responsive');
   compact = input<boolean>(false);
+  vertical = input<boolean>(false);
 
   readonly publisherId = ADSENSE_CONFIG.publisherId;
   readonly hasConfiguredSlot = computed(() => isAdsenseSlotConfigured(this.slot()));

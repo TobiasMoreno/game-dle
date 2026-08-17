@@ -2,6 +2,7 @@
   <aside
     class="ad-shell ad-shell--preview"
     [class.ad-shell--compact]="compact()"
+    [class.ad-shell--vertical]="vertical()"
     aria-label="Vista previa de publicidad"
   >
     <span>Publicidad</span>
@@ -12,6 +13,7 @@
   <aside
     class="ad-shell"
     [class.ad-shell--compact]="compact()"
+    [class.ad-shell--vertical]="vertical()"
     aria-label="Publicidad"
   >
     <span>Publicidad</span>
@@ -20,8 +22,8 @@
       style="display: block"
       [attr.data-ad-client]="publisherId"
       [attr.data-ad-slot]="slot()"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
+      [attr.data-ad-format]="vertical() ? 'vertical' : 'auto'"
+      [attr.data-full-width-responsive]="vertical() ? 'false' : 'true'"
     ></ins>
   </aside>
 }

@@ -18,6 +18,16 @@
   min-height: 50px;
 }
 
+.ad-shell--vertical {
+  width: 160px;
+  min-height: 600px;
+}
+
+.ad-shell--vertical .adsbygoogle {
+  width: 160px;
+  height: 600px;
+}
+
 .ad-shell > span {
   display: block;
   margin-bottom: 0.35rem;
@@ -38,6 +48,10 @@
 
 .ad-shell--preview.ad-shell--compact {
   min-height: 50px;
+}
+
+.ad-shell--preview.ad-shell--vertical {
+  min-height: 600px;
 }
 
 .ad-shell--preview > span {

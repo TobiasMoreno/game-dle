@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ThemeService } from '../../shared/services/theme.service';
+import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
+import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import {
   TUTTIFRUTTI_LETTERS,
   TuttiFruttiPlayer,
@@ -25,11 +26,11 @@ interface ScoreEntry extends PlayerEntry {
 
 @Component({
   selector: 'app-tuttifrutti',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AdSlotComponent],
   templateUrl: './tuttifrutti.component.html',
   styleUrl: './tuttifrutti.component.css',
 })
-export class TuttiFruttiComponent implements OnInit, OnDestroy {
+export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, OnDestroy {
   playerName = '';
   joinCode = '';
   roomCode = '';
@@ -58,7 +59,6 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
 
   private readonly roomService = inject(TuttiFruttiRoomService);
   private readonly route = inject(ActivatedRoute);
-  private readonly themeService = inject(ThemeService);
 
   get isHost(): boolean {
     return this.room?.hostId === this.userId;
@@ -155,8 +155,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.themeService.setHeaderTheme('default');
-    this.themeService.setFooterTheme('default');
+    this.setGameId('tuttifrutti');
     this.joinCode = this.route.snapshot.queryParamMap.get('room')?.toUpperCase() ?? '';
     const remembered = this.roomService.getRememberedSession();
     if (remembered) {
