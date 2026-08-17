@@ -33,15 +33,10 @@
             {{ game?.description }}
           </p>
         </div>
-        <button
-          (click)="goHome()"
-          class="px-4 py-2 rounded-lg transition-colors"
-          [style.background]="customButtonBg() || 'rgb(107 114 128)'"
-          [style.color]="customButtonTextColor() || 'white'"
-          [style.border]="customButtonBg() ? 'none' : 'none'"
-        >
-          Volver al Inicio
-        </button>
+        <app-back-home-button
+          [background]="customButtonBg() || 'rgb(107 114 128)'"
+          [textColor]="customButtonTextColor() || 'white'"
+        />
       </div>
     </div>
     }

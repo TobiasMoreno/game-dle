@@ -25,6 +25,8 @@ Desarrollo muestra una maqueta identificada y no solicita anuncios reales. El bu
 - Home: después del listado de juegos y antes de la ayuda.
 - Juegos diarios: al final de estadísticas y contenido, antes del footer.
 - MusicDLE: debajo del tablero y antes del footer, con una reserva compacta para conservar el layout de viewport completo.
+- Serpentile: debajo del tablero y antes del footer, integrado en su layout propio.
+- Tutti Frutti: en los laterales del área de juego, integrado en su layout propio.
 
 Las unidades se inicializan una sola vez al entrar a una página. No se refrescan con intentos, respuestas o rondas.
 

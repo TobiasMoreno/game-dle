@@ -6,6 +6,7 @@ import { GameStorageService } from '../../services/game-storage.service';
 import { ThemeService } from '../../services/theme.service';
 import { FooterComponent } from '../footer/footer.component';
 import { AdSlotComponent } from '../ad-slot/ad-slot.component';
+import { BackHomeButtonComponent } from '../back-home-button/back-home-button.component';
 import { ADSENSE_CONFIG } from '../../config/adsense.config';
 
 /**
@@ -14,7 +15,7 @@ import { ADSENSE_CONFIG } from '../../config/adsense.config';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [FooterComponent, AdSlotComponent],
+  imports: [FooterComponent, AdSlotComponent, BackHomeButtonComponent],
   templateUrl: './base-game.component.html',
   styles: []
 })

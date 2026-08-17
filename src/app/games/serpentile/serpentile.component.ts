@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { SerpentileEngineService } from './serpentile-engine.service';
@@ -18,11 +20,13 @@ import { SerpentileStorageService } from './serpentile-storage.service';
 
 @Component({
   selector: 'app-serpentile',
-  imports: [FooterComponent],
+  imports: [AdSlotComponent, FooterComponent],
   templateUrl: './serpentile.component.html',
   styleUrl: './serpentile.component.css',
 })
 export class SerpentileComponent implements OnInit, OnDestroy {
+  readonly adSlots = ADSENSE_CONFIG.slots;
+
   private readonly engine = inject(SerpentileEngineService);
   private readonly generator = inject(SerpentileGeneratorService);
   private readonly storage = inject(SerpentileStorageService);

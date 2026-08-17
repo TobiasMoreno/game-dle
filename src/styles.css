@@ -126,6 +126,7 @@ app-tuttifrutti .final-podium small { margin-top: .15rem; color: #747a76; font-s
 app-tuttifrutti .final-podium b { color: #2867b2; font: 700 1.2rem Georgia,serif; }
 
 /* Tutti Frutti: rieles publicitarios verticales para escritorio ancho. */
+app-tuttifrutti .back-button { display: block; width: max-content; margin: 0 0 1.25rem auto; }
 app-tuttifrutti .tf-side-ad { position: absolute; z-index: 2; top: 1.5rem; display: none; width: 160px; }
 app-tuttifrutti .tf-side-ad--left { left: .75rem; }
 app-tuttifrutti .tf-side-ad--right { right: .75rem; }
