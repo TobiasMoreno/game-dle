@@ -15,6 +15,56 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Tutti Frutti: bloques pesados fuera del CSS del componente para respetar su budget. */
+app-tuttifrutti .entry-card { padding: clamp(1.6rem, 4vw, 3rem); transform: rotate(1deg); }
+app-tuttifrutti .card-pin { position: absolute; top: -9px; left: 48%; width: 18px; height: 18px; border-radius: 50%; background: #e6533f; box-shadow: inset -3px -4px 0 rgba(0,0,0,.15), 2px 5px 7px rgba(0,0,0,.2); }
+app-tuttifrutti .entry-card h2 { margin-bottom: 1.8rem; font: 500 clamp(1.7rem, 4vw, 2.6rem)/1 Georgia, serif; }
+app-tuttifrutti .primary-action { margin-top: 1.3rem; }
+app-tuttifrutti .divider { display: flex; align-items: center; gap: .8rem; margin: 1.5rem 0 .5rem; color: #7b817d; font-size: .7rem; text-transform: uppercase; }
+app-tuttifrutti .divider::before, app-tuttifrutti .divider::after { content: ''; height: 1px; flex: 1; background: rgba(23,37,31,.15); }
+app-tuttifrutti .join-row { display: grid; grid-template-columns: 1fr auto; gap: .7rem; }
+app-tuttifrutti .room-code-input { font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+app-tuttifrutti .results-section { box-shadow: 12px 14px 0 rgba(230,83,63,.13); }
+app-tuttifrutti .results-heading p:last-child { max-width: 21rem; color: #707771; font-size: .72rem; line-height: 1.5; text-align: right; }
+app-tuttifrutti .podium { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.2rem 0; }
+app-tuttifrutti .podium article { display: flex; flex: 1 1 11rem; align-items: center; gap: .55rem; border: 1px solid #d8cfbc; padding: .65rem; background: #f5eedc; }
+app-tuttifrutti .podium article > span { color: #8b8e8a; font-weight: 900; }
+app-tuttifrutti .podium article .avatar { width: 2rem; height: 2rem; font-size: .9rem; }
+app-tuttifrutti .podium article b { margin-left: auto; color: #2867b2; }
+app-tuttifrutti .podium .winner { border-color: #d6a93a; background: #fff2bd; transform: rotate(-1deg); }
+app-tuttifrutti .results-table-wrap { overflow-x: auto; border: 1px solid #d8cfbc; }
+app-tuttifrutti table { width: 100%; border-collapse: collapse; font-size: .72rem; }
+app-tuttifrutti th, app-tuttifrutti td { border-right: 1px solid #ded6c4; border-bottom: 1px solid #ded6c4; padding: .65rem; text-align: left; white-space: nowrap; }
+app-tuttifrutti thead th { color: #fff; background: #17251f; font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; }
+app-tuttifrutti tbody th { background: #f3ecda; }
+app-tuttifrutti td span, app-tuttifrutti td small { display: block; }
+app-tuttifrutti td small { margin-top: .2rem; color: #2f7d5b; font-weight: 900; }
+app-tuttifrutti .total-cell { color: #e6533f; font-size: 1rem; font-weight: 900; }
+app-tuttifrutti .next-button { width: auto; margin: 1.3rem 0 0 auto; background: #2867b2; }
+app-tuttifrutti .round-topline { display: grid; grid-template-columns: 8rem 1fr 8rem; gap: 1rem; align-items: stretch; margin-bottom: 1rem; }
+app-tuttifrutti .letter-card, app-tuttifrutti .timer-block, app-tuttifrutti .progress-stamp { border: 1px solid rgba(23,37,31,.18); background: #fffaf0; }
+app-tuttifrutti .letter-card { display: flex; align-items: center; justify-content: center; gap: .6rem; padding: .8rem; transform: rotate(-2deg); }
+app-tuttifrutti .letter-card small { font-size: .6rem; font-weight: 900; letter-spacing: .12em; }
+app-tuttifrutti .letter-card strong { color: #e6533f; font: 700 3rem/1 Georgia, serif; }
+app-tuttifrutti .timer-block { display: grid; align-content: center; padding: .75rem 1rem; }
+app-tuttifrutti .timer-copy { display: flex; align-items: end; justify-content: space-between; }
+app-tuttifrutti .timer-copy span { font-size: .65rem; font-weight: 900; letter-spacing: .12em; }
+app-tuttifrutti .timer-copy strong { font: 500 1.8rem Georgia, serif; }
+app-tuttifrutti .timer-track { height: .35rem; margin-top: .5rem; overflow: hidden; background: #ddd5c3; }
+app-tuttifrutti .timer-track span { display: block; height: 100%; background: #2f7d5b; transition: width .25s linear; }
+app-tuttifrutti .urgent .timer-track span { background: #e6533f; }
+app-tuttifrutti .urgent .timer-copy strong { color: #e6533f; }
+app-tuttifrutti .progress-stamp { display: grid; place-content: center; text-align: center; transform: rotate(2deg); }
+app-tuttifrutti .progress-stamp strong, app-tuttifrutti .progress-stamp span { display: block; }
+app-tuttifrutti .progress-stamp strong { color: #2867b2; font: 700 1.35rem Georgia, serif; }
+app-tuttifrutti .progress-stamp span { font-size: .58rem; font-weight: 900; }
+
+@media (max-width: 760px) {
+  app-tuttifrutti .results-heading p:last-child { text-align: left; }
+  app-tuttifrutti .round-topline { grid-template-columns: 5rem 1fr; }
+  app-tuttifrutti .progress-stamp { display: none; }
+}
+
 /* MusicDLE: tablero completo dentro del viewport disponible. */
 @media (max-height: 850px) and (min-width: 721px) {
   app-musicdle .musicdle-studio .studio-header { padding-bottom: 0.75rem; }

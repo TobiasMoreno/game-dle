@@ -39,6 +39,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/serpentile/serpentile.component').then(m => m.SerpentileComponent)
   },
   {
+    path: 'games/tuttifrutti',
+    loadComponent: () => import('./games/tuttifrutti/tuttifrutti.component').then(m => m.TuttiFruttiComponent)
+  },
+  {
     path: '**',
     redirectTo: '/home'
   }

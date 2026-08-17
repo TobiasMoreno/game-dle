@@ -114,6 +114,14 @@ export class GameManagerService {
         bestStreak: 0,
         guessDistribution: []
       }
+    },
+    {
+      id: 'tuttifrutti',
+      name: 'Tutti Frutti',
+      description: 'Competí en vivo con amigos usando la misma letra',
+      route: '/games/tuttifrutti',
+      icon: 'fas fa-users',
+      mode: 'unlimited'
     }
   ];
 

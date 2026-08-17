@@ -1,0 +1,50 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$roomId": {
+        ".read": "auth != null",
+        ".write": "auth != null && !data.exists() && newData.child('hostId').val() === auth.uid",
+        "hostId": {
+          ".validate": "newData.isString() && ((!data.exists() && newData.val() === auth.uid) || newData.val() === data.val())"
+        },
+        "status": {
+          ".write": "auth != null && data.parent().child('players').child(auth.uid).exists() && (newData.val() === 'results' || data.parent().child('hostId').val() === auth.uid)",
+          ".validate": "newData.val() === 'waiting' || newData.val() === 'playing' || newData.val() === 'results'"
+        },
+        "round": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "letter": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          ".validate": "newData.isString() && newData.val().length <= 1"
+        },
+        "durationMs": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          ".validate": "newData.isNumber() && newData.val() >= 30000 && newData.val() <= 300000"
+        },
+        "startedAt": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
+        },
+        "stoppedAt": {
+          ".write": "auth != null && data.parent().child('players').child(auth.uid).exists()"
+        },
+        "players": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.hasChildren(['name', 'online', 'joinedAt']) && newData.child('name').isString() && newData.child('name').val().length >= 2 && newData.child('name').val().length <= 24 && newData.child('online').isBoolean()"
+          }
+        },
+        "answers": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && data.parent().parent().child('players').child(auth.uid).exists()",
+            ".validate": "newData.hasChildren(['values', 'submittedAt'])"
+          }
+        }
+      }
+    }
+  }
+}
