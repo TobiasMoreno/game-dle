@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { GameState, DailyGameState, GameStats } from '../models/game.model';
 import { GameStorageService } from './game-storage.service';
+import { DailyActivityService } from './daily-activity.service';
 
 /**
  * Servicio principal para gestionar los juegos
@@ -125,7 +126,10 @@ export class GameManagerService {
     }
   ];
 
-  constructor(private storageService: GameStorageService) {
+  constructor(
+    private storageService: GameStorageService,
+    private dailyActivity: DailyActivityService
+  ) {
     this.initializeGames();
   }
 
@@ -216,6 +220,11 @@ export class GameManagerService {
 
     // Actualizar el observable
     this.updateGameInList(gameId, { dailyState, stats });
+
+    if (game.mode === 'daily') {
+      const score = typeof gameData?.score === 'number' ? gameData.score : undefined;
+      void this.dailyActivity.recordDailyGame(gameId, won, attempts, score);
+    }
   }
 
   /** Completa un desafío diario cuyo resultado principal es un puntaje. */
@@ -243,6 +252,9 @@ export class GameManagerService {
 
     this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
     this.updateGameInList(gameId, { dailyState, stats });
+    if (game.mode === 'daily') {
+      void this.dailyActivity.recordDailyGame(gameId, true, 0, score);
+    }
   }
 
   /**

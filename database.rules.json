@@ -2,6 +2,37 @@
   "rules": {
     ".read": false,
     ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "activity": {
+          "$date": {
+            "$gameId": {
+              ".validate": "newData.hasChildren(['date', 'gameId', 'won', 'attempts', 'completedAt']) && newData.child('date').val() === $date && newData.child('gameId').val() === $gameId && newData.child('won').isBoolean() && newData.child('attempts').isNumber() && newData.child('attempts').val() >= 0 && newData.child('attempts').val() <= 1000 && newData.child('completedAt').isNumber() && newData.child('completedAt').val() > 0",
+              "date": {
+                ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}$/)"
+              },
+              "gameId": {
+                ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 40"
+              },
+              "won": {
+                ".validate": "newData.isBoolean()"
+              },
+              "attempts": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 1000"
+              },
+              "completedAt": {
+                ".validate": "newData.isNumber() && newData.val() > 0"
+              },
+              "score": {
+                ".validate": "!newData.exists() || newData.isNumber()"
+              }
+            }
+          }
+        }
+      }
+    },
     "rooms": {
       "$roomId": {
         ".read": "auth != null",

@@ -1,0 +1,140 @@
+<section class="journey" [class.journey--complete]="activity.summary().todayCompleted">
+  <div class="journey__grain" aria-hidden="true"></div>
+  <div class="journey__main">
+    <div class="journey__streak" aria-label="Racha diaria actual">
+      <span class="journey__flame" aria-hidden="true">◆</span>
+      <div>
+        <span class="journey__eyebrow">Racha diaria</span>
+        <strong>{{ activity.summary().currentStreak }}</strong>
+        <small>{{ activity.summary().currentStreak === 1 ? 'día encendido' : 'días encendidos' }}</small>
+      </div>
+    </div>
+
+    <div class="journey__mission">
+      <div class="journey__mission-copy">
+        <span class="journey__eyebrow">Misión de hoy</span>
+        <h2>
+          @if (activity.summary().todayCompleted) {
+            La llama sigue viva.
+          } @else {
+            Completá un desafío.
+          }
+        </h2>
+        <p>
+          @if (activity.summary().todayCompleted) {
+            Ya aseguraste tu racha. Podés seguir sumando juegos hasta el reinicio.
+          } @else if (activity.summary().currentStreak > 0) {
+            Tu racha está en juego. Una partida diaria alcanza para conservarla.
+          } @else {
+            Hoy puede ser el primer día de una nueva costumbre.
+          }
+        </p>
+      </div>
+
+      <div class="journey__progress" aria-label="Progreso de desafíos diarios">
+        <div class="journey__progress-head">
+          <span>{{ completedDailyGames() }}/{{ dailyGames().length }} desafíos</span>
+          <strong>{{ progressPercent() }}%</strong>
+        </div>
+        <div class="journey__track"><span [style.width.%]="progressPercent()"></span></div>
+      </div>
+    </div>
+
+    <div class="journey__clock">
+      <span class="journey__eyebrow">Próximo día</span>
+      <strong>{{ countdown() }}</strong>
+      <small>hora Argentina</small>
+    </div>
+  </div>
+
+  <div class="journey__actions">
+    <button type="button" class="journey__primary" (click)="toggleExpanded()" [attr.aria-expanded]="expanded()">
+      <span>{{ expanded() ? 'Cerrar bitácora' : 'Ver mi bitácora' }}</span>
+      <span aria-hidden="true">{{ expanded() ? '↑' : '↓' }}</span>
+    </button>
+  </div>
+
+  <div class="journey__sync">
+    <div>
+      <span class="journey__eyebrow">Respaldo</span>
+      <h3>{{ signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
+      <p>
+        {{ signedInWithGoogle()
+          ? 'Tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
+          : 'Conectá Google para recuperar tu racha cuando cambies de dispositivo o navegador.' }}
+      </p>
+      @if (activity.syncMessage()) {
+        <small class="journey__sync-status" role="status">{{ activity.syncMessage() }}</small>
+      }
+    </div>
+    <div class="journey__sync-actions">
+      @if (signedInWithGoogle()) {
+        <button type="button" class="journey__logout" (click)="disconnectGoogle()" [disabled]="activity.syncing()">
+          Cerrar sesión
+        </button>
+      } @else {
+        <button type="button" class="journey__google" (click)="connectGoogle()" [disabled]="activity.syncing()">
+          <span aria-hidden="true">G</span>
+          {{ activity.syncing() ? 'Conectando…' : 'Continuar con Google' }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (expanded()) {
+    <div class="journey__details">
+      <div class="journey__calendar-block">
+        <div class="journey__section-heading">
+          <div>
+            <span class="journey__eyebrow">Últimos 14 días</span>
+            <h3>Tu pulso de juego</h3>
+          </div>
+          <div class="journey__best">Récord <strong>{{ activity.summary().bestStreak }}</strong></div>
+        </div>
+        <div class="journey__calendar">
+          @for (day of activity.summary().calendar; track day.date) {
+            <div
+              class="journey__day"
+              [class.journey__day--active]="day.games > 0"
+              [class.journey__day--today]="day.isToday"
+              [attr.title]="calendarDayLabel(day.date) + ': ' + day.games + ' juegos'"
+            >
+              <small>{{ day.weekday }}</small>
+              <strong>{{ day.dayNumber }}</strong>
+              <span aria-hidden="true">{{ day.games > 0 ? '◆' : '·' }}</span>
+            </div>
+          }
+        </div>
+        <div class="journey__numbers">
+          <div><strong>{{ activity.summary().totalActiveDays }}</strong><span>Días activos</span></div>
+          <div><strong>{{ activity.summary().totalGames }}</strong><span>Desafíos</span></div>
+          <div><strong>{{ activity.summary().totalWins }}</strong><span>Victorias</span></div>
+        </div>
+      </div>
+
+      <div class="journey__achievements">
+        <div class="journey__section-heading">
+          <div>
+            <span class="journey__eyebrow">Insignias</span>
+            <h3>Próximos hitos</h3>
+          </div>
+        </div>
+        <div class="journey__badge-list">
+          @for (achievement of activity.summary().achievements; track achievement.id) {
+            <article class="journey__badge" [class.journey__badge--unlocked]="achievement.unlocked">
+              <span class="journey__badge-icon">{{ achievement.icon }}</span>
+              <div>
+                <strong>{{ achievement.label }}</strong>
+                <small>{{ achievement.description }}</small>
+              </div>
+              <span class="journey__badge-progress">
+                {{ achievement.unlocked ? 'Hecho' : achievement.progress + '/' + achievement.target }}
+              </span>
+            </article>
+          }
+        </div>
+      </div>
+
+    </div>
+  }
+</section>

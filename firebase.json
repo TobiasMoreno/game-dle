@@ -1,0 +1,32 @@
+{
+  "auth": {
+    "providers": {
+      "anonymous": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "GameDLE",
+        "authorizedRedirectUris": [
+          "https://game-dle.firebaseapp.com/__/auth/handler",
+          "https://game-dle.web.app/__/auth/handler"
+        ],
+        "supportEmail": "tobiasmoreno.tm.21@gmail.com"
+      }
+    }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist/game-dle/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

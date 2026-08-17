@@ -6,10 +6,11 @@ import { ThemeService } from '../../shared/services/theme.service';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
+import { DailyJourneyComponent } from '../../shared/components/daily-journey/daily-journey.component';
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent, AdSlotComponent],
+  imports: [FooterComponent, AdSlotComponent, DailyJourneyComponent],
   templateUrl: './home.component.html',
   styles: [],
 })
