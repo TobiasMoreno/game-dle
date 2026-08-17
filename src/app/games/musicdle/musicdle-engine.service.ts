@@ -38,6 +38,8 @@ export class MusicdleEngineService {
       songId: guessedSong.id,
       label: `${guessedSong.title} — ${guessedSong.artist}`,
       correct,
+      artistMatch: this.normalize(guessedSong.artist) === this.normalize(targetSong.artist),
+      categoryMatch: this.normalize(guessedSong.collection) === this.normalize(targetSong.collection),
       listenedSeconds: round.unlockedSeconds,
       createdAt: now,
     };
@@ -95,5 +97,13 @@ export class MusicdleEngineService {
       status: correct ? 'won' : lost ? 'lost' : 'active',
       updatedAt: now,
     };
+  }
+
+  private normalize(value: string): string {
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase('es')
+      .trim();
   }
 }

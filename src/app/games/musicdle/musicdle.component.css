@@ -237,21 +237,6 @@
 }
 .play-button strong { font-family: Georgia, serif; font-size: 1.15rem; }
 
-.pass-button {
-  width: 100%;
-  margin-top: 0.7rem;
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--studio-line);
-  color: var(--studio-muted);
-  background: transparent;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-.pass-button:hover { color: var(--studio-amber-hover); border-color: var(--studio-amber); }
-.pass-button span { margin-left: 0.35rem; color: var(--studio-amber); }
-
 .form-error {
   margin: 0.75rem 0 0;
   color: var(--studio-error);
@@ -290,7 +275,6 @@
   border-radius: 50%;
   color: var(--studio-amber);
 }
-.attempt-row__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .attempt-row__time { color: var(--studio-faint); font-variant-numeric: tabular-nums; }
 
 .result-stage {
@@ -366,5 +350,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .vinyl-loader { animation: none; }
-  .play-button { transition: none; }
+  .play-button,
+  .pass-button { transition: none; }
 }

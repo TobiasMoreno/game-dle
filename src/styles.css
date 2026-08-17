@@ -136,6 +136,95 @@ app-tuttifrutti .final-podium b { color: #2867b2; font: 700 1.2rem Georgia,serif
   app-tuttifrutti .settings-triple { grid-template-columns: 1fr; }
 }
 
+/* MusicDLE: acciones y feedback del historial. */
+app-musicdle .musicdle-studio .pass-action {
+  position: relative;
+  margin-top: 1.15rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--studio-line);
+}
+app-musicdle .musicdle-studio .pass-action__divider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 0 0.55rem;
+  color: var(--studio-faint);
+  background: var(--studio-panel);
+  font: italic 0.72rem Georgia, serif;
+  transform: translate(-50%, -50%);
+}
+app-musicdle .musicdle-studio .pass-button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px dashed var(--studio-line);
+  border-radius: 0.25rem;
+  color: var(--studio-muted);
+  background: var(--studio-surface);
+  text-align: left;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+app-musicdle .musicdle-studio .pass-button:hover {
+  border-color: var(--studio-amber);
+  color: var(--studio-paper);
+  background: rgba(245, 158, 11, 0.08);
+}
+app-musicdle .musicdle-studio .pass-button__icon {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border: 1px solid var(--studio-line);
+  border-radius: 50%;
+  color: var(--studio-amber);
+}
+app-musicdle .musicdle-studio .pass-button__copy { display: grid; gap: 0.08rem; min-width: 0; }
+app-musicdle .musicdle-studio .pass-button__copy strong {
+  font-size: 0.73rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+app-musicdle .musicdle-studio .pass-button__copy small { color: var(--studio-faint); font-size: 0.68rem; }
+app-musicdle .musicdle-studio .pass-button__reward {
+  padding: 0.25rem 0.45rem;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 999px;
+  color: var(--studio-amber);
+  font: 700 0.78rem Georgia, serif;
+}
+app-musicdle .musicdle-studio .attempt-row__content { min-width: 0; }
+app-musicdle .musicdle-studio .attempt-row__label {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+app-musicdle .musicdle-studio .attempt-row__feedback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.3rem;
+}
+app-musicdle .musicdle-studio .attempt-row__feedback span {
+  padding: 0.12rem 0.35rem;
+  border: 1px solid var(--studio-line);
+  border-radius: 999px;
+  color: var(--studio-faint);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+app-musicdle .musicdle-studio .attempt-row__feedback .attempt-feedback--match {
+  border-color: rgba(34, 197, 94, 0.45);
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.08);
+}
+app-musicdle .musicdle-studio--dark .attempt-row__feedback .attempt-feedback--match { color: #86efac; }
+
 /* MusicDLE: tablero completo dentro del viewport disponible. */
 @media (max-height: 850px) and (min-width: 721px) {
   app-musicdle .musicdle-studio .studio-header { padding-bottom: 0.75rem; }
@@ -148,7 +237,8 @@ app-tuttifrutti .final-podium b { color: #2867b2; font: 700 1.2rem Georgia,serif
   app-musicdle .musicdle-studio .console-heading { padding-bottom: 0.4rem; }
   app-musicdle .musicdle-studio .play-button { margin-top: 0.5rem; padding: 0.55rem 0.75rem; }
   app-musicdle .musicdle-studio .play-button__icon { width: 1.65rem; height: 1.65rem; }
-  app-musicdle .musicdle-studio .pass-button { margin-top: 0.35rem; padding: 0.45rem; }
+  app-musicdle .musicdle-studio .pass-action { margin-top: 0.65rem; padding-top: 0.55rem; }
+  app-musicdle .musicdle-studio .pass-button { padding: 0.45rem 0.6rem; }
   app-musicdle .musicdle-studio .attempt-list { margin-top: 0.75rem; }
   app-musicdle .musicdle-studio .attempt-list h3 { margin-bottom: 0.35rem; }
   app-musicdle .musicdle-studio .attempt-row { padding: 0.35rem 0; }
@@ -175,7 +265,9 @@ app-tuttifrutti .final-podium b { color: #2867b2; font: 700 1.2rem Georgia,serif
   app-musicdle .musicdle-studio .console-heading span { display: none; }
   app-musicdle .musicdle-studio .play-button { margin-top: 0.35rem; padding: 0.45rem 0.65rem; }
   app-musicdle .musicdle-studio .play-button__icon { width: 1.55rem; height: 1.55rem; }
-  app-musicdle .musicdle-studio .pass-button { margin-top: 0.25rem; padding: 0.35rem; }
+  app-musicdle .musicdle-studio .pass-action { margin-top: 0.55rem; padding-top: 0.5rem; }
+  app-musicdle .musicdle-studio .pass-button { padding: 0.4rem 0.55rem; }
+  app-musicdle .musicdle-studio .pass-button__copy small { display: none; }
   app-musicdle .musicdle-studio .attempt-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 0.75rem; margin-top: 0.5rem; }
   app-musicdle .musicdle-studio :is(.attempt-list h3, .attempt-list__empty) { grid-column: 1 / -1; }
   app-musicdle .musicdle-studio .attempt-list h3 { margin-bottom: 0.2rem; }

@@ -27,6 +27,8 @@ export interface MusicdleAttempt {
   songId?: string;
   label: string;
   correct: boolean;
+  artistMatch?: boolean;
+  categoryMatch?: boolean;
   listenedSeconds: number;
   createdAt: number;
 }

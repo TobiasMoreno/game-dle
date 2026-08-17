@@ -107,9 +107,22 @@
               (submit)="submitGuess()"
             />
 
-            <button type="button" class="pass-button" (click)="passAttempt()">
-              Pasar intento <span>+{{ secondsPerAttempt }}s</span>
-            </button>
+            <div class="pass-action">
+              <span class="pass-action__divider" aria-hidden="true">o</span>
+              <button
+                type="button"
+                class="pass-button"
+                [attr.aria-label]="'Pasar intento y desbloquear ' + secondsPerAttempt + ' segundos más'"
+                (click)="passAttempt()"
+              >
+                <span class="pass-button__icon" aria-hidden="true">→</span>
+                <span class="pass-button__copy">
+                  <strong>Pasar intento</strong>
+                  <small>Si todavía no reconoces la canción</small>
+                </span>
+                <span class="pass-button__reward">+{{ secondsPerAttempt }}s</span>
+              </button>
+            </div>
 
             @if (errorMessage) {
               <p class="form-error" role="alert">{{ errorMessage }}</p>
@@ -124,7 +137,19 @@
                 <div class="attempt-row" [class.attempt-row--correct]="attempt.correct">
                   <span class="attempt-row__number">0{{ index + 1 }}</span>
                   <span class="attempt-row__mark">{{ attemptIcon(attempt.kind, attempt.correct) }}</span>
-                  <span class="attempt-row__label">{{ attempt.label }}</span>
+                  <div class="attempt-row__content">
+                    <span class="attempt-row__label">{{ attempt.label }}</span>
+                    @if (attempt.kind === 'guess' && attempt.artistMatch !== undefined) {
+                      <div class="attempt-row__feedback" aria-label="Coincidencias del intento">
+                        <span [class.attempt-feedback--match]="attempt.artistMatch">
+                          Artista {{ attempt.artistMatch ? '✓' : '×' }}
+                        </span>
+                        <span [class.attempt-feedback--match]="attempt.categoryMatch">
+                          Categoría {{ attempt.categoryMatch ? '✓' : '×' }}
+                        </span>
+                      </div>
+                    }
+                  </div>
                   <span class="attempt-row__time">{{ attempt.listenedSeconds }}s</span>
                 </div>
               }

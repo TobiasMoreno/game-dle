@@ -30,6 +30,13 @@ describe('MusicdleEngineService', () => {
     title: 'Respuesta incorrecta',
   };
 
+  const otherArtist: MusicdleSong = {
+    ...wrong,
+    id: 'other-artist',
+    artist: 'Otro artista',
+    collection: 'Otra categoría',
+  };
+
   beforeEach(() => {
     service = new MusicdleEngineService();
   });
@@ -48,8 +55,18 @@ describe('MusicdleEngineService', () => {
 
     expect(updated.attempts.length).toBe(1);
     expect(updated.attempts[0].correct).toBeFalse();
+    expect(updated.attempts[0].artistMatch).toBeTrue();
+    expect(updated.attempts[0].categoryMatch).toBeTrue();
     expect(updated.unlockedSeconds).toBe(4);
     expect(updated.status).toBe('active');
+  });
+
+  it('indica si el artista y la categoría coinciden con la respuesta', () => {
+    const round = service.createRound(target.id, filter, 100);
+    const updated = service.submitGuess(round, otherArtist, target, 200);
+
+    expect(updated.attempts[0].artistMatch).toBeFalse();
+    expect(updated.attempts[0].categoryMatch).toBeFalse();
   });
 
   it('pierde después de seis pases y nunca desbloquea más de 12 segundos', () => {
