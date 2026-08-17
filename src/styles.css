@@ -99,6 +99,16 @@ app-tuttifrutti .vote-buttons .accept { color: #2f7d5b; }
 app-tuttifrutti .vote-buttons button.selected { color: #fff; opacity: 1; transform: scale(1.08); }
 app-tuttifrutti .vote-buttons .reject.selected { background: #b33f32; }
 app-tuttifrutti .vote-buttons .accept.selected { background: #2f7d5b; }
+app-tuttifrutti .anonymous-ballot { width: min(34rem,100%); margin: 2rem auto 1rem; border: 1px solid #d8cfbc; padding: clamp(1.5rem,5vw,3rem); background: #f7efdd; box-shadow: 8px 9px 0 rgba(23,37,31,.1); text-align: center; transform: rotate(-.5deg); }
+app-tuttifrutti .anonymous-label { margin: 0 0 .8rem; color: #e6533f; font-size: .62rem; font-weight: 900; letter-spacing: .18em; }
+app-tuttifrutti .anonymous-category { display: inline-block; border: 1px solid #2867b2; border-radius: 2rem; padding: .35rem .7rem; color: #2867b2; font-size: .68rem; font-weight: 900; text-transform: uppercase; }
+app-tuttifrutti .anonymous-ballot > strong { display: block; margin: 1.25rem 0 .5rem; color: #17251f; font: italic clamp(2rem,7vw,4rem)/1 'Segoe Print',cursive; overflow-wrap: anywhere; }
+app-tuttifrutti .anonymous-ballot > p:not(.anonymous-label) { color: #6f7771; font: italic .85rem Georgia,serif; }
+app-tuttifrutti .anonymous-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.5rem; }
+app-tuttifrutti .anonymous-actions button { width: auto; height: auto; padding: .85rem 1rem; font-size: .8rem; opacity: .75; }
+app-tuttifrutti .anonymous-actions button span { margin-right: .35rem; font-size: 1.1rem; }
+app-tuttifrutti .ballot-loading { display: flex; min-height: 14rem; align-items: center; justify-content: center; gap: .8rem; transform: none; }
+app-tuttifrutti .ballot-loading > strong { margin: 0; color: #6f7771; font: 700 .8rem 'Trebuchet MS',sans-serif; }
 app-tuttifrutti td.invalid-answer span { color: #9a7771; text-decoration: line-through; }
 app-tuttifrutti td.invalid-answer small { color: #b33f32; }
 app-tuttifrutti .final-podium { display: grid; gap: .65rem; margin-top: 1.25rem; }

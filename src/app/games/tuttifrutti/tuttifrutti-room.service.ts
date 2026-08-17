@@ -20,6 +20,7 @@ import {
   TUTTIFRUTTI_CATEGORIES,
   TuttiFruttiRoom,
   TuttiFruttiVote,
+  TuttiFruttiVotingWord,
 } from './tuttifrutti.models';
 import {
   calculateAccumulatedTotals,
@@ -58,6 +59,7 @@ export class TuttiFruttiRoomService {
         startedAt: null,
         stoppedAt: null,
         votingStartedAt: null,
+        votingCursor: 0,
         categories: [...TUTTIFRUTTI_CATEGORIES],
         players: {
           [userId]: {
@@ -163,6 +165,8 @@ export class TuttiFruttiRoomService {
       startedAt: serverTimestamp(),
       stoppedAt: null,
       votingStartedAt: null,
+      votingCursor: 0,
+      votingWords: null,
       answers: null,
       votes: null,
       validationResults: null,
@@ -203,7 +207,6 @@ export class TuttiFruttiRoomService {
       },
       status: 'voting',
       stoppedAt: serverTimestamp(),
-      votingStartedAt: serverTimestamp(),
     });
   }
 
@@ -234,6 +237,53 @@ export class TuttiFruttiRoomService {
     );
   }
 
+  async initializeVoting(roomCode: string): Promise<void> {
+    const roomRef = ref(getFirebaseDatabase(), `rooms/${roomCode}`);
+    const snapshot = await get(roomRef);
+    if (!snapshot.exists()) return;
+
+    const room = snapshot.val() as TuttiFruttiRoom;
+    if (room.status !== 'voting' || room.votingWords?.length) return;
+
+    const votingWords: TuttiFruttiVotingWord[] = [];
+    room.categories.forEach((_category, categoryIndex) => {
+      Object.keys(room.players).forEach((ownerId) => {
+        const answer = room.answers?.[ownerId]?.values[String(categoryIndex)]?.trim();
+        if (answer) votingWords.push({ ownerId, categoryIndex });
+      });
+    });
+
+    if (!votingWords.length) {
+      await this.finalizeVoting(roomCode);
+      return;
+    }
+
+    await update(roomRef, {
+      votingWords,
+      votingCursor: 0,
+      votingStartedAt: serverTimestamp(),
+    });
+  }
+
+  async advanceVotingWord(roomCode: string): Promise<void> {
+    const roomRef = ref(getFirebaseDatabase(), `rooms/${roomCode}`);
+    const snapshot = await get(roomRef);
+    if (!snapshot.exists()) return;
+
+    const room = snapshot.val() as TuttiFruttiRoom;
+    if (room.status !== 'voting' || !room.votingWords?.length) return;
+
+    if (room.votingCursor >= room.votingWords.length - 1) {
+      await this.finalizeVoting(roomCode);
+      return;
+    }
+
+    await update(roomRef, {
+      votingCursor: room.votingCursor + 1,
+      votingStartedAt: serverTimestamp(),
+    });
+  }
+
   async finalizeVoting(roomCode: string): Promise<void> {
     const roomRef = ref(getFirebaseDatabase(), `rooms/${roomCode}`);
     const snapshot = await get(roomRef);
@@ -262,6 +312,8 @@ export class TuttiFruttiRoomService {
       startedAt: null,
       stoppedAt: null,
       votingStartedAt: null,
+      votingCursor: 0,
+      votingWords: null,
       answers: null,
       votes: null,
       validationResults: null,

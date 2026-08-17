@@ -157,33 +157,35 @@
             <div class="vote-clock" [class.urgent]="validationSeconds <= 5"><strong>{{ validationSeconds }}</strong><span>segundos</span></div>
           </header>
           <div class="vote-rule">
-            <span>{{ myCompletedVotes }}/{{ totalWordsToVote }} votadas por vos</span>
+            <span>
+              @if (room.votingWords?.length) {
+                Palabra {{ room.votingCursor + 1 }} de {{ room.votingWords?.length }}
+              } @else {
+                Preparando palabras...
+              }
+            </span>
             <strong>Se aprueba con {{ voteThreshold }} votos positivos</strong>
           </div>
           <div class="timer-track vote-track"><span [style.width.%]="validationProgress"></span></div>
 
-          <div class="ballot-board">
-            @for (category of room.categories; track $index; let categoryIndex = $index) {
-              <section class="ballot-category">
-                <h3><span>{{ categoryIndex + 1 }}</span>{{ category }}</h3>
-                @for (entry of playerEntries; track entry.id) {
-                  @if (resultAnswer(entry.id, categoryIndex) !== '—') {
-                    <article class="ballot-row">
-                      <div><small>{{ entry.player.name }} · {{ positiveVotes(entry.id, categoryIndex) }}/{{ voteThreshold }} sí</small><strong>{{ resultAnswer(entry.id, categoryIndex) }}</strong></div>
-                      <div class="vote-buttons">
-                        <button type="button" class="reject" [class.selected]="myVote(entry.id, categoryIndex) === 'no'"
-                          (click)="castVote(entry.id, categoryIndex, 'no')" aria-label="Rechazar palabra">×</button>
-                        <button type="button" class="accept" [class.selected]="myVote(entry.id, categoryIndex) === 'yes'"
-                          (click)="castVote(entry.id, categoryIndex, 'yes')" aria-label="Aceptar palabra">✓</button>
-                      </div>
-                    </article>
-                  }
-                }
-              </section>
-            }
-          </div>
-          @if (myCompletedVotes === totalWordsToVote) {
-            <p class="host-note"><span class="pulse"></span> Votación completa. Esperando al resto...</p>
+          @if (currentVotingWord; as word) {
+            <article class="anonymous-ballot">
+              <p class="anonymous-label">PALABRA ANÓNIMA</p>
+              <span class="anonymous-category">{{ currentVotingCategory }}</span>
+              <strong>{{ currentVotingAnswer }}</strong>
+              <p>¿La aceptarías para esta categoría?</p>
+              <div class="anonymous-actions vote-buttons">
+                <button type="button" class="reject" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'no'"
+                  (click)="castVote(word.ownerId, word.categoryIndex, 'no')"><span>×</span> No vale</button>
+                <button type="button" class="accept" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'yes'"
+                  (click)="castVote(word.ownerId, word.categoryIndex, 'yes')"><span>✓</span> Sí, vale</button>
+              </div>
+            </article>
+            <p class="host-note">{{ currentWordVotesCompleted }}/{{ playerEntries.length }} participantes ya votaron</p>
+          } @else {
+            <div class="anonymous-ballot ballot-loading">
+              <span class="pulse"></span><strong>Recibiendo todas las respuestas...</strong>
+            </div>
           }
         </section>
       }

@@ -31,6 +31,11 @@ export type TuttiFruttiValidationResults = Record<
   Record<string, boolean>
 >;
 
+export interface TuttiFruttiVotingWord {
+  ownerId: string;
+  categoryIndex: number;
+}
+
 export interface TuttiFruttiRoom {
   code: string;
   hostId: string;
@@ -42,6 +47,8 @@ export interface TuttiFruttiRoom {
   startedAt: number | null;
   stoppedAt: number | null;
   votingStartedAt: number | null;
+  votingCursor: number;
+  votingWords?: TuttiFruttiVotingWord[];
   categories: string[];
   players: Record<string, TuttiFruttiPlayer>;
   answers?: Record<string, TuttiFruttiRoundAnswers>;

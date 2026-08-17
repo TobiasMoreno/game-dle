@@ -73,6 +73,7 @@ function createRoom(): TuttiFruttiRoom {
     startedAt: 1,
     stoppedAt: 2,
     votingStartedAt: 2,
+    votingCursor: 0,
     createdAt: 0,
     categories: ['Animal'],
     players: {

@@ -41,6 +41,13 @@
         "votingStartedAt": {
           ".write": "auth != null && data.parent().child('players').child(auth.uid).exists()"
         },
+        "votingCursor": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "votingWords": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
+        },
         "players": {
           "$uid": {
             ".write": "auth != null && auth.uid === $uid && (data.exists() || data.parent().parent().child('round').val() === 0)",
