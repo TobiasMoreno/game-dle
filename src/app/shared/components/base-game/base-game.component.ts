@@ -35,7 +35,7 @@ export class BaseGameComponent {
   hideStats = input<boolean>(false);
   hideDailyState = input<boolean>(false);
   fitViewport = input<boolean>(false);
-  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle'>('default');
+  footerTheme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle'>('default');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();
@@ -212,19 +212,13 @@ export class BaseGameComponent {
    */
   private setFooterTheme(): void {
     const gameId = this.getGameIdSafely();
-    let theme: 'default' | 'onepiece' | 'wordle' | 'colorle' | 'numberle' | 'loldle' | 'musicdle' = 'default';
+    let theme: 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' = 'default';
     switch (gameId) {
       case 'onepiecedle':
         theme = 'onepiece';
         break;
       case 'wordle':
         theme = 'wordle';
-        break;
-      case 'colorle':
-        theme = 'colorle';
-        break;
-      case 'numberle':
-        theme = 'numberle';
         break;
       case 'loldle':
         theme = 'loldle';

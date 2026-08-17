@@ -23,14 +23,6 @@ export const routes: Routes = [
     loadComponent: () => import('./games/loldle/loldle.component').then(m => m.LoldleComponent)
   },
   {
-    path: 'games/numberle',
-    loadComponent: () => import('./games/numberle/numberle.component').then(m => m.NumberleComponent)
-  },
-  {
-    path: 'games/colorle',
-    loadComponent: () => import('./games/colorle/colorle.component').then(m => m.ColorleComponent)
-  },
-  {
     path: 'games/musicdle',
     loadComponent: () => import('./games/musicdle/musicdle.component').then(m => m.MusicdleComponent)
   },

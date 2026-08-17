@@ -18,14 +18,6 @@ Una colección de juegos diarios inspirados en Wordle, construida con Angular y 
 - Feedback visual con colores (verde = correcto, amarillo = presente, gris = ausente)
 - Palabras en español
 
-### Numberle 🔢 (Próximamente)
-- Adivina el número en 6 intentos
-- Feedback numérico
-
-### Colorle 🎨 (Próximamente)
-- Adivina el color en 6 intentos
-- Feedback de colores
-
 ## 🛠️ Tecnologías
 
 - **Angular 19**: Framework principal
@@ -64,8 +56,6 @@ src/
 ├── app/
 │   ├── games/                 # Juegos individuales
 │   │   ├── wordle/           # Juego Wordle
-│   │   ├── numberle/         # Juego Numberle (placeholder)
-│   │   └── colorle/          # Juego Colorle (placeholder)
 │   ├── layout/               # Componentes de layout
 │   │   ├── sidebar/          # Barra lateral con navegación
 │   │   └── layout.component  # Layout principal

@@ -75,16 +75,6 @@ footer.bg-gray-900::before {
   background: linear-gradient(90deg, transparent, #10b981, #059669, #10b981, transparent);
 }
 
-/* Colorle theme shimmer */
-footer.bg-gradient-to-r.from-purple-900.to-pink-900::before {
-  background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, #ec4899, transparent);
-}
-
-/* Numberle theme shimmer */
-footer.bg-gradient-to-r.from-blue-900.to-indigo-900::before {
-  background: linear-gradient(90deg, transparent, #3b82f6, #6366f1, #3b82f6, transparent);
-}
-
 /* LoLdle theme shimmer */
 footer.bg-gradient-to-r.from-blue-900.to-purple-900::before {
   background: linear-gradient(90deg, transparent, #c89b3c, #f0e6d2, #c89b3c, transparent);
@@ -139,16 +129,6 @@ footer.bg-gradient-to-r.from-orange-900.to-red-900 a::after {
 /* Wordle theme underline */
 footer.bg-gray-900 a::after {
   background: #10b981;
-}
-
-/* Colorle theme underline */
-footer.bg-gradient-to-r.from-purple-900.to-pink-900 a::after {
-  background: #ec4899;
-}
-
-/* Numberle theme underline */
-footer.bg-gradient-to-r.from-blue-900.to-indigo-900 a::after {
-  background: #3b82f6;
 }
 
 /* LoLdle theme underline */

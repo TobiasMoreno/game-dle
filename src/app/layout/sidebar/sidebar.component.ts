@@ -40,10 +40,6 @@ export class SidebarComponent implements OnInit {
         return 'bg-gradient-to-b from-orange-900 to-red-900 border-orange-500';
       case 'wordle':
         return 'bg-gray-900 border-gray-600';
-      case 'colorle':
-        return 'bg-gradient-to-b from-purple-900 to-pink-900 border-purple-500';
-      case 'numberle':
-        return 'bg-gradient-to-b from-blue-900 to-indigo-900 border-blue-500';
       case 'loldle':
         return 'bg-gradient-to-b from-blue-900 to-purple-900 border-blue-500';
       case 'musicdle':
@@ -59,10 +55,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-100';
       case 'wordle':
         return 'text-gray-300';
-      case 'colorle':
-        return 'text-purple-100';
-      case 'numberle':
-        return 'text-blue-100';
       case 'loldle':
         return 'text-blue-100';
       case 'musicdle':
@@ -78,10 +70,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-200';
       case 'wordle':
         return 'text-gray-400';
-      case 'colorle':
-        return 'text-purple-200';
-      case 'numberle':
-        return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
       case 'musicdle':
@@ -97,10 +85,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-300 hover:text-yellow-300';
       case 'wordle':
         return 'text-gray-400 hover:text-white';
-      case 'colorle':
-        return 'text-purple-200 hover:text-pink-300';
-      case 'numberle':
-        return 'text-blue-200 hover:text-indigo-300';
       case 'loldle':
         return 'text-blue-200 hover:text-purple-300';
       case 'musicdle':
@@ -116,10 +100,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-100 hover:bg-orange-800/50 hover:text-yellow-200';
       case 'wordle':
         return 'text-gray-300 hover:bg-gray-800 hover:text-white';
-      case 'colorle':
-        return 'text-purple-100 hover:bg-purple-800/50 hover:text-pink-200';
-      case 'numberle':
-        return 'text-blue-100 hover:bg-blue-800/50 hover:text-indigo-200';
       case 'loldle':
         return 'text-blue-100 hover:bg-blue-800/50 hover:text-purple-200';
       case 'musicdle':
@@ -135,10 +115,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-300';
       case 'wordle':
         return 'text-gray-400';
-      case 'colorle':
-        return 'text-purple-300';
-      case 'numberle':
-        return 'text-blue-300';
       case 'loldle':
         return 'text-blue-300';
       case 'musicdle':
@@ -154,10 +130,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-200';
       case 'wordle':
         return 'text-gray-400';
-      case 'colorle':
-        return 'text-purple-200';
-      case 'numberle':
-        return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
       case 'musicdle':
@@ -173,10 +145,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-200';
       case 'wordle':
         return 'text-gray-400';
-      case 'colorle':
-        return 'text-purple-200';
-      case 'numberle':
-        return 'text-blue-200';
       case 'loldle':
         return 'text-blue-200';
       case 'musicdle':
@@ -192,10 +160,6 @@ export class SidebarComponent implements OnInit {
         return 'text-orange-300';
       case 'wordle':
         return 'text-gray-500';
-      case 'colorle':
-        return 'text-purple-300';
-      case 'numberle':
-        return 'text-blue-300';
       case 'loldle':
         return 'text-blue-300';
       case 'musicdle':

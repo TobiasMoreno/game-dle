@@ -63,36 +63,6 @@ export class GameManagerService {
       }
     },
     {
-      id: 'numberle',
-      name: 'Numberle',
-      description: 'Adivina el número en 6 intentos',
-      route: '/games/numberle',
-      icon: 'fas fa-hashtag',
-      mode: 'daily',
-      stats: {
-        totalGames: 0,
-        wins: 0,
-        currentStreak: 0,
-        bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
-    },
-    {
-      id: 'colorle',
-      name: 'Colorle',
-      description: 'Adivina el color en 6 intentos',
-      route: '/games/colorle',
-      icon: 'fas fa-palette',
-      mode: 'daily',
-      stats: {
-        totalGames: 0,
-        wins: 0,
-        currentStreak: 0,
-        bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
-    },
-    {
       id: 'musicdle',
       name: 'MusicDLE',
       description: 'Reconoce canciones en fragmentos de hasta 12 segundos',
