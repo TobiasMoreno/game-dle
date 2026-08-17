@@ -56,7 +56,18 @@ export function calculateTuttiFruttiScores(
         return otherAnswer === answer;
       }).length;
 
-      byCategory[categoryKey] = matchingAnswers > 1 ? 5 : 10;
+      const validAnswers = Object.keys(room.players).filter((otherPlayerId) => {
+        const otherAnswer = normalizeAnswer(
+          room.answers?.[otherPlayerId]?.values[categoryKey] ?? ''
+        );
+        return Boolean(otherAnswer) && validationResults[otherPlayerId]?.[categoryKey];
+      }).length;
+
+      if (matchingAnswers > 1) {
+        byCategory[categoryKey] = 5;
+      } else {
+        byCategory[categoryKey] = validAnswers === 1 ? 20 : 10;
+      }
     });
 
     scores[playerId] = {

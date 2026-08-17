@@ -27,7 +27,7 @@ describe('Tutti Frutti scoring', () => {
     expect(results['two']['0']).toBeFalse();
   });
 
-  it('otorga 10 a respuestas válidas únicas, 5 a repetidas y 0 a rechazadas', () => {
+  it('otorga 10 a respuestas distintas y 5 a repetidas cuando hay varias válidas', () => {
     const room = createRoom();
     room.answers = {
       one: answer('Mono'),
@@ -37,14 +37,29 @@ describe('Tutti Frutti scoring', () => {
     const validation = {
       one: { '0': true },
       two: { '0': true },
-      three: { '0': false },
+      three: { '0': true },
     };
 
     const scores = calculateTuttiFruttiScores(room, validation);
 
     expect(scores['one'].total).toBe(5);
     expect(scores['two'].total).toBe(5);
-    expect(scores['three'].total).toBe(0);
+    expect(scores['three'].total).toBe(10);
+  });
+
+  it('otorga 20 cuando es la única respuesta válida de la columna', () => {
+    const room = createRoom();
+    const validation = {
+      one: { '0': false },
+      two: { '0': false },
+      three: { '0': true },
+    };
+
+    const scores = calculateTuttiFruttiScores(room, validation);
+
+    expect(scores['one'].total).toBe(0);
+    expect(scores['two'].total).toBe(0);
+    expect(scores['three'].total).toBe(20);
   });
 
   it('acumula el puntaje nuevo sobre las rondas anteriores', () => {
@@ -52,12 +67,12 @@ describe('Tutti Frutti scoring', () => {
     room.totals = { one: 15, two: 20, three: 5 };
 
     const totals = calculateAccumulatedTotals(room, {
-      one: { total: 10, byCategory: { '0': 10 } },
+      one: { total: 20, byCategory: { '0': 20 } },
       two: { total: 5, byCategory: { '0': 5 } },
       three: { total: 0, byCategory: { '0': 0 } },
     });
 
-    expect(totals).toEqual({ one: 25, two: 25, three: 5 });
+    expect(totals).toEqual({ one: 35, two: 25, three: 5 });
   });
 });
 

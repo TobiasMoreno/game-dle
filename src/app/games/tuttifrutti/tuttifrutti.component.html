@@ -194,7 +194,7 @@
         <section class="results-section">
           <header class="results-heading">
             <div><p class="step-label">RONDA {{ room.round }}/{{ room.totalRounds }} · LETRA {{ room.letter }}</p><h2>Puntos de la ronda</h2></div>
-            <p>10 si es válida y única · 5 si se repite · 0 si fue rechazada</p>
+            <p>20 si es la única válida · 10 si es distinta · 5 si se repite · 0 si fue rechazada</p>
           </header>
           <div class="podium">
             @for (entry of scoreEntries; track entry.id; let position = $index) {
