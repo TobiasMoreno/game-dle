@@ -223,6 +223,11 @@ app-musicdle .musicdle-studio .attempt-row__feedback .attempt-feedback--match {
   color: #15803d;
   background: rgba(34, 197, 94, 0.08);
 }
+app-musicdle .musicdle-studio .attempt-row__feedback .attempt-feedback--partial {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: var(--studio-amber-hover);
+  background: rgba(245, 158, 11, 0.1);
+}
 app-musicdle .musicdle-studio--dark .attempt-row__feedback .attempt-feedback--match { color: #86efac; }
 
 /* MusicDLE: tablero completo dentro del viewport disponible. */

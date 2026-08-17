@@ -1,6 +1,7 @@
 export type MusicdleFilterKind = 'all' | 'collection' | 'genre' | 'decade' | 'language';
 export type MusicdleRoundStatus = 'active' | 'won' | 'lost';
 export type MusicdleAttemptKind = 'guess' | 'pass';
+export type MusicdleArtistMatch = 'exact' | 'partial' | 'none';
 
 export interface MusicdleSong {
   id: string;
@@ -27,7 +28,7 @@ export interface MusicdleAttempt {
   songId?: string;
   label: string;
   correct: boolean;
-  artistMatch?: boolean;
+  artistMatch?: MusicdleArtistMatch | boolean;
   categoryMatch?: boolean;
   listenedSeconds: number;
   createdAt: number;

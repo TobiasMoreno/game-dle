@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   MusicdleAttempt,
+  MusicdleArtistMatch,
   MusicdleFilter,
   MusicdleRoundState,
   MusicdleSong,
@@ -38,7 +39,7 @@ export class MusicdleEngineService {
       songId: guessedSong.id,
       label: `${guessedSong.title} — ${guessedSong.artist}`,
       correct,
-      artistMatch: this.normalize(guessedSong.artist) === this.normalize(targetSong.artist),
+      artistMatch: this.getArtistMatch(guessedSong.artist, targetSong.artist),
       categoryMatch: this.normalize(guessedSong.collection) === this.normalize(targetSong.collection),
       listenedSeconds: round.unlockedSeconds,
       createdAt: now,
@@ -105,5 +106,23 @@ export class MusicdleEngineService {
       .replace(/[\u0300-\u036f]/g, '')
       .toLocaleLowerCase('es')
       .trim();
+  }
+
+  private getArtistMatch(guessedArtist: string, targetArtist: string): MusicdleArtistMatch {
+    const normalizedGuess = this.normalize(guessedArtist);
+    const normalizedTarget = this.normalize(targetArtist);
+    if (normalizedGuess === normalizedTarget) return 'exact';
+
+    const targetArtists = new Set(this.splitArtistCredit(normalizedTarget));
+    const sharesArtist = this.splitArtistCredit(normalizedGuess)
+      .some((artist) => targetArtists.has(artist));
+
+    return sharesArtist ? 'partial' : 'none';
+  }
+
+  private splitArtistCredit(normalizedArtist: string): string[] {
+    return normalizedArtist
+      .split(/\s*(?:&|,|\bfeat\.?|\bft\.?|\bx\b)\s*/)
+      .filter(Boolean);
   }
 }

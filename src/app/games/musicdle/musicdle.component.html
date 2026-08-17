@@ -141,8 +141,11 @@
                     <span class="attempt-row__label">{{ attempt.label }}</span>
                     @if (attempt.kind === 'guess' && attempt.artistMatch !== undefined) {
                       <div class="attempt-row__feedback" aria-label="Coincidencias del intento">
-                        <span [class.attempt-feedback--match]="attempt.artistMatch">
-                          Artista {{ attempt.artistMatch ? '✓' : '×' }}
+                        <span
+                          [class.attempt-feedback--match]="isExactArtistMatch(attempt.artistMatch)"
+                          [class.attempt-feedback--partial]="isPartialArtistMatch(attempt.artistMatch)"
+                        >
+                          {{ artistMatchLabel(attempt.artistMatch) }}
                         </span>
                         <span [class.attempt-feedback--match]="attempt.categoryMatch">
                           Categoría {{ attempt.categoryMatch ? '✓' : '×' }}

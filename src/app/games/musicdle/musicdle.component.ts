@@ -17,6 +17,7 @@ import {
 import {
   MusicdleFilter,
   MusicdleFilterOption,
+  MusicdleArtistMatch,
   MusicdleRoundState,
   MusicdleSong,
 } from './musicdle.models';
@@ -268,6 +269,20 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
   attemptIcon(kind: 'guess' | 'pass', correct: boolean): string {
     if (correct) return '✓';
     return kind === 'pass' ? '→' : '×';
+  }
+
+  isExactArtistMatch(match: MusicdleArtistMatch | boolean | undefined): boolean {
+    return match === 'exact' || match === true;
+  }
+
+  isPartialArtistMatch(match: MusicdleArtistMatch | boolean | undefined): boolean {
+    return match === 'partial';
+  }
+
+  artistMatchLabel(match: MusicdleArtistMatch | boolean | undefined): string {
+    if (this.isExactArtistMatch(match)) return 'Artista ✓';
+    if (this.isPartialArtistMatch(match)) return 'Artista parcial';
+    return 'Artista ×';
   }
 
   private restoreOrStartRound(): void {

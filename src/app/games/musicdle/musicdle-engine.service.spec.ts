@@ -37,6 +37,12 @@ describe('MusicdleEngineService', () => {
     collection: 'Otra categoría',
   };
 
+  const collaboratingArtist: MusicdleSong = {
+    ...wrong,
+    id: 'collaborating-artist',
+    artist: 'Artista secreto feat. Artista invitado',
+  };
+
   beforeEach(() => {
     service = new MusicdleEngineService();
   });
@@ -55,7 +61,7 @@ describe('MusicdleEngineService', () => {
 
     expect(updated.attempts.length).toBe(1);
     expect(updated.attempts[0].correct).toBeFalse();
-    expect(updated.attempts[0].artistMatch).toBeTrue();
+    expect(updated.attempts[0].artistMatch).toBe('exact');
     expect(updated.attempts[0].categoryMatch).toBeTrue();
     expect(updated.unlockedSeconds).toBe(4);
     expect(updated.status).toBe('active');
@@ -65,8 +71,16 @@ describe('MusicdleEngineService', () => {
     const round = service.createRound(target.id, filter, 100);
     const updated = service.submitGuess(round, otherArtist, target, 200);
 
-    expect(updated.attempts[0].artistMatch).toBeFalse();
+    expect(updated.attempts[0].artistMatch).toBe('none');
     expect(updated.attempts[0].categoryMatch).toBeFalse();
+  });
+
+  it('marca una coincidencia parcial cuando comparte uno de varios artistas', () => {
+    const round = service.createRound(collaboratingArtist.id, filter, 100);
+    const updated = service.submitGuess(round, target, collaboratingArtist, 200);
+
+    expect(updated.attempts[0].artistMatch).toBe('partial');
+    expect(updated.attempts[0].categoryMatch).toBeTrue();
   });
 
   it('pierde después de seis pases y nunca desbloquea más de 12 segundos', () => {
