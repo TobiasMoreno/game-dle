@@ -25,7 +25,10 @@ export class DailyJourneyComponent implements OnDestroy {
     const total = this.dailyGames().length;
     return total ? Math.round((this.completedDailyGames() / total) * 100) : 0;
   });
-  readonly signedInWithGoogle = computed(() => !this.activity.user()?.isAnonymous);
+  readonly signedInWithGoogle = computed(() => {
+    const user = this.activity.user();
+    return Boolean(user && !user.isAnonymous);
+  });
 
   private readonly countdownTimer = window.setInterval(() => {
     this.countdown.set(this.formatCountdown(millisecondsUntilArgentinaMidnight()));

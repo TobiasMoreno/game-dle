@@ -60,8 +60,8 @@
       <h3>{{ signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
       <p>
         {{ signedInWithGoogle()
-          ? 'Tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
-          : 'Conectá Google para recuperar tu racha cuando cambies de dispositivo o navegador.' }}
+          ? 'Tus estadísticas, tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
+          : 'Las estadísticas quedan en este navegador. Conectá Google para recuperarlas en otros dispositivos.' }}
       </p>
       @if (activity.syncMessage()) {
         <small class="journey__sync-status" role="status">{{ activity.syncMessage() }}</small>

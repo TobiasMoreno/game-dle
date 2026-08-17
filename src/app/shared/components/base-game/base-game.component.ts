@@ -4,6 +4,7 @@ import { GameState, DailyGameState, GameProgress } from '../../models/game.model
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameStorageService } from '../../services/game-storage.service';
 import { ThemeService } from '../../services/theme.service';
+import { DailyActivityService } from '../../services/daily-activity.service';
 import { FooterComponent } from '../footer/footer.component';
 import { AdSlotComponent } from '../ad-slot/ad-slot.component';
 import { BackHomeButtonComponent } from '../back-home-button/back-home-button.component';
@@ -47,6 +48,7 @@ export class BaseGameComponent {
   private router = inject(Router);
   private gameManager = inject(GameManagerService);
   protected gameStorage = inject(GameStorageService);
+  private dailyActivity = inject(DailyActivityService);
   private themeService = inject(ThemeService);
 
   /**
@@ -169,9 +171,6 @@ export class BaseGameComponent {
 
     this.gameManager.completeGame(gameIdValue, won, attempts, gameData);
     
-    // Actualizar estadísticas personales
-    this.gameStorage.updatePersonalStats(gameIdValue, won);
-    
     this.gameCompleted.emit({ won, attempts, gameData });
     
     this.loadGame();
@@ -254,16 +253,16 @@ export class BaseGameComponent {
     return index;
   }
 
-  /**
-   * Obtiene las estadísticas personales del juego actual (forzado a 'onepiecedle')
-   */
+  /** Obtiene las estadísticas sincronizadas del juego actual. */
   public getPersonalStats(): { played: number; won: number; currentStreak: number; bestStreak: number } {
-    return this.gameStorage.getPersonalStats('onepiecedle');
-    //TODO: Ver por que no me toma el gameIdValue esta como null, por ahora lo forzo a 'onepiecedle'
-    //const gameIdValue = this.getGameIdSafely();
-    //if (!gameIdValue) {
-    //  return { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
-    //}
-    //return this.gameStorage.getPersonalStats(gameIdValue);
+    const gameIdValue = this.getGameIdSafely();
+    if (!gameIdValue) {
+      return { played: 0, won: 0, currentStreak: 0, bestStreak: 0 };
+    }
+
+    const syncedStats = this.dailyActivity.getGameStats(gameIdValue);
+    return syncedStats.played > 0
+      ? syncedStats
+      : this.gameStorage.getPersonalStats(gameIdValue);
   }
 }

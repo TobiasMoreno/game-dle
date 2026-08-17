@@ -3,7 +3,33 @@ import {
   ActivityCalendarDay,
   DailyActivityEntry,
   DailyActivitySummary,
+  GameActivityStats,
 } from '../models/daily-activity.model';
+
+export function buildGameActivityStats(
+  entries: DailyActivityEntry[],
+  gameId: string
+): GameActivityStats {
+  const gameEntries = entries
+    .filter((entry) => entry.gameId === gameId)
+    .sort((a, b) => a.completedAt - b.completedAt);
+
+  let currentStreak = 0;
+  let bestStreak = 0;
+  let won = 0;
+
+  for (const entry of gameEntries) {
+    if (entry.won) {
+      won += 1;
+      currentStreak += 1;
+      bestStreak = Math.max(bestStreak, currentStreak);
+    } else {
+      currentStreak = 0;
+    }
+  }
+
+  return { played: gameEntries.length, won, currentStreak, bestStreak };
+}
 
 export const ARGENTINA_TIME_ZONE = 'America/Argentina/Buenos_Aires';
 

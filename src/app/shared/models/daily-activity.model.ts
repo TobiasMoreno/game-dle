@@ -38,3 +38,10 @@ export interface DailyActivitySummary {
   calendar: ActivityCalendarDay[];
   achievements: ActivityAchievement[];
 }
+
+export interface GameActivityStats {
+  played: number;
+  won: number;
+  currentStreak: number;
+  bestStreak: number;
+}

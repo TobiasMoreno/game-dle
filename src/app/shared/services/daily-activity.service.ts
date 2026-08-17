@@ -9,8 +9,12 @@ import {
 } from 'firebase/auth';
 import { get, ref, set } from 'firebase/database';
 import { firebaseAuth, getFirebaseDatabase } from '../config/firebase.config';
-import { DailyActivityEntry } from '../models/daily-activity.model';
-import { argentinaDateKey, buildActivitySummary } from '../utils/daily-activity.utils';
+import { DailyActivityEntry, GameActivityStats } from '../models/daily-activity.model';
+import {
+  argentinaDateKey,
+  buildActivitySummary,
+  buildGameActivityStats,
+} from '../utils/daily-activity.utils';
 
 interface CloudActivityByDate {
   [date: string]: Record<string, DailyActivityEntry>;
@@ -95,14 +99,18 @@ export class DailyActivityService {
     this.syncing.set(true);
     try {
       await signOut(firebaseAuth);
-      this.persistLocal([]);
       this.authPromise = null;
       const user = await this.ensureUser();
       this.user.set(user);
-      this.syncMessage.set('Continuás con un perfil nuevo en este dispositivo');
+      await this.syncWithCloud(user);
+      this.syncMessage.set('Las estadísticas siguen guardadas en este navegador');
     } finally {
       this.syncing.set(false);
     }
+  }
+
+  getGameStats(gameId: string): GameActivityStats {
+    return buildGameActivityStats(this.entriesState(), gameId);
   }
 
   private async ensureUser(): Promise<User> {
