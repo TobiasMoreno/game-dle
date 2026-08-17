@@ -10,12 +10,19 @@
           ".validate": "newData.isString() && ((!data.exists() && newData.val() === auth.uid) || newData.val() === data.val())"
         },
         "status": {
-          ".write": "auth != null && data.parent().child('players').child(auth.uid).exists() && (newData.val() === 'results' || data.parent().child('hostId').val() === auth.uid)",
-          ".validate": "newData.val() === 'waiting' || newData.val() === 'playing' || newData.val() === 'results'"
+          ".write": "auth != null && data.parent().child('players').child(auth.uid).exists() && (newData.val() === 'voting' || data.parent().child('hostId').val() === auth.uid)",
+          ".validate": "newData.val() === 'waiting' || newData.val() === 'playing' || newData.val() === 'voting' || newData.val() === 'roundResults' || newData.val() === 'finished'"
         },
         "round": {
           ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
           ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "totalRounds": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid && data.parent().child('round').val() === 0",
+          ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 12"
+        },
+        "categories": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid && data.parent().child('round').val() === 0"
         },
         "letter": {
           ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
@@ -31,9 +38,12 @@
         "stoppedAt": {
           ".write": "auth != null && data.parent().child('players').child(auth.uid).exists()"
         },
+        "votingStartedAt": {
+          ".write": "auth != null && data.parent().child('players').child(auth.uid).exists()"
+        },
         "players": {
           "$uid": {
-            ".write": "auth != null && auth.uid === $uid",
+            ".write": "auth != null && auth.uid === $uid && (data.exists() || data.parent().parent().child('round').val() === 0)",
             ".validate": "newData.hasChildren(['name', 'online', 'joinedAt']) && newData.child('name').isString() && newData.child('name').val().length >= 2 && newData.child('name').val().length <= 24 && newData.child('online').isBoolean()"
           }
         },
@@ -43,6 +53,21 @@
             ".write": "auth != null && auth.uid === $uid && data.parent().parent().child('players').child(auth.uid).exists()",
             ".validate": "newData.hasChildren(['values', 'submittedAt'])"
           }
+        },
+        "votes": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && data.parent().parent().child('status').val() === 'voting' && data.parent().parent().child('players').child(auth.uid).exists()"
+          }
+        },
+        "validationResults": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
+        },
+        "roundScores": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
+        },
+        "totals": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
         }
       }
     }

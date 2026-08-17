@@ -8,9 +8,10 @@ import {
   TuttiFruttiPlayer,
   TuttiFruttiRoom,
   TuttiFruttiScore,
+  TuttiFruttiVote,
 } from './tuttifrutti.models';
 import { TuttiFruttiRoomService } from './tuttifrutti-room.service';
-import { calculateTuttiFruttiScores } from './tuttifrutti-score';
+import { requiredYesVotes } from './tuttifrutti-score';
 
 interface PlayerEntry {
   id: string;
@@ -34,8 +35,12 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   userId = '';
   room: TuttiFruttiRoom | null = null;
   answers: Record<string, string> = {};
+  configuredCategories: string[] = [];
+  configuredRounds = 5;
   selectedDurationMs = 90_000;
+  newCategory = '';
   remainingMs = 0;
+  validationRemainingMs = 20_000;
   errorMessage = '';
   infoMessage = '';
   isBusy = false;
@@ -46,6 +51,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   private unsubscribeRoom?: () => void;
   private unsubscribeOffset?: () => void;
   private submittedRound = -1;
+  private finalizingRound = -1;
 
   private readonly roomService = inject(TuttiFruttiRoomService);
   private readonly route = inject(ActivatedRoute);
@@ -56,10 +62,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   }
 
   get playerEntries(): PlayerEntry[] {
-    return Object.entries(this.room?.players ?? {}).map(([id, player]) => ({
-      id,
-      player,
-    }));
+    return Object.entries(this.room?.players ?? {}).map(([id, player]) => ({ id, player }));
   }
 
   get onlinePlayers(): number {
@@ -68,14 +71,17 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
 
   get answeredCategories(): number {
     if (!this.room) return 0;
-    return this.room.categories.filter((category) => this.answers[category]?.trim()).length;
+    return this.room.categories.filter((_category, index) =>
+      this.answers[this.categoryKey(index)]?.trim()
+    ).length;
   }
 
   get formattedTime(): string {
-    const totalSeconds = Math.ceil(this.remainingMs / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    return this.formatMilliseconds(this.remainingMs);
+  }
+
+  get validationSeconds(): number {
+    return Math.ceil(this.validationRemainingMs / 1000);
   }
 
   get timerProgress(): number {
@@ -83,11 +89,56 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     return Math.max(0, Math.min(100, (this.remainingMs / this.room.durationMs) * 100));
   }
 
+  get validationProgress(): number {
+    return Math.max(0, Math.min(100, (this.validationRemainingMs / 20_000) * 100));
+  }
+
+  get voteThreshold(): number {
+    return requiredYesVotes(this.playerEntries.length);
+  }
+
+  get totalWordsToVote(): number {
+    if (!this.room) return 0;
+    return this.playerEntries.reduce((total, entry) => {
+      return total + this.room!.categories.filter((_category, index) =>
+        this.resultAnswer(entry.id, index) !== '—'
+      ).length;
+    }, 0);
+  }
+
+  get myCompletedVotes(): number {
+    if (!this.room) return 0;
+    return this.playerEntries.reduce((total, entry) => {
+      return total + this.room!.categories.filter((_category, index) =>
+        Boolean(this.myVote(entry.id, index))
+      ).length;
+    }, 0);
+  }
+
+  get allVotesSubmitted(): boolean {
+    if (!this.room || Object.keys(this.room.answers ?? {}).length < this.playerEntries.length) {
+      return false;
+    }
+    const expectedVotes = this.totalWordsToVote * this.playerEntries.length;
+    const actualVotes = Object.values(this.room.votes ?? {}).reduce((voterTotal, votes) => {
+      return voterTotal + Object.values(votes).reduce((ownerTotal, ownerVotes) => {
+        return ownerTotal + Object.keys(ownerVotes).length;
+      }, 0);
+    }, 0);
+    return actualVotes >= expectedVotes;
+  }
+
   get scoreEntries(): ScoreEntry[] {
-    if (!this.room) return [];
-    const scores = calculateTuttiFruttiScores(this.room);
+    return this.toScoreEntries(this.room?.roundScores ?? {});
+  }
+
+  get rankingEntries(): ScoreEntry[] {
+    const totals = this.room?.totals ?? {};
     return this.playerEntries
-      .map((entry) => ({ ...entry, score: scores[entry.id] }))
+      .map((entry) => ({
+        ...entry,
+        score: { total: totals[entry.id] ?? 0, byCategory: {} },
+      }))
       .sort((a, b) => b.score.total - a.score.total);
   }
 
@@ -95,7 +146,6 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     this.themeService.setHeaderTheme('default');
     this.themeService.setFooterTheme('default');
     this.joinCode = this.route.snapshot.queryParamMap.get('room')?.toUpperCase() ?? '';
-
     const remembered = this.roomService.getRememberedSession();
     if (remembered) {
       this.playerName = remembered.playerName;
@@ -122,30 +172,57 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
       this.errorMessage = 'El código debe tener 6 caracteres.';
       return;
     }
-
     await this.runAction(async () => {
       const session = await this.roomService.joinRoom(this.joinCode, this.playerName);
       this.connectToRoom(session.code, session.userId);
     });
   }
 
+  addCategory(): void {
+    const category = this.newCategory.trim().slice(0, 30);
+    if (!category || this.configuredCategories.length >= 10) return;
+    if (this.configuredCategories.some((item) => item.toLowerCase() === category.toLowerCase())) {
+      this.errorMessage = 'Esa columna ya existe.';
+      return;
+    }
+    this.configuredCategories.push(category);
+    this.newCategory = '';
+    this.errorMessage = '';
+  }
+
+  removeCategory(index: number): void {
+    if (this.configuredCategories.length <= 2) {
+      this.errorMessage = 'La partida necesita al menos 2 columnas.';
+      return;
+    }
+    this.configuredCategories.splice(index, 1);
+  }
+
   async startRound(): Promise<void> {
     if (!this.room || !this.isHost || this.onlinePlayers < 2) return;
+    if (!this.validateSettings()) return;
     const availableLetters = TUTTIFRUTTI_LETTERS.filter(
       (letter) => letter !== this.room?.letter
     );
     const letter = availableLetters[Math.floor(Math.random() * availableLetters.length)];
 
-    await this.runAction(() =>
-      this.roomService.startRound(this.roomCode, letter, this.selectedDurationMs)
-    );
+    await this.runAction(async () => {
+      if (this.room?.round === 0) {
+        await this.roomService.updateSettings(
+          this.roomCode,
+          this.configuredRounds,
+          this.selectedDurationMs,
+          this.configuredCategories
+        );
+      }
+      await this.roomService.startRound(this.roomCode, letter, this.selectedDurationMs);
+    });
   }
 
   async callTuttiFrutti(): Promise<void> {
     if (!this.room || this.room.status !== 'playing' || this.closingRound) return;
     this.closingRound = true;
     this.submittedRound = this.room.round;
-
     try {
       await this.roomService.finishRound(this.roomCode, this.userId, this.answers);
     } catch (error) {
@@ -154,9 +231,24 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     }
   }
 
-  async returnToLobby(): Promise<void> {
+  async castVote(ownerId: string, categoryIndex: number, vote: TuttiFruttiVote): Promise<void> {
+    if (this.room?.status !== 'voting' || this.validationRemainingMs <= 0) return;
+    try {
+      await this.roomService.voteAnswer(
+        this.roomCode,
+        this.userId,
+        ownerId,
+        categoryIndex,
+        vote
+      );
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  async restartGame(): Promise<void> {
     if (!this.isHost) return;
-    await this.runAction(() => this.roomService.returnToLobby(this.roomCode));
+    await this.runAction(() => this.roomService.restartGame(this.roomCode));
   }
 
   async leaveRoom(): Promise<void> {
@@ -164,7 +256,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
       try {
         await this.roomService.leaveRoom(this.roomCode, this.userId);
       } catch {
-        // La salida local no debe quedar bloqueada por una desconexión de red.
+        // La salida local no debe bloquearse por una desconexión de red.
       }
     }
     this.stopListening();
@@ -181,7 +273,6 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     const url = new URL('/games/tuttifrutti', window.location.origin);
     url.searchParams.set('room', this.roomCode);
     const text = `Sumate a mi Tutti Frutti en Game-DLE. Sala ${this.roomCode}`;
-
     try {
       await navigator.clipboard.writeText(`${text}\n${url.toString()}`);
       this.infoMessage = 'Invitación copiada al portapapeles.';
@@ -191,12 +282,27 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackCategory(_index: number, category: string): string {
-    return category;
+  categoryKey(index: number): string {
+    return String(index);
   }
 
-  resultAnswer(playerId: string, category: string): string {
-    return this.room?.answers?.[playerId]?.values[category] || '—';
+  resultAnswer(playerId: string, categoryIndex: number): string {
+    return this.room?.answers?.[playerId]?.values[this.categoryKey(categoryIndex)] || '—';
+  }
+
+  myVote(ownerId: string, categoryIndex: number): TuttiFruttiVote | null {
+    return this.room?.votes?.[this.userId]?.[ownerId]?.[this.categoryKey(categoryIndex)] ?? null;
+  }
+
+  positiveVotes(ownerId: string, categoryIndex: number): number {
+    const categoryKey = this.categoryKey(categoryIndex);
+    return Object.values(this.room?.votes ?? {}).filter(
+      (votes) => votes[ownerId]?.[categoryKey] === 'yes'
+    ).length;
+  }
+
+  isAccepted(ownerId: string, categoryIndex: number): boolean {
+    return this.room?.validationResults?.[ownerId]?.[this.categoryKey(categoryIndex)] ?? false;
   }
 
   private async restoreSession(code: string, playerName: string): Promise<void> {
@@ -211,12 +317,11 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     this.roomCode = code;
     this.joinCode = code;
     this.userId = userId;
-    this.unsubscribeOffset = this.roomService.listenToServerOffset((offsetMs) => {
-      this.serverOffsetMs = offsetMs;
-    });
+    this.unsubscribeOffset = this.roomService.listenToServerOffset(
+      (offsetMs) => this.serverOffsetMs = offsetMs
+    );
     this.unsubscribeRoom = this.roomService.listenToRoom(code, (room) => {
       if (!room) {
-        this.errorMessage = 'La sala fue cerrada.';
         void this.leaveRoom();
         return;
       }
@@ -230,42 +335,77 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
     this.room = nextRoom;
     this.closingRound = false;
 
+    if (previousRound === undefined || (nextRoom.status === 'waiting' && previousStatus !== 'waiting')) {
+      this.configuredCategories = [...nextRoom.categories];
+      this.configuredRounds = nextRoom.totalRounds;
+      this.selectedDurationMs = nextRoom.durationMs;
+    }
+
     if (nextRoom.status === 'playing') {
       if (previousRound !== nextRoom.round) {
         this.answers = Object.fromEntries(
-          nextRoom.categories.map((category) => [category, ''])
+          nextRoom.categories.map((_category, index) => [this.categoryKey(index), ''])
         );
         this.submittedRound = -1;
+        this.finalizingRound = -1;
       }
-      this.startTimer();
-    } else {
-      this.stopTimer();
+      this.startTimer('playing');
+      return;
     }
 
-    if (
-      nextRoom.status === 'results' &&
-      previousStatus === 'playing' &&
-      this.submittedRound !== nextRoom.round
-    ) {
-      this.submittedRound = nextRoom.round;
-      void this.roomService
-        .submitAnswers(this.roomCode, this.userId, this.answers)
-        .catch((error) => this.handleError(error));
+    if (nextRoom.status === 'voting') {
+      if (previousStatus === 'playing' && this.submittedRound !== nextRoom.round) {
+        this.submittedRound = nextRoom.round;
+        void this.roomService
+          .submitAnswers(this.roomCode, this.userId, this.answers)
+          .catch((error) => this.handleError(error));
+      }
+      this.startTimer('voting');
+      this.evaluateVotingCompletion();
+      return;
     }
-  }
 
-  private startTimer(): void {
     this.stopTimer();
-    this.updateRemainingTime();
-    this.timerId = setInterval(() => this.updateRemainingTime(), 250);
   }
 
-  private updateRemainingTime(): void {
+  private startTimer(mode: 'playing' | 'voting'): void {
+    this.stopTimer();
+    const tick = () => mode === 'playing'
+      ? this.updatePlayingTime()
+      : this.updateVotingTime();
+    tick();
+    this.timerId = setInterval(tick, 250);
+  }
+
+  private updatePlayingTime(): void {
     if (!this.room?.startedAt) return;
-    const serverNow = Date.now() + this.serverOffsetMs;
     const endsAt = this.room.startedAt + this.room.durationMs;
-    this.remainingMs = Math.max(0, endsAt - serverNow);
+    this.remainingMs = Math.max(0, endsAt - this.serverNow());
     if (this.remainingMs === 0) void this.callTuttiFrutti();
+  }
+
+  private updateVotingTime(): void {
+    if (!this.room?.votingStartedAt) return;
+    const endsAt = this.room.votingStartedAt + 20_000;
+    this.validationRemainingMs = Math.max(0, endsAt - this.serverNow());
+    this.evaluateVotingCompletion();
+  }
+
+  private evaluateVotingCompletion(): void {
+    if (
+      !this.room ||
+      !this.isHost ||
+      this.room.status !== 'voting' ||
+      this.finalizingRound === this.room.round
+    ) return;
+
+    if (this.validationRemainingMs === 0 || this.allVotesSubmitted) {
+      this.finalizingRound = this.room.round;
+      void this.roomService.finalizeVoting(this.roomCode).catch((error) => {
+        this.finalizingRound = -1;
+        this.handleError(error);
+      });
+    }
   }
 
   private stopTimer(): void {
@@ -288,6 +428,45 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
       return false;
     }
     return true;
+  }
+
+  private validateSettings(): boolean {
+    const categories = this.configuredCategories.map((item) => item.trim()).filter(Boolean);
+    const uniqueCategories = new Set(categories.map((item) => item.toLowerCase()));
+    if (this.configuredRounds < 1 || this.configuredRounds > 12) {
+      this.errorMessage = 'Configura entre 1 y 12 rondas.';
+      return false;
+    }
+    if (categories.length < 2 || categories.length > 10) {
+      this.errorMessage = 'Configura entre 2 y 10 columnas.';
+      return false;
+    }
+    if (uniqueCategories.size !== categories.length) {
+      this.errorMessage = 'No puede haber columnas repetidas.';
+      return false;
+    }
+    this.configuredCategories = categories;
+    return true;
+  }
+
+  private toScoreEntries(scores: Record<string, TuttiFruttiScore>): ScoreEntry[] {
+    return this.playerEntries
+      .map((entry) => ({
+        ...entry,
+        score: scores[entry.id] ?? { total: 0, byCategory: {} },
+      }))
+      .sort((a, b) => b.score.total - a.score.total);
+  }
+
+  private formatMilliseconds(milliseconds: number): string {
+    const totalSeconds = Math.ceil(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  private serverNow(): number {
+    return Date.now() + this.serverOffsetMs;
   }
 
   private async runAction(action: () => Promise<void>): Promise<void> {

@@ -6,9 +6,7 @@
       <header class="entry-hero">
         <p class="kicker"><span></span> MULTIJUGADOR EN VIVO</p>
         <h1>Tutti<br><em>Frutti</em></h1>
-        <p class="hero-copy">
-          Una letra. Seis categorías. Tus amigos escribiendo contra reloj.
-        </p>
+        <p class="hero-copy">Una letra. Tus columnas. Tus amigos escribiendo contra reloj.</p>
         <div class="scribble" aria-hidden="true">¡pensá rápido!</div>
       </header>
 
@@ -16,135 +14,106 @@
         <div class="card-pin" aria-hidden="true"></div>
         <p class="step-label">ANTES DE JUGAR</p>
         <h2>¿Cómo te llamás?</h2>
-
         <label class="field-label" for="player-name">Tu nombre</label>
-        <input
-          id="player-name"
-          class="text-field"
-          type="text"
-          maxlength="24"
-          autocomplete="nickname"
-          placeholder="Ej: Tobi"
-          [(ngModel)]="playerName"
-          (keyup.enter)="joinCode ? joinRoom() : createRoom()"
-        >
-
+        <input id="player-name" class="text-field" type="text" maxlength="24"
+          autocomplete="nickname" placeholder="Ej: Tobi" [(ngModel)]="playerName"
+          (keyup.enter)="joinCode ? joinRoom() : createRoom()">
         <button class="primary-action" type="button" [disabled]="isBusy" (click)="createRoom()">
           <span>Crear una sala</span><span aria-hidden="true">→</span>
         </button>
-
         <div class="divider"><span>o sumate a una</span></div>
-
         <label class="field-label" for="room-code">Código de sala</label>
         <div class="join-row">
-          <input
-            id="room-code"
-            class="text-field room-code-input"
-            type="text"
-            maxlength="6"
-            autocomplete="off"
-            placeholder="ABC123"
-            [(ngModel)]="joinCode"
-            (input)="joinCode = joinCode.toUpperCase()"
-            (keyup.enter)="joinRoom()"
-          >
+          <input id="room-code" class="text-field room-code-input" type="text" maxlength="6"
+            autocomplete="off" placeholder="ABC123" [(ngModel)]="joinCode"
+            (input)="joinCode = joinCode.toUpperCase()" (keyup.enter)="joinRoom()">
           <button type="button" [disabled]="isBusy" (click)="joinRoom()">Entrar</button>
         </div>
-
-        @if (errorMessage) {
-          <p class="message error" role="alert">{{ errorMessage }}</p>
-        }
-        @if (isBusy) {
-          <p class="loading-note">Conectando los lápices...</p>
-        }
+        @if (errorMessage) { <p class="message error" role="alert">{{ errorMessage }}</p> }
+        @if (isBusy) { <p class="loading-note">Conectando los lápices...</p> }
       </div>
     </section>
   } @else {
     <section class="game-shell">
       <header class="room-header">
         <div>
-          <p class="kicker"><span></span> SALA EN VIVO</p>
+          <p class="kicker"><span></span> SALA EN VIVO · RONDA {{ room.round }}/{{ room.totalRounds }}</p>
           <h1>Tutti <em>Frutti</em></h1>
         </div>
-
         <div class="room-actions">
           <button class="code-ticket" type="button" (click)="copyRoomInvitation()" title="Copiar invitación">
-            <small>CÓDIGO</small>
-            <strong>{{ roomCode }}</strong>
-            <span>Copiar enlace</span>
+            <small>CÓDIGO</small><strong>{{ roomCode }}</strong><span>Copiar enlace</span>
           </button>
           <button class="leave-button" type="button" (click)="leaveRoom()">Salir</button>
         </div>
       </header>
 
-      @if (infoMessage) {
-        <p class="message info" role="status">{{ infoMessage }}</p>
-      }
-      @if (errorMessage) {
-        <p class="message error" role="alert">{{ errorMessage }}</p>
-      }
+      @if (infoMessage) { <p class="message info" role="status">{{ infoMessage }}</p> }
+      @if (errorMessage) { <p class="message error" role="alert">{{ errorMessage }}</p> }
 
       @if (room.status === 'waiting') {
         <div class="lobby-grid">
           <section class="sheet lobby-sheet">
             <div class="sheet-heading">
-              <div>
-                <p class="step-label">MESA DE JUEGO</p>
-                <h2>Esperando al equipo</h2>
-              </div>
+              <div><p class="step-label">MESA DE JUEGO</p><h2>Armando la partida</h2></div>
               <span class="live-count">{{ onlinePlayers }} en línea</span>
             </div>
-
             <div class="player-grid">
               @for (entry of playerEntries; track entry.id) {
                 <article class="player-chip" [class.offline]="!entry.player.online">
                   <span class="avatar">{{ entry.player.name.charAt(0).toUpperCase() }}</span>
                   <div>
                     <strong>{{ entry.player.name }}</strong>
-                    <small>
-                      {{ entry.id === room.hostId ? 'Anfitrión' : (entry.player.online ? 'Listo para jugar' : 'Sin conexión') }}
-                    </small>
+                    <small>{{ entry.id === room.hostId ? 'Anfitrión' : (entry.player.online ? 'Listo para jugar' : 'Sin conexión') }}</small>
                   </div>
                   @if (entry.id === room.hostId) { <span class="crown">★</span> }
                 </article>
               }
             </div>
-
             @if (onlinePlayers < 2) {
-              <p class="waiting-copy">Compartí el código. La ronda se habilita cuando entra otra persona.</p>
+              <p class="waiting-copy">Compartí el código. La partida se habilita cuando entra otra persona.</p>
             }
           </section>
 
-          <aside class="setup-card">
-            <p class="step-label">PRÓXIMA RONDA</p>
-            <h3>{{ room.categories.length }} categorías</h3>
-            <ul>
-              @for (category of room.categories; track category) {
-                <li><span></span>{{ category }}</li>
-              }
-            </ul>
-
+          <aside class="setup-card setup-card-wide">
+            <p class="step-label">CONFIGURACIÓN</p>
             @if (isHost) {
-              <label class="field-label" for="duration">Tiempo de juego</label>
-              <select id="duration" [(ngModel)]="selectedDurationMs">
-                <option [ngValue]="60_000">1 minuto</option>
-                <option [ngValue]="90_000">1 minuto 30</option>
-                <option [ngValue]="120_000">2 minutos</option>
-                <option [ngValue]="180_000">3 minutos</option>
-              </select>
-              <button
-                class="start-button"
-                type="button"
-                [disabled]="isBusy || onlinePlayers < 2"
-                (click)="startRound()"
-              >
+              <div class="settings-pair">
+                <label><span>Rondas</span><input type="number" min="1" max="12" [(ngModel)]="configuredRounds"></label>
+                <label><span>Tiempo</span>
+                  <select [(ngModel)]="selectedDurationMs">
+                    <option [ngValue]="60_000">1:00</option>
+                    <option [ngValue]="90_000">1:30</option>
+                    <option [ngValue]="120_000">2:00</option>
+                    <option [ngValue]="180_000">3:00</option>
+                  </select>
+                </label>
+              </div>
+              <div class="columns-heading"><strong>Columnas</strong><span>{{ configuredCategories.length }}/10</span></div>
+              <div class="column-editor">
+                @for (category of configuredCategories; track $index; let categoryIndex = $index) {
+                  <div class="column-edit-row">
+                    <span>{{ categoryIndex + 1 }}</span>
+                    <input type="text" maxlength="30" [(ngModel)]="configuredCategories[categoryIndex]">
+                    <button type="button" title="Quitar columna" (click)="removeCategory(categoryIndex)">×</button>
+                  </div>
+                }
+              </div>
+              @if (configuredCategories.length < 10) {
+                <div class="add-column-row">
+                  <input type="text" maxlength="30" placeholder="Nueva columna" [(ngModel)]="newCategory" (keyup.enter)="addCategory()">
+                  <button type="button" (click)="addCategory()">+</button>
+                </div>
+              }
+              <button class="start-button" type="button" [disabled]="isBusy || onlinePlayers < 2" (click)="startRound()">
                 Sacar letra y empezar
               </button>
             } @else {
-              <div class="host-note">
-                <span class="pulse"></span>
-                El anfitrión inicia la ronda
-              </div>
+              <h3>{{ room.totalRounds }} rondas · {{ room.durationMs / 1000 }}s</h3>
+              <ul>
+                @for (category of room.categories; track category) { <li><span></span>{{ category }}</li> }
+              </ul>
+              <div class="host-note"><span class="pulse"></span> El anfitrión configura la partida</div>
             }
           </aside>
         </div>
@@ -153,111 +122,119 @@
       @if (room.status === 'playing') {
         <section class="round-layout">
           <div class="round-topline">
-            <div class="letter-card">
-              <small>LETRA</small>
-              <strong>{{ room.letter }}</strong>
-            </div>
+            <div class="letter-card"><small>LETRA</small><strong>{{ room.letter }}</strong></div>
             <div class="timer-block" [class.urgent]="remainingMs <= 15_000">
-              <div class="timer-copy">
-                <span>RONDA {{ room.round }}</span>
-                <strong>{{ formattedTime }}</strong>
-              </div>
+              <div class="timer-copy"><span>RONDA {{ room.round }}/{{ room.totalRounds }}</span><strong>{{ formattedTime }}</strong></div>
               <div class="timer-track"><span [style.width.%]="timerProgress"></span></div>
             </div>
-            <div class="progress-stamp">
-              <strong>{{ answeredCategories }}/{{ room.categories.length }}</strong>
-              <span>completadas</span>
-            </div>
+            <div class="progress-stamp"><strong>{{ answeredCategories }}/{{ room.categories.length }}</strong><span>completadas</span></div>
           </div>
-
           <form class="answer-sheet" (ngSubmit)="callTuttiFrutti()">
             <div class="sheet-title">
-              <div>
-                <p class="step-label">TU HOJA · {{ playerName }}</p>
-                <h2>Todo empieza con “{{ room.letter }}”</h2>
-              </div>
+              <div><p class="step-label">TU HOJA · {{ playerName }}</p><h2>Todo empieza con “{{ room.letter }}”</h2></div>
               <span>Escribí sin mostrarle a nadie</span>
             </div>
-
             <div class="answers-grid">
-              @for (category of room.categories; track trackCategory($index, category); let number = $index) {
+              @for (category of room.categories; track $index; let categoryIndex = $index) {
                 <label class="answer-row">
-                  <span class="answer-number">{{ number + 1 }}</span>
-                  <span class="answer-category">{{ category }}</span>
-                  <input
-                    type="text"
-                    maxlength="40"
-                    autocomplete="off"
-                    [name]="category"
-                    [placeholder]="room.letter + '...'"
-                    [(ngModel)]="answers[category]"
-                  >
+                  <span class="answer-number">{{ categoryIndex + 1 }}</span><span class="answer-category">{{ category }}</span>
+                  <input type="text" maxlength="40" autocomplete="off" [name]="categoryKey(categoryIndex)"
+                    [placeholder]="room.letter + '...'" [(ngModel)]="answers[categoryKey(categoryIndex)]">
                 </label>
               }
             </div>
-
             <button class="tutti-button" type="submit" [disabled]="closingRound">
-              <span>¡TUTTI FRUTTI!</span>
-              <small>Cierra la ronda para todos</small>
+              <span>¡TUTTI FRUTTI!</span><small>Cierra la ronda para todos</small>
             </button>
           </form>
         </section>
       }
 
-      @if (room.status === 'results') {
+      @if (room.status === 'voting') {
+        <section class="voting-section">
+          <header class="voting-header">
+            <div><p class="step-label">CONTROL DE MESA · RONDA {{ room.round }}</p><h2>¿La palabra vale?</h2></div>
+            <div class="vote-clock" [class.urgent]="validationSeconds <= 5"><strong>{{ validationSeconds }}</strong><span>segundos</span></div>
+          </header>
+          <div class="vote-rule">
+            <span>{{ myCompletedVotes }}/{{ totalWordsToVote }} votadas por vos</span>
+            <strong>Se aprueba con {{ voteThreshold }} votos positivos</strong>
+          </div>
+          <div class="timer-track vote-track"><span [style.width.%]="validationProgress"></span></div>
+
+          <div class="ballot-board">
+            @for (category of room.categories; track $index; let categoryIndex = $index) {
+              <section class="ballot-category">
+                <h3><span>{{ categoryIndex + 1 }}</span>{{ category }}</h3>
+                @for (entry of playerEntries; track entry.id) {
+                  @if (resultAnswer(entry.id, categoryIndex) !== '—') {
+                    <article class="ballot-row">
+                      <div><small>{{ entry.player.name }} · {{ positiveVotes(entry.id, categoryIndex) }}/{{ voteThreshold }} sí</small><strong>{{ resultAnswer(entry.id, categoryIndex) }}</strong></div>
+                      <div class="vote-buttons">
+                        <button type="button" class="reject" [class.selected]="myVote(entry.id, categoryIndex) === 'no'"
+                          (click)="castVote(entry.id, categoryIndex, 'no')" aria-label="Rechazar palabra">×</button>
+                        <button type="button" class="accept" [class.selected]="myVote(entry.id, categoryIndex) === 'yes'"
+                          (click)="castVote(entry.id, categoryIndex, 'yes')" aria-label="Aceptar palabra">✓</button>
+                      </div>
+                    </article>
+                  }
+                }
+              </section>
+            }
+          </div>
+          @if (myCompletedVotes === totalWordsToVote) {
+            <p class="host-note"><span class="pulse"></span> Votación completa. Esperando al resto...</p>
+          }
+        </section>
+      }
+
+      @if (room.status === 'roundResults') {
         <section class="results-section">
           <header class="results-heading">
-            <div>
-              <p class="step-label">RONDA {{ room.round }} · LETRA {{ room.letter }}</p>
-              <h2>Resultados sobre la mesa</h2>
-            </div>
-            <p>10 puntos si es única · 5 si se repite · 0 si no empieza con la letra</p>
+            <div><p class="step-label">RONDA {{ room.round }}/{{ room.totalRounds }} · LETRA {{ room.letter }}</p><h2>Puntos de la ronda</h2></div>
+            <p>10 si es válida y única · 5 si se repite · 0 si fue rechazada</p>
           </header>
-
           <div class="podium">
             @for (entry of scoreEntries; track entry.id; let position = $index) {
-              <article [class.winner]="position === 0">
-                <span>#{{ position + 1 }}</span>
+              <article [class.winner]="position === 0"><span>#{{ position + 1 }}</span><div class="avatar">{{ entry.player.name.charAt(0).toUpperCase() }}</div><strong>{{ entry.player.name }}</strong><b>+{{ entry.score.total }}</b></article>
+            }
+          </div>
+          <div class="results-table-wrap"><table>
+            <thead><tr><th>Jugador</th>@for (category of room.categories; track $index) { <th>{{ category }}</th> }<th>Ronda</th><th>Acumulado</th></tr></thead>
+            <tbody>@for (entry of scoreEntries; track entry.id) {
+              <tr><th>{{ entry.player.name }}</th>
+                @for (category of room.categories; track $index; let categoryIndex = $index) {
+                  <td [class.invalid-answer]="!isAccepted(entry.id, categoryIndex)"><span>{{ resultAnswer(entry.id, categoryIndex) }}</span><small>+{{ entry.score.byCategory[categoryKey(categoryIndex)] || 0 }}</small></td>
+                }
+                <td class="total-cell">{{ entry.score.total }}</td><td class="total-cell">{{ room.totals?.[entry.id] || 0 }}</td>
+              </tr>
+            }</tbody>
+          </table></div>
+          @if (isHost) {
+            <button class="next-button" type="button" [disabled]="isBusy" (click)="startRound()">Empezar ronda {{ room.round + 1 }} →</button>
+          } @else { <p class="host-note"><span class="pulse"></span> Esperando la próxima ronda</p> }
+        </section>
+      }
+
+      @if (room.status === 'finished') {
+        <section class="results-section final-ranking">
+          <header class="results-heading">
+            <div><p class="step-label">PARTIDA COMPLETA · {{ room.totalRounds }} RONDAS</p><h2>Ranking final</h2></div>
+            <p>El puntaje acumulado de todas las rondas define el tier de la mesa.</p>
+          </header>
+          <div class="final-podium">
+            @for (entry of rankingEntries; track entry.id; let position = $index) {
+              <article [class.champion]="position === 0">
+                <span class="rank-medal">{{ position === 0 ? '★' : '#' + (position + 1) }}</span>
                 <div class="avatar">{{ entry.player.name.charAt(0).toUpperCase() }}</div>
-                <strong>{{ entry.player.name }}</strong>
+                <div><strong>{{ entry.player.name }}</strong><small>{{ position === 0 ? 'Campeón de la mesa' : 'Tier ' + (position + 1) }}</small></div>
                 <b>{{ entry.score.total }} pts</b>
               </article>
             }
           </div>
-
-          <div class="results-table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Jugador</th>
-                  @for (category of room.categories; track category) { <th>{{ category }}</th> }
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (entry of scoreEntries; track entry.id) {
-                  <tr>
-                    <th>{{ entry.player.name }}</th>
-                    @for (category of room.categories; track category) {
-                      <td>
-                        <span>{{ resultAnswer(entry.id, category) }}</span>
-                        <small>+{{ entry.score.byCategory[category] }}</small>
-                      </td>
-                    }
-                    <td class="total-cell">{{ entry.score.total }}</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-
           @if (isHost) {
-            <button class="next-button" type="button" [disabled]="isBusy" (click)="returnToLobby()">
-              Preparar otra ronda →
-            </button>
-          } @else {
-            <p class="host-note"><span class="pulse"></span> Esperando la próxima ronda</p>
-          }
+            <button class="next-button" type="button" [disabled]="isBusy" (click)="restartGame()">Configurar otra partida →</button>
+          } @else { <p class="host-note"><span class="pulse"></span> El anfitrión puede iniciar otra partida</p> }
         </section>
       }
     </section>

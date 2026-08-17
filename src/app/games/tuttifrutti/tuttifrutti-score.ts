@@ -1,29 +1,63 @@
-import { TuttiFruttiRoom, TuttiFruttiScore } from './tuttifrutti.models';
+import {
+  TuttiFruttiRoom,
+  TuttiFruttiScore,
+  TuttiFruttiValidationResults,
+} from './tuttifrutti.models';
+
+export function requiredYesVotes(playerCount: number): number {
+  return Math.floor(playerCount / 2) + 1;
+}
+
+export function calculateValidationResults(
+  room: TuttiFruttiRoom
+): TuttiFruttiValidationResults {
+  const results: TuttiFruttiValidationResults = {};
+  const threshold = requiredYesVotes(Object.keys(room.players).length);
+
+  for (const ownerId of Object.keys(room.players)) {
+    results[ownerId] = {};
+    room.categories.forEach((_category, categoryIndex) => {
+      const categoryKey = String(categoryIndex);
+      const answer = room.answers?.[ownerId]?.values[categoryKey]?.trim() ?? '';
+      const positiveVotes = Object.values(room.votes ?? {}).filter(
+        (voterVotes) => voterVotes[ownerId]?.[categoryKey] === 'yes'
+      ).length;
+      results[ownerId][categoryKey] = Boolean(answer) && positiveVotes >= threshold;
+    });
+  }
+
+  return results;
+}
 
 export function calculateTuttiFruttiScores(
-  room: TuttiFruttiRoom
+  room: TuttiFruttiRoom,
+  validationResults = room.validationResults ?? calculateValidationResults(room)
 ): Record<string, TuttiFruttiScore> {
   const scores: Record<string, TuttiFruttiScore> = {};
 
   for (const playerId of Object.keys(room.players)) {
     const byCategory: Record<string, number> = {};
 
-    for (const category of room.categories) {
-      const answer = normalizeAnswer(room.answers?.[playerId]?.values[category] ?? '');
-      if (!answer || !answer.startsWith(normalizeAnswer(room.letter))) {
-        byCategory[category] = 0;
-        continue;
+    room.categories.forEach((_category, categoryIndex) => {
+      const categoryKey = String(categoryIndex);
+      const answer = normalizeAnswer(
+        room.answers?.[playerId]?.values[categoryKey] ?? ''
+      );
+      if (!answer || !validationResults[playerId]?.[categoryKey]) {
+        byCategory[categoryKey] = 0;
+        return;
       }
 
       const matchingAnswers = Object.keys(room.players).filter((otherPlayerId) => {
+        if (!validationResults[otherPlayerId]?.[categoryKey]) return false;
         const otherAnswer = normalizeAnswer(
-          room.answers?.[otherPlayerId]?.values[category] ?? ''
+          room.answers?.[otherPlayerId]?.values[categoryKey] ?? ''
         );
         return otherAnswer === answer;
       }).length;
 
-      byCategory[category] = matchingAnswers > 1 ? 5 : 10;
-    }
+      byCategory[categoryKey] = matchingAnswers > 1 ? 5 : 10;
+    });
 
     scores[playerId] = {
       byCategory,
@@ -32,6 +66,18 @@ export function calculateTuttiFruttiScores(
   }
 
   return scores;
+}
+
+export function calculateAccumulatedTotals(
+  room: TuttiFruttiRoom,
+  roundScores: Record<string, TuttiFruttiScore>
+): Record<string, number> {
+  return Object.fromEntries(
+    Object.keys(room.players).map((playerId) => [
+      playerId,
+      (room.totals?.[playerId] ?? 0) + (roundScores[playerId]?.total ?? 0),
+    ])
+  );
 }
 
 function normalizeAnswer(value: string): string {

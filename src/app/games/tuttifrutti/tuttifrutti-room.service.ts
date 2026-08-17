@@ -19,7 +19,13 @@ import {
 import {
   TUTTIFRUTTI_CATEGORIES,
   TuttiFruttiRoom,
+  TuttiFruttiVote,
 } from './tuttifrutti.models';
+import {
+  calculateAccumulatedTotals,
+  calculateTuttiFruttiScores,
+  calculateValidationResults,
+} from './tuttifrutti-score';
 
 const ROOM_CODE_CHARACTERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const ROOM_CODE_LENGTH = 6;
@@ -46,10 +52,12 @@ export class TuttiFruttiRoomService {
         hostId: userId,
         status: 'waiting',
         round: 0,
+        totalRounds: 5,
         letter: '',
         durationMs: 90_000,
         startedAt: null,
         stoppedAt: null,
+        votingStartedAt: null,
         categories: [...TUTTIFRUTTI_CATEGORIES],
         players: {
           [userId]: {
@@ -89,8 +97,8 @@ export class TuttiFruttiRoomService {
     }
 
     const room = roomSnapshot.val() as TuttiFruttiRoom;
-    if (room.status === 'playing') {
-      throw new Error('La ronda ya empezó. Espera a que termine para entrar.');
+    if (room.status !== 'waiting' || room.round > 0) {
+      throw new Error('La partida ya empezó y no admite nuevos jugadores.');
     }
 
     await set(ref(database, `rooms/${code}/players/${userId}`), {
@@ -154,7 +162,32 @@ export class TuttiFruttiRoomService {
       durationMs,
       startedAt: serverTimestamp(),
       stoppedAt: null,
+      votingStartedAt: null,
       answers: null,
+      votes: null,
+      validationResults: null,
+      roundScores: null,
+    });
+  }
+
+  async updateSettings(
+    roomCode: string,
+    totalRounds: number,
+    durationMs: number,
+    categories: string[]
+  ): Promise<void> {
+    const cleanCategories = categories
+      .map((category) => category.trim().slice(0, 30))
+      .filter(Boolean);
+
+    if (cleanCategories.length < 2 || cleanCategories.length > 10) {
+      throw new Error('Configura entre 2 y 10 columnas.');
+    }
+
+    await update(ref(getFirebaseDatabase(), `rooms/${roomCode}`), {
+      totalRounds: Math.max(1, Math.min(12, Math.round(totalRounds))),
+      durationMs,
+      categories: cleanCategories,
     });
   }
 
@@ -168,8 +201,9 @@ export class TuttiFruttiRoomService {
         values: answers,
         submittedAt: serverTimestamp(),
       },
-      status: 'results',
+      status: 'voting',
       stoppedAt: serverTimestamp(),
+      votingStartedAt: serverTimestamp(),
     });
   }
 
@@ -184,13 +218,55 @@ export class TuttiFruttiRoomService {
     });
   }
 
-  async returnToLobby(roomCode: string): Promise<void> {
+  async voteAnswer(
+    roomCode: string,
+    voterId: string,
+    ownerId: string,
+    categoryIndex: number,
+    vote: TuttiFruttiVote
+  ): Promise<void> {
+    await set(
+      ref(
+        getFirebaseDatabase(),
+        `rooms/${roomCode}/votes/${voterId}/${ownerId}/${categoryIndex}`
+      ),
+      vote
+    );
+  }
+
+  async finalizeVoting(roomCode: string): Promise<void> {
+    const roomRef = ref(getFirebaseDatabase(), `rooms/${roomCode}`);
+    const snapshot = await get(roomRef);
+    if (!snapshot.exists()) return;
+
+    const room = snapshot.val() as TuttiFruttiRoom;
+    if (room.status !== 'voting') return;
+
+    const validationResults = calculateValidationResults(room);
+    const roundScores = calculateTuttiFruttiScores(room, validationResults);
+    const totals = calculateAccumulatedTotals(room, roundScores);
+
+    await update(roomRef, {
+      validationResults,
+      roundScores,
+      totals,
+      status: room.round >= room.totalRounds ? 'finished' : 'roundResults',
+    });
+  }
+
+  async restartGame(roomCode: string): Promise<void> {
     await update(ref(getFirebaseDatabase(), `rooms/${roomCode}`), {
       status: 'waiting',
+      round: 0,
       letter: '',
       startedAt: null,
       stoppedAt: null,
+      votingStartedAt: null,
       answers: null,
+      votes: null,
+      validationResults: null,
+      roundScores: null,
+      totals: null,
     });
   }
 

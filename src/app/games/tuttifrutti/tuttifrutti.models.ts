@@ -1,4 +1,9 @@
-export type TuttiFruttiRoomStatus = 'waiting' | 'playing' | 'results';
+export type TuttiFruttiRoomStatus =
+  | 'waiting'
+  | 'playing'
+  | 'voting'
+  | 'roundResults'
+  | 'finished';
 
 export interface TuttiFruttiPlayer {
   name: string;
@@ -11,24 +16,40 @@ export interface TuttiFruttiRoundAnswers {
   submittedAt: number;
 }
 
+export interface TuttiFruttiScore {
+  total: number;
+  byCategory: Record<string, number>;
+}
+
+export type TuttiFruttiVote = 'yes' | 'no';
+export type TuttiFruttiVotes = Record<
+  string,
+  Record<string, Record<string, TuttiFruttiVote>>
+>;
+export type TuttiFruttiValidationResults = Record<
+  string,
+  Record<string, boolean>
+>;
+
 export interface TuttiFruttiRoom {
   code: string;
   hostId: string;
   status: TuttiFruttiRoomStatus;
   round: number;
+  totalRounds: number;
   letter: string;
   durationMs: number;
   startedAt: number | null;
   stoppedAt: number | null;
+  votingStartedAt: number | null;
   categories: string[];
   players: Record<string, TuttiFruttiPlayer>;
   answers?: Record<string, TuttiFruttiRoundAnswers>;
+  votes?: TuttiFruttiVotes;
+  validationResults?: TuttiFruttiValidationResults;
+  roundScores?: Record<string, TuttiFruttiScore>;
+  totals?: Record<string, number>;
   createdAt: number;
-}
-
-export interface TuttiFruttiScore {
-  total: number;
-  byCategory: Record<string, number>;
 }
 
 export const TUTTIFRUTTI_CATEGORIES = [
