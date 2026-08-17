@@ -32,6 +32,10 @@
           ".write": "auth != null && data.parent().child('hostId').val() === auth.uid",
           ".validate": "newData.isNumber() && newData.val() >= 30000 && newData.val() <= 300000"
         },
+        "votingDurationMs": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid && data.parent().child('round').val() === 0",
+          ".validate": "newData.isNumber() && newData.val() >= 10000 && newData.val() <= 120000"
+        },
         "startedAt": {
           ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
         },
@@ -46,6 +50,9 @@
           ".validate": "newData.isNumber() && newData.val() >= 0"
         },
         "votingWords": {
+          ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
+        },
+        "votingCategories": {
           ".write": "auth != null && data.parent().child('hostId').val() === auth.uid"
         },
         "players": {

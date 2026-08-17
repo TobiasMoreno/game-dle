@@ -56,6 +56,7 @@ export class TuttiFruttiRoomService {
         totalRounds: 5,
         letter: '',
         durationMs: 90_000,
+        votingDurationMs: 30_000,
         startedAt: null,
         stoppedAt: null,
         votingStartedAt: null,
@@ -167,6 +168,7 @@ export class TuttiFruttiRoomService {
       votingStartedAt: null,
       votingCursor: 0,
       votingWords: null,
+      votingCategories: null,
       answers: null,
       votes: null,
       validationResults: null,
@@ -178,6 +180,7 @@ export class TuttiFruttiRoomService {
     roomCode: string,
     totalRounds: number,
     durationMs: number,
+    votingDurationMs: number,
     categories: string[]
   ): Promise<void> {
     const cleanCategories = categories
@@ -191,6 +194,7 @@ export class TuttiFruttiRoomService {
     await update(ref(getFirebaseDatabase(), `rooms/${roomCode}`), {
       totalRounds: Math.max(1, Math.min(12, Math.round(totalRounds))),
       durationMs,
+      votingDurationMs: Math.max(10_000, Math.min(120_000, votingDurationMs)),
       categories: cleanCategories,
     });
   }
@@ -246,11 +250,17 @@ export class TuttiFruttiRoomService {
     if (room.status !== 'voting' || room.votingWords?.length) return;
 
     const votingWords: TuttiFruttiVotingWord[] = [];
+    const votingCategories: number[] = [];
     room.categories.forEach((_category, categoryIndex) => {
+      const categoryWords: TuttiFruttiVotingWord[] = [];
       Object.keys(room.players).forEach((ownerId) => {
         const answer = room.answers?.[ownerId]?.values[String(categoryIndex)]?.trim();
-        if (answer) votingWords.push({ ownerId, categoryIndex });
+        if (answer) categoryWords.push({ ownerId, categoryIndex });
       });
+      if (categoryWords.length) {
+        votingCategories.push(categoryIndex);
+        votingWords.push(...categoryWords.sort(() => Math.random() - 0.5));
+      }
     });
 
     if (!votingWords.length) {
@@ -260,20 +270,21 @@ export class TuttiFruttiRoomService {
 
     await update(roomRef, {
       votingWords,
+      votingCategories,
       votingCursor: 0,
       votingStartedAt: serverTimestamp(),
     });
   }
 
-  async advanceVotingWord(roomCode: string): Promise<void> {
+  async advanceVotingColumn(roomCode: string): Promise<void> {
     const roomRef = ref(getFirebaseDatabase(), `rooms/${roomCode}`);
     const snapshot = await get(roomRef);
     if (!snapshot.exists()) return;
 
     const room = snapshot.val() as TuttiFruttiRoom;
-    if (room.status !== 'voting' || !room.votingWords?.length) return;
+    if (room.status !== 'voting' || !room.votingCategories?.length) return;
 
-    if (room.votingCursor >= room.votingWords.length - 1) {
+    if (room.votingCursor >= room.votingCategories.length - 1) {
       await this.finalizeVoting(roomCode);
       return;
     }
@@ -314,6 +325,7 @@ export class TuttiFruttiRoomService {
       votingStartedAt: null,
       votingCursor: 0,
       votingWords: null,
+      votingCategories: null,
       answers: null,
       votes: null,
       validationResults: null,

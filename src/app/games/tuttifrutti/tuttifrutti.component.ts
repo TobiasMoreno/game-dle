@@ -39,9 +39,10 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   configuredCategories: string[] = [];
   configuredRounds = 5;
   selectedDurationMs = 90_000;
+  selectedVotingDurationMs = 30_000;
   newCategory = '';
   remainingMs = 0;
-  validationRemainingMs = 10_000;
+  validationRemainingMs = 30_000;
   errorMessage = '';
   infoMessage = '';
   isBusy = false;
@@ -53,7 +54,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   private unsubscribeOffset?: () => void;
   private submittedRound = -1;
   private initializingRound = -1;
-  private advancingWord = '';
+  private advancingColumn = '';
 
   private readonly roomService = inject(TuttiFruttiRoomService);
   private readonly route = inject(ActivatedRoute);
@@ -92,39 +93,47 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
   }
 
   get validationProgress(): number {
-    return Math.max(0, Math.min(100, (this.validationRemainingMs / 10_000) * 100));
+    const duration = this.room?.votingDurationMs ?? 30_000;
+    return Math.max(0, Math.min(100, (this.validationRemainingMs / duration) * 100));
   }
 
   get voteThreshold(): number {
     return requiredYesVotes(this.playerEntries.length);
   }
 
-  get currentVotingWord(): TuttiFruttiVotingWord | null {
-    return this.room?.votingWords?.[this.room.votingCursor] ?? null;
+  get currentVotingCategoryIndex(): number | null {
+    return this.room?.votingCategories?.[this.room.votingCursor] ?? null;
   }
 
   get currentVotingCategory(): string {
-    const word = this.currentVotingWord;
-    return word ? this.room?.categories[word.categoryIndex] ?? '' : '';
+    const categoryIndex = this.currentVotingCategoryIndex;
+    return categoryIndex === null ? '' : this.room?.categories[categoryIndex] ?? '';
   }
 
-  get currentVotingAnswer(): string {
-    const word = this.currentVotingWord;
-    return word ? this.resultAnswer(word.ownerId, word.categoryIndex) : '';
+  get currentVotingWords(): TuttiFruttiVotingWord[] {
+    const categoryIndex = this.currentVotingCategoryIndex;
+    if (categoryIndex === null) return [];
+    return (this.room?.votingWords ?? []).filter(
+      (word) => word.categoryIndex === categoryIndex
+    );
   }
 
-  get currentWordVotesCompleted(): number {
-    const word = this.currentVotingWord;
-    if (!word) return 0;
-    const key = this.categoryKey(word.categoryIndex);
-    return Object.values(this.room?.votes ?? {}).filter(
-      (votes) => Boolean(votes[word.ownerId]?.[key])
-    ).length;
+  get currentColumnVotesCompleted(): number {
+    return this.currentVotingWords.reduce((total, word) => {
+      const key = this.categoryKey(word.categoryIndex);
+      return total + Object.values(this.room?.votes ?? {}).filter(
+        (votes) => Boolean(votes[word.ownerId]?.[key])
+      ).length;
+    }, 0);
   }
 
-  get allCurrentWordVotesSubmitted(): boolean {
-    return Boolean(this.currentVotingWord) &&
-      this.currentWordVotesCompleted >= this.playerEntries.length;
+  get expectedCurrentColumnVotes(): number {
+    return this.currentVotingWords.length * this.playerEntries.length;
+  }
+
+  get allCurrentColumnVotesSubmitted(): boolean {
+    return this.currentVotingWords.length > 0 &&
+      this.currentColumnVotesCompleted >= this.expectedCurrentColumnVotes;
   }
 
   get allAnswersSubmitted(): boolean {
@@ -215,6 +224,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
           this.roomCode,
           this.configuredRounds,
           this.selectedDurationMs,
+          this.selectedVotingDurationMs,
           this.configuredCategories
         );
       }
@@ -335,6 +345,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
       this.configuredCategories = [...nextRoom.categories];
       this.configuredRounds = nextRoom.totalRounds;
       this.selectedDurationMs = nextRoom.durationMs;
+      this.selectedVotingDurationMs = nextRoom.votingDurationMs;
     }
 
     if (nextRoom.status === 'playing') {
@@ -344,7 +355,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
         );
         this.submittedRound = -1;
         this.initializingRound = -1;
-        this.advancingWord = '';
+        this.advancingColumn = '';
       }
       this.startTimer('playing');
       return;
@@ -357,7 +368,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
           .submitAnswers(this.roomCode, this.userId, this.answers)
           .catch((error) => this.handleError(error));
       }
-      if (!nextRoom.votingWords?.length) {
+      if (!nextRoom.votingCategories?.length) {
         this.stopTimer();
         this.initializeVotingIfReady();
         return;
@@ -388,7 +399,7 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
 
   private updateVotingTime(): void {
     if (!this.room?.votingStartedAt) return;
-    const endsAt = this.room.votingStartedAt + 10_000;
+    const endsAt = this.room.votingStartedAt + this.room.votingDurationMs;
     this.validationRemainingMs = Math.max(0, endsAt - this.serverNow());
     this.evaluateVotingCompletion();
   }
@@ -398,17 +409,17 @@ export class TuttiFruttiComponent implements OnInit, OnDestroy {
       !this.room ||
       !this.isHost ||
       this.room.status !== 'voting' ||
-      !this.currentVotingWord
+      this.currentVotingCategoryIndex === null
     ) return;
 
-    const wordKey = `${this.room.round}:${this.room.votingCursor}`;
+    const columnKey = `${this.room.round}:${this.room.votingCursor}`;
     if (
-      (this.validationRemainingMs === 0 || this.allCurrentWordVotesSubmitted) &&
-      this.advancingWord !== wordKey
+      (this.validationRemainingMs === 0 || this.allCurrentColumnVotesSubmitted) &&
+      this.advancingColumn !== columnKey
     ) {
-      this.advancingWord = wordKey;
-      void this.roomService.advanceVotingWord(this.roomCode).catch((error) => {
-        this.advancingWord = '';
+      this.advancingColumn = columnKey;
+      void this.roomService.advanceVotingColumn(this.roomCode).catch((error) => {
+        this.advancingColumn = '';
         this.handleError(error);
       });
     }

@@ -85,6 +85,7 @@ function createRoom(): TuttiFruttiRoom {
     totalRounds: 3,
     letter: 'M',
     durationMs: 60_000,
+    votingDurationMs: 30_000,
     startedAt: 1,
     stoppedAt: 2,
     votingStartedAt: 2,

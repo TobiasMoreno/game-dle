@@ -44,11 +44,13 @@ export interface TuttiFruttiRoom {
   totalRounds: number;
   letter: string;
   durationMs: number;
+  votingDurationMs: number;
   startedAt: number | null;
   stoppedAt: number | null;
   votingStartedAt: number | null;
   votingCursor: number;
   votingWords?: TuttiFruttiVotingWord[];
+  votingCategories?: number[];
   categories: string[];
   players: Record<string, TuttiFruttiPlayer>;
   answers?: Record<string, TuttiFruttiRoundAnswers>;

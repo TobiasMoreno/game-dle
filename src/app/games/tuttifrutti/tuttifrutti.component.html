@@ -78,14 +78,24 @@
           <aside class="setup-card setup-card-wide">
             <p class="step-label">CONFIGURACIÓN</p>
             @if (isHost) {
-              <div class="settings-pair">
+              <div class="settings-pair settings-triple">
                 <label><span>Rondas</span><input type="number" min="1" max="12" [(ngModel)]="configuredRounds"></label>
-                <label><span>Tiempo</span>
+                <label><span>Tiempo ronda</span>
                   <select [(ngModel)]="selectedDurationMs">
                     <option [ngValue]="60_000">1:00</option>
                     <option [ngValue]="90_000">1:30</option>
                     <option [ngValue]="120_000">2:00</option>
                     <option [ngValue]="180_000">3:00</option>
+                  </select>
+                </label>
+                <label><span>Voto por columna</span>
+                  <select [(ngModel)]="selectedVotingDurationMs">
+                    <option [ngValue]="10_000">10s</option>
+                    <option [ngValue]="20_000">20s</option>
+                    <option [ngValue]="30_000">30s</option>
+                    <option [ngValue]="45_000">45s</option>
+                    <option [ngValue]="60_000">1 min</option>
+                    <option [ngValue]="90_000">1:30</option>
                   </select>
                 </label>
               </div>
@@ -158,8 +168,8 @@
           </header>
           <div class="vote-rule">
             <span>
-              @if (room.votingWords?.length) {
-                Palabra {{ room.votingCursor + 1 }} de {{ room.votingWords?.length }}
+              @if (room.votingCategories?.length) {
+                Columna {{ room.votingCursor + 1 }} de {{ room.votingCategories?.length }}
               } @else {
                 Preparando palabras...
               }
@@ -168,20 +178,26 @@
           </div>
           <div class="timer-track vote-track"><span [style.width.%]="validationProgress"></span></div>
 
-          @if (currentVotingWord; as word) {
-            <article class="anonymous-ballot">
-              <p class="anonymous-label">PALABRA ANÓNIMA</p>
+          @if (currentVotingCategoryIndex !== null) {
+            <article class="anonymous-ballot column-ballot">
+              <p class="anonymous-label">COLUMNA EN VOTACIÓN</p>
               <span class="anonymous-category">{{ currentVotingCategory }}</span>
-              <strong>{{ currentVotingAnswer }}</strong>
-              <p>¿La aceptarías para esta categoría?</p>
-              <div class="anonymous-actions vote-buttons">
-                <button type="button" class="reject" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'no'"
-                  (click)="castVote(word.ownerId, word.categoryIndex, 'no')"><span>×</span> No vale</button>
-                <button type="button" class="accept" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'yes'"
-                  (click)="castVote(word.ownerId, word.categoryIndex, 'yes')"><span>✓</span> Sí, vale</button>
+              <p>Votá todas las respuestas. El orden es anónimo.</p>
+              <div class="anonymous-word-list">
+                @for (word of currentVotingWords; track word.ownerId) {
+                  <div class="anonymous-word-row">
+                    <strong>{{ resultAnswer(word.ownerId, word.categoryIndex) }}</strong>
+                    <div class="vote-buttons compact-votes">
+                      <button type="button" class="reject" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'no'"
+                        (click)="castVote(word.ownerId, word.categoryIndex, 'no')" aria-label="La palabra no vale">×</button>
+                      <button type="button" class="accept" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'yes'"
+                        (click)="castVote(word.ownerId, word.categoryIndex, 'yes')" aria-label="La palabra sí vale">✓</button>
+                    </div>
+                  </div>
+                }
               </div>
             </article>
-            <p class="host-note">{{ currentWordVotesCompleted }}/{{ playerEntries.length }} participantes ya votaron</p>
+            <p class="host-note">{{ currentColumnVotesCompleted }}/{{ expectedCurrentColumnVotes }} votos completados en esta columna</p>
           } @else {
             <div class="anonymous-ballot ballot-loading">
               <span class="pulse"></span><strong>Recibiendo todas las respuestas...</strong>

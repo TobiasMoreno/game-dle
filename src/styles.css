@@ -61,6 +61,7 @@ app-tuttifrutti .progress-stamp span { font-size: .58rem; font-weight: 900; }
 app-tuttifrutti .setup-card-wide { width: 24rem; }
 app-tuttifrutti .lobby-grid { grid-template-columns: minmax(0,1fr) 24rem; }
 app-tuttifrutti .settings-pair { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+app-tuttifrutti .settings-triple { grid-template-columns: repeat(3,minmax(0,1fr)); }
 app-tuttifrutti .settings-pair label > span { display: block; margin-bottom: .35rem; font-size: .65rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 app-tuttifrutti .settings-pair input, app-tuttifrutti .settings-pair select { width: 100%; border: 1px solid #cec6b4; padding: .65rem; color: #17251f; background: #fffaf0; }
 app-tuttifrutti .columns-heading { display: flex; justify-content: space-between; margin: 1.1rem 0 .45rem; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
@@ -109,6 +110,11 @@ app-tuttifrutti .anonymous-actions button { width: auto; height: auto; padding: 
 app-tuttifrutti .anonymous-actions button span { margin-right: .35rem; font-size: 1.1rem; }
 app-tuttifrutti .ballot-loading { display: flex; min-height: 14rem; align-items: center; justify-content: center; gap: .8rem; transform: none; }
 app-tuttifrutti .ballot-loading > strong { margin: 0; color: #6f7771; font: 700 .8rem 'Trebuchet MS',sans-serif; }
+app-tuttifrutti .column-ballot { width: min(44rem,100%); transform: none; }
+app-tuttifrutti .anonymous-word-list { display: grid; gap: .5rem; margin-top: 1.25rem; text-align: left; }
+app-tuttifrutti .anonymous-word-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid #d8cfbc; padding: .65rem .8rem; background: #fffaf0; }
+app-tuttifrutti .anonymous-word-row > strong { min-width: 0; color: #2867b2; font: italic 1rem 'Segoe Print',cursive; overflow-wrap: anywhere; }
+app-tuttifrutti .compact-votes { flex: 0 0 auto; }
 app-tuttifrutti td.invalid-answer span { color: #9a7771; text-decoration: line-through; }
 app-tuttifrutti td.invalid-answer small { color: #b33f32; }
 app-tuttifrutti .final-podium { display: grid; gap: .65rem; margin-top: 1.25rem; }
@@ -127,6 +133,7 @@ app-tuttifrutti .final-podium b { color: #2867b2; font: 700 1.2rem Georgia,serif
   app-tuttifrutti .lobby-grid { grid-template-columns: 1fr; }
   app-tuttifrutti .ballot-board { grid-template-columns: 1fr; }
   app-tuttifrutti .vote-rule { align-items: flex-start; flex-direction: column; gap: .3rem; }
+  app-tuttifrutti .settings-triple { grid-template-columns: 1fr; }
 }
 
 /* MusicDLE: tablero completo dentro del viewport disponible. */
