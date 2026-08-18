@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
-export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile';
-export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile';
+export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle';
+export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle';
 export type ColorMode = 'light' | 'dark';
 
 @Injectable({

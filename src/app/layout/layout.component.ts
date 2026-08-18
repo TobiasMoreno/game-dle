@@ -46,6 +46,8 @@ export class LayoutComponent {
           : 'bg-amber-50 border-amber-300';
       case 'serpentile':
         return 'bg-emerald-950 border-emerald-700';
+      case 'geodle':
+        return 'bg-[#173b4a] border-[#d85d45]';
       default:
         return 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700';
     }
@@ -63,6 +65,8 @@ export class LayoutComponent {
         return this.colorMode === 'dark' ? 'text-amber-100' : 'text-amber-950';
       case 'serpentile':
         return 'text-emerald-50';
+      case 'geodle':
+        return 'text-[#f3ead7]';
       default:
         return 'text-gray-900 dark:text-white';
     }
@@ -82,6 +86,8 @@ export class LayoutComponent {
           : 'text-amber-800 hover:text-amber-950';
       case 'serpentile':
         return 'text-emerald-200 hover:text-amber-200';
+      case 'geodle':
+        return 'text-[#f3ead7] hover:text-[#e8b94f]';
       default:
         return 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
     }
@@ -101,6 +107,8 @@ export class LayoutComponent {
           : 'bg-amber-100 hover:bg-amber-200 text-amber-900';
       case 'serpentile':
         return 'bg-emerald-900 hover:bg-emerald-800 text-emerald-100';
+      case 'geodle':
+        return 'bg-[#244c5a] hover:bg-[#315d69] text-[#f3ead7]';
       default:
         return 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
     }

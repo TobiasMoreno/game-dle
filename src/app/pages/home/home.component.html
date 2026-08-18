@@ -19,7 +19,7 @@
           <span>🆕</span> Novedades
         </h3>
         <ul class="text-sm text-yellow-800 dark:text-yellow-200 list-disc list-inside space-y-1">
-          <li><span class="font-bold">Colorle:</span> ¡Nuevo modo de colores disponible!</li>
+          <li><span class="font-bold">GeoDLE:</span> ¡Jugá todos los destinos geográficos que quieras!</li>
           <li><span class="font-bold">Modo oscuro:</span> Mejoras visuales y de accesibilidad.</li>
           <li><span class="font-bold">Estadísticas:</span> Ahora puedes ver tu racha y victorias globales.</li>
         </ul>
@@ -66,6 +66,12 @@
                   style="background: radial-gradient(circle at 18% 25%, rgba(230, 83, 63, .3), transparent 38%), repeating-linear-gradient(0deg, rgba(23, 37, 31, .05) 0 1px, transparent 1px 8px), #fffaf0;"
                 ></div>
               }
+              @if (game.id === 'geodle') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 78% 18%, rgba(216, 93, 69, .32), transparent 32%), repeating-linear-gradient(0deg, rgba(23, 59, 74, .08) 0 1px, transparent 1px 20px), #e8e2d1;"
+                ></div>
+              }
 
               <!-- Contenido de la tarjeta -->
               <div class="relative z-10">
@@ -82,8 +88,15 @@
                   </span>
                   @if (game.mode === 'unlimited') {
                     <div class="text-xs text-amber-600 dark:text-amber-300 transition-colors duration-200">
-                      <div>Hasta 12 segundos</div>
-                      <div>6 intentos</div>
+                      @if (game.id === 'musicdle') {
+                        <div>Hasta 12 segundos</div>
+                        <div>6 intentos</div>
+                      } @else if (game.id === 'geodle') {
+                        <div>195 países</div>
+                        <div>6 intentos por ronda</div>
+                      } @else {
+                        <div>Rondas ilimitadas</div>
+                      }
                     </div>
                   } @else if (!game.scoreBased) {
                     <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">

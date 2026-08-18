@@ -93,6 +93,14 @@ export class GameManagerService {
       route: '/games/tuttifrutti',
       icon: 'fas fa-users',
       mode: 'unlimited'
+    },
+    {
+      id: 'geodle',
+      name: 'GeoDLE',
+      description: 'Encontrá el país oculto siguiendo pistas geográficas',
+      route: '/games/geodle',
+      icon: 'fas fa-earth-americas',
+      mode: 'unlimited'
     }
   ];
 
@@ -116,6 +124,8 @@ export class GameManagerService {
         return {
           ...availableGame,
           ...storedGame,
+          // La modalidad pertenece a la configuración actual, no al estado persistido.
+          mode: availableGame.mode,
           // Verificar si necesitamos resetear el estado diario
           dailyState: this.shouldResetDailyState(storedGame.dailyState) ? undefined : storedGame.dailyState
         };

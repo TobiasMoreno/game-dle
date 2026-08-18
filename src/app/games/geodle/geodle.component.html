@@ -1,0 +1,157 @@
+<div class="geodle-page">
+  <div class="map-grid" aria-hidden="true"></div>
+
+  <main class="atlas-shell">
+    <nav class="atlas-nav" aria-label="Navegación de GeoDLE">
+      <div class="edition-mark"><span>GD</span><small>Atlas ilimitado</small></div>
+      <app-back-home-button background="#173b4a" textColor="#f7f0df" />
+    </nav>
+
+    <header class="atlas-header">
+      <div class="title-block">
+        <p class="kicker">Destinos sin límite</p>
+        <h1>Geo<span>DLE</span></h1>
+        <p class="lede">Encontrá el país oculto. Cada intento corrige tu rumbo con pistas geográficas.</p>
+      </div>
+      <div class="attempt-stamp" aria-live="polite">
+        <span>Intentos</span>
+        <strong>{{ attemptsUsed }}<i>/{{ maxAttempts }}</i></strong>
+        <div class="attempt-dots" aria-hidden="true">
+          @for (slot of [0, 1, 2, 3, 4, 5]; track slot) {
+            <b [class.used]="slot < attemptsUsed" [class.winner]="won && slot === attemptsUsed - 1"></b>
+          }
+        </div>
+      </div>
+    </header>
+
+    <section class="atlas-card">
+      <div class="card-ruling" aria-hidden="true"></div>
+
+      @if (loading) {
+        <div class="loading-state" role="status">
+          <span class="compass-loader"></span>
+          <h2>Abriendo el atlas</h2>
+          <p>Ordenando fronteras, idiomas y coordenadas…</p>
+        </div>
+      } @else if (errorMessage && countries.length === 0) {
+        <div class="fatal-state" role="alert">
+          <span>!</span>
+          <div><h2>Atlas fuera de ruta</h2><p>{{ errorMessage }}</p></div>
+        </div>
+      } @else {
+        @if (!finished) {
+          <section class="search-section" aria-labelledby="search-title">
+            <div class="search-copy">
+              <span class="section-number">01</span>
+              <div>
+                <h2 id="search-title">Marcá una coordenada</h2>
+                <p>Escribí el nombre de un país y compará su ficha con el destino secreto.</p>
+              </div>
+            </div>
+
+            <form class="country-form" (ngSubmit)="submitGuess()" autocomplete="off">
+              <label for="country-input">País</label>
+              <div class="input-wrap">
+                <input
+                  id="country-input"
+                  name="country"
+                  type="text"
+                  [(ngModel)]="query"
+                  (ngModelChange)="onQueryChange($event)"
+                  (focus)="inputFocused = true"
+                  (blur)="hideSuggestionsSoon()"
+                  [disabled]="finished"
+                  placeholder="Ej.: Argentina"
+                  aria-autocomplete="list"
+                  [attr.aria-expanded]="inputFocused && suggestions.length > 0"
+                  aria-controls="country-suggestions"
+                />
+                <button type="submit" [disabled]="!query.trim()">Trazar rumbo <span>→</span></button>
+              </div>
+              @if (inputFocused && suggestions.length > 0) {
+                <div id="country-suggestions" class="suggestions" role="listbox">
+                  @for (country of suggestions; track country.code) {
+                    <button
+                      type="button"
+                      role="option"
+                      (mousedown)="$event.preventDefault()"
+                      (click)="selectCountry(country)"
+                    >
+                      <img [src]="country.flagPath" alt="" />
+                      <span>{{ country.name }}</span>
+                      <small>{{ country.continent }}</small>
+                    </button>
+                  }
+                </div>
+              }
+              @if (errorMessage) { <p class="form-error" role="alert">{{ errorMessage }}</p> }
+            </form>
+          </section>
+        }
+
+        <section class="ledger-section" aria-labelledby="ledger-title">
+          <div class="ledger-heading">
+            <div class="search-copy">
+              <span class="section-number">02</span>
+              <div><h2 id="ledger-title">Cuaderno de campo</h2><p>Las flechas señalan hacia un valor mayor o menor.</p></div>
+            </div>
+            <div class="legend" aria-label="Leyenda de resultados">
+              <span><i class="correct"></i> Exacto</span>
+              <span><i class="partial"></i> Parcial o cerca</span>
+              <span><i class="wrong"></i> Distinto</span>
+            </div>
+          </div>
+
+          @if (guesses.length === 0) {
+            <div class="empty-ledger">
+              <span class="empty-globe" aria-hidden="true">◎</span>
+              <p>Tu primera conjetura va a aparecer acá.</p>
+              <small>195 destinos posibles · jugá todas las rondas que quieras</small>
+            </div>
+          } @else {
+            <div class="ledger-scroll" tabindex="0" aria-label="Resultados de los intentos; desplazamiento horizontal disponible">
+              <div class="ledger-grid ledger-labels" aria-hidden="true">
+                <span>País</span><span>Continente</span><span>Región</span><span>Hemisferio</span>
+                <span>Idiomas</span><span>Superficie</span><span>Población</span><span>Fronteras</span>
+              </div>
+              @for (guess of guesses; track guess.code; let attempt = $index) {
+                <article class="ledger-grid guess-row" [style.--delay]="attempt * 70 + 'ms'">
+                  <div class="country-cell" [class]="cellClass(guess.country.status)">
+                    <small>#{{ attempt + 1 }}</small><img [src]="guess.flagPath" alt="" /><strong>{{ guess.name }}</strong>
+                  </div>
+                  @for (cell of [guess.continent, guess.subregion, guess.hemisphere, guess.languages, guess.area, guess.population, guess.borders]; track $index) {
+                    <div class="data-cell" [class]="cellClass(cell.status)" [attr.aria-label]="statusLabel(cell.status) + ': ' + cell.value">
+                      <span>{{ cell.value }}</span>
+                      @if (cell.arrow === 'up') { <b aria-label="El destino tiene un valor mayor">↑</b> }
+                      @if (cell.arrow === 'down') { <b aria-label="El destino tiene un valor menor">↓</b> }
+                    </div>
+                  }
+                </article>
+              }
+            </div>
+          }
+        </section>
+
+        @if (finished && target) {
+          <section class="result-sheet" [class.victory]="won" aria-live="polite">
+            <div class="result-pin" aria-hidden="true"></div>
+            <div class="result-flag"><img [src]="target.flagPath" [alt]="'Bandera de ' + target.name" /></div>
+            <div class="result-copy">
+              <p>{{ won ? 'Destino encontrado' : 'Fin de la expedición' }}</p>
+              <h2>{{ target.name }}</h2>
+              <span>{{ targetSubtitle }}</span>
+            </div>
+            <div class="result-actions">
+              <button type="button" (click)="share()"><i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i> Compartir</button>
+              <button type="button" class="next-round" (click)="nextRound()">Jugar otra vez</button>
+              @if (shareMessage) { <em>{{ shareMessage }}</em> }
+            </div>
+          </section>
+        }
+      }
+    </section>
+  </main>
+
+  <app-ad-slot class="geodle-ad" [slot]="adSlots.gameFooter" placement="geodle-footer" />
+  <app-footer theme="geodle" [compact]="true" />
+</div>

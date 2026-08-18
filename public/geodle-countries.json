@@ -1,0 +1,6505 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-18T00:25:15.802Z",
+  "source": "https://countries.dev/countries?full=true",
+  "flagSource": "flag-icons@7.5.0",
+  "countries": [
+    {
+      "code": "AF",
+      "code3": "AFG",
+      "name": "Afganistán",
+      "aliases": [
+        "Afghanistan",
+        "افغانستان",
+        "AF",
+        "Afġānistān"
+      ],
+      "capital": "Kabul",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "pastún",
+        "uzbeko",
+        "turcomano"
+      ],
+      "currencies": [
+        "afgani afgano"
+      ],
+      "areaKm2": 652230,
+      "population": 40218234,
+      "coordinates": [
+        33,
+        65
+      ],
+      "borders": [
+        "IRN",
+        "PAK",
+        "TKM",
+        "UZB",
+        "TJK",
+        "CHN"
+      ],
+      "flagPath": "img_flags/af.svg"
+    },
+    {
+      "code": "AL",
+      "code3": "ALB",
+      "name": "Albania",
+      "aliases": [
+        "Albania",
+        "Shqipëria",
+        "AL",
+        "Shqipëri",
+        "Shqipnia"
+      ],
+      "capital": "Tirana",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "albanés"
+      ],
+      "currencies": [
+        "lek albanés"
+      ],
+      "areaKm2": 28748,
+      "population": 2837743,
+      "coordinates": [
+        41,
+        20
+      ],
+      "borders": [
+        "MNE",
+        "GRC",
+        "MKD"
+      ],
+      "flagPath": "img_flags/al.svg"
+    },
+    {
+      "code": "DE",
+      "code3": "DEU",
+      "name": "Alemania",
+      "aliases": [
+        "Germany",
+        "Deutschland",
+        "DE",
+        "Federal Republic of Germany",
+        "Bundesrepublik Deutschland"
+      ],
+      "capital": "Berlin",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "alemán"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 357114,
+      "population": 83240525,
+      "coordinates": [
+        51,
+        9
+      ],
+      "borders": [
+        "AUT",
+        "BEL",
+        "CZE",
+        "DNK",
+        "FRA",
+        "LUX",
+        "NLD",
+        "POL",
+        "CHE"
+      ],
+      "flagPath": "img_flags/de.svg"
+    },
+    {
+      "code": "AD",
+      "code3": "AND",
+      "name": "Andorra",
+      "aliases": [
+        "Andorra",
+        "AD",
+        "Principality of Andorra",
+        "Principat d'Andorra"
+      ],
+      "capital": "Andorra la Vella",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "catalán"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 468,
+      "population": 77265,
+      "coordinates": [
+        42.5,
+        1.5
+      ],
+      "borders": [
+        "FRA",
+        "ESP"
+      ],
+      "flagPath": "img_flags/ad.svg"
+    },
+    {
+      "code": "AO",
+      "code3": "AGO",
+      "name": "Angola",
+      "aliases": [
+        "Angola",
+        "AO",
+        "República de Angola",
+        "ʁɛpublika de an'ɡɔla"
+      ],
+      "capital": "Luanda",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "kuanza angoleño"
+      ],
+      "areaKm2": 1246700,
+      "population": 32866268,
+      "coordinates": [
+        -12.5,
+        18.5
+      ],
+      "borders": [
+        "COG",
+        "COD",
+        "ZMB",
+        "NAM"
+      ],
+      "flagPath": "img_flags/ao.svg"
+    },
+    {
+      "code": "AG",
+      "code3": "ATG",
+      "name": "Antigua y Barbuda",
+      "aliases": [
+        "Antigua and Barbuda",
+        "AG"
+      ],
+      "capital": "Saint John's",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 442,
+      "population": 97928,
+      "coordinates": [
+        17.05,
+        -61.8
+      ],
+      "borders": [],
+      "flagPath": "img_flags/ag.svg"
+    },
+    {
+      "code": "SA",
+      "code3": "SAU",
+      "name": "Arabia Saudí",
+      "aliases": [
+        "Saudi Arabia",
+        "العربية السعودية",
+        "SA",
+        "Kingdom of Saudi Arabia",
+        "Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah"
+      ],
+      "capital": "Riyadh",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "rial saudí"
+      ],
+      "areaKm2": 2149690,
+      "population": 34813867,
+      "coordinates": [
+        25,
+        45
+      ],
+      "borders": [
+        "IRQ",
+        "JOR",
+        "KWT",
+        "OMN",
+        "QAT",
+        "ARE",
+        "YEM"
+      ],
+      "flagPath": "img_flags/sa.svg"
+    },
+    {
+      "code": "DZ",
+      "code3": "DZA",
+      "name": "Argelia",
+      "aliases": [
+        "Algeria",
+        "الجزائر",
+        "DZ",
+        "Dzayer",
+        "Algérie"
+      ],
+      "capital": "Algiers",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar argelino"
+      ],
+      "areaKm2": 2381741,
+      "population": 44700000,
+      "coordinates": [
+        28,
+        3
+      ],
+      "borders": [
+        "TUN",
+        "LBY",
+        "NER",
+        "MRT",
+        "MLI",
+        "MAR"
+      ],
+      "flagPath": "img_flags/dz.svg"
+    },
+    {
+      "code": "AR",
+      "code3": "ARG",
+      "name": "Argentina",
+      "aliases": [
+        "Argentina",
+        "AR",
+        "Argentine Republic",
+        "República Argentina"
+      ],
+      "capital": "Buenos Aires",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español",
+        "guaraní"
+      ],
+      "currencies": [
+        "peso argentino"
+      ],
+      "areaKm2": 2780400,
+      "population": 45376763,
+      "coordinates": [
+        -34,
+        -64
+      ],
+      "borders": [
+        "BOL",
+        "BRA",
+        "CHL",
+        "PRY",
+        "URY"
+      ],
+      "flagPath": "img_flags/ar.svg"
+    },
+    {
+      "code": "AM",
+      "code3": "ARM",
+      "name": "Armenia",
+      "aliases": [
+        "Armenia",
+        "Հայաստան",
+        "AM",
+        "Hayastan",
+        "Republic of Armenia",
+        "Հայաստանի Հանրապետություն"
+      ],
+      "capital": "Yerevan",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "armenio"
+      ],
+      "currencies": [
+        "dram armenio"
+      ],
+      "areaKm2": 29743,
+      "population": 2963234,
+      "coordinates": [
+        40,
+        45
+      ],
+      "borders": [
+        "AZE",
+        "GEO",
+        "IRN",
+        "TUR"
+      ],
+      "flagPath": "img_flags/am.svg"
+    },
+    {
+      "code": "AU",
+      "code3": "AUS",
+      "name": "Australia",
+      "aliases": [
+        "Australia",
+        "AU"
+      ],
+      "capital": "Canberra",
+      "continent": "Oceanía",
+      "subregion": "Australia y Nueva Zelanda",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar australiano"
+      ],
+      "areaKm2": 7692024,
+      "population": 25687041,
+      "coordinates": [
+        -27,
+        133
+      ],
+      "borders": [],
+      "flagPath": "img_flags/au.svg"
+    },
+    {
+      "code": "AT",
+      "code3": "AUT",
+      "name": "Austria",
+      "aliases": [
+        "Austria",
+        "Österreich",
+        "AT",
+        "Osterreich",
+        "Oesterreich"
+      ],
+      "capital": "Vienna",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "alemán"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 83871,
+      "population": 8917205,
+      "coordinates": [
+        47.33333333,
+        13.33333333
+      ],
+      "borders": [
+        "CZE",
+        "DEU",
+        "HUN",
+        "ITA",
+        "LIE",
+        "SVK",
+        "SVN",
+        "CHE"
+      ],
+      "flagPath": "img_flags/at.svg"
+    },
+    {
+      "code": "AZ",
+      "code3": "AZE",
+      "name": "Azerbaiyán",
+      "aliases": [
+        "Azerbaijan",
+        "Azərbaycan",
+        "AZ",
+        "Republic of Azerbaijan",
+        "Azərbaycan Respublikası"
+      ],
+      "capital": "Baku",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "azerbaiyano"
+      ],
+      "currencies": [
+        "manat azerbaiyano"
+      ],
+      "areaKm2": 86600,
+      "population": 10110116,
+      "coordinates": [
+        40.5,
+        47.5
+      ],
+      "borders": [
+        "ARM",
+        "GEO",
+        "IRN",
+        "RUS",
+        "TUR"
+      ],
+      "flagPath": "img_flags/az.svg"
+    },
+    {
+      "code": "BS",
+      "code3": "BHS",
+      "name": "Bahamas",
+      "aliases": [
+        "Bahamas",
+        "BS",
+        "Commonwealth of the Bahamas"
+      ],
+      "capital": "Nassau",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar bahameño"
+      ],
+      "areaKm2": 13943,
+      "population": 393248,
+      "coordinates": [
+        24.25,
+        -76
+      ],
+      "borders": [],
+      "flagPath": "img_flags/bs.svg"
+    },
+    {
+      "code": "BH",
+      "code3": "BHR",
+      "name": "Bahrein",
+      "aliases": [
+        "Bahrain",
+        "‏البحرين",
+        "BH",
+        "Kingdom of Bahrain",
+        "Mamlakat al-Baḥrayn"
+      ],
+      "capital": "Manama",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar bareiní"
+      ],
+      "areaKm2": 765,
+      "population": 1701583,
+      "coordinates": [
+        26,
+        50.55
+      ],
+      "borders": [],
+      "flagPath": "img_flags/bh.svg"
+    },
+    {
+      "code": "BD",
+      "code3": "BGD",
+      "name": "Bangladesh",
+      "aliases": [
+        "Bangladesh",
+        "BD",
+        "People's Republic of Bangladesh",
+        "Gônôprôjatôntri Bangladesh"
+      ],
+      "capital": "Dhaka",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "bengalí"
+      ],
+      "currencies": [
+        "taka bangladesí"
+      ],
+      "areaKm2": 147570,
+      "population": 164689383,
+      "coordinates": [
+        24,
+        90
+      ],
+      "borders": [
+        "MMR",
+        "IND"
+      ],
+      "flagPath": "img_flags/bd.svg"
+    },
+    {
+      "code": "BB",
+      "code3": "BRB",
+      "name": "Barbados",
+      "aliases": [
+        "Barbados",
+        "BB"
+      ],
+      "capital": "Bridgetown",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar barbadense"
+      ],
+      "areaKm2": 430,
+      "population": 287371,
+      "coordinates": [
+        13.16666666,
+        -59.53333333
+      ],
+      "borders": [],
+      "flagPath": "img_flags/bb.svg"
+    },
+    {
+      "code": "BE",
+      "code3": "BEL",
+      "name": "Bélgica",
+      "aliases": [
+        "Belgium",
+        "België",
+        "BE",
+        "Belgie",
+        "Belgien",
+        "Belgique",
+        "Kingdom of Belgium",
+        "Koninkrijk België",
+        "Royaume de Belgique",
+        "Königreich Belgien"
+      ],
+      "capital": "Brussels",
+      "continent": "Europa",
+      "subregion": "Europa Occidental",
+      "languages": [
+        "neerlandés",
+        "francés",
+        "alemán"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 30528,
+      "population": 11555997,
+      "coordinates": [
+        50.83333333,
+        4
+      ],
+      "borders": [
+        "FRA",
+        "DEU",
+        "LUX",
+        "NLD"
+      ],
+      "flagPath": "img_flags/be.svg"
+    },
+    {
+      "code": "BZ",
+      "code3": "BLZ",
+      "name": "Belice",
+      "aliases": [
+        "Belize",
+        "BZ"
+      ],
+      "capital": "Belmopan",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "inglés",
+        "español"
+      ],
+      "currencies": [
+        "dólar beliceño"
+      ],
+      "areaKm2": 22966,
+      "population": 397621,
+      "coordinates": [
+        17.25,
+        -88.75
+      ],
+      "borders": [
+        "GTM",
+        "MEX"
+      ],
+      "flagPath": "img_flags/bz.svg"
+    },
+    {
+      "code": "BJ",
+      "code3": "BEN",
+      "name": "Benín",
+      "aliases": [
+        "Benin",
+        "Bénin",
+        "BJ",
+        "Republic of Benin",
+        "République du Bénin"
+      ],
+      "capital": "Porto-Novo",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 112622,
+      "population": 12123198,
+      "coordinates": [
+        9.5,
+        2.25
+      ],
+      "borders": [
+        "BFA",
+        "NER",
+        "NGA",
+        "TGO"
+      ],
+      "flagPath": "img_flags/bj.svg"
+    },
+    {
+      "code": "BY",
+      "code3": "BLR",
+      "name": "Bielorrusia",
+      "aliases": [
+        "Belarus",
+        "Белару́сь",
+        "BY",
+        "Bielaruś",
+        "Republic of Belarus",
+        "Белоруссия",
+        "Республика Беларусь",
+        "Belorussiya",
+        "Respublika Belarus’"
+      ],
+      "capital": "Minsk",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "bielorruso",
+        "ruso"
+      ],
+      "currencies": [
+        "rublo bielorruso",
+        "rublo bielorruso (2000–2016)"
+      ],
+      "areaKm2": 207600,
+      "population": 9398861,
+      "coordinates": [
+        53,
+        28
+      ],
+      "borders": [
+        "LVA",
+        "LTU",
+        "POL",
+        "RUS",
+        "UKR"
+      ],
+      "flagPath": "img_flags/by.svg"
+    },
+    {
+      "code": "BO",
+      "code3": "BOL",
+      "name": "Bolivia",
+      "aliases": [
+        "Bolivia (Plurinational State of)",
+        "Bolivia",
+        "BO",
+        "Buliwya",
+        "Wuliwya",
+        "Plurinational State of Bolivia",
+        "Estado Plurinacional de Bolivia",
+        "Buliwya Mamallaqta",
+        "Wuliwya Suyu",
+        "Tetã Volívia"
+      ],
+      "capital": "Sucre",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español",
+        "aimara",
+        "quechua"
+      ],
+      "currencies": [
+        "boliviano"
+      ],
+      "areaKm2": 1098581,
+      "population": 11673029,
+      "coordinates": [
+        -17,
+        -65
+      ],
+      "borders": [
+        "ARG",
+        "BRA",
+        "CHL",
+        "PRY",
+        "PER"
+      ],
+      "flagPath": "img_flags/bo.svg"
+    },
+    {
+      "code": "BA",
+      "code3": "BIH",
+      "name": "Bosnia y Herzegovina",
+      "aliases": [
+        "Bosnia and Herzegovina",
+        "Bosna i Hercegovina",
+        "BA",
+        "Bosnia-Herzegovina",
+        "Босна и Херцеговина"
+      ],
+      "capital": "Sarajevo",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "bosnio",
+        "croata",
+        "serbio"
+      ],
+      "currencies": [
+        "marco convertible de Bosnia y Herzegovina"
+      ],
+      "areaKm2": 51209,
+      "population": 3280815,
+      "coordinates": [
+        44,
+        18
+      ],
+      "borders": [
+        "HRV",
+        "MNE",
+        "SRB"
+      ],
+      "flagPath": "img_flags/ba.svg"
+    },
+    {
+      "code": "BW",
+      "code3": "BWA",
+      "name": "Botswana",
+      "aliases": [
+        "Botswana",
+        "BW",
+        "Republic of Botswana",
+        "Lefatshe la Botswana"
+      ],
+      "capital": "Gaborone",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "inglés",
+        "setsuana"
+      ],
+      "currencies": [
+        "pula botsuano"
+      ],
+      "areaKm2": 582000,
+      "population": 2351625,
+      "coordinates": [
+        -22,
+        24
+      ],
+      "borders": [
+        "NAM",
+        "ZAF",
+        "ZMB",
+        "ZWE"
+      ],
+      "flagPath": "img_flags/bw.svg"
+    },
+    {
+      "code": "BR",
+      "code3": "BRA",
+      "name": "Brasil",
+      "aliases": [
+        "Brazil",
+        "Brasil",
+        "BR",
+        "Federative Republic of Brazil",
+        "República Federativa do Brasil"
+      ],
+      "capital": "Brasília",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "real brasileño"
+      ],
+      "areaKm2": 8515767,
+      "population": 212559409,
+      "coordinates": [
+        -10,
+        -55
+      ],
+      "borders": [
+        "ARG",
+        "BOL",
+        "COL",
+        "FRA",
+        "GUY",
+        "PRY",
+        "PER",
+        "SUR",
+        "URY",
+        "VEN"
+      ],
+      "flagPath": "img_flags/br.svg"
+    },
+    {
+      "code": "BN",
+      "code3": "BRN",
+      "name": "Brunei",
+      "aliases": [
+        "Brunei Darussalam",
+        "Negara Brunei Darussalam",
+        "BN",
+        "Nation of Brunei",
+        " the Abode of Peace"
+      ],
+      "capital": "Bandar Seri Begawan",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "malayo"
+      ],
+      "currencies": [
+        "dólar bruneano",
+        "dólar singapurense"
+      ],
+      "areaKm2": 5765,
+      "population": 437483,
+      "coordinates": [
+        4.5,
+        114.66666666
+      ],
+      "borders": [
+        "MYS"
+      ],
+      "flagPath": "img_flags/bn.svg"
+    },
+    {
+      "code": "BG",
+      "code3": "BGR",
+      "name": "Bulgaria",
+      "aliases": [
+        "Bulgaria",
+        "България",
+        "BG",
+        "Republic of Bulgaria",
+        "Република България"
+      ],
+      "capital": "Sofia",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "búlgaro"
+      ],
+      "currencies": [
+        "leva búlgara"
+      ],
+      "areaKm2": 110879,
+      "population": 6927288,
+      "coordinates": [
+        43,
+        25
+      ],
+      "borders": [
+        "GRC",
+        "MKD",
+        "ROU",
+        "SRB",
+        "TUR"
+      ],
+      "flagPath": "img_flags/bg.svg"
+    },
+    {
+      "code": "BF",
+      "code3": "BFA",
+      "name": "Burkina Faso",
+      "aliases": [
+        "Burkina Faso",
+        "BF"
+      ],
+      "capital": "Ouagadougou",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés",
+        "fula"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 272967,
+      "population": 20903278,
+      "coordinates": [
+        13,
+        -2
+      ],
+      "borders": [
+        "BEN",
+        "CIV",
+        "GHA",
+        "MLI",
+        "NER",
+        "TGO"
+      ],
+      "flagPath": "img_flags/bf.svg"
+    },
+    {
+      "code": "BI",
+      "code3": "BDI",
+      "name": "Burundi",
+      "aliases": [
+        "Burundi",
+        "BI",
+        "Republic of Burundi",
+        "Republika y'Uburundi",
+        "République du Burundi"
+      ],
+      "capital": "Gitega",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "francés",
+        "kirundi"
+      ],
+      "currencies": [
+        "franco burundés"
+      ],
+      "areaKm2": 27834,
+      "population": 11890781,
+      "coordinates": [
+        -3.5,
+        30
+      ],
+      "borders": [
+        "COD",
+        "RWA",
+        "TZA"
+      ],
+      "flagPath": "img_flags/bi.svg"
+    },
+    {
+      "code": "BT",
+      "code3": "BTN",
+      "name": "Bután",
+      "aliases": [
+        "Bhutan",
+        "ʼbrug-yul",
+        "BT",
+        "Kingdom of Bhutan"
+      ],
+      "capital": "Thimphu",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "dzongkha"
+      ],
+      "currencies": [
+        "gultrum butanés",
+        "rupia india"
+      ],
+      "areaKm2": 38394,
+      "population": 771612,
+      "coordinates": [
+        27.5,
+        90.5
+      ],
+      "borders": [
+        "CHN",
+        "IND"
+      ],
+      "flagPath": "img_flags/bt.svg"
+    },
+    {
+      "code": "CV",
+      "code3": "CPV",
+      "name": "Cabo Verde",
+      "aliases": [
+        "Cabo Verde",
+        "CV",
+        "Republic of Cabo Verde",
+        "República de Cabo Verde"
+      ],
+      "capital": "Praia",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "escudo de Cabo Verde"
+      ],
+      "areaKm2": 4033,
+      "population": 555988,
+      "coordinates": [
+        16,
+        -24
+      ],
+      "borders": [],
+      "flagPath": "img_flags/cv.svg"
+    },
+    {
+      "code": "KH",
+      "code3": "KHM",
+      "name": "Camboya",
+      "aliases": [
+        "Cambodia",
+        "Kâmpŭchéa",
+        "KH",
+        "Kingdom of Cambodia"
+      ],
+      "capital": "Phnom Penh",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "jemer"
+      ],
+      "currencies": [
+        "riel camboyano",
+        "dólar estadounidense"
+      ],
+      "areaKm2": 181035,
+      "population": 16718971,
+      "coordinates": [
+        13,
+        105
+      ],
+      "borders": [
+        "LAO",
+        "THA",
+        "VNM"
+      ],
+      "flagPath": "img_flags/kh.svg"
+    },
+    {
+      "code": "CM",
+      "code3": "CMR",
+      "name": "Camerún",
+      "aliases": [
+        "Cameroon",
+        "CM",
+        "Republic of Cameroon",
+        "République du Cameroun"
+      ],
+      "capital": "Yaoundé",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "inglés",
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 475442,
+      "population": 26545864,
+      "coordinates": [
+        6,
+        12
+      ],
+      "borders": [
+        "CAF",
+        "TCD",
+        "COG",
+        "GNQ",
+        "GAB",
+        "NGA"
+      ],
+      "flagPath": "img_flags/cm.svg"
+    },
+    {
+      "code": "CA",
+      "code3": "CAN",
+      "name": "Canadá",
+      "aliases": [
+        "Canada",
+        "CA"
+      ],
+      "capital": "Ottawa",
+      "continent": "América",
+      "subregion": "América del Norte",
+      "languages": [
+        "inglés",
+        "francés"
+      ],
+      "currencies": [
+        "dólar canadiense"
+      ],
+      "areaKm2": 9984670,
+      "population": 38005238,
+      "coordinates": [
+        60,
+        -95
+      ],
+      "borders": [
+        "USA"
+      ],
+      "flagPath": "img_flags/ca.svg"
+    },
+    {
+      "code": "QA",
+      "code3": "QAT",
+      "name": "Catar",
+      "aliases": [
+        "Qatar",
+        "قطر",
+        "QA",
+        "State of Qatar",
+        "Dawlat Qaṭar"
+      ],
+      "capital": "Doha",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "rial catarí"
+      ],
+      "areaKm2": 11586,
+      "population": 2881060,
+      "coordinates": [
+        25.5,
+        51.25
+      ],
+      "borders": [
+        "SAU"
+      ],
+      "flagPath": "img_flags/qa.svg"
+    },
+    {
+      "code": "TD",
+      "code3": "TCD",
+      "name": "Chad",
+      "aliases": [
+        "Chad",
+        "Tchad",
+        "TD",
+        "Republic of Chad",
+        "République du Tchad"
+      ],
+      "capital": "N'Djamena",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "francés",
+        "árabe"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 1284000,
+      "population": 16425859,
+      "coordinates": [
+        15,
+        19
+      ],
+      "borders": [
+        "CMR",
+        "CAF",
+        "LBY",
+        "NER",
+        "NGA",
+        "SDN"
+      ],
+      "flagPath": "img_flags/td.svg"
+    },
+    {
+      "code": "CL",
+      "code3": "CHL",
+      "name": "Chile",
+      "aliases": [
+        "Chile",
+        "CL",
+        "Republic of Chile",
+        "República de Chile"
+      ],
+      "capital": "Santiago",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso chileno"
+      ],
+      "areaKm2": 756102,
+      "population": 19116209,
+      "coordinates": [
+        -30,
+        -71
+      ],
+      "borders": [
+        "ARG",
+        "BOL",
+        "PER"
+      ],
+      "flagPath": "img_flags/cl.svg"
+    },
+    {
+      "code": "CN",
+      "code3": "CHN",
+      "name": "China",
+      "aliases": [
+        "China",
+        "中国",
+        "CN",
+        "Zhōngguó",
+        "Zhongguo",
+        "Zhonghua",
+        "People's Republic of China",
+        "中华人民共和国",
+        "Zhōnghuá Rénmín Gònghéguó"
+      ],
+      "capital": "Beijing",
+      "continent": "Asia",
+      "subregion": "Asia Oriental",
+      "languages": [
+        "chino"
+      ],
+      "currencies": [
+        "yuan renminbi"
+      ],
+      "areaKm2": 9640011,
+      "population": 1402112000,
+      "coordinates": [
+        35,
+        105
+      ],
+      "borders": [
+        "AFG",
+        "BTN",
+        "MMR",
+        "IND",
+        "KAZ",
+        "PRK",
+        "KGZ",
+        "LAO",
+        "MNG",
+        "PAK",
+        "RUS",
+        "TJK",
+        "VNM",
+        "NPL"
+      ],
+      "flagPath": "img_flags/cn.svg"
+    },
+    {
+      "code": "CY",
+      "code3": "CYP",
+      "name": "Chipre",
+      "aliases": [
+        "Cyprus",
+        "Κύπρος",
+        "CY",
+        "Kýpros",
+        "Kıbrıs",
+        "Republic of Cyprus",
+        "Κυπριακή Δημοκρατία",
+        "Kıbrıs Cumhuriyeti"
+      ],
+      "capital": "Nicosia",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "griego",
+        "turco",
+        "armenio"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 9251,
+      "population": 1207361,
+      "coordinates": [
+        35,
+        33
+      ],
+      "borders": [
+        "GBR"
+      ],
+      "flagPath": "img_flags/cy.svg"
+    },
+    {
+      "code": "CO",
+      "code3": "COL",
+      "name": "Colombia",
+      "aliases": [
+        "Colombia",
+        "CO",
+        "Republic of Colombia",
+        "República de Colombia"
+      ],
+      "capital": "Bogotá",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso colombiano"
+      ],
+      "areaKm2": 1141748,
+      "population": 50882884,
+      "coordinates": [
+        4,
+        -72
+      ],
+      "borders": [
+        "BRA",
+        "ECU",
+        "PAN",
+        "PER",
+        "VEN"
+      ],
+      "flagPath": "img_flags/co.svg"
+    },
+    {
+      "code": "KM",
+      "code3": "COM",
+      "name": "Comoras",
+      "aliases": [
+        "Comoros",
+        "Komori",
+        "KM",
+        "Union of the Comoros",
+        "Union des Comores",
+        "Udzima wa Komori",
+        "al-Ittiḥād al-Qumurī"
+      ],
+      "capital": "Moroni",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "árabe",
+        "francés"
+      ],
+      "currencies": [
+        "franco comorense"
+      ],
+      "areaKm2": 1862,
+      "population": 869595,
+      "coordinates": [
+        -12.16666666,
+        44.25
+      ],
+      "borders": [],
+      "flagPath": "img_flags/km.svg"
+    },
+    {
+      "code": "CG",
+      "code3": "COG",
+      "name": "Congo",
+      "aliases": [
+        "Congo",
+        "République du Congo",
+        "CG",
+        "Congo-Brazzaville"
+      ],
+      "capital": "Brazzaville",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "francés",
+        "lingala"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 342000,
+      "population": 5518092,
+      "coordinates": [
+        -1,
+        15
+      ],
+      "borders": [
+        "AGO",
+        "CMR",
+        "CAF",
+        "COD",
+        "GAB"
+      ],
+      "flagPath": "img_flags/cg.svg"
+    },
+    {
+      "code": "CD",
+      "code3": "COD",
+      "name": "Congo (Rep. Dem.)",
+      "aliases": [
+        "Congo (Democratic Republic of the)",
+        "République démocratique du Congo",
+        "CD",
+        "DR Congo",
+        "Congo-Kinshasa",
+        "DRC"
+      ],
+      "capital": "Kinshasa",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "francés",
+        "lingala",
+        "kongo",
+        "suajili",
+        "luba-katanga"
+      ],
+      "currencies": [
+        "franco congoleño"
+      ],
+      "areaKm2": 2344858,
+      "population": 89561404,
+      "coordinates": [
+        0,
+        25
+      ],
+      "borders": [
+        "AGO",
+        "BDI",
+        "CAF",
+        "COG",
+        "RWA",
+        "SSD",
+        "TZA",
+        "UGA",
+        "ZMB"
+      ],
+      "flagPath": "img_flags/cd.svg"
+    },
+    {
+      "code": "KP",
+      "code3": "PRK",
+      "name": "Corea del Norte",
+      "aliases": [
+        "Korea (Democratic People's Republic of)",
+        "북한",
+        "KP",
+        "Democratic People's Republic of Korea",
+        "조선민주주의인민공화국",
+        "Chosŏn Minjujuŭi Inmin Konghwaguk"
+      ],
+      "capital": "Pyongyang",
+      "continent": "Asia",
+      "subregion": "Asia Oriental",
+      "languages": [
+        "coreano"
+      ],
+      "currencies": [
+        "won norcoreano"
+      ],
+      "areaKm2": 120538,
+      "population": 25778815,
+      "coordinates": [
+        40,
+        127
+      ],
+      "borders": [
+        "CHN",
+        "KOR",
+        "RUS"
+      ],
+      "flagPath": "img_flags/kp.svg"
+    },
+    {
+      "code": "KR",
+      "code3": "KOR",
+      "name": "Corea del Sur",
+      "aliases": [
+        "Korea (Republic of)",
+        "대한민국",
+        "KR",
+        "Republic of Korea"
+      ],
+      "capital": "Seoul",
+      "continent": "Asia",
+      "subregion": "Asia Oriental",
+      "languages": [
+        "coreano"
+      ],
+      "currencies": [
+        "won surcoreano"
+      ],
+      "areaKm2": 100210,
+      "population": 51780579,
+      "coordinates": [
+        37,
+        127.5
+      ],
+      "borders": [
+        "PRK"
+      ],
+      "flagPath": "img_flags/kr.svg"
+    },
+    {
+      "code": "CI",
+      "code3": "CIV",
+      "name": "Costa de Marfil",
+      "aliases": [
+        "Ivory Coast",
+        "Côte d'Ivoire",
+        "CI",
+        "Republic of Côte d'Ivoire",
+        "République de Côte d'Ivoire"
+      ],
+      "capital": "Yamoussoukro",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 322463,
+      "population": 26378275,
+      "coordinates": [
+        8,
+        -5
+      ],
+      "borders": [
+        "BFA",
+        "GHA",
+        "GIN",
+        "LBR",
+        "MLI"
+      ],
+      "flagPath": "img_flags/ci.svg"
+    },
+    {
+      "code": "CR",
+      "code3": "CRI",
+      "name": "Costa Rica",
+      "aliases": [
+        "Costa Rica",
+        "CR",
+        "Republic of Costa Rica",
+        "República de Costa Rica"
+      ],
+      "capital": "San José",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "colón costarricense"
+      ],
+      "areaKm2": 51100,
+      "population": 5094114,
+      "coordinates": [
+        10,
+        -84
+      ],
+      "borders": [
+        "NIC",
+        "PAN"
+      ],
+      "flagPath": "img_flags/cr.svg"
+    },
+    {
+      "code": "HR",
+      "code3": "HRV",
+      "name": "Croacia",
+      "aliases": [
+        "Croatia",
+        "Hrvatska",
+        "HR",
+        "Republic of Croatia",
+        "Republika Hrvatska"
+      ],
+      "capital": "Zagreb",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "croata"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 56594,
+      "population": 4047200,
+      "coordinates": [
+        45.16666666,
+        15.5
+      ],
+      "borders": [
+        "BIH",
+        "HUN",
+        "MNE",
+        "SRB",
+        "SVN"
+      ],
+      "flagPath": "img_flags/hr.svg"
+    },
+    {
+      "code": "CU",
+      "code3": "CUB",
+      "name": "Cuba",
+      "aliases": [
+        "Cuba",
+        "CU",
+        "Republic of Cuba",
+        "República de Cuba"
+      ],
+      "capital": "Havana",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso cubano convertible",
+        "peso cubano"
+      ],
+      "areaKm2": 109884,
+      "population": 11326616,
+      "coordinates": [
+        21.5,
+        -80
+      ],
+      "borders": [],
+      "flagPath": "img_flags/cu.svg"
+    },
+    {
+      "code": "DK",
+      "code3": "DNK",
+      "name": "Dinamarca",
+      "aliases": [
+        "Denmark",
+        "Danmark",
+        "DK",
+        "Kingdom of Denmark",
+        "Kongeriget Danmark"
+      ],
+      "capital": "Copenhagen",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "danés"
+      ],
+      "currencies": [
+        "corona danesa"
+      ],
+      "areaKm2": 43094,
+      "population": 5831404,
+      "coordinates": [
+        56,
+        10
+      ],
+      "borders": [
+        "DEU"
+      ],
+      "flagPath": "img_flags/dk.svg"
+    },
+    {
+      "code": "DM",
+      "code3": "DMA",
+      "name": "Dominica",
+      "aliases": [
+        "Dominica",
+        "DM",
+        "Dominique",
+        "Wai‘tu kubuli",
+        "Commonwealth of Dominica"
+      ],
+      "capital": "Roseau",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 751,
+      "population": 71991,
+      "coordinates": [
+        15.41666666,
+        -61.33333333
+      ],
+      "borders": [],
+      "flagPath": "img_flags/dm.svg"
+    },
+    {
+      "code": "EC",
+      "code3": "ECU",
+      "name": "Ecuador",
+      "aliases": [
+        "Ecuador",
+        "EC",
+        "Republic of Ecuador",
+        "República del Ecuador"
+      ],
+      "capital": "Quito",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 276841,
+      "population": 17643060,
+      "coordinates": [
+        -2,
+        -77.5
+      ],
+      "borders": [
+        "COL",
+        "PER"
+      ],
+      "flagPath": "img_flags/ec.svg"
+    },
+    {
+      "code": "EG",
+      "code3": "EGY",
+      "name": "Egipto",
+      "aliases": [
+        "Egypt",
+        "مصر‎",
+        "EG",
+        "Arab Republic of Egypt"
+      ],
+      "capital": "Cairo",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "libra egipcia"
+      ],
+      "areaKm2": 1002450,
+      "population": 102334403,
+      "coordinates": [
+        27,
+        30
+      ],
+      "borders": [
+        "ISR",
+        "LBY",
+        "SDN"
+      ],
+      "flagPath": "img_flags/eg.svg"
+    },
+    {
+      "code": "SV",
+      "code3": "SLV",
+      "name": "El Salvador",
+      "aliases": [
+        "El Salvador",
+        "SV",
+        "Republic of El Salvador",
+        "República de El Salvador"
+      ],
+      "capital": "San Salvador",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 21041,
+      "population": 6486201,
+      "coordinates": [
+        13.83333333,
+        -88.91666666
+      ],
+      "borders": [
+        "GTM",
+        "HND"
+      ],
+      "flagPath": "img_flags/sv.svg"
+    },
+    {
+      "code": "AE",
+      "code3": "ARE",
+      "name": "Emiratos Árabes Unidos",
+      "aliases": [
+        "United Arab Emirates",
+        "دولة الإمارات العربية المتحدة",
+        "AE",
+        "UAE"
+      ],
+      "capital": "Abu Dhabi",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dírham de los Emiratos Árabes Unidos"
+      ],
+      "areaKm2": 83600,
+      "population": 9890400,
+      "coordinates": [
+        24,
+        54
+      ],
+      "borders": [
+        "OMN",
+        "SAU"
+      ],
+      "flagPath": "img_flags/ae.svg"
+    },
+    {
+      "code": "ER",
+      "code3": "ERI",
+      "name": "Eritrea",
+      "aliases": [
+        "Eritrea",
+        "ኤርትራ",
+        "ER",
+        "State of Eritrea",
+        "ሃገረ ኤርትራ",
+        "Dawlat Iritriyá",
+        "ʾErtrā",
+        "Iritriyā"
+      ],
+      "capital": "Asmara",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "tigriña",
+        "árabe",
+        "inglés",
+        "Tigre",
+        "Kunama",
+        "Saho",
+        "Bilen",
+        "Nara",
+        "afar"
+      ],
+      "currencies": [
+        "nakfa eritreo"
+      ],
+      "areaKm2": 117600,
+      "population": 5352000,
+      "coordinates": [
+        15,
+        39
+      ],
+      "borders": [
+        "DJI",
+        "ETH",
+        "SDN"
+      ],
+      "flagPath": "img_flags/er.svg"
+    },
+    {
+      "code": "SI",
+      "code3": "SVN",
+      "name": "Eslovenia",
+      "aliases": [
+        "Slovenia",
+        "Slovenija",
+        "SI",
+        "Republic of Slovenia",
+        "Republika Slovenija"
+      ],
+      "capital": "Ljubljana",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "esloveno"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 20273,
+      "population": 2100126,
+      "coordinates": [
+        46.11666666,
+        14.81666666
+      ],
+      "borders": [
+        "AUT",
+        "HRV",
+        "ITA",
+        "HUN"
+      ],
+      "flagPath": "img_flags/si.svg"
+    },
+    {
+      "code": "ES",
+      "code3": "ESP",
+      "name": "España",
+      "aliases": [
+        "Spain",
+        "España",
+        "ES",
+        "Kingdom of Spain",
+        "Reino de España"
+      ],
+      "capital": "Madrid",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 505992,
+      "population": 47351567,
+      "coordinates": [
+        40,
+        -4
+      ],
+      "borders": [
+        "AND",
+        "FRA",
+        "PRT",
+        "MAR"
+      ],
+      "flagPath": "img_flags/es.svg"
+    },
+    {
+      "code": "US",
+      "code3": "USA",
+      "name": "Estados Unidos",
+      "aliases": [
+        "United States of America",
+        "United States",
+        "US",
+        "USA"
+      ],
+      "capital": "Washington, D.C.",
+      "continent": "América",
+      "subregion": "América del Norte",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 9629091,
+      "population": 329484123,
+      "coordinates": [
+        38,
+        -97
+      ],
+      "borders": [
+        "CAN",
+        "MEX"
+      ],
+      "flagPath": "img_flags/us.svg"
+    },
+    {
+      "code": "EE",
+      "code3": "EST",
+      "name": "Estonia",
+      "aliases": [
+        "Estonia",
+        "Eesti",
+        "EE",
+        "Republic of Estonia",
+        "Eesti Vabariik"
+      ],
+      "capital": "Tallinn",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "estonio"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 45227,
+      "population": 1331057,
+      "coordinates": [
+        59,
+        26
+      ],
+      "borders": [
+        "LVA",
+        "RUS"
+      ],
+      "flagPath": "img_flags/ee.svg"
+    },
+    {
+      "code": "ET",
+      "code3": "ETH",
+      "name": "Etiopía",
+      "aliases": [
+        "Ethiopia",
+        "ኢትዮጵያ",
+        "ET",
+        "ʾĪtyōṗṗyā",
+        "Federal Democratic Republic of Ethiopia",
+        "የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ"
+      ],
+      "capital": "Addis Ababa",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "amárico"
+      ],
+      "currencies": [
+        "bir etíope"
+      ],
+      "areaKm2": 1104300,
+      "population": 114963583,
+      "coordinates": [
+        8,
+        38
+      ],
+      "borders": [
+        "DJI",
+        "ERI",
+        "KEN",
+        "SOM",
+        "SSD",
+        "SDN"
+      ],
+      "flagPath": "img_flags/et.svg"
+    },
+    {
+      "code": "PH",
+      "code3": "PHL",
+      "name": "Filipinas",
+      "aliases": [
+        "Philippines",
+        "Pilipinas",
+        "PH",
+        "Republic of the Philippines",
+        "Repúblika ng Pilipinas"
+      ],
+      "capital": "Manila",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "peso filipino"
+      ],
+      "areaKm2": 342353,
+      "population": 109581085,
+      "coordinates": [
+        13,
+        122
+      ],
+      "borders": [],
+      "flagPath": "img_flags/ph.svg"
+    },
+    {
+      "code": "FI",
+      "code3": "FIN",
+      "name": "Finlandia",
+      "aliases": [
+        "Finland",
+        "Suomi",
+        "FI",
+        "Republic of Finland",
+        "Suomen tasavalta",
+        "Republiken Finland"
+      ],
+      "capital": "Helsinki",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "finés",
+        "sueco"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 338424,
+      "population": 5530719,
+      "coordinates": [
+        64,
+        26
+      ],
+      "borders": [
+        "NOR",
+        "SWE",
+        "RUS"
+      ],
+      "flagPath": "img_flags/fi.svg"
+    },
+    {
+      "code": "FJ",
+      "code3": "FJI",
+      "name": "Fiyi",
+      "aliases": [
+        "Fiji",
+        "FJ",
+        "Viti",
+        "Republic of Fiji",
+        "Matanitu ko Viti",
+        "Fijī Gaṇarājya"
+      ],
+      "capital": "Suva",
+      "continent": "Oceanía",
+      "subregion": "Melanesia",
+      "languages": [
+        "inglés",
+        "fiyiano",
+        "Fiji Hindi",
+        "Rotuman"
+      ],
+      "currencies": [
+        "dólar fiyiano"
+      ],
+      "areaKm2": 18272,
+      "population": 896444,
+      "coordinates": [
+        -18,
+        175
+      ],
+      "borders": [],
+      "flagPath": "img_flags/fj.svg"
+    },
+    {
+      "code": "FR",
+      "code3": "FRA",
+      "name": "Francia",
+      "aliases": [
+        "France",
+        "FR",
+        "French Republic",
+        "République française"
+      ],
+      "capital": "Paris",
+      "continent": "Europa",
+      "subregion": "Europa Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 640679,
+      "population": 67391582,
+      "coordinates": [
+        46,
+        2
+      ],
+      "borders": [
+        "AND",
+        "BEL",
+        "DEU",
+        "ITA",
+        "LUX",
+        "MCO",
+        "ESP",
+        "CHE"
+      ],
+      "flagPath": "img_flags/fr.svg"
+    },
+    {
+      "code": "GA",
+      "code3": "GAB",
+      "name": "Gabón",
+      "aliases": [
+        "Gabon",
+        "GA",
+        "Gabonese Republic",
+        "République Gabonaise"
+      ],
+      "capital": "Libreville",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 267668,
+      "population": 2225728,
+      "coordinates": [
+        -1,
+        11.75
+      ],
+      "borders": [
+        "CMR",
+        "COG",
+        "GNQ"
+      ],
+      "flagPath": "img_flags/ga.svg"
+    },
+    {
+      "code": "GM",
+      "code3": "GMB",
+      "name": "Gambia",
+      "aliases": [
+        "Gambia",
+        "GM",
+        "Republic of the Gambia"
+      ],
+      "capital": "Banjul",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dalasi gambiano"
+      ],
+      "areaKm2": 11295,
+      "population": 2416664,
+      "coordinates": [
+        13.46666666,
+        -16.56666666
+      ],
+      "borders": [
+        "SEN"
+      ],
+      "flagPath": "img_flags/gm.svg"
+    },
+    {
+      "code": "GE",
+      "code3": "GEO",
+      "name": "Georgia",
+      "aliases": [
+        "Georgia",
+        "საქართველო",
+        "GE",
+        "Sakartvelo"
+      ],
+      "capital": "Tbilisi",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "georgiano"
+      ],
+      "currencies": [
+        "lari georgiano"
+      ],
+      "areaKm2": 69700,
+      "population": 3714000,
+      "coordinates": [
+        42,
+        43.5
+      ],
+      "borders": [
+        "ARM",
+        "AZE",
+        "RUS",
+        "TUR"
+      ],
+      "flagPath": "img_flags/ge.svg"
+    },
+    {
+      "code": "GH",
+      "code3": "GHA",
+      "name": "Ghana",
+      "aliases": [
+        "Ghana",
+        "GH"
+      ],
+      "capital": "Accra",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "cedi ghanés"
+      ],
+      "areaKm2": 238533,
+      "population": 31072945,
+      "coordinates": [
+        8,
+        -2
+      ],
+      "borders": [
+        "BFA",
+        "CIV",
+        "TGO"
+      ],
+      "flagPath": "img_flags/gh.svg"
+    },
+    {
+      "code": "GR",
+      "code3": "GRC",
+      "name": "Grecia",
+      "aliases": [
+        "Greece",
+        "Ελλάδα",
+        "GR",
+        "Elláda",
+        "Hellenic Republic",
+        "Ελληνική Δημοκρατία"
+      ],
+      "capital": "Athens",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "griego"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 131990,
+      "population": 10715549,
+      "coordinates": [
+        39,
+        22
+      ],
+      "borders": [
+        "ALB",
+        "BGR",
+        "TUR",
+        "MKD"
+      ],
+      "flagPath": "img_flags/gr.svg"
+    },
+    {
+      "code": "GD",
+      "code3": "GRD",
+      "name": "Grenada",
+      "aliases": [
+        "Grenada",
+        "GD"
+      ],
+      "capital": "St. George's",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 344,
+      "population": 112519,
+      "coordinates": [
+        12.11666666,
+        -61.66666666
+      ],
+      "borders": [],
+      "flagPath": "img_flags/gd.svg"
+    },
+    {
+      "code": "GT",
+      "code3": "GTM",
+      "name": "Guatemala",
+      "aliases": [
+        "Guatemala",
+        "GT"
+      ],
+      "capital": "Guatemala City",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "quetzal guatemalteco"
+      ],
+      "areaKm2": 108889,
+      "population": 16858333,
+      "coordinates": [
+        15.5,
+        -90.25
+      ],
+      "borders": [
+        "BLZ",
+        "SLV",
+        "HND",
+        "MEX"
+      ],
+      "flagPath": "img_flags/gt.svg"
+    },
+    {
+      "code": "GN",
+      "code3": "GIN",
+      "name": "Guinea",
+      "aliases": [
+        "Guinea",
+        "Guinée",
+        "GN",
+        "Republic of Guinea",
+        "République de Guinée"
+      ],
+      "capital": "Conakry",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés",
+        "fula"
+      ],
+      "currencies": [
+        "franco guineano"
+      ],
+      "areaKm2": 245857,
+      "population": 13132792,
+      "coordinates": [
+        11,
+        -10
+      ],
+      "borders": [
+        "CIV",
+        "GNB",
+        "LBR",
+        "MLI",
+        "SEN",
+        "SLE"
+      ],
+      "flagPath": "img_flags/gn.svg"
+    },
+    {
+      "code": "GQ",
+      "code3": "GNQ",
+      "name": "Guinea Ecuatorial",
+      "aliases": [
+        "Equatorial Guinea",
+        "Guinea Ecuatorial",
+        "GQ",
+        "Republic of Equatorial Guinea",
+        "República de Guinea Ecuatorial",
+        "République de Guinée équatoriale",
+        "República da Guiné Equatorial"
+      ],
+      "capital": "Malabo",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "español",
+        "francés",
+        "portugués",
+        "Fang"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 28051,
+      "population": 1402985,
+      "coordinates": [
+        2,
+        10
+      ],
+      "borders": [
+        "CMR",
+        "GAB"
+      ],
+      "flagPath": "img_flags/gq.svg"
+    },
+    {
+      "code": "GW",
+      "code3": "GNB",
+      "name": "Guinea-Bisáu",
+      "aliases": [
+        "Guinea-Bissau",
+        "Guiné-Bissau",
+        "GW",
+        "Republic of Guinea-Bissau",
+        "República da Guiné-Bissau"
+      ],
+      "capital": "Bissau",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 36125,
+      "population": 1967998,
+      "coordinates": [
+        12,
+        -15
+      ],
+      "borders": [
+        "GIN",
+        "SEN"
+      ],
+      "flagPath": "img_flags/gw.svg"
+    },
+    {
+      "code": "GY",
+      "code3": "GUY",
+      "name": "Guyana",
+      "aliases": [
+        "Guyana",
+        "GY",
+        "Co-operative Republic of Guyana"
+      ],
+      "capital": "Georgetown",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar guyanés"
+      ],
+      "areaKm2": 214969,
+      "population": 786559,
+      "coordinates": [
+        5,
+        -59
+      ],
+      "borders": [
+        "BRA",
+        "SUR",
+        "VEN"
+      ],
+      "flagPath": "img_flags/gy.svg"
+    },
+    {
+      "code": "HT",
+      "code3": "HTI",
+      "name": "Haiti",
+      "aliases": [
+        "Haiti",
+        "Haïti",
+        "HT",
+        "Republic of Haiti",
+        "République d'Haïti",
+        "Repiblik Ayiti"
+      ],
+      "capital": "Port-au-Prince",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "francés",
+        "criollo haitiano"
+      ],
+      "currencies": [
+        "gurde haitiano"
+      ],
+      "areaKm2": 27750,
+      "population": 11402533,
+      "coordinates": [
+        19,
+        -72.41666666
+      ],
+      "borders": [
+        "DOM"
+      ],
+      "flagPath": "img_flags/ht.svg"
+    },
+    {
+      "code": "HN",
+      "code3": "HND",
+      "name": "Honduras",
+      "aliases": [
+        "Honduras",
+        "HN",
+        "Republic of Honduras",
+        "República de Honduras"
+      ],
+      "capital": "Tegucigalpa",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "lempira hondureño"
+      ],
+      "areaKm2": 112492,
+      "population": 9904608,
+      "coordinates": [
+        15,
+        -86.5
+      ],
+      "borders": [
+        "GTM",
+        "SLV",
+        "NIC"
+      ],
+      "flagPath": "img_flags/hn.svg"
+    },
+    {
+      "code": "HU",
+      "code3": "HUN",
+      "name": "Hungría",
+      "aliases": [
+        "Hungary",
+        "Magyarország",
+        "HU"
+      ],
+      "capital": "Budapest",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "húngaro"
+      ],
+      "currencies": [
+        "forinto húngaro"
+      ],
+      "areaKm2": 93028,
+      "population": 9749763,
+      "coordinates": [
+        47,
+        20
+      ],
+      "borders": [
+        "AUT",
+        "HRV",
+        "ROU",
+        "SRB",
+        "SVK",
+        "SVN",
+        "UKR"
+      ],
+      "flagPath": "img_flags/hu.svg"
+    },
+    {
+      "code": "IN",
+      "code3": "IND",
+      "name": "India",
+      "aliases": [
+        "India",
+        "भारत",
+        "IN",
+        "Bhārat",
+        "Republic of India",
+        "Bharat Ganrajya"
+      ],
+      "capital": "New Delhi",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "hindi",
+        "inglés"
+      ],
+      "currencies": [
+        "rupia india"
+      ],
+      "areaKm2": 3287590,
+      "population": 1380004385,
+      "coordinates": [
+        20,
+        77
+      ],
+      "borders": [
+        "AFG",
+        "BGD",
+        "BTN",
+        "MMR",
+        "CHN",
+        "NPL",
+        "PAK",
+        "LKA"
+      ],
+      "flagPath": "img_flags/in.svg"
+    },
+    {
+      "code": "ID",
+      "code3": "IDN",
+      "name": "Indonesia",
+      "aliases": [
+        "Indonesia",
+        "ID",
+        "Republic of Indonesia",
+        "Republik Indonesia"
+      ],
+      "capital": "Jakarta",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "indonesio"
+      ],
+      "currencies": [
+        "rupia indonesia"
+      ],
+      "areaKm2": 1904569,
+      "population": 273523621,
+      "coordinates": [
+        -5,
+        120
+      ],
+      "borders": [
+        "TLS",
+        "MYS",
+        "PNG"
+      ],
+      "flagPath": "img_flags/id.svg"
+    },
+    {
+      "code": "IQ",
+      "code3": "IRQ",
+      "name": "Irak",
+      "aliases": [
+        "Iraq",
+        "العراق",
+        "IQ",
+        "Republic of Iraq",
+        "Jumhūriyyat al-‘Irāq"
+      ],
+      "capital": "Baghdad",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe",
+        "kurdo"
+      ],
+      "currencies": [
+        "dinar iraquí"
+      ],
+      "areaKm2": 438317,
+      "population": 40222503,
+      "coordinates": [
+        33,
+        44
+      ],
+      "borders": [
+        "IRN",
+        "JOR",
+        "KWT",
+        "SAU",
+        "SYR",
+        "TUR"
+      ],
+      "flagPath": "img_flags/iq.svg"
+    },
+    {
+      "code": "IR",
+      "code3": "IRN",
+      "name": "Iran",
+      "aliases": [
+        "Iran (Islamic Republic of)",
+        "ایران",
+        "IR",
+        "Islamic Republic of Iran",
+        "Jomhuri-ye Eslāmi-ye Irān"
+      ],
+      "capital": "Tehran",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "persa"
+      ],
+      "currencies": [
+        "rial iraní"
+      ],
+      "areaKm2": 1648195,
+      "population": 83992953,
+      "coordinates": [
+        32,
+        53
+      ],
+      "borders": [
+        "AFG",
+        "ARM",
+        "AZE",
+        "IRQ",
+        "PAK",
+        "TUR",
+        "TKM"
+      ],
+      "flagPath": "img_flags/ir.svg"
+    },
+    {
+      "code": "IE",
+      "code3": "IRL",
+      "name": "Irlanda",
+      "aliases": [
+        "Ireland",
+        "Éire",
+        "IE",
+        "Republic of Ireland",
+        "Poblacht na hÉireann"
+      ],
+      "capital": "Dublin",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "irlandés",
+        "inglés"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 70273,
+      "population": 4994724,
+      "coordinates": [
+        53,
+        -8
+      ],
+      "borders": [
+        "GBR"
+      ],
+      "flagPath": "img_flags/ie.svg"
+    },
+    {
+      "code": "IS",
+      "code3": "ISL",
+      "name": "Islandia",
+      "aliases": [
+        "Iceland",
+        "Ísland",
+        "IS",
+        "Island",
+        "Republic of Iceland",
+        "Lýðveldið Ísland"
+      ],
+      "capital": "Reykjavík",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "islandés"
+      ],
+      "currencies": [
+        "corona islandesa"
+      ],
+      "areaKm2": 103000,
+      "population": 366425,
+      "coordinates": [
+        65,
+        -18
+      ],
+      "borders": [],
+      "flagPath": "img_flags/is.svg"
+    },
+    {
+      "code": "MH",
+      "code3": "MHL",
+      "name": "Islas Marshall",
+      "aliases": [
+        "Marshall Islands",
+        "M̧ajeļ",
+        "MH",
+        "Republic of the Marshall Islands",
+        "Aolepān Aorōkin M̧ajeļ"
+      ],
+      "capital": "Majuro",
+      "continent": "Oceanía",
+      "subregion": "Micronesia",
+      "languages": [
+        "inglés",
+        "marshalés"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 181,
+      "population": 59194,
+      "coordinates": [
+        9,
+        168
+      ],
+      "borders": [],
+      "flagPath": "img_flags/mh.svg"
+    },
+    {
+      "code": "SB",
+      "code3": "SLB",
+      "name": "Islas Salomón",
+      "aliases": [
+        "Solomon Islands",
+        "SB"
+      ],
+      "capital": "Honiara",
+      "continent": "Oceanía",
+      "subregion": "Melanesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar salomonense"
+      ],
+      "areaKm2": 28896,
+      "population": 686878,
+      "coordinates": [
+        -8,
+        159
+      ],
+      "borders": [],
+      "flagPath": "img_flags/sb.svg"
+    },
+    {
+      "code": "IL",
+      "code3": "ISR",
+      "name": "Israel",
+      "aliases": [
+        "Israel",
+        "יִשְׂרָאֵל",
+        "IL",
+        "State of Israel",
+        "Medīnat Yisrā'el"
+      ],
+      "capital": "Jerusalem",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "hebreo",
+        "árabe"
+      ],
+      "currencies": [
+        "nuevo séquel israelí"
+      ],
+      "areaKm2": 20770,
+      "population": 9216900,
+      "coordinates": [
+        31.5,
+        34.75
+      ],
+      "borders": [
+        "EGY",
+        "JOR",
+        "LBN",
+        "SYR"
+      ],
+      "flagPath": "img_flags/il.svg"
+    },
+    {
+      "code": "IT",
+      "code3": "ITA",
+      "name": "Italia",
+      "aliases": [
+        "Italy",
+        "Italia",
+        "IT",
+        "Italian Republic",
+        "Repubblica italiana"
+      ],
+      "capital": "Rome",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "italiano"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 301336,
+      "population": 59554023,
+      "coordinates": [
+        42.83333333,
+        12.83333333
+      ],
+      "borders": [
+        "AUT",
+        "FRA",
+        "SMR",
+        "SVN",
+        "CHE",
+        "VAT"
+      ],
+      "flagPath": "img_flags/it.svg"
+    },
+    {
+      "code": "JM",
+      "code3": "JAM",
+      "name": "Jamaica",
+      "aliases": [
+        "Jamaica",
+        "JM"
+      ],
+      "capital": "Kingston",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar jamaicano"
+      ],
+      "areaKm2": 10991,
+      "population": 2961161,
+      "coordinates": [
+        18.25,
+        -77.5
+      ],
+      "borders": [],
+      "flagPath": "img_flags/jm.svg"
+    },
+    {
+      "code": "JP",
+      "code3": "JPN",
+      "name": "Japón",
+      "aliases": [
+        "Japan",
+        "日本",
+        "JP",
+        "Nippon",
+        "Nihon"
+      ],
+      "capital": "Tokyo",
+      "continent": "Asia",
+      "subregion": "Asia Oriental",
+      "languages": [
+        "japonés"
+      ],
+      "currencies": [
+        "yen japonés"
+      ],
+      "areaKm2": 377930,
+      "population": 125836021,
+      "coordinates": [
+        36,
+        138
+      ],
+      "borders": [],
+      "flagPath": "img_flags/jp.svg"
+    },
+    {
+      "code": "JO",
+      "code3": "JOR",
+      "name": "Jordania",
+      "aliases": [
+        "Jordan",
+        "الأردن",
+        "JO",
+        "Hashemite Kingdom of Jordan",
+        "al-Mamlakah al-Urdunīyah al-Hāshimīyah"
+      ],
+      "capital": "Amman",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar jordano"
+      ],
+      "areaKm2": 89342,
+      "population": 10203140,
+      "coordinates": [
+        31,
+        36
+      ],
+      "borders": [
+        "IRQ",
+        "ISR",
+        "SAU",
+        "SYR"
+      ],
+      "flagPath": "img_flags/jo.svg"
+    },
+    {
+      "code": "KZ",
+      "code3": "KAZ",
+      "name": "Kazajistán",
+      "aliases": [
+        "Kazakhstan",
+        "Қазақстан",
+        "KZ",
+        "Qazaqstan",
+        "Казахстан",
+        "Republic of Kazakhstan",
+        "Қазақстан Республикасы",
+        "Qazaqstan Respublïkası",
+        "Республика Казахстан",
+        "Respublika Kazakhstan"
+      ],
+      "capital": "Nur-Sultan",
+      "continent": "Asia",
+      "subregion": "Asia Central",
+      "languages": [
+        "kazajo",
+        "ruso"
+      ],
+      "currencies": [
+        "tengue kazajo"
+      ],
+      "areaKm2": 2724900,
+      "population": 18754440,
+      "coordinates": [
+        48,
+        68
+      ],
+      "borders": [
+        "CHN",
+        "KGZ",
+        "RUS",
+        "TKM",
+        "UZB"
+      ],
+      "flagPath": "img_flags/kz.svg"
+    },
+    {
+      "code": "KE",
+      "code3": "KEN",
+      "name": "Kenia",
+      "aliases": [
+        "Kenya",
+        "KE",
+        "Republic of Kenya",
+        "Jamhuri ya Kenya"
+      ],
+      "capital": "Nairobi",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "inglés",
+        "suajili"
+      ],
+      "currencies": [
+        "chelín keniano"
+      ],
+      "areaKm2": 580367,
+      "population": 53771300,
+      "coordinates": [
+        1,
+        38
+      ],
+      "borders": [
+        "ETH",
+        "SOM",
+        "SSD",
+        "TZA",
+        "UGA"
+      ],
+      "flagPath": "img_flags/ke.svg"
+    },
+    {
+      "code": "KG",
+      "code3": "KGZ",
+      "name": "Kirguizistán",
+      "aliases": [
+        "Kyrgyzstan",
+        "Кыргызстан",
+        "KG",
+        "Киргизия",
+        "Kyrgyz Republic",
+        "Кыргыз Республикасы",
+        "Kyrgyz Respublikasy"
+      ],
+      "capital": "Bishkek",
+      "continent": "Asia",
+      "subregion": "Asia Central",
+      "languages": [
+        "kirguís",
+        "ruso"
+      ],
+      "currencies": [
+        "som kirguís"
+      ],
+      "areaKm2": 199951,
+      "population": 6591600,
+      "coordinates": [
+        41,
+        75
+      ],
+      "borders": [
+        "CHN",
+        "KAZ",
+        "TJK",
+        "UZB"
+      ],
+      "flagPath": "img_flags/kg.svg"
+    },
+    {
+      "code": "KI",
+      "code3": "KIR",
+      "name": "Kiribati",
+      "aliases": [
+        "Kiribati",
+        "KI",
+        "Republic of Kiribati",
+        "Ribaberiki Kiribati"
+      ],
+      "capital": "South Tarawa",
+      "continent": "Oceanía",
+      "subregion": "Micronesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar australiano",
+        "KID"
+      ],
+      "areaKm2": 811,
+      "population": 119446,
+      "coordinates": [
+        1.41666666,
+        173
+      ],
+      "borders": [],
+      "flagPath": "img_flags/ki.svg"
+    },
+    {
+      "code": "KW",
+      "code3": "KWT",
+      "name": "Kuwait",
+      "aliases": [
+        "Kuwait",
+        "الكويت",
+        "KW",
+        "State of Kuwait",
+        "Dawlat al-Kuwait"
+      ],
+      "capital": "Kuwait City",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar kuwaití"
+      ],
+      "areaKm2": 17818,
+      "population": 4270563,
+      "coordinates": [
+        29.5,
+        45.75
+      ],
+      "borders": [
+        "IRQ",
+        "SAU"
+      ],
+      "flagPath": "img_flags/kw.svg"
+    },
+    {
+      "code": "LA",
+      "code3": "LAO",
+      "name": "Laos",
+      "aliases": [
+        "Lao People's Democratic Republic",
+        "ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ",
+        "LA",
+        "Lao",
+        "Laos",
+        "Sathalanalat Paxathipatai Paxaxon Lao"
+      ],
+      "capital": "Vientiane",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "lao"
+      ],
+      "currencies": [
+        "kip laosiano"
+      ],
+      "areaKm2": 236800,
+      "population": 7275556,
+      "coordinates": [
+        18,
+        105
+      ],
+      "borders": [
+        "MMR",
+        "KHM",
+        "CHN",
+        "THA",
+        "VNM"
+      ],
+      "flagPath": "img_flags/la.svg"
+    },
+    {
+      "code": "LS",
+      "code3": "LSO",
+      "name": "Lesotho",
+      "aliases": [
+        "Lesotho",
+        "LS",
+        "Kingdom of Lesotho",
+        "Muso oa Lesotho"
+      ],
+      "capital": "Maseru",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "inglés",
+        "sotho meridional"
+      ],
+      "currencies": [
+        "loti lesotense",
+        "rand sudafricano"
+      ],
+      "areaKm2": 30355,
+      "population": 2142252,
+      "coordinates": [
+        -29.5,
+        28.5
+      ],
+      "borders": [
+        "ZAF"
+      ],
+      "flagPath": "img_flags/ls.svg"
+    },
+    {
+      "code": "LV",
+      "code3": "LVA",
+      "name": "Letonia",
+      "aliases": [
+        "Latvia",
+        "Latvija",
+        "LV",
+        "Republic of Latvia",
+        "Latvijas Republika"
+      ],
+      "capital": "Riga",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "letón"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 64559,
+      "population": 1901548,
+      "coordinates": [
+        57,
+        25
+      ],
+      "borders": [
+        "BLR",
+        "EST",
+        "LTU",
+        "RUS"
+      ],
+      "flagPath": "img_flags/lv.svg"
+    },
+    {
+      "code": "LB",
+      "code3": "LBN",
+      "name": "Líbano",
+      "aliases": [
+        "Lebanon",
+        "لبنان",
+        "LB",
+        "Lebanese Republic",
+        "Al-Jumhūrīyah Al-Libnānīyah"
+      ],
+      "capital": "Beirut",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe",
+        "francés"
+      ],
+      "currencies": [
+        "libra libanesa"
+      ],
+      "areaKm2": 10452,
+      "population": 6825442,
+      "coordinates": [
+        33.83333333,
+        35.83333333
+      ],
+      "borders": [
+        "ISR",
+        "SYR"
+      ],
+      "flagPath": "img_flags/lb.svg"
+    },
+    {
+      "code": "LR",
+      "code3": "LBR",
+      "name": "Liberia",
+      "aliases": [
+        "Liberia",
+        "LR",
+        "Republic of Liberia"
+      ],
+      "capital": "Monrovia",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar liberiano"
+      ],
+      "areaKm2": 111369,
+      "population": 5057677,
+      "coordinates": [
+        6.5,
+        -9.5
+      ],
+      "borders": [
+        "GIN",
+        "CIV",
+        "SLE"
+      ],
+      "flagPath": "img_flags/lr.svg"
+    },
+    {
+      "code": "LY",
+      "code3": "LBY",
+      "name": "Libia",
+      "aliases": [
+        "Libya",
+        "‏ليبيا",
+        "LY",
+        "State of Libya",
+        "Dawlat Libya"
+      ],
+      "capital": "Tripoli",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar libio"
+      ],
+      "areaKm2": 1759540,
+      "population": 6871287,
+      "coordinates": [
+        25,
+        17
+      ],
+      "borders": [
+        "DZA",
+        "TCD",
+        "EGY",
+        "NER",
+        "SDN",
+        "TUN"
+      ],
+      "flagPath": "img_flags/ly.svg"
+    },
+    {
+      "code": "LI",
+      "code3": "LIE",
+      "name": "Liechtenstein",
+      "aliases": [
+        "Liechtenstein",
+        "LI",
+        "Principality of Liechtenstein",
+        "Fürstentum Liechtenstein"
+      ],
+      "capital": "Vaduz",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "alemán"
+      ],
+      "currencies": [
+        "franco suizo"
+      ],
+      "areaKm2": 160,
+      "population": 38137,
+      "coordinates": [
+        47.26666666,
+        9.53333333
+      ],
+      "borders": [
+        "AUT",
+        "CHE"
+      ],
+      "flagPath": "img_flags/li.svg"
+    },
+    {
+      "code": "LT",
+      "code3": "LTU",
+      "name": "Lituania",
+      "aliases": [
+        "Lithuania",
+        "Lietuva",
+        "LT",
+        "Republic of Lithuania",
+        "Lietuvos Respublika"
+      ],
+      "capital": "Vilnius",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "lituano"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 65300,
+      "population": 2794700,
+      "coordinates": [
+        56,
+        24
+      ],
+      "borders": [
+        "BLR",
+        "LVA",
+        "POL",
+        "RUS"
+      ],
+      "flagPath": "img_flags/lt.svg"
+    },
+    {
+      "code": "LU",
+      "code3": "LUX",
+      "name": "Luxemburgo",
+      "aliases": [
+        "Luxembourg",
+        "Lëtzebuerg",
+        "LU",
+        "Grand Duchy of Luxembourg",
+        "Grand-Duché de Luxembourg",
+        "Großherzogtum Luxemburg",
+        "Groussherzogtum Lëtzebuerg"
+      ],
+      "capital": "Luxembourg",
+      "continent": "Europa",
+      "subregion": "Europa Occidental",
+      "languages": [
+        "francés",
+        "alemán",
+        "luxemburgués"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 2586,
+      "population": 632275,
+      "coordinates": [
+        49.75,
+        6.16666666
+      ],
+      "borders": [
+        "BEL",
+        "FRA",
+        "DEU"
+      ],
+      "flagPath": "img_flags/lu.svg"
+    },
+    {
+      "code": "MK",
+      "code3": "MKD",
+      "name": "Macedonia",
+      "aliases": [
+        "North Macedonia",
+        "Македонија",
+        "MK",
+        "Republic of Macedonia",
+        "Република Македонија"
+      ],
+      "capital": "Skopje",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "macedonio"
+      ],
+      "currencies": [
+        "dinar macedonio"
+      ],
+      "areaKm2": 25713,
+      "population": 2083380,
+      "coordinates": [
+        41.83333333,
+        22
+      ],
+      "borders": [
+        "ALB",
+        "BGR",
+        "GRC",
+        "SRB"
+      ],
+      "flagPath": "img_flags/mk.svg"
+    },
+    {
+      "code": "MG",
+      "code3": "MDG",
+      "name": "Madagascar",
+      "aliases": [
+        "Madagascar",
+        "Madagasikara",
+        "MG",
+        "Republic of Madagascar",
+        "Repoblikan'i Madagasikara",
+        "République de Madagascar"
+      ],
+      "capital": "Antananarivo",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "francés",
+        "malgache"
+      ],
+      "currencies": [
+        "ariari malgache"
+      ],
+      "areaKm2": 587041,
+      "population": 27691019,
+      "coordinates": [
+        -20,
+        47
+      ],
+      "borders": [],
+      "flagPath": "img_flags/mg.svg"
+    },
+    {
+      "code": "MY",
+      "code3": "MYS",
+      "name": "Malasia",
+      "aliases": [
+        "Malaysia",
+        "MY"
+      ],
+      "capital": "Kuala Lumpur",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "malayo"
+      ],
+      "currencies": [
+        "ringit malasio"
+      ],
+      "areaKm2": 330803,
+      "population": 32365998,
+      "coordinates": [
+        2.5,
+        112.5
+      ],
+      "borders": [
+        "BRN",
+        "IDN",
+        "THA"
+      ],
+      "flagPath": "img_flags/my.svg"
+    },
+    {
+      "code": "MW",
+      "code3": "MWI",
+      "name": "Malawi",
+      "aliases": [
+        "Malawi",
+        "MW",
+        "Republic of Malawi"
+      ],
+      "capital": "Lilongwe",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "inglés",
+        "nyanja"
+      ],
+      "currencies": [
+        "kuacha malauí"
+      ],
+      "areaKm2": 118484,
+      "population": 19129955,
+      "coordinates": [
+        -13.5,
+        34
+      ],
+      "borders": [
+        "MOZ",
+        "TZA",
+        "ZMB"
+      ],
+      "flagPath": "img_flags/mw.svg"
+    },
+    {
+      "code": "MV",
+      "code3": "MDV",
+      "name": "Maldivas",
+      "aliases": [
+        "Maldives",
+        "MV",
+        "Maldive Islands",
+        "Republic of the Maldives",
+        "Dhivehi Raajjeyge Jumhooriyya"
+      ],
+      "capital": "Malé",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "divehi"
+      ],
+      "currencies": [
+        "rufiya maldiva"
+      ],
+      "areaKm2": 300,
+      "population": 540542,
+      "coordinates": [
+        3.25,
+        73
+      ],
+      "borders": [],
+      "flagPath": "img_flags/mv.svg"
+    },
+    {
+      "code": "ML",
+      "code3": "MLI",
+      "name": "Mali",
+      "aliases": [
+        "Mali",
+        "ML",
+        "Republic of Mali",
+        "République du Mali"
+      ],
+      "capital": "Bamako",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 1240192,
+      "population": 20250834,
+      "coordinates": [
+        17,
+        -4
+      ],
+      "borders": [
+        "DZA",
+        "BFA",
+        "GIN",
+        "CIV",
+        "MRT",
+        "NER",
+        "SEN"
+      ],
+      "flagPath": "img_flags/ml.svg"
+    },
+    {
+      "code": "MT",
+      "code3": "MLT",
+      "name": "Malta",
+      "aliases": [
+        "Malta",
+        "MT",
+        "Republic of Malta",
+        "Repubblika ta' Malta"
+      ],
+      "capital": "Valletta",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "maltés",
+        "inglés"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 316,
+      "population": 525285,
+      "coordinates": [
+        35.83333333,
+        14.58333333
+      ],
+      "borders": [],
+      "flagPath": "img_flags/mt.svg"
+    },
+    {
+      "code": "MA",
+      "code3": "MAR",
+      "name": "Marruecos",
+      "aliases": [
+        "Morocco",
+        "المغرب",
+        "MA",
+        "Kingdom of Morocco",
+        "Al-Mamlakah al-Maġribiyah"
+      ],
+      "capital": "Rabat",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dírham marroquí"
+      ],
+      "areaKm2": 446550,
+      "population": 36910558,
+      "coordinates": [
+        32,
+        -5
+      ],
+      "borders": [
+        "DZA",
+        "ESP"
+      ],
+      "flagPath": "img_flags/ma.svg"
+    },
+    {
+      "code": "MU",
+      "code3": "MUS",
+      "name": "Mauricio",
+      "aliases": [
+        "Mauritius",
+        "Maurice",
+        "MU",
+        "Republic of Mauritius",
+        "République de Maurice"
+      ],
+      "capital": "Port Louis",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "rupia mauriciana"
+      ],
+      "areaKm2": 2040,
+      "population": 1265740,
+      "coordinates": [
+        -20.28333333,
+        57.55
+      ],
+      "borders": [],
+      "flagPath": "img_flags/mu.svg"
+    },
+    {
+      "code": "MR",
+      "code3": "MRT",
+      "name": "Mauritania",
+      "aliases": [
+        "Mauritania",
+        "موريتانيا",
+        "MR",
+        "Islamic Republic of Mauritania",
+        "al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah"
+      ],
+      "capital": "Nouakchott",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "uguiya (1973–2017)"
+      ],
+      "areaKm2": 1030700,
+      "population": 4649660,
+      "coordinates": [
+        20,
+        -12
+      ],
+      "borders": [
+        "DZA",
+        "MLI",
+        "SEN"
+      ],
+      "flagPath": "img_flags/mr.svg"
+    },
+    {
+      "code": "MX",
+      "code3": "MEX",
+      "name": "México",
+      "aliases": [
+        "Mexico",
+        "México",
+        "MX",
+        "Mexicanos",
+        "United Mexican States",
+        "Estados Unidos Mexicanos"
+      ],
+      "capital": "Mexico City",
+      "continent": "América",
+      "subregion": "América del Norte",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso mexicano"
+      ],
+      "areaKm2": 1964375,
+      "population": 128932753,
+      "coordinates": [
+        23,
+        -102
+      ],
+      "borders": [
+        "BLZ",
+        "GTM",
+        "USA"
+      ],
+      "flagPath": "img_flags/mx.svg"
+    },
+    {
+      "code": "FM",
+      "code3": "FSM",
+      "name": "Micronesia",
+      "aliases": [
+        "Micronesia (Federated States of)",
+        "Micronesia",
+        "FM",
+        "Federated States of Micronesia"
+      ],
+      "capital": "Palikir",
+      "continent": "Oceanía",
+      "subregion": "Micronesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 702,
+      "population": 115021,
+      "coordinates": [
+        6.91666666,
+        158.25
+      ],
+      "borders": [],
+      "flagPath": "img_flags/fm.svg"
+    },
+    {
+      "code": "MD",
+      "code3": "MDA",
+      "name": "Moldavia",
+      "aliases": [
+        "Moldova (Republic of)",
+        "Moldova",
+        "MD",
+        "Republic of Moldova",
+        "Republica Moldova"
+      ],
+      "capital": "Chișinău",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "rumano"
+      ],
+      "currencies": [
+        "leu moldavo"
+      ],
+      "areaKm2": 33846,
+      "population": 2617820,
+      "coordinates": [
+        47,
+        29
+      ],
+      "borders": [
+        "ROU",
+        "UKR"
+      ],
+      "flagPath": "img_flags/md.svg"
+    },
+    {
+      "code": "MC",
+      "code3": "MCO",
+      "name": "Mónaco",
+      "aliases": [
+        "Monaco",
+        "MC",
+        "Principality of Monaco",
+        "Principauté de Monaco"
+      ],
+      "capital": "Monaco",
+      "continent": "Europa",
+      "subregion": "Europa Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 2.02,
+      "population": 39244,
+      "coordinates": [
+        43.73333333,
+        7.4
+      ],
+      "borders": [
+        "FRA"
+      ],
+      "flagPath": "img_flags/mc.svg"
+    },
+    {
+      "code": "MN",
+      "code3": "MNG",
+      "name": "Mongolia",
+      "aliases": [
+        "Mongolia",
+        "Монгол улс",
+        "MN"
+      ],
+      "capital": "Ulan Bator",
+      "continent": "Asia",
+      "subregion": "Asia Oriental",
+      "languages": [
+        "mongol"
+      ],
+      "currencies": [
+        "tugrik mongol"
+      ],
+      "areaKm2": 1564110,
+      "population": 3278292,
+      "coordinates": [
+        46,
+        105
+      ],
+      "borders": [
+        "CHN",
+        "RUS"
+      ],
+      "flagPath": "img_flags/mn.svg"
+    },
+    {
+      "code": "ME",
+      "code3": "MNE",
+      "name": "Montenegro",
+      "aliases": [
+        "Montenegro",
+        "Црна Гора",
+        "ME",
+        "Crna Gora"
+      ],
+      "capital": "Podgorica",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "serbio",
+        "bosnio",
+        "albanés",
+        "croata"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 13812,
+      "population": 621718,
+      "coordinates": [
+        42.5,
+        19.3
+      ],
+      "borders": [
+        "ALB",
+        "BIH",
+        "HRV",
+        "SRB"
+      ],
+      "flagPath": "img_flags/me.svg"
+    },
+    {
+      "code": "MZ",
+      "code3": "MOZ",
+      "name": "Mozambique",
+      "aliases": [
+        "Mozambique",
+        "Moçambique",
+        "MZ",
+        "Republic of Mozambique",
+        "República de Moçambique"
+      ],
+      "capital": "Maputo",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "metical mozambiqueño"
+      ],
+      "areaKm2": 801590,
+      "population": 31255435,
+      "coordinates": [
+        -18.25,
+        35
+      ],
+      "borders": [
+        "MWI",
+        "ZAF",
+        "SWZ",
+        "TZA",
+        "ZMB",
+        "ZWE"
+      ],
+      "flagPath": "img_flags/mz.svg"
+    },
+    {
+      "code": "MM",
+      "code3": "MMR",
+      "name": "Myanmar",
+      "aliases": [
+        "Myanmar",
+        "Myanma",
+        "MM",
+        "Burma",
+        "Republic of the Union of Myanmar",
+        "Pyidaunzu Thanmăda Myăma Nainngandaw"
+      ],
+      "capital": "Naypyidaw",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "birmano"
+      ],
+      "currencies": [
+        "kiat de Myanmar"
+      ],
+      "areaKm2": 676578,
+      "population": 54409794,
+      "coordinates": [
+        22,
+        98
+      ],
+      "borders": [
+        "BGD",
+        "CHN",
+        "IND",
+        "LAO",
+        "THA"
+      ],
+      "flagPath": "img_flags/mm.svg"
+    },
+    {
+      "code": "NA",
+      "code3": "NAM",
+      "name": "Namibia",
+      "aliases": [
+        "Namibia",
+        "NA",
+        "Namibië",
+        "Republic of Namibia"
+      ],
+      "capital": "Windhoek",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "inglés",
+        "afrikáans"
+      ],
+      "currencies": [
+        "dólar namibio",
+        "rand sudafricano"
+      ],
+      "areaKm2": 825615,
+      "population": 2540916,
+      "coordinates": [
+        -22,
+        17
+      ],
+      "borders": [
+        "AGO",
+        "BWA",
+        "ZAF",
+        "ZMB"
+      ],
+      "flagPath": "img_flags/na.svg"
+    },
+    {
+      "code": "NR",
+      "code3": "NRU",
+      "name": "Nauru",
+      "aliases": [
+        "Nauru",
+        "NR",
+        "Naoero",
+        "Pleasant Island",
+        "Republic of Nauru",
+        "Ripublik Naoero"
+      ],
+      "capital": "Yaren",
+      "continent": "Oceanía",
+      "subregion": "Micronesia",
+      "languages": [
+        "inglés",
+        "nauruano"
+      ],
+      "currencies": [
+        "dólar australiano"
+      ],
+      "areaKm2": 21,
+      "population": 10834,
+      "coordinates": [
+        -0.53333333,
+        166.91666666
+      ],
+      "borders": [],
+      "flagPath": "img_flags/nr.svg"
+    },
+    {
+      "code": "NP",
+      "code3": "NPL",
+      "name": "Nepal",
+      "aliases": [
+        "Nepal",
+        "नेपाल",
+        "NP",
+        "Federal Democratic Republic of Nepal",
+        "Loktāntrik Ganatantra Nepāl"
+      ],
+      "capital": "Kathmandu",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "nepalí"
+      ],
+      "currencies": [
+        "rupia nepalí"
+      ],
+      "areaKm2": 147181,
+      "population": 29136808,
+      "coordinates": [
+        28,
+        84
+      ],
+      "borders": [
+        "CHN",
+        "IND"
+      ],
+      "flagPath": "img_flags/np.svg"
+    },
+    {
+      "code": "NI",
+      "code3": "NIC",
+      "name": "Nicaragua",
+      "aliases": [
+        "Nicaragua",
+        "NI",
+        "Republic of Nicaragua",
+        "República de Nicaragua"
+      ],
+      "capital": "Managua",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "córdoba oro"
+      ],
+      "areaKm2": 130373,
+      "population": 6624554,
+      "coordinates": [
+        13,
+        -85
+      ],
+      "borders": [
+        "CRI",
+        "HND"
+      ],
+      "flagPath": "img_flags/ni.svg"
+    },
+    {
+      "code": "NE",
+      "code3": "NER",
+      "name": "Níger",
+      "aliases": [
+        "Niger",
+        "NE",
+        "Nijar",
+        "Republic of Niger",
+        "République du Niger"
+      ],
+      "capital": "Niamey",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 1267000,
+      "population": 24206636,
+      "coordinates": [
+        16,
+        8
+      ],
+      "borders": [
+        "DZA",
+        "BEN",
+        "BFA",
+        "TCD",
+        "LBY",
+        "MLI",
+        "NGA"
+      ],
+      "flagPath": "img_flags/ne.svg"
+    },
+    {
+      "code": "NG",
+      "code3": "NGA",
+      "name": "Nigeria",
+      "aliases": [
+        "Nigeria",
+        "NG",
+        "Nijeriya",
+        "Naíjíríà",
+        "Federal Republic of Nigeria"
+      ],
+      "capital": "Abuja",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "naira nigeriano"
+      ],
+      "areaKm2": 923768,
+      "population": 206139587,
+      "coordinates": [
+        10,
+        8
+      ],
+      "borders": [
+        "BEN",
+        "CMR",
+        "TCD",
+        "NER"
+      ],
+      "flagPath": "img_flags/ng.svg"
+    },
+    {
+      "code": "NO",
+      "code3": "NOR",
+      "name": "Noruega",
+      "aliases": [
+        "Norway",
+        "Norge",
+        "NO",
+        "Noreg",
+        "Kingdom of Norway",
+        "Kongeriket Norge",
+        "Kongeriket Noreg"
+      ],
+      "capital": "Oslo",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "noruego",
+        "noruego bokmal",
+        "noruego nynorsk"
+      ],
+      "currencies": [
+        "corona noruega"
+      ],
+      "areaKm2": 323802,
+      "population": 5379475,
+      "coordinates": [
+        62,
+        10
+      ],
+      "borders": [
+        "FIN",
+        "SWE",
+        "RUS"
+      ],
+      "flagPath": "img_flags/no.svg"
+    },
+    {
+      "code": "NZ",
+      "code3": "NZL",
+      "name": "Nueva Zelanda",
+      "aliases": [
+        "New Zealand",
+        "NZ",
+        "Aotearoa"
+      ],
+      "capital": "Wellington",
+      "continent": "Oceanía",
+      "subregion": "Australia y Nueva Zelanda",
+      "languages": [
+        "inglés",
+        "maorí"
+      ],
+      "currencies": [
+        "dólar neozelandés"
+      ],
+      "areaKm2": 270467,
+      "population": 5084300,
+      "coordinates": [
+        -41,
+        174
+      ],
+      "borders": [],
+      "flagPath": "img_flags/nz.svg"
+    },
+    {
+      "code": "OM",
+      "code3": "OMN",
+      "name": "Omán",
+      "aliases": [
+        "Oman",
+        "عمان",
+        "OM",
+        "Sultanate of Oman",
+        "Salṭanat ʻUmān"
+      ],
+      "capital": "Muscat",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "rial omaní"
+      ],
+      "areaKm2": 309500,
+      "population": 5106622,
+      "coordinates": [
+        21,
+        57
+      ],
+      "borders": [
+        "SAU",
+        "ARE",
+        "YEM"
+      ],
+      "flagPath": "img_flags/om.svg"
+    },
+    {
+      "code": "NL",
+      "code3": "NLD",
+      "name": "Países Bajos",
+      "aliases": [
+        "Netherlands",
+        "Nederland",
+        "NL",
+        "Holland"
+      ],
+      "capital": "Amsterdam",
+      "continent": "Europa",
+      "subregion": "Europa Occidental",
+      "languages": [
+        "neerlandés"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 41850,
+      "population": 17441139,
+      "coordinates": [
+        52.5,
+        5.75
+      ],
+      "borders": [
+        "BEL",
+        "DEU"
+      ],
+      "flagPath": "img_flags/nl.svg"
+    },
+    {
+      "code": "PK",
+      "code3": "PAK",
+      "name": "Pakistán",
+      "aliases": [
+        "Pakistan",
+        "PK",
+        "Pākistān",
+        "Islamic Republic of Pakistan",
+        "Islāmī Jumhūriya'eh Pākistān"
+      ],
+      "capital": "Islamabad",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "urdu",
+        "inglés"
+      ],
+      "currencies": [
+        "rupia pakistaní"
+      ],
+      "areaKm2": 881912,
+      "population": 220892331,
+      "coordinates": [
+        30,
+        70
+      ],
+      "borders": [
+        "AFG",
+        "CHN",
+        "IND",
+        "IRN"
+      ],
+      "flagPath": "img_flags/pk.svg"
+    },
+    {
+      "code": "PW",
+      "code3": "PLW",
+      "name": "Palau",
+      "aliases": [
+        "Palau",
+        "PW",
+        "Republic of Palau",
+        "Beluu er a Belau"
+      ],
+      "capital": "Ngerulmud",
+      "continent": "Oceanía",
+      "subregion": "Micronesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 459,
+      "population": 18092,
+      "coordinates": [
+        7.5,
+        134.5
+      ],
+      "borders": [],
+      "flagPath": "img_flags/pw.svg"
+    },
+    {
+      "code": "PS",
+      "code3": "PSE",
+      "name": "Palestina",
+      "aliases": [
+        "Palestine, State of",
+        "فلسطين",
+        "PS",
+        "State of Palestine",
+        "Dawlat Filasṭin"
+      ],
+      "capital": "Ramallah",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "libra egipcia",
+        "nuevo séquel israelí",
+        "dinar jordano"
+      ],
+      "areaKm2": 6025,
+      "population": 4803269,
+      "coordinates": [
+        31.9,
+        35.2
+      ],
+      "borders": [
+        "ISR",
+        "EGY",
+        "JOR"
+      ],
+      "flagPath": "img_flags/ps.svg"
+    },
+    {
+      "code": "PA",
+      "code3": "PAN",
+      "name": "Panamá",
+      "aliases": [
+        "Panama",
+        "Panamá",
+        "PA",
+        "Republic of Panama",
+        "República de Panamá"
+      ],
+      "capital": "Panama City",
+      "continent": "América",
+      "subregion": "América Central",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "balboa panameño",
+        "dólar estadounidense"
+      ],
+      "areaKm2": 75417,
+      "population": 4314768,
+      "coordinates": [
+        9,
+        -80
+      ],
+      "borders": [
+        "COL",
+        "CRI"
+      ],
+      "flagPath": "img_flags/pa.svg"
+    },
+    {
+      "code": "PG",
+      "code3": "PNG",
+      "name": "Papúa Nueva Guinea",
+      "aliases": [
+        "Papua New Guinea",
+        "Papua Niugini",
+        "PG",
+        "Independent State of Papua New Guinea",
+        "Independen Stet bilong Papua Niugini"
+      ],
+      "capital": "Port Moresby",
+      "continent": "Oceanía",
+      "subregion": "Melanesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "kina papú"
+      ],
+      "areaKm2": 462840,
+      "population": 8947027,
+      "coordinates": [
+        -6,
+        147
+      ],
+      "borders": [
+        "IDN"
+      ],
+      "flagPath": "img_flags/pg.svg"
+    },
+    {
+      "code": "PY",
+      "code3": "PRY",
+      "name": "Paraguay",
+      "aliases": [
+        "Paraguay",
+        "PY",
+        "Republic of Paraguay",
+        "República del Paraguay",
+        "Tetã Paraguái"
+      ],
+      "capital": "Asunción",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español",
+        "guaraní"
+      ],
+      "currencies": [
+        "guaraní paraguayo"
+      ],
+      "areaKm2": 406752,
+      "population": 7132530,
+      "coordinates": [
+        -23,
+        -58
+      ],
+      "borders": [
+        "ARG",
+        "BOL",
+        "BRA"
+      ],
+      "flagPath": "img_flags/py.svg"
+    },
+    {
+      "code": "PE",
+      "code3": "PER",
+      "name": "Perú",
+      "aliases": [
+        "Peru",
+        "Perú",
+        "PE",
+        "Republic of Peru",
+        " República del Perú"
+      ],
+      "capital": "Lima",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "sol peruano"
+      ],
+      "areaKm2": 1285216,
+      "population": 32971846,
+      "coordinates": [
+        -10,
+        -76
+      ],
+      "borders": [
+        "BOL",
+        "BRA",
+        "CHL",
+        "COL",
+        "ECU"
+      ],
+      "flagPath": "img_flags/pe.svg"
+    },
+    {
+      "code": "PL",
+      "code3": "POL",
+      "name": "Polonia",
+      "aliases": [
+        "Poland",
+        "Polska",
+        "PL",
+        "Republic of Poland",
+        "Rzeczpospolita Polska"
+      ],
+      "capital": "Warsaw",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "polaco"
+      ],
+      "currencies": [
+        "esloti polaco"
+      ],
+      "areaKm2": 312679,
+      "population": 37950802,
+      "coordinates": [
+        52,
+        20
+      ],
+      "borders": [
+        "BLR",
+        "CZE",
+        "DEU",
+        "LTU",
+        "RUS",
+        "SVK",
+        "UKR"
+      ],
+      "flagPath": "img_flags/pl.svg"
+    },
+    {
+      "code": "PT",
+      "code3": "PRT",
+      "name": "Portugal",
+      "aliases": [
+        "Portugal",
+        "PT",
+        "Portuguesa",
+        "Portuguese Republic",
+        "República Portuguesa"
+      ],
+      "capital": "Lisbon",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 92090,
+      "population": 10305564,
+      "coordinates": [
+        39.5,
+        -8
+      ],
+      "borders": [
+        "ESP"
+      ],
+      "flagPath": "img_flags/pt.svg"
+    },
+    {
+      "code": "GB",
+      "code3": "GBR",
+      "name": "Reino Unido",
+      "aliases": [
+        "United Kingdom of Great Britain and Northern Ireland",
+        "United Kingdom",
+        "GB",
+        "UK",
+        "Great Britain"
+      ],
+      "capital": "London",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "libra esterlina"
+      ],
+      "areaKm2": 242900,
+      "population": 67215293,
+      "coordinates": [
+        54,
+        -2
+      ],
+      "borders": [
+        "IRL"
+      ],
+      "flagPath": "img_flags/gb.svg"
+    },
+    {
+      "code": "CF",
+      "code3": "CAF",
+      "name": "República Centroafricana",
+      "aliases": [
+        "Central African Republic",
+        "Ködörösêse tî Bêafrîka",
+        "CF",
+        "République centrafricaine"
+      ],
+      "capital": "Bangui",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "francés",
+        "sango"
+      ],
+      "currencies": [
+        "franco CFA de África Central"
+      ],
+      "areaKm2": 622984,
+      "population": 4829764,
+      "coordinates": [
+        7,
+        21
+      ],
+      "borders": [
+        "CMR",
+        "TCD",
+        "COD",
+        "COG",
+        "SSD",
+        "SDN"
+      ],
+      "flagPath": "img_flags/cf.svg"
+    },
+    {
+      "code": "CZ",
+      "code3": "CZE",
+      "name": "República Checa",
+      "aliases": [
+        "Czech Republic",
+        "Česká republika",
+        "CZ",
+        "Česko"
+      ],
+      "capital": "Prague",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "checo",
+        "eslovaco"
+      ],
+      "currencies": [
+        "corona checa"
+      ],
+      "areaKm2": 78865,
+      "population": 10698896,
+      "coordinates": [
+        49.75,
+        15.5
+      ],
+      "borders": [],
+      "flagPath": "img_flags/cz.svg"
+    },
+    {
+      "code": "ZA",
+      "code3": "ZAF",
+      "name": "República de Sudáfrica",
+      "aliases": [
+        "South Africa",
+        "ZA",
+        "RSA",
+        "Suid-Afrika",
+        "Republic of South Africa"
+      ],
+      "capital": "Pretoria",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "afrikáans",
+        "inglés",
+        "ndebele meridional",
+        "sotho meridional",
+        "suazi",
+        "setsuana",
+        "tsonga",
+        "venda",
+        "xhosa",
+        "zulú"
+      ],
+      "currencies": [
+        "rand sudafricano"
+      ],
+      "areaKm2": 1221037,
+      "population": 59308690,
+      "coordinates": [
+        -29,
+        24
+      ],
+      "borders": [
+        "BWA",
+        "LSO",
+        "MOZ",
+        "NAM",
+        "SWZ",
+        "ZWE"
+      ],
+      "flagPath": "img_flags/za.svg"
+    },
+    {
+      "code": "DO",
+      "code3": "DOM",
+      "name": "República Dominicana",
+      "aliases": [
+        "Dominican Republic",
+        "República Dominicana",
+        "DO"
+      ],
+      "capital": "Santo Domingo",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso dominicano"
+      ],
+      "areaKm2": 48671,
+      "population": 10847904,
+      "coordinates": [
+        19,
+        -70.66666666
+      ],
+      "borders": [
+        "HTI"
+      ],
+      "flagPath": "img_flags/do.svg"
+    },
+    {
+      "code": "SK",
+      "code3": "SVK",
+      "name": "República Eslovaca",
+      "aliases": [
+        "Slovakia",
+        "Slovensko",
+        "SK",
+        "Slovak Republic",
+        "Slovenská republika"
+      ],
+      "capital": "Bratislava",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "eslovaco"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 49037,
+      "population": 5458827,
+      "coordinates": [
+        48.66666666,
+        19.5
+      ],
+      "borders": [
+        "AUT",
+        "CZE",
+        "HUN",
+        "POL",
+        "UKR"
+      ],
+      "flagPath": "img_flags/sk.svg"
+    },
+    {
+      "code": "RW",
+      "code3": "RWA",
+      "name": "Ruanda",
+      "aliases": [
+        "Rwanda",
+        "RW",
+        "Republic of Rwanda",
+        "Repubulika y'u Rwanda",
+        "République du Rwanda"
+      ],
+      "capital": "Kigali",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "kinyarwanda",
+        "inglés",
+        "francés"
+      ],
+      "currencies": [
+        "franco ruandés"
+      ],
+      "areaKm2": 26338,
+      "population": 12952209,
+      "coordinates": [
+        -2,
+        30
+      ],
+      "borders": [
+        "BDI",
+        "COD",
+        "TZA",
+        "UGA"
+      ],
+      "flagPath": "img_flags/rw.svg"
+    },
+    {
+      "code": "RO",
+      "code3": "ROU",
+      "name": "Rumania",
+      "aliases": [
+        "Romania",
+        "România",
+        "RO",
+        "Rumania",
+        "Roumania"
+      ],
+      "capital": "Bucharest",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "rumano"
+      ],
+      "currencies": [
+        "leu rumano"
+      ],
+      "areaKm2": 238391,
+      "population": 19286123,
+      "coordinates": [
+        46,
+        25
+      ],
+      "borders": [
+        "BGR",
+        "HUN",
+        "MDA",
+        "SRB",
+        "UKR"
+      ],
+      "flagPath": "img_flags/ro.svg"
+    },
+    {
+      "code": "RU",
+      "code3": "RUS",
+      "name": "Rusia",
+      "aliases": [
+        "Russian Federation",
+        "Россия",
+        "RU",
+        "Rossiya",
+        "Российская Федерация",
+        "Rossiyskaya Federatsiya"
+      ],
+      "capital": "Moscow",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "ruso"
+      ],
+      "currencies": [
+        "rublo ruso"
+      ],
+      "areaKm2": 17124442,
+      "population": 144104080,
+      "coordinates": [
+        60,
+        100
+      ],
+      "borders": [
+        "AZE",
+        "BLR",
+        "CHN",
+        "EST",
+        "FIN",
+        "GEO",
+        "KAZ",
+        "PRK",
+        "LVA",
+        "LTU",
+        "MNG",
+        "NOR",
+        "POL",
+        "UKR"
+      ],
+      "flagPath": "img_flags/ru.svg"
+    },
+    {
+      "code": "WS",
+      "code3": "WSM",
+      "name": "Samoa",
+      "aliases": [
+        "Samoa",
+        "WS",
+        "Independent State of Samoa",
+        "Malo Saʻoloto Tutoʻatasi o Sāmoa"
+      ],
+      "capital": "Apia",
+      "continent": "Oceanía",
+      "subregion": "Polinesia",
+      "languages": [
+        "samoano",
+        "inglés"
+      ],
+      "currencies": [
+        "tala samoano"
+      ],
+      "areaKm2": 2842,
+      "population": 198410,
+      "coordinates": [
+        -13.58333333,
+        -172.33333333
+      ],
+      "borders": [],
+      "flagPath": "img_flags/ws.svg"
+    },
+    {
+      "code": "KN",
+      "code3": "KNA",
+      "name": "San Cristóbal y Nieves",
+      "aliases": [
+        "Saint Kitts and Nevis",
+        "KN",
+        "Federation of Saint Christopher and Nevis"
+      ],
+      "capital": "Basseterre",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 261,
+      "population": 53192,
+      "coordinates": [
+        17.33333333,
+        -62.75
+      ],
+      "borders": [],
+      "flagPath": "img_flags/kn.svg"
+    },
+    {
+      "code": "SM",
+      "code3": "SMR",
+      "name": "San Marino",
+      "aliases": [
+        "San Marino",
+        "SM",
+        "Republic of San Marino",
+        "Repubblica di San Marino"
+      ],
+      "capital": "City of San Marino",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "italiano"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 61,
+      "population": 33938,
+      "coordinates": [
+        43.76666666,
+        12.41666666
+      ],
+      "borders": [
+        "ITA"
+      ],
+      "flagPath": "img_flags/sm.svg"
+    },
+    {
+      "code": "VC",
+      "code3": "VCT",
+      "name": "San Vicente y Granadinas",
+      "aliases": [
+        "Saint Vincent and the Grenadines",
+        "VC"
+      ],
+      "capital": "Kingstown",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 389,
+      "population": 110947,
+      "coordinates": [
+        13.25,
+        -61.2
+      ],
+      "borders": [],
+      "flagPath": "img_flags/vc.svg"
+    },
+    {
+      "code": "LC",
+      "code3": "LCA",
+      "name": "Santa Lucía",
+      "aliases": [
+        "Saint Lucia",
+        "LC"
+      ],
+      "capital": "Castries",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar del Caribe Oriental"
+      ],
+      "areaKm2": 616,
+      "population": 183629,
+      "coordinates": [
+        13.88333333,
+        -60.96666666
+      ],
+      "borders": [],
+      "flagPath": "img_flags/lc.svg"
+    },
+    {
+      "code": "VA",
+      "code3": "VAT",
+      "name": "Santa Sede",
+      "aliases": [
+        "Vatican City",
+        "Status Civitatis Vaticanae",
+        "Vatican",
+        "The Vatican"
+      ],
+      "capital": "Vatican City",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "latín",
+        "italiano",
+        "francés",
+        "alemán"
+      ],
+      "currencies": [
+        "euro"
+      ],
+      "areaKm2": 0.44,
+      "population": 451,
+      "coordinates": [
+        41.9,
+        12.45
+      ],
+      "borders": [
+        "ITA"
+      ],
+      "flagPath": "img_flags/va.svg"
+    },
+    {
+      "code": "ST",
+      "code3": "STP",
+      "name": "Santo Tomé y Príncipe",
+      "aliases": [
+        "Sao Tome and Principe",
+        "São Tomé e Príncipe",
+        "ST",
+        "Democratic Republic of São Tomé and Príncipe",
+        "República Democrática de São Tomé e Príncipe"
+      ],
+      "capital": "São Tomé",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "dobra (1977–2017)"
+      ],
+      "areaKm2": 964,
+      "population": 219161,
+      "coordinates": [
+        1,
+        7
+      ],
+      "borders": [],
+      "flagPath": "img_flags/st.svg"
+    },
+    {
+      "code": "SN",
+      "code3": "SEN",
+      "name": "Senegal",
+      "aliases": [
+        "Senegal",
+        "Sénégal",
+        "SN",
+        "Republic of Senegal",
+        "République du Sénégal"
+      ],
+      "capital": "Dakar",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 196722,
+      "population": 16743930,
+      "coordinates": [
+        14,
+        -14
+      ],
+      "borders": [
+        "GMB",
+        "GIN",
+        "GNB",
+        "MLI",
+        "MRT"
+      ],
+      "flagPath": "img_flags/sn.svg"
+    },
+    {
+      "code": "RS",
+      "code3": "SRB",
+      "name": "Serbia",
+      "aliases": [
+        "Serbia",
+        "Србија",
+        "RS",
+        "Srbija",
+        "Republic of Serbia",
+        "Република Србија",
+        "Republika Srbija"
+      ],
+      "capital": "Belgrade",
+      "continent": "Europa",
+      "subregion": "Europa del Sur",
+      "languages": [
+        "serbio"
+      ],
+      "currencies": [
+        "dinar serbio"
+      ],
+      "areaKm2": 88361,
+      "population": 6908224,
+      "coordinates": [
+        44,
+        21
+      ],
+      "borders": [
+        "BIH",
+        "BGR",
+        "HRV",
+        "HUN",
+        "MKD",
+        "MNE",
+        "ROU"
+      ],
+      "flagPath": "img_flags/rs.svg"
+    },
+    {
+      "code": "SC",
+      "code3": "SYC",
+      "name": "Seychelles",
+      "aliases": [
+        "Seychelles",
+        "SC",
+        "Republic of Seychelles",
+        "Repiblik Sesel",
+        "République des Seychelles"
+      ],
+      "capital": "Victoria",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "francés",
+        "inglés"
+      ],
+      "currencies": [
+        "rupia seychellense"
+      ],
+      "areaKm2": 452,
+      "population": 98462,
+      "coordinates": [
+        -4.58333333,
+        55.66666666
+      ],
+      "borders": [],
+      "flagPath": "img_flags/sc.svg"
+    },
+    {
+      "code": "SL",
+      "code3": "SLE",
+      "name": "Sierra Leone",
+      "aliases": [
+        "Sierra Leone",
+        "SL",
+        "Republic of Sierra Leone"
+      ],
+      "capital": "Freetown",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "leona sierraleonesa (1964–2022)"
+      ],
+      "areaKm2": 71740,
+      "population": 7976985,
+      "coordinates": [
+        8.5,
+        -11.5
+      ],
+      "borders": [
+        "GIN",
+        "LBR"
+      ],
+      "flagPath": "img_flags/sl.svg"
+    },
+    {
+      "code": "SG",
+      "code3": "SGP",
+      "name": "Singapur",
+      "aliases": [
+        "Singapore",
+        "SG",
+        "Singapura",
+        "Republik Singapura",
+        "新加坡共和国"
+      ],
+      "capital": "Singapore",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "inglés",
+        "malayo",
+        "tamil",
+        "chino"
+      ],
+      "currencies": [
+        "dólar singapurense"
+      ],
+      "areaKm2": 710,
+      "population": 5685807,
+      "coordinates": [
+        1.36666666,
+        103.8
+      ],
+      "borders": [],
+      "flagPath": "img_flags/sg.svg"
+    },
+    {
+      "code": "SY",
+      "code3": "SYR",
+      "name": "Siria",
+      "aliases": [
+        "Syrian Arab Republic",
+        "سوريا",
+        "SY",
+        "Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah"
+      ],
+      "capital": "Damascus",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "libra siria"
+      ],
+      "areaKm2": 185180,
+      "population": 17500657,
+      "coordinates": [
+        35,
+        38
+      ],
+      "borders": [
+        "IRQ",
+        "ISR",
+        "JOR",
+        "LBN",
+        "TUR"
+      ],
+      "flagPath": "img_flags/sy.svg"
+    },
+    {
+      "code": "SO",
+      "code3": "SOM",
+      "name": "Somalia",
+      "aliases": [
+        "Somalia",
+        "Soomaaliya",
+        "SO",
+        "aṣ-Ṣūmāl",
+        "Federal Republic of Somalia",
+        "Jamhuuriyadda Federaalka Soomaaliya",
+        "Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya"
+      ],
+      "capital": "Mogadishu",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "somalí",
+        "árabe"
+      ],
+      "currencies": [
+        "chelín somalí"
+      ],
+      "areaKm2": 637657,
+      "population": 15893219,
+      "coordinates": [
+        10,
+        49
+      ],
+      "borders": [
+        "DJI",
+        "ETH",
+        "KEN"
+      ],
+      "flagPath": "img_flags/so.svg"
+    },
+    {
+      "code": "LK",
+      "code3": "LKA",
+      "name": "Sri Lanka",
+      "aliases": [
+        "Sri Lanka",
+        "śrī laṃkāva",
+        "LK",
+        "ilaṅkai",
+        "Democratic Socialist Republic of Sri Lanka"
+      ],
+      "capital": "Sri Jayawardenepura Kotte",
+      "continent": "Asia",
+      "subregion": "Asia del Sur",
+      "languages": [
+        "cingalés",
+        "tamil"
+      ],
+      "currencies": [
+        "rupia esrilanquesa"
+      ],
+      "areaKm2": 65610,
+      "population": 21919000,
+      "coordinates": [
+        7,
+        81
+      ],
+      "borders": [
+        "IND"
+      ],
+      "flagPath": "img_flags/lk.svg"
+    },
+    {
+      "code": "SZ",
+      "code3": "SWZ",
+      "name": "Suazilandia",
+      "aliases": [
+        "Swaziland",
+        "SZ",
+        "weSwatini",
+        "Swatini",
+        "Ngwane",
+        "Kingdom of Swaziland",
+        "Umbuso waseSwatini"
+      ],
+      "capital": "Mbabane",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "inglés",
+        "suazi"
+      ],
+      "currencies": [
+        "lilangeni esuatiní"
+      ],
+      "areaKm2": 17364,
+      "population": 1160164,
+      "coordinates": [
+        -26.5,
+        31.5
+      ],
+      "borders": [
+        "MOZ",
+        "ZAF"
+      ],
+      "flagPath": "img_flags/sz.svg"
+    },
+    {
+      "code": "SD",
+      "code3": "SDN",
+      "name": "Sudán",
+      "aliases": [
+        "Sudan",
+        "السودان",
+        "SD",
+        "Republic of the Sudan",
+        "Jumhūrīyat as-Sūdān"
+      ],
+      "capital": "Khartoum",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe",
+        "inglés"
+      ],
+      "currencies": [
+        "libra sudanesa"
+      ],
+      "areaKm2": 1886068,
+      "population": 43849269,
+      "coordinates": [
+        15,
+        30
+      ],
+      "borders": [
+        "CAF",
+        "TCD",
+        "EGY",
+        "ERI",
+        "ETH",
+        "LBY",
+        "SSD"
+      ],
+      "flagPath": "img_flags/sd.svg"
+    },
+    {
+      "code": "SS",
+      "code3": "SSD",
+      "name": "Sudán del Sur",
+      "aliases": [
+        "South Sudan",
+        "SS"
+      ],
+      "capital": "Juba",
+      "continent": "África",
+      "subregion": "África Central",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "libra sursudanesa"
+      ],
+      "areaKm2": 619745,
+      "population": 11193729,
+      "coordinates": [
+        7,
+        30
+      ],
+      "borders": [
+        "CAF",
+        "COD",
+        "ETH",
+        "KEN",
+        "SDN",
+        "UGA"
+      ],
+      "flagPath": "img_flags/ss.svg"
+    },
+    {
+      "code": "SE",
+      "code3": "SWE",
+      "name": "Suecia",
+      "aliases": [
+        "Sweden",
+        "Sverige",
+        "SE",
+        "Kingdom of Sweden",
+        "Konungariket Sverige"
+      ],
+      "capital": "Stockholm",
+      "continent": "Europa",
+      "subregion": "Europa del Norte",
+      "languages": [
+        "sueco"
+      ],
+      "currencies": [
+        "corona sueca"
+      ],
+      "areaKm2": 450295,
+      "population": 10353442,
+      "coordinates": [
+        62,
+        15
+      ],
+      "borders": [
+        "FIN",
+        "NOR"
+      ],
+      "flagPath": "img_flags/se.svg"
+    },
+    {
+      "code": "CH",
+      "code3": "CHE",
+      "name": "Suiza",
+      "aliases": [
+        "Switzerland",
+        "Schweiz",
+        "CH",
+        "Swiss Confederation",
+        "Suisse",
+        "Svizzera",
+        "Svizra"
+      ],
+      "capital": "Bern",
+      "continent": "Europa",
+      "subregion": "Europa Central",
+      "languages": [
+        "alemán",
+        "francés",
+        "italiano",
+        "Romansh"
+      ],
+      "currencies": [
+        "franco suizo"
+      ],
+      "areaKm2": 41284,
+      "population": 8636896,
+      "coordinates": [
+        47,
+        8
+      ],
+      "borders": [
+        "AUT",
+        "FRA",
+        "ITA",
+        "LIE",
+        "DEU"
+      ],
+      "flagPath": "img_flags/ch.svg"
+    },
+    {
+      "code": "SR",
+      "code3": "SUR",
+      "name": "Surinam",
+      "aliases": [
+        "Suriname",
+        "SR",
+        "Sarnam",
+        "Sranangron",
+        "Republic of Suriname",
+        "Republiek Suriname"
+      ],
+      "capital": "Paramaribo",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "neerlandés"
+      ],
+      "currencies": [
+        "dólar surinamés"
+      ],
+      "areaKm2": 163820,
+      "population": 586634,
+      "coordinates": [
+        4,
+        -56
+      ],
+      "borders": [
+        "BRA",
+        "FRA",
+        "GUY"
+      ],
+      "flagPath": "img_flags/sr.svg"
+    },
+    {
+      "code": "TH",
+      "code3": "THA",
+      "name": "Tailandia",
+      "aliases": [
+        "Thailand",
+        "ประเทศไทย",
+        "TH",
+        "Prathet",
+        "Thai",
+        "Kingdom of Thailand",
+        "ราชอาณาจักรไทย",
+        "Ratcha Anachak Thai"
+      ],
+      "capital": "Bangkok",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "tailandés"
+      ],
+      "currencies": [
+        "bat tailandés"
+      ],
+      "areaKm2": 513120,
+      "population": 69799978,
+      "coordinates": [
+        15,
+        100
+      ],
+      "borders": [
+        "MMR",
+        "KHM",
+        "LAO",
+        "MYS"
+      ],
+      "flagPath": "img_flags/th.svg"
+    },
+    {
+      "code": "TZ",
+      "code3": "TZA",
+      "name": "Tanzania",
+      "aliases": [
+        "Tanzania, United Republic of",
+        "Tanzania",
+        "TZ",
+        "United Republic of Tanzania",
+        "Jamhuri ya Muungano wa Tanzania"
+      ],
+      "capital": "Dodoma",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "suajili",
+        "inglés"
+      ],
+      "currencies": [
+        "chelín tanzano"
+      ],
+      "areaKm2": 945087,
+      "population": 59734213,
+      "coordinates": [
+        -6,
+        35
+      ],
+      "borders": [
+        "BDI",
+        "COD",
+        "KEN",
+        "MWI",
+        "MOZ",
+        "RWA",
+        "UGA",
+        "ZMB"
+      ],
+      "flagPath": "img_flags/tz.svg"
+    },
+    {
+      "code": "TJ",
+      "code3": "TJK",
+      "name": "Tayikistán",
+      "aliases": [
+        "Tajikistan",
+        "Тоҷикистон",
+        "TJ",
+        "Toçikiston",
+        "Republic of Tajikistan",
+        "Ҷумҳурии Тоҷикистон",
+        "Çumhuriyi Toçikiston"
+      ],
+      "capital": "Dushanbe",
+      "continent": "Asia",
+      "subregion": "Asia Central",
+      "languages": [
+        "tayiko",
+        "ruso"
+      ],
+      "currencies": [
+        "somoni tayiko"
+      ],
+      "areaKm2": 143100,
+      "population": 9537642,
+      "coordinates": [
+        39,
+        71
+      ],
+      "borders": [
+        "AFG",
+        "CHN",
+        "KGZ",
+        "UZB"
+      ],
+      "flagPath": "img_flags/tj.svg"
+    },
+    {
+      "code": "TL",
+      "code3": "TLS",
+      "name": "Timor Oriental",
+      "aliases": [
+        "Timor-Leste",
+        "TL",
+        "East Timor",
+        "Democratic Republic of Timor-Leste",
+        "República Democrática de Timor-Leste",
+        "Repúblika Demokrátika Timór-Leste"
+      ],
+      "capital": "Dili",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "portugués"
+      ],
+      "currencies": [
+        "dólar estadounidense"
+      ],
+      "areaKm2": 14874,
+      "population": 1318442,
+      "coordinates": [
+        -8.83333333,
+        125.91666666
+      ],
+      "borders": [
+        "IDN"
+      ],
+      "flagPath": "img_flags/tl.svg"
+    },
+    {
+      "code": "TG",
+      "code3": "TGO",
+      "name": "Togo",
+      "aliases": [
+        "Togo",
+        "TG",
+        "Togolese",
+        "Togolese Republic",
+        "République Togolaise"
+      ],
+      "capital": "Lomé",
+      "continent": "África",
+      "subregion": "África Occidental",
+      "languages": [
+        "francés"
+      ],
+      "currencies": [
+        "franco CFA de África Occidental"
+      ],
+      "areaKm2": 56785,
+      "population": 8278737,
+      "coordinates": [
+        8,
+        1.16666666
+      ],
+      "borders": [
+        "BEN",
+        "BFA",
+        "GHA"
+      ],
+      "flagPath": "img_flags/tg.svg"
+    },
+    {
+      "code": "TO",
+      "code3": "TON",
+      "name": "Tonga",
+      "aliases": [
+        "Tonga",
+        "TO"
+      ],
+      "capital": "Nuku'alofa",
+      "continent": "Oceanía",
+      "subregion": "Polinesia",
+      "languages": [
+        "inglés",
+        "tongano"
+      ],
+      "currencies": [
+        "paanga tongano"
+      ],
+      "areaKm2": 747,
+      "population": 105697,
+      "coordinates": [
+        -20,
+        -175
+      ],
+      "borders": [],
+      "flagPath": "img_flags/to.svg"
+    },
+    {
+      "code": "TT",
+      "code3": "TTO",
+      "name": "Trinidad y Tobago",
+      "aliases": [
+        "Trinidad and Tobago",
+        "TT",
+        "Republic of Trinidad and Tobago"
+      ],
+      "capital": "Port of Spain",
+      "continent": "América",
+      "subregion": "Caribe",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar de Trinidad y Tobago"
+      ],
+      "areaKm2": 5130,
+      "population": 1399491,
+      "coordinates": [
+        11,
+        -61
+      ],
+      "borders": [],
+      "flagPath": "img_flags/tt.svg"
+    },
+    {
+      "code": "TN",
+      "code3": "TUN",
+      "name": "Túnez",
+      "aliases": [
+        "Tunisia",
+        "تونس",
+        "TN",
+        "Republic of Tunisia",
+        "al-Jumhūriyyah at-Tūnisiyyah"
+      ],
+      "capital": "Tunis",
+      "continent": "África",
+      "subregion": "África del Norte",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "dinar tunecino"
+      ],
+      "areaKm2": 163610,
+      "population": 11818618,
+      "coordinates": [
+        34,
+        9
+      ],
+      "borders": [
+        "DZA",
+        "LBY"
+      ],
+      "flagPath": "img_flags/tn.svg"
+    },
+    {
+      "code": "TM",
+      "code3": "TKM",
+      "name": "Turkmenistán",
+      "aliases": [
+        "Turkmenistan",
+        "Türkmenistan",
+        "TM"
+      ],
+      "capital": "Ashgabat",
+      "continent": "Asia",
+      "subregion": "Asia Central",
+      "languages": [
+        "turcomano",
+        "ruso"
+      ],
+      "currencies": [
+        "manat turcomano"
+      ],
+      "areaKm2": 488100,
+      "population": 6031187,
+      "coordinates": [
+        40,
+        60
+      ],
+      "borders": [
+        "AFG",
+        "IRN",
+        "KAZ",
+        "UZB"
+      ],
+      "flagPath": "img_flags/tm.svg"
+    },
+    {
+      "code": "TR",
+      "code3": "TUR",
+      "name": "Turquía",
+      "aliases": [
+        "Turkey",
+        "Türkiye",
+        "TR",
+        "Turkiye",
+        "Republic of Turkey",
+        "Türkiye Cumhuriyeti"
+      ],
+      "capital": "Ankara",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "turco"
+      ],
+      "currencies": [
+        "lira turca"
+      ],
+      "areaKm2": 783562,
+      "population": 84339067,
+      "coordinates": [
+        39,
+        35
+      ],
+      "borders": [
+        "ARM",
+        "AZE",
+        "BGR",
+        "GEO",
+        "GRC",
+        "IRN",
+        "IRQ",
+        "SYR"
+      ],
+      "flagPath": "img_flags/tr.svg"
+    },
+    {
+      "code": "TV",
+      "code3": "TUV",
+      "name": "Tuvalu",
+      "aliases": [
+        "Tuvalu",
+        "TV"
+      ],
+      "capital": "Funafuti",
+      "continent": "Oceanía",
+      "subregion": "Polinesia",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "dólar australiano",
+        "Tuvaluan dollar"
+      ],
+      "areaKm2": 26,
+      "population": 11792,
+      "coordinates": [
+        -8,
+        178
+      ],
+      "borders": [],
+      "flagPath": "img_flags/tv.svg"
+    },
+    {
+      "code": "UA",
+      "code3": "UKR",
+      "name": "Ucrania",
+      "aliases": [
+        "Ukraine",
+        "Україна",
+        "UA",
+        "Ukrayina"
+      ],
+      "capital": "Kyiv",
+      "continent": "Europa",
+      "subregion": "Europa Oriental",
+      "languages": [
+        "ucraniano"
+      ],
+      "currencies": [
+        "grivna ucraniana"
+      ],
+      "areaKm2": 603700,
+      "population": 44134693,
+      "coordinates": [
+        49,
+        32
+      ],
+      "borders": [
+        "BLR",
+        "HUN",
+        "MDA",
+        "POL",
+        "ROU",
+        "RUS",
+        "SVK"
+      ],
+      "flagPath": "img_flags/ua.svg"
+    },
+    {
+      "code": "UG",
+      "code3": "UGA",
+      "name": "Uganda",
+      "aliases": [
+        "Uganda",
+        "UG",
+        "Republic of Uganda",
+        "Jamhuri ya Uganda"
+      ],
+      "capital": "Kampala",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "inglés",
+        "suajili"
+      ],
+      "currencies": [
+        "chelín ugandés"
+      ],
+      "areaKm2": 241550,
+      "population": 45741000,
+      "coordinates": [
+        1,
+        32
+      ],
+      "borders": [
+        "COD",
+        "KEN",
+        "RWA",
+        "SSD",
+        "TZA"
+      ],
+      "flagPath": "img_flags/ug.svg"
+    },
+    {
+      "code": "UY",
+      "code3": "URY",
+      "name": "Uruguay",
+      "aliases": [
+        "Uruguay",
+        "UY",
+        "Oriental Republic of Uruguay",
+        "República Oriental del Uruguay"
+      ],
+      "capital": "Montevideo",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "peso uruguayo"
+      ],
+      "areaKm2": 181034,
+      "population": 3473727,
+      "coordinates": [
+        -33,
+        -56
+      ],
+      "borders": [
+        "ARG",
+        "BRA"
+      ],
+      "flagPath": "img_flags/uy.svg"
+    },
+    {
+      "code": "UZ",
+      "code3": "UZB",
+      "name": "Uzbekistán",
+      "aliases": [
+        "Uzbekistan",
+        "O‘zbekiston",
+        "UZ",
+        "Republic of Uzbekistan",
+        "O‘zbekiston Respublikasi",
+        "Ўзбекистон Республикаси"
+      ],
+      "capital": "Tashkent",
+      "continent": "Asia",
+      "subregion": "Asia Central",
+      "languages": [
+        "uzbeko",
+        "ruso"
+      ],
+      "currencies": [
+        "sum uzbeko"
+      ],
+      "areaKm2": 447400,
+      "population": 34232050,
+      "coordinates": [
+        41,
+        64
+      ],
+      "borders": [
+        "AFG",
+        "KAZ",
+        "KGZ",
+        "TJK",
+        "TKM"
+      ],
+      "flagPath": "img_flags/uz.svg"
+    },
+    {
+      "code": "VU",
+      "code3": "VUT",
+      "name": "Vanuatu",
+      "aliases": [
+        "Vanuatu",
+        "VU",
+        "Republic of Vanuatu",
+        "Ripablik blong Vanuatu",
+        "République de Vanuatu"
+      ],
+      "capital": "Port Vila",
+      "continent": "Oceanía",
+      "subregion": "Melanesia",
+      "languages": [
+        "bislama",
+        "inglés",
+        "francés"
+      ],
+      "currencies": [
+        "vatu vanuatense"
+      ],
+      "areaKm2": 12189,
+      "population": 307150,
+      "coordinates": [
+        -16,
+        167
+      ],
+      "borders": [],
+      "flagPath": "img_flags/vu.svg"
+    },
+    {
+      "code": "VE",
+      "code3": "VEN",
+      "name": "Venezuela",
+      "aliases": [
+        "Venezuela (Bolivarian Republic of)",
+        "Venezuela",
+        "VE",
+        "Bolivarian Republic of Venezuela",
+        "República Bolivariana de Venezuela"
+      ],
+      "capital": "Caracas",
+      "continent": "América",
+      "subregion": "América del Sur",
+      "languages": [
+        "español"
+      ],
+      "currencies": [
+        "bolívar venezolano (2008–2018)"
+      ],
+      "areaKm2": 916445,
+      "population": 28435943,
+      "coordinates": [
+        8,
+        -66
+      ],
+      "borders": [
+        "BRA",
+        "COL",
+        "GUY"
+      ],
+      "flagPath": "img_flags/ve.svg"
+    },
+    {
+      "code": "VN",
+      "code3": "VNM",
+      "name": "Vietnam",
+      "aliases": [
+        "Vietnam",
+        "Việt Nam",
+        "VN",
+        "Socialist Republic of Vietnam",
+        "Cộng hòa Xã hội chủ nghĩa Việt Nam"
+      ],
+      "capital": "Hanoi",
+      "continent": "Asia",
+      "subregion": "Sudeste Asiático",
+      "languages": [
+        "vietnamita"
+      ],
+      "currencies": [
+        "dong vietnamita"
+      ],
+      "areaKm2": 331212,
+      "population": 97338583,
+      "coordinates": [
+        16.16666666,
+        107.83333333
+      ],
+      "borders": [
+        "KHM",
+        "CHN",
+        "LAO"
+      ],
+      "flagPath": "img_flags/vn.svg"
+    },
+    {
+      "code": "YE",
+      "code3": "YEM",
+      "name": "Yemen",
+      "aliases": [
+        "Yemen",
+        "اليَمَن",
+        "YE",
+        "Yemeni Republic",
+        "al-Jumhūriyyah al-Yamaniyyah"
+      ],
+      "capital": "Sana'a",
+      "continent": "Asia",
+      "subregion": "Asia Occidental",
+      "languages": [
+        "árabe"
+      ],
+      "currencies": [
+        "rial yemení"
+      ],
+      "areaKm2": 527968,
+      "population": 29825968,
+      "coordinates": [
+        15,
+        48
+      ],
+      "borders": [
+        "OMN",
+        "SAU"
+      ],
+      "flagPath": "img_flags/ye.svg"
+    },
+    {
+      "code": "DJ",
+      "code3": "DJI",
+      "name": "Yibuti",
+      "aliases": [
+        "Djibouti",
+        "DJ",
+        "Jabuuti",
+        "Gabuuti",
+        "Republic of Djibouti",
+        "République de Djibouti",
+        "Gabuutih Ummuuno",
+        "Jamhuuriyadda Jabuuti"
+      ],
+      "capital": "Djibouti",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "francés",
+        "árabe"
+      ],
+      "currencies": [
+        "franco yibutiano"
+      ],
+      "areaKm2": 23200,
+      "population": 988002,
+      "coordinates": [
+        11.5,
+        43
+      ],
+      "borders": [
+        "ERI",
+        "ETH",
+        "SOM"
+      ],
+      "flagPath": "img_flags/dj.svg"
+    },
+    {
+      "code": "ZM",
+      "code3": "ZMB",
+      "name": "Zambia",
+      "aliases": [
+        "Zambia",
+        "ZM",
+        "Republic of Zambia"
+      ],
+      "capital": "Lusaka",
+      "continent": "África",
+      "subregion": "África Oriental",
+      "languages": [
+        "inglés"
+      ],
+      "currencies": [
+        "kuacha zambiano"
+      ],
+      "areaKm2": 752618,
+      "population": 18383956,
+      "coordinates": [
+        -15,
+        30
+      ],
+      "borders": [
+        "AGO",
+        "BWA",
+        "COD",
+        "MWI",
+        "MOZ",
+        "NAM",
+        "TZA",
+        "ZWE"
+      ],
+      "flagPath": "img_flags/zm.svg"
+    },
+    {
+      "code": "ZW",
+      "code3": "ZWE",
+      "name": "Zimbabue",
+      "aliases": [
+        "Zimbabwe",
+        "ZW",
+        "Republic of Zimbabwe"
+      ],
+      "capital": "Harare",
+      "continent": "África",
+      "subregion": "África Austral",
+      "languages": [
+        "inglés",
+        "shona",
+        "ndebele septentrional"
+      ],
+      "currencies": [
+        "kuacha zambiano"
+      ],
+      "areaKm2": 390757,
+      "population": 14862927,
+      "coordinates": [
+        -20,
+        30
+      ],
+      "borders": [
+        "BWA",
+        "MOZ",
+        "ZAF",
+        "ZMB"
+      ],
+      "flagPath": "img_flags/zw.svg"
+    }
+  ]
+}
