@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/wordle/wordle.component').then(m => m.WordleComponent)
   },
   {
+    path: 'games/futboldle',
+    loadComponent: () => import('./games/futboldle/futboldle.component').then(m => m.FutboldleComponent)
+  },
+  {
     path: 'games/onepiecedle',
     loadComponent: () => import('./games/onepiecedle/onepiecedle.component').then(m => m.OnePieceDLEComponent)
   },
@@ -45,6 +49,10 @@ export const routes: Routes = [
   {
     path: 'games/rankdle',
     loadComponent: () => import('./games/rankdle/rankdle.component').then(m => m.RankdleComponent)
+  },
+  {
+    path: 'games/roscodle',
+    loadComponent: () => import('./games/roscodle/roscodle.component').then(m => m.RoscodleComponent)
   },
   {
     path: '**',

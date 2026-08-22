@@ -1,0 +1,159 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
+import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
+import { ThemeService } from '../../shared/services/theme.service';
+import { ROSCO_QUESTIONS } from './roscodle.data';
+import { RoscoEngineService } from './roscodle-engine.service';
+import { RoscoCategory, RoscoLetter, RoscoResult } from './roscodle.models';
+
+@Component({
+  selector: 'app-roscodle',
+  imports: [CommonModule, FormsModule, AdSlotComponent, BackHomeButtonComponent, FooterComponent],
+  templateUrl: './roscodle.component.html',
+  styleUrl: './roscodle.component.css',
+})
+export class RoscodleComponent implements OnInit, OnDestroy {
+  readonly roundSeconds = 150;
+  readonly adSlots = ADSENSE_CONFIG.slots;
+  readonly categories: Array<{ id: RoscoCategory; eyebrow: string; title: string; description: string; icon: string }> = [
+    { id: 'players', eyebrow: 'Vestuario', title: 'Jugadores', description: 'Leyendas, figuras actuales y campeones del mundo.', icon: 'fa-shirt' },
+    { id: 'teams', eyebrow: 'Tribuna', title: 'Equipos', description: 'Clubes históricos de Argentina, Europa y el mundo.', icon: 'fa-shield-halved' },
+  ];
+  readonly clubCategories: Array<{ id: RoscoCategory; eyebrow: string; title: string; description: string; icon: string }> = [
+    { id: 'boca', eyebrow: 'Azul y oro', title: 'Boca Juniors', description: 'Ídolos, títulos y recuerdos del Xeneize.', icon: 'fa-star' },
+    { id: 'river', eyebrow: 'La banda roja', title: 'River Plate', description: 'Glorias, copas y leyendas del Millonario.', icon: 'fa-monument' },
+  ];
+
+  private readonly engine = inject(RoscoEngineService);
+  private readonly theme = inject(ThemeService);
+  private timerId: ReturnType<typeof setInterval> | null = null;
+
+  phase: 'setup' | 'playing' | 'finished' = 'setup';
+  setupView: 'categories' | 'clubs' = 'categories';
+  category: RoscoCategory = 'players';
+  letters: RoscoLetter[] = [];
+  currentIndex = 0;
+  answer = '';
+  secondsLeft = this.roundSeconds;
+  result: RoscoResult = { correct: 0, wrong: 0, unanswered: 27 };
+  feedback: 'correct' | 'wrong' | null = null;
+  isTransitioning = false;
+
+  ngOnInit(): void {
+    this.theme.setHeaderTheme('default');
+    this.theme.setFooterTheme('default');
+  }
+
+  ngOnDestroy(): void {
+    this.stopTimer();
+  }
+
+  get current(): RoscoLetter | null {
+    return this.letters[this.currentIndex] ?? null;
+  }
+
+  get score(): number {
+    return this.letters.filter((letter) => letter.status === 'correct').length;
+  }
+
+  get errors(): number {
+    return this.letters.filter((letter) => letter.status === 'wrong').length;
+  }
+
+  get progress(): number {
+    return ((this.roundSeconds - this.secondsLeft) / this.roundSeconds) * 100;
+  }
+
+  get formattedTime(): string {
+    const minutes = Math.floor(this.secondsLeft / 60);
+    return `${minutes}:${String(this.secondsLeft % 60).padStart(2, '0')}`;
+  }
+
+  get categoryLabel(): string {
+    return {
+      players: 'Jugadores',
+      teams: 'Equipos',
+      boca: 'Especial Boca',
+      river: 'Especial River',
+    }[this.category];
+  }
+
+  get currentNumber(): string {
+    return String(this.currentIndex + 1).padStart(2, '0');
+  }
+
+  startGame(category: RoscoCategory): void {
+    this.stopTimer();
+    this.category = category;
+    this.letters = this.engine.createLetters(ROSCO_QUESTIONS[category]);
+    this.currentIndex = 0;
+    this.answer = '';
+    this.feedback = null;
+    this.isTransitioning = false;
+    this.secondsLeft = this.roundSeconds;
+    this.phase = 'playing';
+    this.timerId = setInterval(() => {
+      this.secondsLeft -= 1;
+      if (this.secondsLeft <= 0) this.finishGame();
+    }, 1000);
+  }
+
+  submitAnswer(): void {
+    if (this.phase !== 'playing' || !this.current || !this.answer.trim() || this.isTransitioning) return;
+    this.isTransitioning = true;
+    const wasCorrect = this.engine.isCorrect(this.current, this.answer);
+    this.current.status = wasCorrect ? 'correct' : 'wrong';
+    this.feedback = wasCorrect ? 'correct' : 'wrong';
+    this.answer = '';
+    window.setTimeout(() => this.advance(), 240);
+  }
+
+  pass(): void {
+    if (this.phase !== 'playing' || !this.current || this.isTransitioning) return;
+    this.current.status = 'pending';
+    this.feedback = null;
+    this.answer = '';
+    this.advance();
+  }
+
+  playAgain(): void {
+    this.startGame(this.category);
+  }
+
+  changeCategory(): void {
+    this.stopTimer();
+    this.phase = 'setup';
+    this.setupView = 'categories';
+    this.letters = [];
+  }
+
+  private advance(): void {
+    if (this.phase !== 'playing') return;
+    const nextIndex = this.engine.nextPendingIndex(this.letters, this.currentIndex);
+    this.feedback = null;
+    this.isTransitioning = false;
+    if (nextIndex < 0) {
+      this.finishGame();
+      return;
+    }
+    this.currentIndex = nextIndex;
+    this.letters[this.currentIndex].status = 'current';
+  }
+
+  private finishGame(): void {
+    if (this.phase !== 'playing') return;
+    this.stopTimer();
+    if (this.current?.status === 'current') this.current.status = 'pending';
+    this.result = this.engine.result(this.letters);
+    this.phase = 'finished';
+  }
+
+  private stopTimer(): void {
+    if (this.timerId) clearInterval(this.timerId);
+    this.timerId = null;
+  }
+}

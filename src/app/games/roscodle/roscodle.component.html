@@ -1,0 +1,174 @@
+<main class="rosco-page">
+  <aside class="roscodle-side-ad roscodle-side-ad--left" aria-label="Publicidad lateral izquierda">
+    <app-ad-slot [slot]="adSlots.gameFooter" placement="roscodle-side-left" [vertical]="true" />
+  </aside>
+  <aside class="roscodle-side-ad roscodle-side-ad--right" aria-label="Publicidad lateral derecha">
+    <app-ad-slot [slot]="adSlots.gameFooter" placement="roscodle-side-right" [vertical]="true" />
+  </aside>
+
+  <div class="page-shell">
+    <header class="game-header">
+      <div class="brand-block">
+        <span class="brand-ball"><i class="fa-solid fa-futbol"></i></span>
+        <div>
+          <p>Game-DLE presenta</p>
+          <h1>Rosco<span>DLE</span></h1>
+        </div>
+      </div>
+      <app-back-home-button background="#efff58" textColor="#071c16" />
+    </header>
+
+    @if (phase === 'setup') {
+      <section class="setup-stage">
+        <div class="setup-copy">
+          <p class="overline"><span></span> Tiempo de descuento</p>
+          <h2>Todo el fútbol.<br><em>Letra por letra.</em></h2>
+          <p class="intro">Tenés {{ roundSeconds }} segundos para completar el abecedario. Respondé, pasá y volvé a atacar.</p>
+          <div class="rule-strip">
+            <span><b>27</b> letras</span>
+            <span><b>2:30</b> minutos</span>
+            <span><b>∞</b> partidas</span>
+          </div>
+        </div>
+
+        <div class="category-panel">
+          @if (setupView === 'categories') {
+            <div class="panel-heading">
+              <span>01</span>
+              <div><small>Elegí tu categoría</small><strong>¿Quién sale a la cancha?</strong></div>
+            </div>
+            @for (item of categories; track item.id) {
+              <button class="category-card" type="button" (click)="startGame(item.id)">
+                <span class="category-icon"><i [class]="'fa-solid ' + item.icon"></i></span>
+                <span class="category-copy">
+                  <small>{{ item.eyebrow }}</small>
+                  <strong>{{ item.title }}</strong>
+                  <span>{{ item.description }}</span>
+                </span>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </button>
+            }
+            <button class="category-card" type="button" (click)="setupView = 'clubs'">
+              <span class="category-icon"><i class="fa-solid fa-people-group"></i></span>
+              <span class="category-copy">
+                <small>Modo especial</small>
+                <strong>Un solo club</strong>
+                <span>Todo el rosco dedicado a tu equipo.</span>
+              </span>
+              <i class="fa-solid fa-arrow-right arrow"></i>
+            </button>
+          } @else {
+            <div class="panel-heading">
+              <span>02</span>
+              <div><small>Especial por club</small><strong>Elegí tus colores</strong></div>
+            </div>
+            @for (item of clubCategories; track item.id) {
+              <button class="category-card" type="button" (click)="startGame(item.id)">
+                <span class="category-icon"><i [class]="'fa-solid ' + item.icon"></i></span>
+                <span class="category-copy">
+                  <small>{{ item.eyebrow }}</small>
+                  <strong>{{ item.title }}</strong>
+                  <span>{{ item.description }}</span>
+                </span>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </button>
+            }
+            <button class="mt-4 border-0 bg-transparent p-0 text-xs font-bold uppercase tracking-widest text-[#9ab9aa] hover:text-[#efff58]" type="button" (click)="setupView = 'categories'">
+              <i class="fa-solid fa-arrow-left mr-2"></i> Volver a categorías
+            </button>
+          }
+          <p class="tip"><i class="fa-regular fa-lightbulb"></i> Se aceptan nombres, apellidos y alias habituales.</p>
+        </div>
+      </section>
+    } @else {
+      <section class="match-stage" [class.is-finished]="phase === 'finished'">
+        <div class="scoreboard">
+          <div class="score-category"><small>Categoría</small><strong>{{ categoryLabel }}</strong></div>
+          <div class="score-item score-good"><small>Aciertos</small><strong>{{ score }}</strong></div>
+          <div class="score-item score-bad"><small>Errores</small><strong>{{ errors }}</strong></div>
+          <div class="clock" [class.urgent]="secondsLeft <= 20">
+            <small>Tiempo</small><strong>{{ formattedTime }}</strong>
+          </div>
+          <div class="time-track"><span [style.width.%]="progress"></span></div>
+        </div>
+
+        <div class="game-grid">
+          <div class="rosco-board">
+            <div class="pitch-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+            @for (letter of letters; track letter.letter; let i = $index) {
+              <div
+                class="letter-node"
+                [class]="'letter-node status-' + letter.status"
+                [style.--angle]="(i * (360 / letters.length)) + 'deg'"
+                [attr.aria-label]="'Letra ' + letter.letter + ': ' + letter.status"
+              ><span>{{ letter.letter }}</span></div>
+            }
+
+            <div class="board-center">
+              @if (phase === 'playing' && current) {
+                <p>{{ current.relation === 'starts' ? 'Empieza con' : 'Contiene la' }}</p>
+                <strong>{{ current.letter }}</strong>
+                <small>{{ current.relation === 'starts' ? 'La respuesta comienza con esta letra' : 'La respuesta incluye esta letra' }}</small>
+              } @else {
+                <i class="fa-solid fa-flag-checkered"></i>
+                <strong class="final-mark">FIN</strong>
+                <small>Rosco completado</small>
+              }
+            </div>
+          </div>
+
+          @if (phase === 'playing' && current) {
+            <form class="clue-console" (ngSubmit)="submitAnswer()">
+              <div class="console-number">{{ currentNumber }} / {{ letters.length }}</div>
+              <p class="console-label">Pista en juego</p>
+              <h2>{{ current.clue }}</h2>
+              <label for="rosco-answer">Tu respuesta</label>
+              <div class="answer-field" [class.flash-correct]="feedback === 'correct'" [class.flash-wrong]="feedback === 'wrong'">
+                <input id="rosco-answer" name="answer" [(ngModel)]="answer" [disabled]="isTransitioning" autocomplete="off" autofocus placeholder="Escribí acá…" />
+                <button type="submit" [disabled]="!answer.trim() || isTransitioning" aria-label="Confirmar respuesta"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+              <button class="pass-button" type="button" (click)="pass()">
+                <span>Pasapalabra</span><small>Volverá al final</small><kbd>↵</kbd>
+              </button>
+              <div class="legend">
+                <span><i class="dot pending"></i>Pendiente</span>
+                <span><i class="dot correct"></i>Correcta</span>
+                <span><i class="dot wrong"></i>Incorrecta</span>
+              </div>
+            </form>
+          } @else {
+            <aside class="result-card">
+              <p class="overline"><span></span> Resultado final</p>
+              <h2>{{ result.correct >= 20 ? '¡Partidazo!' : result.correct >= 12 ? 'Buen partido' : 'Hay revancha' }}</h2>
+              <p>Completaste <strong>{{ result.correct }}</strong> de {{ letters.length }} letras.</p>
+              <div class="result-stats">
+                <span><b>{{ result.correct }}</b>Aciertos</span>
+                <span><b>{{ result.wrong }}</b>Errores</span>
+                <span><b>{{ result.unanswered }}</b>Sin responder</span>
+              </div>
+              <div class="result-actions">
+                <button type="button" (click)="playAgain()"><i class="fa-solid fa-rotate-right"></i> Revancha</button>
+                <button type="button" class="secondary" (click)="changeCategory()">Cambiar categoría</button>
+              </div>
+              <details>
+                <summary>Ver respuestas</summary>
+                <ul>
+                  @for (letter of letters; track letter.letter) {
+                    <li><span [class]="'mini-status ' + letter.status">{{ letter.letter }}</span><b>{{ letter.answer }}</b></li>
+                  }
+                </ul>
+              </details>
+            </aside>
+          }
+        </div>
+      </section>
+    }
+
+    <app-ad-slot
+      class="mx-auto mt-12 block"
+      [slot]="adSlots.gameFooter"
+      placement="roscodle-footer"
+    />
+  </div>
+  <app-footer theme="default" [compact]="true" />
+</main>

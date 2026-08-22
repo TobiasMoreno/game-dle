@@ -1,0 +1,137 @@
+<app-base-game
+  [hideHeader]="true"
+  [hideDailyState]="true"
+  [hideStats]="true"
+  [footerTheme]="'default'"
+  [customBackground]="'linear-gradient(145deg, #071b16 0%, #0e3025 52%, #071713 100%)'"
+  [customCardBg]="'#0b241c'">
+  <main class="match-page">
+    <div class="stadium-glow" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="ball-mark" aria-hidden="true">11</span>
+        <div>
+          <p>El desafío diario de fútbol</p>
+          <h1>FUTBOL<span>DLE</span></h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-button" type="button" aria-label="Cómo jugar" (click)="showHelp = true">?</button>
+        <app-back-home-button [background]="'#eaff73'" [textColor]="'#092118'" />
+      </div>
+    </header>
+
+    <section class="score-strip" aria-label="Estado del partido">
+      <span>JORNADA DIARIA</span>
+      <strong>{{ guesses.length }} <i>/</i> {{ maxAttempts }}</strong>
+      <span>5 LETRAS</span>
+    </section>
+
+    @if (!finished) {
+      <section class="game-shell">
+        <div class="board-column">
+          <div class="mode-switch" aria-label="Dificultad">
+            <button type="button" [class.active]="mode === 'normal'" [disabled]="guesses.length > 0" (click)="setMode('normal')">
+              Normal <small>solo futbolistas</small>
+            </button>
+            <button type="button" [class.active]="mode === 'easy'" [disabled]="guesses.length > 0" (click)="setMode('easy')">
+              Fácil <small>cualquier palabra</small>
+            </button>
+          </div>
+
+          <div class="board-scroll">
+            <div class="board" [style.--letters]="wordLength">
+              @for (guess of guesses; track $index) {
+                <div class="guess-row revealed" [attr.aria-label]="'Intento ' + ($index + 1)">
+                  @for (result of getEvaluation(guess); track $index) {
+                    <span class="tile" [class]="result.state">{{ result.letter }}</span>
+                  }
+                </div>
+              }
+
+              @if (guesses.length < maxAttempts) {
+                <div class="guess-row current" aria-label="Intento actual">
+                  @for (letter of currentLetters; track $index) {
+                    <span class="tile" [class.filled]="letter">{{ letter }}</span>
+                  }
+                </div>
+              }
+
+              @for (_ of remainingRows.slice(1); track $index) {
+                <div class="guess-row waiting" aria-hidden="true">
+                  @for (_ of currentLetters; track $index) { <span class="tile"></span> }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="message-slot" aria-live="polite">
+            @if (errorMessage) { <p>{{ errorMessage }}</p> }
+          </div>
+        </div>
+
+        <aside class="dugout">
+          <span class="minute">{{ guesses.length * 15 + 1 }}′</span>
+          <p class="kicker">La consigna</p>
+          <h2>¿Quién se esconde en la cancha?</h2>
+          <p>Escribí el apellido del futbolista. El color de cada casillero te acerca a la respuesta.</p>
+          <div class="mini-legend">
+            <span><i class="correct"></i> En su lugar</span>
+            <span><i class="present"></i> En otra posición</span>
+            <span><i class="absent"></i> No aparece</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="keyboard" aria-label="Teclado virtual">
+        @for (row of keyboardRows; track row) {
+          <div class="key-row">
+            @if ($last) { <button class="key key-wide" type="button" (click)="submitGuess()">OK</button> }
+            @for (letter of row; track letter) {
+              <button class="key" type="button" [class]="getKeyState(letter)" (click)="addLetter(letter)">{{ letter }}</button>
+            }
+            @if ($last) { <button class="key key-wide" type="button" aria-label="Borrar letra" (click)="removeLetter()">⌫</button> }
+          </div>
+        }
+      </section>
+    } @else {
+      <section class="final-whistle">
+        <div class="result-stamp" [class.lost]="!won">{{ won ? 'GOL' : '90′' }}</div>
+        <p class="kicker">{{ won ? 'Partido resuelto' : 'Final del partido' }}</p>
+        <h2>{{ won ? 'La clavaste al ángulo.' : 'Hoy se escapó por poco.' }}</h2>
+        <p class="answer-intro">El futbolista era</p>
+        <strong class="player-name">{{ target.player }}</strong>
+        <span class="country">{{ target.country }}</span>
+
+        <div class="result-grid" [style.--letters]="wordLength" aria-label="Resultado de la partida">
+          @for (guess of guesses; track $index) {
+            <div class="result-row">
+              @for (result of getEvaluation(guess); track $index) { <i [class]="result.state"></i> }
+            </div>
+          }
+        </div>
+
+        <button type="button" class="share-button" (click)="shareResult()">
+          <span>{{ copied ? '✓' : '↗' }}</span>{{ copied ? 'Resultado copiado' : 'Compartir resultado' }}
+        </button>
+        <p class="tomorrow">Nueva fecha mañana a las 00:00</p>
+      </section>
+    }
+
+    @if (showHelp) {
+      <div class="modal-backdrop" (click)="showHelp = false">
+        <section class="rules-modal" role="dialog" aria-modal="true" aria-labelledby="rules-title" (click)="$event.stopPropagation()">
+          <button class="close-button" type="button" aria-label="Cerrar" (click)="showHelp = false">×</button>
+          <p class="kicker">Reglamento</p>
+          <h2 id="rules-title">Cómo jugar</h2>
+          <p>Tenés seis intentos para descubrir el apellido del futbolista del día.</p>
+          <div class="rule-example"><i class="correct">M</i><span>La letra está en el lugar correcto.</span></div>
+          <div class="rule-example"><i class="present">E</i><span>Está en el apellido, pero en otro lugar.</span></div>
+          <div class="rule-example"><i class="absent">S</i><span>No forma parte de la respuesta.</span></div>
+          <p class="rules-note">Los acentos, espacios y guiones no cuentan. En modo Fácil podés probar cualquier combinación de letras.</p>
+          <button class="understood" type="button" (click)="showHelp = false">Entendido, a jugar</button>
+        </section>
+      </div>
+    }
+  </main>
+</app-base-game>

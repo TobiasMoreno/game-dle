@@ -86,6 +86,18 @@
                   style="background: radial-gradient(circle at 82% 18%, rgba(217, 239, 98, .65), transparent 34%), repeating-linear-gradient(115deg, rgba(23, 63, 71, .08) 0 2px, transparent 2px 18px), #f5f1df;"
                 ></div>
               }
+              @if (game.id === 'futboldle') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 75% 20%, rgba(234, 255, 115, .32), transparent 32%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .035) 0 9%, transparent 9% 18%), #0b2c20;"
+                ></div>
+              }
+              @if (game.id === 'roscodle') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 75% 20%, rgba(239, 255, 88, .3), transparent 30%), repeating-radial-gradient(circle at 25% 70%, rgba(239, 255, 88, .08) 0 2px, transparent 2px 15px), #071c16;"
+                ></div>
+              }
 
               <!-- Contenido de la tarjeta -->
               <div class="relative z-10">

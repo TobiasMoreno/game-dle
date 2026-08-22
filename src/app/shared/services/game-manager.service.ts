@@ -118,6 +118,21 @@ export class GameManagerService {
       }
     },
     {
+      id: 'futboldle',
+      name: 'FutbolDLE',
+      description: 'Descubrí el apellido de 5 letras del futbolista oculto',
+      route: '/games/futboldle',
+      icon: 'fas fa-futbol',
+      mode: 'daily',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0]
+      }
+    },
+    {
       id: 'rankdle',
       name: 'RankDLE',
       description: 'Ordená cinco elementos según el desafío de cada ronda',
@@ -131,6 +146,14 @@ export class GameManagerService {
         bestStreak: 0,
         guessDistribution: [0, 0, 0, 0]
       }
+    },
+    {
+      id: 'roscodle',
+      name: 'RoscoDLE',
+      description: 'Completá el abecedario general o jugá un especial dedicado a tu club',
+      route: '/games/roscodle',
+      icon: 'fas fa-circle-nodes',
+      mode: 'unlimited'
     }
   ];
 
