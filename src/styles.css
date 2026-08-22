@@ -147,6 +147,18 @@ app-chronodle .chronodle-side-ad--right { right: max(.75rem, calc(50% - 700px));
   }
 }
 
+/* RankDLE: rieles publicitarios fuera del tablero en escritorio ancho. */
+app-rankdle { display: block; container-type: inline-size; }
+app-rankdle .rankdle-side-ad { position: absolute; z-index: 2; top: 7rem; display: none; width: 160px; }
+app-rankdle .rankdle-side-ad--left { left: max(.75rem, calc(50% - 700px)); }
+app-rankdle .rankdle-side-ad--right { right: max(.75rem, calc(50% - 700px)); }
+
+@media (min-height: 720px) {
+  @container (min-width: 1440px) {
+    app-rankdle .rankdle-side-ad { display: block; }
+  }
+}
+
 @media (max-width: 760px) {
   app-tuttifrutti .results-heading p:last-child { text-align: left; }
   app-tuttifrutti .round-topline { grid-template-columns: 5rem 1fr; }

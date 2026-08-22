@@ -1,0 +1,140 @@
+<div class="rankdle-page">
+  <aside class="rankdle-side-ad rankdle-side-ad--left" aria-label="Publicidad lateral izquierda">
+    <app-ad-slot [slot]="adSlots.gameFooter" placement="rankdle-side-left" [vertical]="true" />
+  </aside>
+  <aside class="rankdle-side-ad rankdle-side-ad--right" aria-label="Publicidad lateral derecha">
+    <app-ad-slot [slot]="adSlots.gameFooter" placement="rankdle-side-right" [vertical]="true" />
+  </aside>
+
+  <main class="rankdle-shell">
+    <div class="topbar">
+      <app-back-home-button background="#173f47" textColor="#f5ffdc" />
+      <span>Ronda {{ puzzle.number }} · Archivo ilimitado</span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="overline">El laboratorio de los rankings</span>
+        <h1>Rank<span>DLE</span></h1>
+        <p>Todo tiene un lugar. La pregunta es si podés encontrarlo.</p>
+      </div>
+      <div class="round-disc" aria-label="Número de ronda"><small>Ronda</small>{{ puzzle.number }}</div>
+    </header>
+
+    <section class="challenge" aria-labelledby="rankdle-question">
+      <div class="category-chip"><i [class]="puzzle.definition.icon" aria-hidden="true"></i> {{ puzzle.definition.category }}</div>
+      <h2 id="rankdle-question">{{ puzzle.definition.question }}</h2>
+      <p>Arrastrá las cinco fichas desde el valor menor hasta el mayor.</p>
+    </section>
+
+    <section class="rank-board" aria-label="Tablero de clasificación">
+      <div class="board-head">
+        <div class="scale-label"><span>01</span>{{ puzzle.definition.lowerLabel }}</div>
+        <div class="attempts" aria-live="polite"><strong>{{ state.attempts.length }}</strong><span>/ {{ maxAttempts }}<br>intentos</span></div>
+      </div>
+
+      <div class="rank-list" [class.rank-list--finished]="state.status !== 'playing'">
+        @for (item of orderedItems; track item.id; let index = $index) {
+          <article
+            class="rank-card"
+            [class.rank-card--dragging]="draggedId === item.id"
+            [class.rank-card--drop-target]="dragOverId === item.id && draggedId !== item.id"
+            [class.rank-card--correct]="feedbackAt(index) === 'correct'"
+            [class.rank-card--up]="feedbackAt(index) === 'up'"
+            [class.rank-card--down]="feedbackAt(index) === 'down'"
+            [attr.data-rank-id]="item.id"
+            [attr.draggable]="state.status === 'playing'"
+            (dragstart)="startDrag(item.id, $event)"
+            (dragenter)="enterDropZone(item.id)"
+            (dragover)="allowDrop($event)"
+            (drop)="dropAt(item.id, $event)"
+            (dragend)="endDrag()"
+          >
+            <div class="rank-number">{{ index + 1 }}</div>
+            <div class="item-copy">
+              <h3>{{ item.name }}</h3>
+              @if (feedbackAt(index); as feedback) {
+                <p class="feedback" [attr.aria-label]="feedbackLabel(feedback)">
+                  @if (feedback === 'correct') { <span>✓ Posición exacta</span> }
+                  @if (feedback === 'up') { <span>↑ Tiene que ir más arriba</span> }
+                  @if (feedback === 'down') { <span>↓ Tiene que ir más abajo</span> }
+                </p>
+              } @else {
+                <span class="hidden-value">Valor oculto</span>
+              }
+            </div>
+            @if (state.status === 'playing') {
+              <button
+                type="button"
+                class="drag-handle"
+                draggable="false"
+                aria-label="Mover elemento. Con teclado, usar flecha arriba o abajo."
+                (pointerdown)="startPointerDrag(item.id, $event)"
+                (pointermove)="continuePointerDrag($event)"
+                (pointerup)="finishPointerDrag($event)"
+                (pointercancel)="cancelPointerDrag()"
+                (keydown)="handleDragKeydown(index, $event)"
+              ><span aria-hidden="true">⠿</span></button>
+            }
+          </article>
+        }
+      </div>
+
+      <div class="scale-label scale-label--end"><span>05</span>{{ puzzle.definition.upperLabel }}</div>
+
+      @if (state.status === 'playing') {
+        <div class="submit-row">
+          <p>
+            @if (state.attempts.length === 0) {
+              Los valores aparecen cuando termina la ronda.
+            } @else {
+              Te quedan {{ attemptsLeft }} {{ attemptsLeft === 1 ? 'intento' : 'intentos' }}.
+            }
+          </p>
+          <button type="button" class="primary-button" (click)="submitOrder()">Comprobar ranking <span>→</span></button>
+        </div>
+      } @else {
+        <section class="result" [class.result--won]="state.status === 'won'" aria-live="polite">
+          <div class="result-symbol" aria-hidden="true">{{ state.status === 'won' ? '01' : 'X' }}</div>
+          <div>
+            <span class="overline">{{ state.status === 'won' ? 'Ranking perfecto' : 'Clasificación revelada' }}</span>
+            <h2>{{ state.status === 'won' ? '¡Todo quedó en su lugar!' : 'Este era el orden correcto' }}</h2>
+            <p>
+              @if (state.status === 'won') {
+                Lo resolviste en {{ state.attempts.length }} {{ state.attempts.length === 1 ? 'intento' : 'intentos' }}.
+              } @else {
+                Cambiamos de categoría en la próxima ronda.
+              }
+            </p>
+            <div class="result-actions">
+              <button type="button" class="secondary-button" (click)="share()"><i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i> Compartir</button>
+              <button type="button" class="primary-button" (click)="nextRound()">Jugar otra <span>→</span></button>
+            </div>
+            @if (shareMessage) { <em class="share-message">{{ shareMessage }}</em> }
+          </div>
+        </section>
+      }
+    </section>
+
+    @if (state.status !== 'playing') {
+      <section class="answer-key" aria-labelledby="answer-title">
+        <div class="answer-heading">
+          <div><span class="overline">Datos desbloqueados</span><h2 id="answer-title">El ranking completo</h2></div>
+          <a [href]="puzzle.definition.sourceUrl" target="_blank" rel="noopener noreferrer">Fuente: {{ puzzle.definition.sourceLabel }} ↗</a>
+        </div>
+        <div class="answer-grid">
+          @for (item of correctItems; track item.id; let index = $index) {
+            <article>
+              <span class="answer-position">0{{ index + 1 }}</span>
+              <div><h3>{{ item.name }}</h3><strong>{{ item.displayValue }}</strong><p>{{ item.note }}</p></div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <app-ad-slot class="rankdle-ad" [slot]="adSlots.gameFooter" placement="rankdle-footer" />
+  </main>
+
+  <app-footer theme="default" />
+</div>

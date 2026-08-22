@@ -116,6 +116,21 @@ export class GameManagerService {
         bestStreak: 0,
         guessDistribution: [0, 0, 0, 0]
       }
+    },
+    {
+      id: 'rankdle',
+      name: 'RankDLE',
+      description: 'Ordená cinco elementos según el desafío de cada ronda',
+      route: '/games/rankdle',
+      icon: 'fas fa-ranking-star',
+      mode: 'unlimited',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0]
+      }
     }
   ];
 

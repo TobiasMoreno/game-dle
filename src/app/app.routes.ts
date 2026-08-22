@@ -43,6 +43,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/chronodle/chronodle.component').then(m => m.ChronodleComponent)
   },
   {
+    path: 'games/rankdle',
+    loadComponent: () => import('./games/rankdle/rankdle.component').then(m => m.RankdleComponent)
+  },
+  {
     path: '**',
     redirectTo: '/home'
   }
