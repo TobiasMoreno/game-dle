@@ -101,6 +101,21 @@ export class GameManagerService {
       route: '/games/geodle',
       icon: 'fas fa-earth-americas',
       mode: 'unlimited'
+    },
+    {
+      id: 'chronodle',
+      name: 'ChronoDLE',
+      description: 'Ordená cinco acontecimientos de la historia',
+      route: '/games/chronodle',
+      icon: 'fas fa-hourglass-half',
+      mode: 'unlimited',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0]
+      }
     }
   ];
 
@@ -187,16 +202,16 @@ export class GameManagerService {
       completed: true,
       won,
       attempts,
-      maxAttempts: 6,
+      maxAttempts: typeof gameData?.maxAttempts === 'number' ? gameData.maxAttempts : 6,
       gameData
     };
 
     // Actualizar estado diario
-    this.storageService.updateDailyState(gameId, dailyState);
+    // Persist after calculating stats so newly added games are stored too.
 
     // Actualizar estadísticas
     const stats = this.updateGameStats(game, won, attempts);
-    this.storageService.updateStats(gameId, stats);
+    this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
 
     // Actualizar el observable
     this.updateGameInList(gameId, { dailyState, stats });

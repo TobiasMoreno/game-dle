@@ -39,6 +39,10 @@ export const routes: Routes = [
     loadComponent: () => import('./games/geodle/geodle.component').then(m => m.GeodleComponent)
   },
   {
+    path: 'games/chronodle',
+    loadComponent: () => import('./games/chronodle/chronodle.component').then(m => m.ChronodleComponent)
+  },
+  {
     path: '**',
     redirectTo: '/home'
   }

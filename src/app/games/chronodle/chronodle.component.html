@@ -1,0 +1,156 @@
+<div class="chronodle-page">
+  <aside class="chronodle-side-ad chronodle-side-ad--left" aria-label="Publicidad lateral izquierda">
+    <app-ad-slot
+      [slot]="adSlots.gameFooter"
+      placement="chronodle-side-left"
+      [vertical]="true"
+    />
+  </aside>
+  <aside class="chronodle-side-ad chronodle-side-ad--right" aria-label="Publicidad lateral derecha">
+    <app-ad-slot
+      [slot]="adSlots.gameFooter"
+      placement="chronodle-side-right"
+      [vertical]="true"
+    />
+  </aside>
+  <main class="chronodle-shell">
+    <div class="top-actions">
+      <app-back-home-button background="#71382f" textColor="#fff8e8" />
+      <span class="edition">Archivo ilimitado · Ronda {{ puzzle.number }}</span>
+    </div>
+
+    <header class="masthead">
+      <div class="kicker"><span></span> Archivo de acontecimientos <span></span></div>
+      <h1>Chrono<span>DLE</span></h1>
+      <p>Ordená cinco momentos de la historia, del más antiguo al más reciente.</p>
+      <div class="issue-stamp" aria-label="Número de ronda">Ronda {{ puzzle.number }}</div>
+    </header>
+
+    <section class="rules" aria-label="Cómo jugar">
+      <div><strong>1</strong><span>Tomá una tarjeta desde el asa de arrastre</span></div>
+      <div><strong>2</strong><span>Soltala en la posición que creas correcta</span></div>
+      <div><strong>3</strong><span>Resolvé cada ronda en cuatro intentos</span></div>
+    </section>
+
+    <section class="game-panel" aria-labelledby="timeline-title">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">De antiguo a reciente</span>
+          <h2 id="timeline-title">Construí la línea temporal</h2>
+        </div>
+        <div class="attempt-counter" aria-live="polite">
+          <strong>{{ state.attempts.length }}</strong><span>/ {{ maxAttempts }} intentos</span>
+        </div>
+      </div>
+
+      <div class="timeline" [class.timeline--finished]="state.status !== 'playing'">
+        @for (event of orderedEvents; track event.id; let index = $index) {
+          <article
+            class="event-card"
+            [class.event-card--dragging]="draggedId === event.id"
+            [class.event-card--drop-target]="dragOverId === event.id && draggedId !== event.id"
+            [class.event-card--correct]="feedbackAt(index) === 'correct'"
+            [class.event-card--up]="feedbackAt(index) === 'up'"
+            [class.event-card--down]="feedbackAt(index) === 'down'"
+            [attr.data-event-id]="event.id"
+            [attr.draggable]="state.status === 'playing'"
+            (dragstart)="startDrag(event.id, $event)"
+            (dragenter)="enterDropZone(event.id)"
+            (dragover)="allowDrop($event)"
+            (drop)="dropAt(event.id, $event)"
+            (dragend)="endDrag()"
+          >
+            <div class="timeline-mark" aria-hidden="true"><span>{{ index + 1 }}</span></div>
+            <div class="event-copy">
+              <span class="event-meta">{{ event.category }} · {{ event.region }}</span>
+              <h3>{{ event.title }}</h3>
+              @if (feedbackAt(index); as feedback) {
+                <p class="feedback" [attr.aria-label]="feedbackLabel(feedback)">
+                  @if (feedback === 'correct') { <span>✓ Posición correcta</span> }
+                  @if (feedback === 'up') { <span>↑ Más atrás en el tiempo</span> }
+                  @if (feedback === 'down') { <span>↓ Más adelante en el tiempo</span> }
+                </p>
+              }
+            </div>
+            @if (state.status === 'playing') {
+              <button
+                type="button"
+                class="drag-handle"
+                draggable="false"
+                aria-label="Arrastrar acontecimiento. Con teclado, usar flecha arriba o abajo."
+                (pointerdown)="startPointerDrag(event.id, $event)"
+                (pointermove)="continuePointerDrag($event)"
+                (pointerup)="finishPointerDrag($event)"
+                (pointercancel)="cancelPointerDrag()"
+                (keydown)="handleDragKeydown(index, $event)"
+              ><span aria-hidden="true">⠿</span></button>
+            }
+          </article>
+        }
+      </div>
+
+      @if (state.status === 'playing') {
+        <div class="submit-area">
+          <p>
+            @if (state.attempts.length === 0) {
+              Las fechas permanecen ocultas hasta el final.
+            } @else {
+              Te quedan {{ attemptsLeft }} {{ attemptsLeft === 1 ? 'intento' : 'intentos' }}.
+            }
+          </p>
+          <button type="button" class="primary-button" (click)="submitOrder()">
+            Comprobar orden <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      } @else {
+        <section class="result" [class.result--won]="state.status === 'won'" aria-live="polite">
+          <span class="result-seal" aria-hidden="true">{{ state.status === 'won' ? '✓' : '⌛' }}</span>
+          <div>
+            <span class="eyebrow">{{ state.status === 'won' ? 'Archivo ordenado' : 'Tiempo cumplido' }}</span>
+            <h2>{{ state.status === 'won' ? '¡La historia quedó en su lugar!' : 'Esta era la cronología correcta' }}</h2>
+            <p>
+              @if (state.status === 'won') {
+                Lo resolviste en {{ state.attempts.length }} {{ state.attempts.length === 1 ? 'intento' : 'intentos' }}.
+              } @else {
+                La próxima ronda ya está lista para que vuelvas a intentarlo.
+              }
+            </p>
+            <div class="result-actions">
+              <button type="button" class="share-button" (click)="share()">
+                <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i> Compartir resultado
+              </button>
+              <button type="button" class="primary-button" (click)="nextRound()">
+                Jugar otra <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            @if (shareMessage) { <em class="share-message">{{ shareMessage }}</em> }
+          </div>
+        </section>
+      }
+    </section>
+
+    @if (state.status !== 'playing') {
+      <section class="archive" aria-labelledby="archive-title">
+        <div class="archive-heading">
+          <span class="eyebrow">El orden de los hechos</span>
+          <h2 id="archive-title">La cronología explicada</h2>
+        </div>
+        <div class="archive-grid">
+          @for (event of correctEvents; track event.id; let index = $index) {
+            <article class="archive-entry">
+              <div class="archive-date"><span>{{ event.displayDate }}</span><small>0{{ index + 1 }}</small></div>
+              <span class="archive-category">{{ event.category }} · {{ event.region }}</span>
+              <h3>{{ event.title }}</h3>
+              <p>{{ event.summary }}</p>
+              <a [href]="event.sourceUrl" target="_blank" rel="noopener noreferrer">Consultar fuente <span>↗</span></a>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <app-ad-slot class="chronodle-ad" [slot]="adSlots.gameFooter" placement="chronodle-footer" />
+  </main>
+
+  <app-footer theme="default" />
+</div>

@@ -19,6 +19,7 @@
           <span>🆕</span> Novedades
         </h3>
         <ul class="text-sm text-yellow-800 dark:text-yellow-200 list-disc list-inside space-y-1">
+          <li><span class="font-bold">ChronoDLE:</span> Ordená la historia en rondas ilimitadas.</li>
           <li><span class="font-bold">GeoDLE:</span> ¡Jugá todos los destinos geográficos que quieras!</li>
           <li><span class="font-bold">Modo oscuro:</span> Mejoras visuales y de accesibilidad.</li>
           <li><span class="font-bold">Estadísticas:</span> Ahora puedes ver tu racha y victorias globales.</li>
@@ -70,6 +71,12 @@
                 <div
                   class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style="background: radial-gradient(circle at 78% 18%, rgba(216, 93, 69, .32), transparent 32%), repeating-linear-gradient(0deg, rgba(23, 59, 74, .08) 0 1px, transparent 1px 20px), #e8e2d1;"
+                ></div>
+              }
+              @if (game.id === 'chronodle') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 82% 18%, rgba(166, 66, 50, .3), transparent 34%), repeating-linear-gradient(0deg, rgba(39, 35, 30, .06) 0 1px, transparent 1px 9px), #f4ecd9;"
                 ></div>
               }
 
