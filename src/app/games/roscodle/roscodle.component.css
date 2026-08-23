@@ -51,7 +51,6 @@
 .category-copy > span { color: #a7bbb1; font-size: .72rem; }
 .arrow { font-size: .8rem; transform: rotate(-35deg); transition: transform .2s ease; }
 .category-card:hover .arrow { transform: rotate(0); }
-.tip { margin: 1.2rem 0 0; color: #789589; font-size: .66rem; text-align: center; }
 
 .match-stage { padding: 1.25rem 0 2rem; }
 .scoreboard { position: relative; display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); border: 1px solid rgba(255,255,255,.1); padding: .65rem 1.1rem .85rem; background: rgba(255,255,255,.035); }
@@ -99,11 +98,6 @@
 .pass-button small { color: #7b8e85; font: italic .68rem Georgia, serif; }
 .pass-button kbd { border: 1px solid #a6b2ac; padding: .12rem .3rem; background: #fff; font-size: .65rem; }
 .pass-button:hover { border-color: var(--ink); background: #e6e6dc; }
-.legend { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.25rem; color: #6a7e75; font-size: .56rem; font-weight: 800; text-transform: uppercase; }
-.legend span { display: flex; align-items: center; gap: .3rem; }
-.dot { width: .45rem; height: .45rem; border-radius: 50%; background: #708b7e; }
-.dot.correct { background: var(--green); }
-.dot.wrong { background: var(--red); }
 
 .result-card .overline { margin-bottom: .7rem; color: #397259; }
 .result-card .overline span { background: #397259; }
@@ -122,8 +116,6 @@
 .mini-status { display: grid; width: 1.2rem; height: 1.2rem; place-items: center; border-radius: 50%; color: #fff; background: #708b7e; }
 .mini-status.correct { background: var(--green); }
 .mini-status.wrong { background: var(--red); }
-
-@keyframes pulse { to { opacity: .48; } }
 
 @media (max-width: 960px) {
   .setup-stage { grid-template-columns: 1fr 1fr; gap: 2rem; padding-inline: 0; }
