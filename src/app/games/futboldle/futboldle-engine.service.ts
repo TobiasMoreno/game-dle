@@ -26,6 +26,19 @@ export class FutboldleEngineService {
     return this.players[(hash >>> 0) % this.players.length];
   }
 
+  getRandomPlayer(excludedAnswer?: string, random = Math.random): FootballerEntry {
+    const candidates = excludedAnswer && this.players.length > 1
+      ? this.players.filter((player) => player.answer !== excludedAnswer)
+      : this.players;
+    const index = Math.min(Math.floor(random() * candidates.length), candidates.length - 1);
+    return candidates[Math.max(0, index)];
+  }
+
+  getPlayerByAnswer(answer: string): FootballerEntry | undefined {
+    const normalized = this.normalize(answer);
+    return this.players.find((player) => player.answer === normalized);
+  }
+
   isKnownName(value: string): boolean {
     const normalized = this.normalize(value);
     return this.players.some(player => player.answer === normalized);

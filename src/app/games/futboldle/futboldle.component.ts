@@ -33,14 +33,8 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.progressLoaded.subscribe(progress => this.restoreProgress(progress));
-    this.target = this.engine.getDailyPlayer();
+    this.target = this.engine.getRandomPlayer();
     this.setGameId('futboldle');
-
-    if (this.dailyState?.completed) {
-      this.finished = true;
-      this.won = Boolean(this.dailyState.won);
-      this.guesses = this.dailyState.gameData?.guesses ?? [];
-    }
   }
 
   get wordLength(): number { return this.target.answer.length; }
@@ -128,12 +122,28 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
     }
   }
 
+  playAgain(): void {
+    const previousAnswer = this.target.answer;
+    this.clearProgress();
+    this.target = this.engine.getRandomPlayer(previousAnswer);
+    this.guesses = [];
+    this.currentGuess = '';
+    this.errorMessage = '';
+    this.won = false;
+    this.finished = false;
+    this.copied = false;
+  }
+
   private restoreProgress(progress: GameProgress | null): void {
     if (!progress) return;
-    if (progress.gameData?.answer !== this.target?.answer && this.target) {
+    const savedTarget = typeof progress.gameData?.answer === 'string'
+      ? this.engine.getPlayerByAnswer(progress.gameData.answer)
+      : undefined;
+    if (!savedTarget) {
       this.clearProgress();
       return;
     }
+    this.target = savedTarget;
     this.guesses = progress.attempts ?? [];
     this.mode = progress.gameData?.mode === 'easy' ? 'easy' : 'normal';
   }
@@ -149,4 +159,3 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
     });
   }
 }
-

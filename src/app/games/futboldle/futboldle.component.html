@@ -11,7 +11,7 @@
       <div class="brand-lockup">
         <span class="ball-mark" aria-hidden="true">11</span>
         <div>
-          <p>El desafío diario de fútbol</p>
+          <p>El desafío ilimitado de fútbol</p>
           <h1>FUTBOL<span>DLE</span></h1>
         </div>
       </div>
@@ -22,7 +22,7 @@
     </header>
 
     <section class="score-strip" aria-label="Estado del partido">
-      <span>JORNADA DIARIA</span>
+      <span>PARTIDA LIBRE</span>
       <strong>{{ guesses.length }} <i>/</i> {{ maxAttempts }}</strong>
       <span>5 LETRAS</span>
     </section>
@@ -111,10 +111,15 @@
           }
         </div>
 
-        <button type="button" class="share-button" (click)="shareResult()">
-          <span>{{ copied ? '✓' : '↗' }}</span>{{ copied ? 'Resultado copiado' : 'Compartir resultado' }}
-        </button>
-        <p class="tomorrow">Nueva fecha mañana a las 00:00</p>
+        <div class="final-actions">
+          <button type="button" class="replay-button" (click)="playAgain()">
+            <span><i class="fa-solid fa-rotate-right"></i></span>Jugar otra vez
+          </button>
+          <button type="button" class="share-button" (click)="shareResult()">
+            <span>{{ copied ? '✓' : '↗' }}</span>{{ copied ? 'Resultado copiado' : 'Compartir resultado' }}
+          </button>
+        </div>
+        <p class="tomorrow">Siempre hay otro futbolista esperando.</p>
       </section>
     }
 
@@ -124,7 +129,7 @@
           <button class="close-button" type="button" aria-label="Cerrar" (click)="showHelp = false">×</button>
           <p class="kicker">Reglamento</p>
           <h2 id="rules-title">Cómo jugar</h2>
-          <p>Tenés seis intentos para descubrir el apellido del futbolista del día.</p>
+          <p>Tenés seis intentos para descubrir el apellido del futbolista oculto. Al terminar podés jugar otra ronda.</p>
           <div class="rule-example"><i class="correct">M</i><span>La letra está en el lugar correcto.</span></div>
           <div class="rule-example"><i class="present">E</i><span>Está en el apellido, pero en otro lugar.</span></div>
           <div class="rule-example"><i class="absent">S</i><span>No forma parte de la respuesta.</span></div>

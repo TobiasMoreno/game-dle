@@ -123,7 +123,7 @@ export class GameManagerService {
       description: 'Descubrí el apellido de 5 letras del futbolista oculto',
       route: '/games/futboldle',
       icon: 'fas fa-futbol',
-      mode: 'daily',
+      mode: 'unlimited',
       stats: {
         totalGames: 0,
         wins: 0,

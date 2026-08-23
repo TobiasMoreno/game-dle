@@ -33,4 +33,15 @@ describe('FutboldleEngineService', () => {
     expect(service.players.length).toBeGreaterThan(0);
     expect(service.players.every(player => player.answer.length === 5)).toBeTrue();
   });
+
+  it('selects another player for the next unlimited round', () => {
+    const first = service.players[0];
+    const next = service.getRandomPlayer(first.answer, () => 0);
+    expect(next.answer).not.toBe(first.answer);
+  });
+
+  it('restores a player by its saved normalized answer', () => {
+    const player = service.players[0];
+    expect(service.getPlayerByAnswer(player.answer)).toBe(player);
+  });
 });
