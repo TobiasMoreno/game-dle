@@ -128,8 +128,10 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     if (this.phase !== 'playing' || this.isPaused || !this.current || this.isTransitioning) return;
     this.stopTimer();
     this.isPaused = true;
+    this.current.status = 'pending';
     this.feedback = null;
     this.answer = '';
+    this.advance();
   }
 
   resume(): void {

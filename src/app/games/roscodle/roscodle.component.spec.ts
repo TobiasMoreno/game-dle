@@ -15,7 +15,7 @@ describe('RoscodleComponent pause flow', () => {
     jasmine.clock().uninstall();
   });
 
-  it('freezes time and keeps the same question until the player resumes', () => {
+  it('freezes time, leaves the passed question pending and resumes on the next one', () => {
     component.startGame('players');
     const currentIndex = component.currentIndex;
     const secondsLeft = component.secondsLeft;
@@ -24,14 +24,16 @@ describe('RoscodleComponent pause flow', () => {
     jasmine.clock().tick(3000);
 
     expect(component.isPaused).toBeTrue();
-    expect(component.currentIndex).toBe(currentIndex);
+    expect(component.letters[currentIndex].status).toBe('pending');
+    expect(component.currentIndex).toBe(currentIndex + 1);
     expect(component.secondsLeft).toBe(secondsLeft);
 
     component.resume();
     jasmine.clock().tick(1000);
 
     expect(component.isPaused).toBeFalse();
-    expect(component.currentIndex).toBe(currentIndex);
+    expect(component.currentIndex).toBe(currentIndex + 1);
+    expect(component.current?.status).toBe('current');
     expect(component.secondsLeft).toBe(secondsLeft - 1);
   });
 });
