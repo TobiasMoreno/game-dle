@@ -18,7 +18,7 @@ import { RoscoCategory, RoscoLeague, RoscoLeagueOption, RoscoLetter, RoscoResult
   styleUrl: './roscodle.component.css',
 })
 export class RoscodleComponent implements OnInit, OnDestroy {
-  readonly roundSeconds = 150;
+  readonly roundSeconds = 240;
   readonly adSlots = ADSENSE_CONFIG.slots;
   readonly categories = ROSCO_GENERAL_CATEGORIES;
   readonly leagues = ROSCO_LEAGUES;
