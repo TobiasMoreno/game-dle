@@ -1,9 +1,102 @@
 .game-sidebar {
+  --sidebar-scrollbar-track: #fff8e9;
+  --sidebar-scrollbar-thumb: #e95d38;
+  --sidebar-scrollbar-thumb-hover: #d95130;
+  --sidebar-active-accent: #d95130;
+  --sidebar-active-background: rgba(233, 93, 56, .11);
   width: min(20rem, 86vw);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-color: var(--sidebar-scrollbar-thumb) var(--sidebar-scrollbar-track);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  visibility: hidden;
+  border-right-style: solid;
+  border-right-width: 0;
+  box-shadow: none;
+  transform: translateX(calc(-100% - 2px));
+  transition-property: transform, box-shadow, visibility;
+  transition-duration: .3s, .3s, 0s;
+  transition-delay: 0s, 0s, .3s;
+}
+
+.game-sidebar--open {
+  visibility: visible;
+  border-right-width: 1px;
   box-shadow: 1rem 0 2.5rem rgba(8, 12, 9, .18);
+  transform: translateX(0);
+  transition-delay: 0s;
+}
+
+.game-sidebar::-webkit-scrollbar { width: .65rem; }
+
+.game-sidebar::-webkit-scrollbar-track {
+  background: var(--sidebar-scrollbar-track);
+}
+
+.game-sidebar::-webkit-scrollbar-thumb {
+  background: var(--sidebar-scrollbar-thumb);
+  border: 2px solid var(--sidebar-scrollbar-track);
+  border-radius: 999px;
+}
+
+.game-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--sidebar-scrollbar-thumb-hover);
+}
+
+:host-context(.dark) .game-sidebar[data-theme='default'] {
+  --sidebar-scrollbar-track: #172019;
+  --sidebar-scrollbar-thumb: #e95d38;
+  --sidebar-scrollbar-thumb-hover: #f1bd4b;
+}
+
+.game-sidebar[data-theme='onepiece'] {
+  --sidebar-scrollbar-track: #7c2d12;
+  --sidebar-scrollbar-thumb: #f59e0b;
+  --sidebar-scrollbar-thumb-hover: #fde047;
+  --sidebar-active-accent: #f59e0b;
+  --sidebar-active-background: rgba(245, 158, 11, .14);
+}
+
+.game-sidebar[data-theme='wordle'] {
+  --sidebar-scrollbar-track: #111827;
+  --sidebar-scrollbar-thumb: #6b7280;
+  --sidebar-scrollbar-thumb-hover: #9ca3af;
+  --sidebar-active-accent: #9ca3af;
+  --sidebar-active-background: rgba(156, 163, 175, .13);
+}
+
+.game-sidebar[data-theme='loldle'] {
+  --sidebar-scrollbar-track: #172554;
+  --sidebar-scrollbar-thumb: #60a5fa;
+  --sidebar-scrollbar-thumb-hover: #c084fc;
+  --sidebar-active-accent: #60a5fa;
+  --sidebar-active-background: rgba(96, 165, 250, .14);
+}
+
+.game-sidebar[data-theme='musicdle'] {
+  --sidebar-scrollbar-track: #1c1917;
+  --sidebar-scrollbar-thumb: #d97706;
+  --sidebar-scrollbar-thumb-hover: #fbbf24;
+  --sidebar-active-accent: #f59e0b;
+  --sidebar-active-background: rgba(245, 158, 11, .12);
+}
+
+.game-sidebar[data-theme='serpentile'] {
+  --sidebar-scrollbar-track: #022c22;
+  --sidebar-scrollbar-thumb: #047857;
+  --sidebar-scrollbar-thumb-hover: #34d399;
+  --sidebar-active-accent: #34d399;
+  --sidebar-active-background: rgba(52, 211, 153, .12);
+}
+
+.game-sidebar[data-theme='geodle'] {
+  --sidebar-scrollbar-track: #173b4a;
+  --sidebar-scrollbar-thumb: #d85d45;
+  --sidebar-scrollbar-thumb-hover: #e8b94f;
+  --sidebar-active-accent: #e8b94f;
+  --sidebar-active-background: rgba(232, 185, 79, .12);
 }
 
 .sidebar-nav { padding-bottom: 1rem; }
@@ -11,7 +104,10 @@
 .sidebar-game { gap: .75rem; }
 .sidebar-game > div { min-width: 0; }
 .sidebar-game > span { max-width: 6.5rem; flex: 0 0 auto; text-align: right; }
-.sidebar-game--active { box-shadow: inset 3px 0 0 currentColor; background: rgba(59, 130, 246, .12); }
+.sidebar-game--active {
+  background: var(--sidebar-active-background);
+  box-shadow: inset 3px 0 0 var(--sidebar-active-accent);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .game-sidebar, .sidebar-game { transition: none !important; }

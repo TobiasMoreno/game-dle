@@ -50,10 +50,12 @@ export class SidebarComponent implements OnInit {
         return 'bg-gradient-to-b from-blue-900 to-purple-900 border-blue-500';
       case 'musicdle':
         return 'bg-stone-950 border-amber-500';
+      case 'serpentile':
+        return 'bg-emerald-950 border-emerald-700';
       case 'geodle':
         return 'bg-[#173b4a] border-[#d85d45]';
       default:
-        return 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700';
+        return 'bg-[#fff8e9] dark:bg-[#172019] border-[#e95d38]';
     }
   }
 
@@ -67,10 +69,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-100';
       case 'musicdle':
         return 'text-amber-100';
+      case 'serpentile':
+        return 'text-emerald-50';
       case 'geodle':
         return 'text-[#f3ead7]';
       default:
-        return 'text-gray-900 dark:text-white';
+        return 'text-[#172019] dark:text-[#fff8e9]';
     }
   }
 
@@ -84,10 +88,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'musicdle':
         return 'text-amber-300';
+      case 'serpentile':
+        return 'text-emerald-200';
       case 'geodle':
         return 'text-[#e8b94f]';
       default:
-        return 'text-blue-600 dark:text-blue-400';
+        return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
   }
 
@@ -101,10 +107,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200 hover:text-purple-300';
       case 'musicdle':
         return 'text-amber-200 hover:text-amber-400';
+      case 'serpentile':
+        return 'text-emerald-200 hover:text-amber-200';
       case 'geodle':
         return 'text-[#f3ead7] hover:text-[#e8b94f]';
       default:
-        return 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
+        return 'text-[#626b64] dark:text-[#c7d2ca] hover:text-[#d95130] dark:hover:text-[#f1bd4b]';
     }
   }
 
@@ -118,10 +126,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-100 hover:bg-blue-800/50 hover:text-purple-200';
       case 'musicdle':
         return 'text-stone-200 hover:bg-amber-500/10 hover:text-amber-200';
+      case 'serpentile':
+        return 'text-emerald-50 hover:bg-emerald-800/70 hover:text-amber-100';
       case 'geodle':
         return 'text-[#f3ead7] hover:bg-[#d85d45]/20 hover:text-white';
       default:
-        return 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400';
+        return 'text-[#29332c] dark:text-[#e8eee9] hover:bg-[#e95d38]/10 dark:hover:bg-[#f1bd4b]/10 hover:text-[#b94227] dark:hover:text-[#f1bd4b]';
     }
   }
 
@@ -135,10 +145,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-300';
       case 'musicdle':
         return 'text-amber-400';
+      case 'serpentile':
+        return 'text-emerald-300';
       case 'geodle':
         return 'text-[#e8b94f]';
       default:
-        return 'text-blue-500 dark:text-blue-400';
+        return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
   }
 
@@ -152,10 +164,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'musicdle':
         return 'text-amber-300';
+      case 'serpentile':
+        return 'text-emerald-300';
       case 'geodle':
         return 'text-[#e8b94f]';
       default:
-        return 'text-gray-600 dark:text-gray-400';
+        return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
   }
 
@@ -169,10 +183,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-200';
       case 'musicdle':
         return 'text-stone-300';
+      case 'serpentile':
+        return 'text-emerald-200';
       case 'geodle':
         return 'text-[#c8d4ce]';
       default:
-        return 'text-gray-600 dark:text-gray-400';
+        return 'text-[#626b64] dark:text-[#aeb9b0]';
     }
   }
 
@@ -186,10 +202,12 @@ export class SidebarComponent implements OnInit {
         return 'text-blue-300';
       case 'musicdle':
         return 'text-stone-400';
+      case 'serpentile':
+        return 'text-emerald-400';
       case 'geodle':
         return 'text-[#a9bcb7]';
       default:
-        return 'text-gray-500 dark:text-gray-500';
+        return 'text-[#72786f] dark:text-[#8f9c92]';
     }
   }
 

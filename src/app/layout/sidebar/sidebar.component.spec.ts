@@ -23,6 +23,23 @@ describe('SidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('only renders the edge and shadow while the drawer is open', () => {
+    fixture.componentRef.setInput('isOpen', false);
+    fixture.detectChanges();
+    const sidebar = fixture.nativeElement.querySelector('aside') as HTMLElement;
+
+    expect(sidebar.classList).not.toContain('game-sidebar--open');
+    expect(getComputedStyle(sidebar).visibility).toBe('hidden');
+    expect(getComputedStyle(sidebar).borderRightWidth).toBe('0px');
+
+    fixture.componentRef.setInput('isOpen', true);
+    fixture.detectChanges();
+
+    expect(sidebar.classList).toContain('game-sidebar--open');
+    expect(getComputedStyle(sidebar).visibility).toBe('visible');
+    expect(getComputedStyle(sidebar).borderRightWidth).toBe('1px');
+  });
+
   it('groups game links by mode and exposes a close control', () => {
     fixture.componentRef.setInput('isOpen', true);
     fixture.detectChanges();
