@@ -48,33 +48,57 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
               </button>
             }
-            <button class="category-card" type="button" (click)="setupView = 'clubs'">
-              <span class="category-icon"><i class="fa-solid fa-people-group"></i></span>
+            <button class="category-card category-card--featured" type="button" (click)="showLeagues()">
+              <span class="category-icon"><i class="fa-solid fa-earth-americas"></i></span>
               <span class="category-copy">
-                <small>Modo especial</small>
-                <strong>Un solo club</strong>
-                <span>Todo el rosco dedicado a tu equipo.</span>
+                <small>Nuevo · por campeonato</small>
+                <strong>Ligas y clubes</strong>
+                <span>Argentina y las cinco grandes ligas de Europa.</span>
               </span>
               <i class="fa-solid fa-arrow-right arrow"></i>
             </button>
-          } @else {
+          } @else if (setupView === 'leagues') {
             <div class="panel-heading">
               <span>02</span>
-              <div><small>Especial por club</small><strong>Elegí tus colores</strong></div>
+              <div><small>Separado por liga</small><strong>Elegí el campeonato</strong></div>
             </div>
-            @for (item of clubCategories; track item.id) {
-              <button class="category-card" type="button" (click)="startGame(item.id)">
-                <span class="category-icon"><i [class]="'fa-solid ' + item.icon"></i></span>
-                <span class="category-copy">
-                  <small>{{ item.eyebrow }}</small>
-                  <strong>{{ item.title }}</strong>
-                  <span>{{ item.description }}</span>
-                </span>
-                <i class="fa-solid fa-arrow-right arrow"></i>
-              </button>
-            }
-            <button class="mt-4 border-0 bg-transparent p-0 text-xs font-bold uppercase tracking-widest text-[#9ab9aa] hover:text-[#efff58]" type="button" (click)="setupView = 'categories'">
-              <i class="fa-solid fa-arrow-left mr-2"></i> Volver a categorías
+            <div class="league-grid">
+              @for (league of leagues; track league.id; let i = $index) {
+                <button class="league-card" type="button" (click)="openLeague(league.id)" [style.--league-accent]="league.accent">
+                  <span class="league-index">0{{ i + 1 }}</span>
+                  <span class="league-copy">
+                    <small>{{ league.country }}</small>
+                    <strong>{{ league.name }}</strong>
+                    <span>{{ league.description }}</span>
+                  </span>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              }
+            </div>
+            <button class="back-link" type="button" (click)="setupView = 'categories'">
+              <i class="fa-solid fa-arrow-left"></i> Volver a categorías
+            </button>
+          } @else {
+            <div class="panel-heading panel-heading--league" [style.--league-accent]="activeLeague.accent">
+              <span>03</span>
+              <div><small>{{ activeLeague.country }} · {{ activeLeague.name }}</small><strong>Elegí el rosco</strong></div>
+            </div>
+            <p class="league-description">{{ activeLeague.description }}</p>
+            <div class="club-list" [class.club-list--long]="activeLeague.categories.length > 4">
+              @for (item of activeLeague.categories; track item.id) {
+                <button class="category-card" type="button" (click)="startGame(item.id)">
+                  <span class="category-icon"><i [class]="'fa-solid ' + item.icon"></i></span>
+                  <span class="category-copy">
+                    <small>{{ item.eyebrow }}</small>
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.description }}</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </button>
+              }
+            </div>
+            <button class="back-link" type="button" (click)="showLeagues()">
+              <i class="fa-solid fa-arrow-left"></i> Volver a ligas
             </button>
           }
           <p class="tip"><i class="fa-regular fa-lightbulb"></i> Se aceptan nombres, apellidos y alias habituales.</p>
@@ -105,10 +129,14 @@
             }
 
             <div class="board-center">
-              @if (phase === 'playing' && current) {
+              @if (phase === 'playing' && current && !isPaused) {
                 <p>{{ current.relation === 'starts' ? 'Empieza con' : 'Contiene la' }}</p>
                 <strong>{{ current.letter }}</strong>
                 <small>{{ current.relation === 'starts' ? 'La respuesta comienza con esta letra' : 'La respuesta incluye esta letra' }}</small>
+              } @else if (phase === 'playing' && isPaused) {
+                <i class="fa-solid fa-pause"></i>
+                <strong class="final-mark">PAUSA</strong>
+                <small>Tiempo detenido</small>
               } @else {
                 <i class="fa-solid fa-flag-checkered"></i>
                 <strong class="final-mark">FIN</strong>
@@ -118,24 +146,46 @@
           </div>
 
           @if (phase === 'playing' && current) {
-            <form class="clue-console" (ngSubmit)="submitAnswer()">
-              <div class="console-number">{{ currentNumber }} / {{ letters.length }}</div>
-              <p class="console-label">Pista en juego</p>
-              <h2>{{ current.clue }}</h2>
-              <label for="rosco-answer">Tu respuesta</label>
-              <div class="answer-field" [class.flash-correct]="feedback === 'correct'" [class.flash-wrong]="feedback === 'wrong'">
-                <input id="rosco-answer" name="answer" [(ngModel)]="answer" [disabled]="isTransitioning" autocomplete="off" autofocus placeholder="Escribí acá…" />
-                <button type="submit" [disabled]="!answer.trim() || isTransitioning" aria-label="Confirmar respuesta"><i class="fa-solid fa-arrow-right"></i></button>
-              </div>
-              <button class="pass-button" type="button" (click)="pass()">
-                <span>Pasapalabra</span><small>Volverá al final</small><kbd>↵</kbd>
-              </button>
-              <div class="legend">
-                <span><i class="dot pending"></i>Pendiente</span>
-                <span><i class="dot correct"></i>Correcta</span>
-                <span><i class="dot wrong"></i>Incorrecta</span>
-              </div>
-            </form>
+            @if (!isPaused) {
+              <form class="clue-console" (ngSubmit)="submitAnswer()">
+                <div class="console-number">{{ currentNumber }} / {{ letters.length }}</div>
+                <p class="console-label">Pista en juego</p>
+                <div
+                  class="relation-badge"
+                  [class.relation-badge--contains]="current.relation === 'contains'"
+                  [attr.aria-label]="(current.relation === 'starts' ? 'Empieza con ' : 'Contiene la letra ') + current.letter"
+                >
+                  <i [class]="current.relation === 'starts' ? 'fa-solid fa-arrow-right-long' : 'fa-solid fa-magnifying-glass'"></i>
+                  <span>{{ current.relation === 'starts' ? 'Empieza con' : 'Contiene la' }}</span>
+                  <b>{{ current.letter }}</b>
+                </div>
+                <h2>{{ current.clue }}</h2>
+                <label for="rosco-answer">Tu respuesta</label>
+                <div class="answer-field" [class.flash-correct]="feedback === 'correct'" [class.flash-wrong]="feedback === 'wrong'">
+                  <input id="rosco-answer" name="answer" [(ngModel)]="answer" [disabled]="isTransitioning" autocomplete="off" autofocus placeholder="Escribí acá…" />
+                  <button type="submit" [disabled]="!answer.trim() || isTransitioning" aria-label="Confirmar respuesta"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <button class="pass-button" type="button" (click)="pass()">
+                  <span>Pasapalabra</span><small>Pausar partida</small><kbd>II</kbd>
+                </button>
+                <div class="legend">
+                  <span><i class="dot pending"></i>Pendiente</span>
+                  <span><i class="dot correct"></i>Correcta</span>
+                  <span><i class="dot wrong"></i>Incorrecta</span>
+                </div>
+              </form>
+            } @else {
+              <aside class="result-card pause-card" aria-live="polite">
+                <div class="pause-icon"><i class="fa-solid fa-pause"></i></div>
+                <p class="overline"><span></span> Tiempo detenido</p>
+                <h2>Partida en pausa</h2>
+                <p>La pista está oculta y el reloj quedó congelado en <strong>{{ formattedTime }}</strong>.</p>
+                <div class="result-actions">
+                  <button type="button" (click)="resume()" autofocus><i class="fa-solid fa-play"></i> Seguir</button>
+                </div>
+                <small class="pause-note">Vas a continuar en la misma letra.</small>
+              </aside>
+            }
           } @else {
             <aside class="result-card">
               <p class="overline"><span></span> Resultado final</p>

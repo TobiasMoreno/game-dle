@@ -6,9 +6,10 @@ import { BackHomeButtonComponent } from '../../shared/components/back-home-butto
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ROSCO_GENERAL_CATEGORIES, ROSCO_LEAGUES } from './roscodle-catalog';
 import { ROSCO_QUESTIONS } from './roscodle.data';
 import { RoscoEngineService } from './roscodle-engine.service';
-import { RoscoCategory, RoscoLetter, RoscoResult } from './roscodle.models';
+import { RoscoCategory, RoscoLeague, RoscoLeagueOption, RoscoLetter, RoscoResult } from './roscodle.models';
 
 @Component({
   selector: 'app-roscodle',
@@ -19,21 +20,16 @@ import { RoscoCategory, RoscoLetter, RoscoResult } from './roscodle.models';
 export class RoscodleComponent implements OnInit, OnDestroy {
   readonly roundSeconds = 150;
   readonly adSlots = ADSENSE_CONFIG.slots;
-  readonly categories: Array<{ id: RoscoCategory; eyebrow: string; title: string; description: string; icon: string }> = [
-    { id: 'players', eyebrow: 'Vestuario', title: 'Jugadores', description: 'Leyendas, figuras actuales y campeones del mundo.', icon: 'fa-shirt' },
-    { id: 'teams', eyebrow: 'Tribuna', title: 'Equipos', description: 'Clubes históricos de Argentina, Europa y el mundo.', icon: 'fa-shield-halved' },
-  ];
-  readonly clubCategories: Array<{ id: RoscoCategory; eyebrow: string; title: string; description: string; icon: string }> = [
-    { id: 'boca', eyebrow: 'Azul y oro', title: 'Boca Juniors', description: 'Ídolos, títulos y recuerdos del Xeneize.', icon: 'fa-star' },
-    { id: 'river', eyebrow: 'La banda roja', title: 'River Plate', description: 'Glorias, copas y leyendas del Millonario.', icon: 'fa-monument' },
-  ];
+  readonly categories = ROSCO_GENERAL_CATEGORIES;
+  readonly leagues = ROSCO_LEAGUES;
 
   private readonly engine = inject(RoscoEngineService);
   private readonly theme = inject(ThemeService);
   private timerId: ReturnType<typeof setInterval> | null = null;
 
   phase: 'setup' | 'playing' | 'finished' = 'setup';
-  setupView: 'categories' | 'clubs' = 'categories';
+  setupView: 'categories' | 'leagues' | 'league' = 'categories';
+  selectedLeague: RoscoLeague | null = null;
   category: RoscoCategory = 'players';
   letters: RoscoLetter[] = [];
   currentIndex = 0;
@@ -42,6 +38,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   result: RoscoResult = { correct: 0, wrong: 0, unanswered: 27 };
   feedback: 'correct' | 'wrong' | null = null;
   isTransitioning = false;
+  isPaused = false;
 
   ngOnInit(): void {
     this.theme.setHeaderTheme('default');
@@ -74,12 +71,19 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   }
 
   get categoryLabel(): string {
-    return {
-      players: 'Jugadores',
-      teams: 'Equipos',
-      boca: 'Especial Boca',
-      river: 'Especial River',
-    }[this.category];
+    const option = [
+      ...this.categories,
+      ...this.leagues.flatMap((league) => league.categories),
+    ].find((item) => item.id === this.category);
+    return option?.title ?? 'RoscoDLE';
+  }
+
+  get currentLeague(): RoscoLeagueOption | null {
+    return this.leagues.find((league) => league.id === this.selectedLeague) ?? null;
+  }
+
+  get activeLeague(): RoscoLeagueOption {
+    return this.currentLeague ?? this.leagues[0];
   }
 
   get currentNumber(): string {
@@ -94,16 +98,24 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     this.answer = '';
     this.feedback = null;
     this.isTransitioning = false;
+    this.isPaused = false;
     this.secondsLeft = this.roundSeconds;
     this.phase = 'playing';
-    this.timerId = setInterval(() => {
-      this.secondsLeft -= 1;
-      if (this.secondsLeft <= 0) this.finishGame();
-    }, 1000);
+    this.startTimer();
+  }
+
+  openLeague(league: RoscoLeague): void {
+    this.selectedLeague = league;
+    this.setupView = 'league';
+  }
+
+  showLeagues(): void {
+    this.selectedLeague = null;
+    this.setupView = 'leagues';
   }
 
   submitAnswer(): void {
-    if (this.phase !== 'playing' || !this.current || !this.answer.trim() || this.isTransitioning) return;
+    if (this.phase !== 'playing' || this.isPaused || !this.current || !this.answer.trim() || this.isTransitioning) return;
     this.isTransitioning = true;
     const wasCorrect = this.engine.isCorrect(this.current, this.answer);
     this.current.status = wasCorrect ? 'correct' : 'wrong';
@@ -113,11 +125,17 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   }
 
   pass(): void {
-    if (this.phase !== 'playing' || !this.current || this.isTransitioning) return;
-    this.current.status = 'pending';
+    if (this.phase !== 'playing' || this.isPaused || !this.current || this.isTransitioning) return;
+    this.stopTimer();
+    this.isPaused = true;
     this.feedback = null;
     this.answer = '';
-    this.advance();
+  }
+
+  resume(): void {
+    if (this.phase !== 'playing' || !this.isPaused) return;
+    this.isPaused = false;
+    this.startTimer();
   }
 
   playAgain(): void {
@@ -127,7 +145,9 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   changeCategory(): void {
     this.stopTimer();
     this.phase = 'setup';
+    this.isPaused = false;
     this.setupView = 'categories';
+    this.selectedLeague = null;
     this.letters = [];
   }
 
@@ -147,6 +167,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   private finishGame(): void {
     if (this.phase !== 'playing') return;
     this.stopTimer();
+    this.isPaused = false;
     if (this.current?.status === 'current') this.current.status = 'pending';
     this.result = this.engine.result(this.letters);
     this.phase = 'finished';
@@ -155,5 +176,13 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   private stopTimer(): void {
     if (this.timerId) clearInterval(this.timerId);
     this.timerId = null;
+  }
+
+  private startTimer(): void {
+    this.stopTimer();
+    this.timerId = setInterval(() => {
+      this.secondsLeft -= 1;
+      if (this.secondsLeft <= 0) this.finishGame();
+    }, 1000);
   }
 }

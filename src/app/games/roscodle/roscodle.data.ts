@@ -1,4 +1,6 @@
 import { RoscoCategory, RoscoQuestion } from './roscodle.models';
+import { EUROPEAN_CLUB_QUESTIONS } from './roscodle-european-clubs.data';
+import { EXTRA_ROSCO_QUESTIONS } from './roscodle-extra.data';
 
 export const ROSCO_ALPHABET = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ',
@@ -122,4 +124,6 @@ export const ROSCO_QUESTIONS: Record<RoscoCategory, RoscoQuestion[]> = {
     { letter: 'Y', relation: 'starts', clue: 'Mediocampista histórico de La Máquina, apodado Pacho.', answer: 'Yácono', aliases: ['Yacono', 'Norberto Yacono', 'Norberto Yácono'] },
     { letter: 'Z', relation: 'starts', clue: 'Mediocampista surgido en River, de nombre Bruno, campeón de la Libertadores 2018.', answer: 'Zuculini', aliases: ['Bruno Zuculini'] },
   ],
+  ...EXTRA_ROSCO_QUESTIONS,
+  ...EUROPEAN_CLUB_QUESTIONS,
 };
