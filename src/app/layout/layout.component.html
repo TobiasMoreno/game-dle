@@ -36,7 +36,11 @@
             </svg>
           </button>
           <!-- Logo -->
-          <div class="flex items-center gap-2">
+          <a
+            routerLink="/home"
+            aria-label="Ir al inicio de Game-DLE"
+            class="flex items-center gap-2 rounded-md no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+          >
             @if (colorMode === 'light') {
             <img src="img/logo-light.jpg" alt="Game-DLE" class="h-10 w-10" />
             } @else {
@@ -48,7 +52,7 @@
             >
               Game-DLE
             </h1>
-          </div>
+          </a>
           }
         </div>
 

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThemeService } from '../shared/services/theme.service';
 import { SupportDialogComponent } from '../shared/components/support-dialog/support-dialog.component';
@@ -7,7 +7,7 @@ import { SupportDialogService } from '../shared/services/support-dialog.service'
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, SidebarComponent, SupportDialogComponent],
+  imports: [RouterLink, RouterOutlet, SidebarComponent, SupportDialogComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })

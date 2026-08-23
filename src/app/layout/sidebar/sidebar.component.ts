@@ -1,12 +1,12 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })

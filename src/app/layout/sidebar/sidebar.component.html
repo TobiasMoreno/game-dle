@@ -6,14 +6,21 @@
 >
   <div class="p-4">
     <div class="flex items-center justify-between mb-6">
-      @if (colorMode === 'light') {
-        <img src="img/logo-light.jpg" alt="Game-DLE" class="h-10 w-10" />
+      <a
+        routerLink="/home"
+        (click)="toggleSidebar.emit()"
+        aria-label="Ir al inicio de Game-DLE"
+        class="flex items-center gap-2 rounded-md no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+      >
+        @if (colorMode === 'light') {
+          <img src="img/logo-light.jpg" alt="Game-DLE" class="h-10 w-10" />
         } @else {
-        <img src="img/logo-dark.png" alt="Game-DLE" class="h-8 w-8" />
+          <img src="img/logo-dark.png" alt="Game-DLE" class="h-8 w-8" />
         }
-      <h1 class="text-xl font-semibold transition-colors duration-200" [class]="getSidebarTitleClasses()">
-        Game-DLE
-      </h1>
+        <h1 class="text-xl font-semibold transition-colors duration-200" [class]="getSidebarTitleClasses()">
+          Game-DLE
+        </h1>
+      </a>
       <button
         (click)="toggleSidebar.emit()"
         class="p-2 transition-colors"
