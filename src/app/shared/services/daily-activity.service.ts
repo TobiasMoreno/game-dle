@@ -1,8 +1,10 @@
 import { Injectable, computed, signal } from '@angular/core';
 import {
+  browserLocalPersistence,
   GoogleAuthProvider,
   User,
   onAuthStateChanged,
+  setPersistence,
   signInAnonymously,
   signInWithPopup,
   signOut,
@@ -28,17 +30,19 @@ export class DailyActivityService {
   readonly entries = this.entriesState.asReadonly();
   readonly summary = computed(() => buildActivitySummary(this.entriesState()));
   readonly user = signal<User | null>(firebaseAuth.currentUser);
+  readonly authReady = signal(false);
   readonly syncing = signal(false);
   readonly syncMessage = signal('');
 
   private authPromise: Promise<User> | null = null;
+  private readonly authReadyPromise: Promise<void>;
 
   constructor() {
     onAuthStateChanged(firebaseAuth, (user) => {
       this.user.set(user);
       if (user) void this.syncWithCloud(user);
     });
-    void this.ensureUser();
+    this.authReadyPromise = this.initializeAuth();
   }
 
   async recordDailyGame(
@@ -76,6 +80,8 @@ export class DailyActivityService {
     this.syncing.set(true);
     this.syncMessage.set('');
     try {
+      await this.authReadyPromise;
+      await setPersistence(firebaseAuth, browserLocalPersistence);
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
       const credential = await signInWithPopup(firebaseAuth, provider);
@@ -98,9 +104,10 @@ export class DailyActivityService {
   async useAnonymousProfile(): Promise<void> {
     this.syncing.set(true);
     try {
+      await this.authReadyPromise;
       await signOut(firebaseAuth);
       this.authPromise = null;
-      const user = await this.ensureUser();
+      const user = await this.createAnonymousUser();
       this.user.set(user);
       await this.syncWithCloud(user);
       this.syncMessage.set('Las estadísticas siguen guardadas en este navegador');
@@ -114,6 +121,29 @@ export class DailyActivityService {
   }
 
   private async ensureUser(): Promise<User> {
+    await this.authReadyPromise;
+    return this.createAnonymousUser();
+  }
+
+  private async initializeAuth(): Promise<void> {
+    try {
+      try {
+        await setPersistence(firebaseAuth, browserLocalPersistence);
+      } catch {
+        this.syncMessage.set('No pudimos activar el inicio de sesión persistente en este navegador');
+      }
+
+      await firebaseAuth.authStateReady();
+      this.user.set(firebaseAuth.currentUser);
+      if (!firebaseAuth.currentUser) await this.createAnonymousUser();
+    } catch {
+      this.syncMessage.set('No pudimos restaurar la sesión; el progreso sigue guardado localmente');
+    } finally {
+      this.authReady.set(true);
+    }
+  }
+
+  private async createAnonymousUser(): Promise<User> {
     if (firebaseAuth.currentUser) return firebaseAuth.currentUser;
     if (!this.authPromise) {
       this.authPromise = signInAnonymously(firebaseAuth)

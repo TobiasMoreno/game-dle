@@ -57,9 +57,11 @@
   <div class="journey__sync">
     <div>
       <span class="journey__eyebrow">Respaldo</span>
-      <h3>{{ signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
+      <h3>{{ !activity.authReady() ? 'Restaurando sesión…' : signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
       <p>
-        {{ signedInWithGoogle()
+        {{ !activity.authReady()
+          ? 'Estamos recuperando tu cuenta y tus estadísticas guardadas.'
+          : signedInWithGoogle()
           ? 'Tus estadísticas, tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
           : 'Las estadísticas quedan en este navegador. Conectá Google para recuperarlas en otros dispositivos.' }}
       </p>
@@ -68,7 +70,11 @@
       }
     </div>
     <div class="journey__sync-actions">
-      @if (signedInWithGoogle()) {
+      @if (!activity.authReady()) {
+        <button type="button" class="journey__google" disabled aria-label="Restaurando la sesión guardada">
+          Restaurando sesión…
+        </button>
+      } @else if (signedInWithGoogle()) {
         <button type="button" class="journey__logout" (click)="disconnectGoogle()" [disabled]="activity.syncing()">
           Cerrar sesión
         </button>
