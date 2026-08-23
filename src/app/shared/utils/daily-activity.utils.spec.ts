@@ -1,5 +1,35 @@
-import { buildActivitySummary, buildGameActivityStats } from './daily-activity.utils';
+import {
+  argentinaDateKey,
+  buildActivitySummary,
+  buildGameActivityStats,
+  millisecondsUntilArgentinaMidnight,
+  normalizeLegacyUtcDateKey,
+} from './daily-activity.utils';
 import { DailyActivityEntry } from '../models/daily-activity.model';
+
+describe('Argentina daily boundary', () => {
+  it('keeps the same game day when UTC has already advanced', () => {
+    expect(argentinaDateKey(new Date('2026-08-23T20:59:00-03:00'))).toBe('2026-08-23');
+    expect(argentinaDateKey(new Date('2026-08-23T21:00:00-03:00'))).toBe('2026-08-23');
+    expect(argentinaDateKey(new Date('2026-08-23T23:59:59-03:00'))).toBe('2026-08-23');
+  });
+
+  it('starts a new game day at midnight in Argentina', () => {
+    expect(argentinaDateKey(new Date('2026-08-24T00:00:00-03:00'))).toBe('2026-08-24');
+  });
+
+  it('counts down to the same Argentina midnight boundary', () => {
+    expect(millisecondsUntilArgentinaMidnight(new Date('2026-08-23T23:59:59-03:00'))).toBe(1000);
+    expect(millisecondsUntilArgentinaMidnight(new Date('2026-08-24T00:00:00-03:00')))
+      .toBe(24 * 60 * 60 * 1000);
+  });
+
+  it('normalizes date keys written by the previous UTC implementation', () => {
+    const eveningInArgentina = new Date('2026-08-23T21:30:00-03:00');
+    expect(normalizeLegacyUtcDateKey('2026-08-24', eveningInArgentina)).toBe('2026-08-23');
+    expect(normalizeLegacyUtcDateKey('2026-08-22', eveningInArgentina)).toBe('2026-08-22');
+  });
+});
 
 describe('daily activity summary', () => {
   const entry = (date: string, gameId = 'wordle', won = true): DailyActivityEntry => ({

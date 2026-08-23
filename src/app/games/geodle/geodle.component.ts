@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
-import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameProgress } from '../../shared/models/game.model';
@@ -18,7 +17,7 @@ import {
 
 @Component({
   selector: 'app-geodle',
-  imports: [FormsModule, AdSlotComponent, BackHomeButtonComponent, FooterComponent],
+  imports: [FormsModule, AdSlotComponent, FooterComponent],
   templateUrl: './geodle.component.html',
   styleUrl: './geodle.component.css',
 })

@@ -1,7 +1,6 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
-import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { FootballerEntry } from './futboldle.data';
 import { FutboldleEngineService, LetterResult, LetterState } from './futboldle-engine.service';
@@ -11,7 +10,7 @@ type GameMode = 'normal' | 'easy';
 @Component({
   selector: 'app-futboldle',
   standalone: true,
-  imports: [CommonModule, BaseGameComponent, BackHomeButtonComponent],
+  imports: [CommonModule, BaseGameComponent],
   templateUrl: './futboldle.component.html',
   styleUrl: './futboldle.component.css'
 })

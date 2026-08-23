@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { GameState, DailyGameState, GameStats } from '../models/game.model';
 import { GameStorageService } from './game-storage.service';
 import { DailyActivityService } from './daily-activity.service';
+import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
 
 /**
  * Servicio principal para gestionar los juegos
@@ -24,6 +25,7 @@ export class GameManagerService {
       route: '/games/wordle',
       icon: 'fas fa-font',
       mode: 'daily',
+      durationLabel: '3–5 min',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -39,6 +41,7 @@ export class GameManagerService {
       route: '/games/onepiecedle',
       icon: 'fas fa-skull-crossbones',
       mode: 'daily',
+      durationLabel: '5–8 min',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -54,6 +57,7 @@ export class GameManagerService {
       route: '/games/loldle',
       icon: 'fas fa-solid fa-l',
       mode: 'daily',
+      durationLabel: '5–8 min',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -68,7 +72,8 @@ export class GameManagerService {
       description: 'Reconoce canciones en fragmentos de hasta 12 segundos',
       route: '/games/musicdle',
       icon: 'fas fa-headphones',
-      mode: 'unlimited'
+      mode: 'unlimited',
+      durationLabel: '2–4 min'
     },
     {
       id: 'serpentile',
@@ -77,6 +82,7 @@ export class GameManagerService {
       route: '/games/serpentile',
       icon: 'fas fa-bezier-curve',
       mode: 'daily',
+      durationLabel: '3–6 min',
       scoreBased: true,
       stats: {
         totalGames: 0,
@@ -92,7 +98,8 @@ export class GameManagerService {
       description: 'Competí en vivo con amigos usando la misma letra',
       route: '/games/tuttifrutti',
       icon: 'fas fa-users',
-      mode: 'unlimited'
+      mode: 'multiplayer',
+      durationLabel: '10–20 min'
     },
     {
       id: 'geodle',
@@ -100,7 +107,9 @@ export class GameManagerService {
       description: 'Encontrá el país oculto siguiendo pistas geográficas',
       route: '/games/geodle',
       icon: 'fas fa-earth-americas',
-      mode: 'unlimited'
+      mode: 'unlimited',
+      durationLabel: '3–5 min',
+      badge: 'Actualizado'
     },
     {
       id: 'chronodle',
@@ -109,6 +118,8 @@ export class GameManagerService {
       route: '/games/chronodle',
       icon: 'fas fa-hourglass-half',
       mode: 'unlimited',
+      durationLabel: '3–6 min',
+      badge: 'Nuevo',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -124,6 +135,7 @@ export class GameManagerService {
       route: '/games/futboldle',
       icon: 'fas fa-futbol',
       mode: 'unlimited',
+      durationLabel: '2–4 min',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -139,6 +151,8 @@ export class GameManagerService {
       route: '/games/rankdle',
       icon: 'fas fa-ranking-star',
       mode: 'unlimited',
+      durationLabel: '3–6 min',
+      badge: 'Nuevo',
       stats: {
         totalGames: 0,
         wins: 0,
@@ -153,7 +167,8 @@ export class GameManagerService {
       description: 'Completá el abecedario general o jugá un especial dedicado a tu club',
       route: '/games/roscodle',
       icon: 'fas fa-circle-nodes',
-      mode: 'unlimited'
+      mode: 'unlimited',
+      durationLabel: '8–15 min'
     }
   ];
 
@@ -174,13 +189,19 @@ export class GameManagerService {
     const games = this.availableGames.map(availableGame => {
       const storedGame = storedGames.find(g => g.id === availableGame.id);
       if (storedGame) {
+        const normalizedDailyState = storedGame.dailyState
+          ? {
+              ...storedGame.dailyState,
+              date: normalizeLegacyUtcDateKey(storedGame.dailyState.date),
+            }
+          : undefined;
         return {
           ...availableGame,
           ...storedGame,
           // La modalidad pertenece a la configuración actual, no al estado persistido.
           mode: availableGame.mode,
           // Verificar si necesitamos resetear el estado diario
-          dailyState: this.shouldResetDailyState(storedGame.dailyState) ? undefined : storedGame.dailyState
+          dailyState: this.shouldResetDailyState(normalizedDailyState) ? undefined : normalizedDailyState
         };
       }
       return availableGame;
@@ -195,8 +216,8 @@ export class GameManagerService {
   private shouldResetDailyState(dailyState?: DailyGameState): boolean {
     if (!dailyState) return false;
     
-    const today = new Date().toISOString().split('T')[0];
-    return dailyState.date !== today;
+    const today = argentinaDateKey();
+    return normalizeLegacyUtcDateKey(dailyState.date) !== today;
   }
 
   /**
@@ -234,7 +255,7 @@ export class GameManagerService {
     const game = this.getGame(gameId);
     if (!game) return;
 
-    const today = new Date().toISOString().split('T')[0];
+    const today = argentinaDateKey();
     const dailyState: DailyGameState = {
       date: today,
       completed: true,
@@ -265,7 +286,7 @@ export class GameManagerService {
     const game = this.getGame(gameId);
     if (!game) return;
 
-    const today = date ?? new Date().toISOString().split('T')[0];
+    const today = date ?? argentinaDateKey();
     const dailyState: DailyGameState = {
       date: today,
       completed: true,

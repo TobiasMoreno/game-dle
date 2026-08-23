@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
-import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
@@ -11,7 +10,7 @@ import { RankdleStorageService } from './rankdle-storage.service';
 
 @Component({
   selector: 'app-rankdle',
-  imports: [AdSlotComponent, BackHomeButtonComponent, FooterComponent],
+  imports: [AdSlotComponent, FooterComponent],
   templateUrl: './rankdle.component.html',
   styleUrl: './rankdle.component.css',
 })

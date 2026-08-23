@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameState, DailyGameState, GameStats, GameProgress } from '../models/game.model';
+import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
 
 /**
  * Servicio para manejar el almacenamiento local de los juegos
@@ -95,8 +96,8 @@ export class GameStorageService {
       return false;
     }
     
-    const today = new Date().toISOString().split('T')[0];
-    return game.dailyState.date === today && game.dailyState.completed;
+    const today = argentinaDateKey();
+    return normalizeLegacyUtcDateKey(game.dailyState.date) === today && game.dailyState.completed;
   }
 
   /**
@@ -108,8 +109,14 @@ export class GameStorageService {
       return null;
     }
     
-    const today = new Date().toISOString().split('T')[0];
-    return game.dailyState.date === today ? game.dailyState : null;
+    const today = argentinaDateKey();
+    if (normalizeLegacyUtcDateKey(game.dailyState.date) !== today) {
+      return null;
+    }
+
+    return game.dailyState.date === today
+      ? game.dailyState
+      : { ...game.dailyState, date: today };
   }
 
   /**
@@ -217,13 +224,13 @@ export class GameStorageService {
       }
 
       // Verificar si el progreso es del día actual
-      const today = new Date().toISOString().split('T')[0];
+      const today = argentinaDateKey();
       
-      if (progress.date !== today) {
+      if (normalizeLegacyUtcDateKey(progress.date) !== today) {
         return progress;
       }
-      
-      return progress;
+
+      return progress.date === today ? progress : { ...progress, date: today };
     } catch (error) {
       console.error(`❌ Error al cargar progreso para ${gameId}:`, error);
       return null;
@@ -258,12 +265,11 @@ export class GameStorageService {
         return;
       }
 
-      const today = new Date().toISOString().split('T')[0];
+      const today = argentinaDateKey();
       
-      if (progress.date !== today) {
+      if (normalizeLegacyUtcDateKey(progress.date) !== today) {
         delete allProgress[gameId];
         localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
-      } else {
       }
     } catch (error) {
       console.error(`❌ Error al limpiar progreso antiguo para ${gameId}:`, error);
@@ -331,4 +337,4 @@ export class GameStorageService {
       return { error: 'No se pudo determinar el espacio disponible' };
     }
   }
-} 
+}

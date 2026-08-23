@@ -13,7 +13,11 @@ export interface GameState {
   /** Icono del juego (clase CSS) */
   icon: string;
   /** Modalidad de juego: desafío diario o rondas continuas */
-  mode?: 'daily' | 'unlimited';
+  mode?: GameMode;
+  /** Duración orientativa de una ronda. */
+  durationLabel?: string;
+  /** Novedad contextual visible en el catálogo. */
+  badge?: string;
   /** Indica que el resultado diario se expresa como puntaje y no como victoria. */
   scoreBased?: boolean;
   /** Fecha de la última jugada */
@@ -65,6 +69,24 @@ export interface GameProgress {
   gameData?: any;
   /** Timestamp de la última actualización */
   lastUpdated: number;
+}
+
+export type GameMode = 'daily' | 'unlimited' | 'multiplayer';
+
+export type GamePresentationStatus = 'available' | 'in-progress' | 'completed';
+
+export type GamePresentationAction = 'play' | 'continue' | 'view-result' | 'new-round';
+
+export type GamePresentationTone = 'neutral' | 'progress' | 'success' | 'danger';
+
+/** Estado listo para ser presentado de forma consistente en cualquier superficie. */
+export interface GamePresentationState {
+  status: GamePresentationStatus;
+  modeLabel: 'Diario' | 'Sin límite' | 'Con amigos';
+  statusLabel: string;
+  actionLabel: string;
+  action: GamePresentationAction;
+  tone: GamePresentationTone;
 }
 
 /**

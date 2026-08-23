@@ -11,29 +11,75 @@
         </p>
       </div>
 
+      @if (nextGame; as recommendation) {
+        <section
+          class="next-game"
+          [attr.data-reason]="recommendation.reason"
+          aria-labelledby="next-game-title"
+        >
+          <div class="next-game__grain" aria-hidden="true"></div>
+          <div class="next-game__copy">
+            <div class="next-game__kicker">
+              <span>Selección del día</span>
+              <b>{{ recommendation.contextLabel }}</b>
+            </div>
+            <h2 id="next-game-title">{{ recommendation.game.name }}</h2>
+            <p>{{ recommendation.description }}</p>
+
+            <div class="next-game__meta" aria-label="Estado de la recomendación">
+              <span>{{ recommendation.presentation.modeLabel }}</span>
+              <span>{{ recommendation.presentation.statusLabel }}</span>
+            </div>
+
+            <a
+              class="next-game__action"
+              [routerLink]="recommendation.game.route"
+              [attr.aria-label]="recommendation.presentation.actionLabel + ' ' + recommendation.game.name"
+            >
+              <span>{{ recommendation.presentation.actionLabel }}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="next-game__ticket" aria-hidden="true">
+            <span class="next-game__number">01</span>
+            <i [class]="recommendation.game.icon"></i>
+            <small>Próxima partida</small>
+            <strong>{{ recommendation.game.name }}</strong>
+          </div>
+        </section>
+      }
+
       <app-daily-journey />
 
-      <!-- Novedades -->
-      <div class="my-8 bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-200 dark:border-yellow-700 max-w-2xl mx-auto shadow">
-        <h3 class="font-bold mb-2 text-yellow-800 dark:text-yellow-200 flex items-center gap-2 text-lg">
-          <span>🆕</span> Novedades
-        </h3>
-        <ul class="text-sm text-yellow-800 dark:text-yellow-200 list-disc list-inside space-y-1">
-          <li><span class="font-bold">RankDLE:</span> Clasificá datos y descubrí cuánto sabés.</li>
-          <li><span class="font-bold">ChronoDLE:</span> Ordená la historia en rondas ilimitadas.</li>
-          <li><span class="font-bold">GeoDLE:</span> ¡Jugá todos los destinos geográficos que quieras!</li>
-          <li><span class="font-bold">Modo oscuro:</span> Mejoras visuales y de accesibilidad.</li>
-          <li><span class="font-bold">Estadísticas:</span> Ahora puedes ver tu racha y victorias globales.</li>
-        </ul>
-      </div>
+      <section class="catalog" aria-labelledby="catalog-title">
+        <header class="catalog__intro">
+          <span>Elegí tu ritmo</span>
+          <h2 id="catalog-title">Todos los juegos</h2>
+          <p>Un desafío para cada momento: mantené la racha, jugá sin límites o invitá a tu grupo.</p>
+        </header>
 
-      <!-- Juegos Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        @for (game of games; track game.id) {
+        @for (section of catalogSections; track section.id) {
+          <section class="catalog-shelf" [attr.data-mode]="section.id" [attr.aria-labelledby]="'catalog-' + section.id">
+            <header class="catalog-shelf__header">
+              <span class="catalog-shelf__index" aria-hidden="true">{{ section.index }}</span>
+              <div>
+                <span class="catalog-shelf__eyebrow">{{ section.eyebrow }}</span>
+                <h3 [id]="'catalog-' + section.id">{{ section.title }}</h3>
+                <p>{{ section.description }}</p>
+              </div>
+              <strong>{{ section.games.length }} {{ section.games.length === 1 ? 'juego' : 'juegos' }}</strong>
+            </header>
+
+            <div class="catalog-shelf__grid">
+        @for (game of section.games; track game.id) {
           @defer (on viewport) {
-            <div
-              (click)="navigateToGame(game)"
-              class="relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
+            @let presentation = getGamePresentation(game);
+            <a
+              [routerLink]="game.route"
+              [attr.aria-label]="game.name + '. ' + presentation.statusLabel + '. ' + presentation.actionLabel"
+              [attr.data-game]="game.id"
+              class="catalog-card relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
             >
               <!-- Fondo dinámico en hover -->
               @if (game.name === 'One Piece DLE') {
@@ -101,46 +147,38 @@
 
               <!-- Contenido de la tarjeta -->
               <div class="relative z-10">
-                <div class="flex items-center mb-4">
+                <div class="flex items-center mb-4 gap-2">
                   <i [class]="game.icon + ' text-2xl text-blue-500 dark:text-blue-400 mr-3'" aria-hidden="true"></i>
-                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
+                  <h3 class="min-w-0 text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
                     {{ game.name }}
                   </h3>
+                  @if (game.badge) {
+                    <span class="catalog-card__badge">{{ game.badge }}</span>
+                  }
                 </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200">{{ game.description }}</p>
                 <div class="flex items-center justify-between">
-                  <span [class]="getGameStatusClass(game)" class="text-sm font-medium">
-                    {{ getGameStatusText(game) }}
+                  <span class="catalog-card__state">
+                    <span [class]="getGameStatusClass(presentation.tone)" class="text-sm font-medium">{{ presentation.statusLabel }}</span>
+                    @if (game.durationLabel) { <small>{{ game.durationLabel }}</small> }
                   </span>
-                  @if (game.mode === 'unlimited') {
-                    <div class="text-xs text-amber-600 dark:text-amber-300 transition-colors duration-200">
-                      @if (game.id === 'musicdle') {
-                        <div>Hasta 12 segundos</div>
-                        <div>6 intentos</div>
-                      } @else if (game.id === 'geodle') {
-                        <div>195 países</div>
-                        <div>6 intentos por ronda</div>
-                      } @else {
-                        <div>Rondas ilimitadas</div>
-                      }
-                    </div>
-                  } @else if (!game.scoreBased) {
-                    <div class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200">
-                      <div>Jugados: {{ game.stats?.totalGames || 0 }}</div>
-                      <div>Victorias: {{ game.stats?.wins || 0 }}</div>
-                    </div>
-                  }
+                  <span class="text-sm font-bold text-blue-600 transition-colors group-hover:text-blue-700 dark:text-blue-300 dark:group-hover:text-blue-200">
+                    {{ presentation.actionLabel }} <span aria-hidden="true">→</span>
+                  </span>
                 </div>
               </div>
               <!-- Fin contenido -->
-            </div>
+            </a>
           } @placeholder {
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
-              Cargando...
+            <div class="catalog-card catalog-card--loading" aria-hidden="true">
+              <span></span><span></span><span></span>
             </div>
           }
         }
-      </div>
+            </div>
+          </section>
+        }
+      </section>
 
       <app-ad-slot
         class="mb-12"
@@ -148,23 +186,10 @@
         placement="home"
       />
 
-      <!-- Información y ayuda -->
-      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 text-center border border-blue-200 dark:border-blue-800 mb-4 max-w-2xl mx-auto shadow">
-        <h3 class="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2 transition-colors duration-200 flex items-center justify-center gap-2">
-          <span>❓</span> ¿Cómo funciona?
-        </h3>
-        <p class="text-blue-700 dark:text-blue-300 transition-colors duration-200 mb-2">
-          Elige un desafío diario o juega tantas rondas como quieras en nuestros modos ilimitados.
-        </p>
-        <details class="mt-2">
-          <summary class="cursor-pointer text-blue-600 dark:text-blue-300 font-semibold">Ver reglas y tips</summary>
-          <ul class="text-left text-blue-800 dark:text-blue-200 mt-2 list-disc list-inside text-sm space-y-1">
-            <li>Las pistas de color te ayudarán a acercarte a la respuesta.</li>
-            <li>Juega cada vez que quieras para mantener tu racha!</li>
-            <li>Puedes jugar en modo claro u oscuro.</li>
-          </ul>
-        </details>
-      </div>
+      <details class="catalog-help">
+        <summary>¿Cómo funcionan los desafíos?</summary>
+        <p>Los diarios se renuevan a medianoche de Argentina. Los ilimitados permiten repetir rondas y los multijugador se comparten mediante una sala.</p>
+      </details>
 
       <!-- Contacto -->
       <div class="mt-6 text-center">

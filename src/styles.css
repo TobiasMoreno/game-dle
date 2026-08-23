@@ -5,14 +5,120 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos globales personalizados */
+:root {
+  --platform-ink: #172019;
+  --platform-paper: #fff8e9;
+  --platform-surface: #ffffff;
+  --platform-muted: #667069;
+  --platform-ember: #e95d38;
+  --platform-gold: #f1bd4b;
+  --platform-radius: 1.15rem;
+  --platform-space: clamp(1rem, 2vw, 1.5rem);
+  --platform-shadow: 0 1.2rem 3rem rgba(42, 30, 13, .12);
+  --platform-display: Georgia, 'Times New Roman', serif;
+  --platform-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+.dark {
+  --platform-ink: #fff8e9;
+  --platform-paper: #171914;
+  --platform-surface: #20231c;
+  --platform-muted: #aeb9b0;
+  --platform-shadow: 0 1.2rem 3rem rgba(0, 0, 0, .34);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--platform-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--platform-gold);
+  outline-offset: 3px;
+}
+
+:where(button, input, select, textarea):disabled { cursor: not-allowed; opacity: .58; }
+
+app-home .catalog-card {
+  --game-accent: #d95130;
+  isolation: isolate;
+}
+app-home .catalog-card[data-game='onepiecedle'] { --game-accent: #e86f2f; }
+app-home .catalog-card[data-game='loldle'] { --game-accent: #3f78bd; }
+app-home .catalog-card[data-game='musicdle'] { --game-accent: #d99a25; }
+app-home .catalog-card[data-game='serpentile'] { --game-accent: #2f8b62; }
+app-home .catalog-card[data-game='tuttifrutti'] { --game-accent: #df5943; }
+app-home .catalog-card[data-game='geodle'] { --game-accent: #27758c; }
+app-home .catalog-card[data-game='chronodle'] { --game-accent: #a64232; }
+app-home .catalog-card[data-game='futboldle'] { --game-accent: #4c8a55; }
+app-home .catalog-card[data-game='rankdle'] { --game-accent: #718f1f; }
+app-home .catalog-card[data-game='roscodle'] { --game-accent: #879c1d; }
+app-home .catalog-card::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0 auto 0 0;
+  width: .28rem;
+  background: var(--game-accent);
+  content: '';
+}
+app-home .catalog-card i { color: var(--game-accent) !important; }
+app-home .catalog-card > .absolute.inset-0 { opacity: .055; }
+app-home .catalog-card:hover > .absolute.inset-0,
+app-home .catalog-card:focus-visible > .absolute.inset-0 { opacity: 1; }
+app-home .catalog-card__badge {
+  margin-left: auto;
+  border: 1px solid var(--game-accent);
+  border-radius: 999px;
+  padding: .25rem .45rem;
+  color: var(--game-accent);
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+app-home .catalog-card__state { display: grid; gap: .15rem; }
+app-home .catalog-card__state small { color: #7b837c; font-size: .62rem; }
+app-home .catalog-card--loading {
+  display: grid;
+  min-height: 12rem;
+  align-content: center;
+  gap: .8rem;
+  border: 1px solid #d7d9d4;
+  border-radius: .75rem;
+  padding: 1.5rem;
+  background: var(--platform-surface);
+}
+app-home .catalog-card--loading span { height: .75rem; border-radius: 999px; background: #dfe2dc; animation: platform-pulse 1.2s ease-in-out infinite alternate; }
+app-home .catalog-card--loading span:first-child { width: 42%; height: 1.2rem; }
+app-home .catalog-card--loading span:last-child { width: 65%; }
+app-home .catalog-help {
+  width: min(42rem, 100%);
+  margin: 0 auto 1.5rem;
+  border-top: 1px solid #c8cac4;
+  border-bottom: 1px solid #c8cac4;
+  padding: .85rem 0;
+  color: var(--platform-muted);
+  font-size: .8rem;
+}
+app-home .catalog-help summary { color: var(--platform-ink); font-weight: 900; cursor: pointer; }
+app-home .catalog-help p { margin: .7rem 0 0; line-height: 1.55; }
+
+@keyframes platform-pulse { to { opacity: .42; } }
+
+@media (hover: none) {
+  app-home .catalog-card > .absolute.inset-0 { opacity: .1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  app-home .catalog-card--loading span { animation: none; }
 }
 
 /* Tutti Frutti: bloques pesados fuera del CSS del componente para respetar su budget. */

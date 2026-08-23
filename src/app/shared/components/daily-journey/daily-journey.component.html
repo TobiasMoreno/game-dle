@@ -48,47 +48,20 @@
   </div>
 
   <div class="journey__actions">
-    <button type="button" class="journey__primary" (click)="toggleExpanded()" [attr.aria-expanded]="expanded()">
-      <span>{{ expanded() ? 'Cerrar bitácora' : 'Ver mi bitácora' }}</span>
+    <button
+      type="button"
+      class="journey__primary"
+      (click)="toggleExpanded()"
+      [attr.aria-expanded]="expanded()"
+      aria-controls="daily-journey-details"
+    >
+      <span>{{ expanded() ? 'Cerrar historial' : 'Ver historial y respaldo' }}</span>
       <span aria-hidden="true">{{ expanded() ? '↑' : '↓' }}</span>
     </button>
   </div>
 
-  <div class="journey__sync">
-    <div>
-      <span class="journey__eyebrow">Respaldo</span>
-      <h3>{{ !activity.authReady() ? 'Restaurando sesión…' : signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
-      <p>
-        {{ !activity.authReady()
-          ? 'Estamos recuperando tu cuenta y tus estadísticas guardadas.'
-          : signedInWithGoogle()
-          ? 'Tus estadísticas, tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
-          : 'Las estadísticas quedan en este navegador. Conectá Google para recuperarlas en otros dispositivos.' }}
-      </p>
-      @if (activity.syncMessage()) {
-        <small class="journey__sync-status" role="status">{{ activity.syncMessage() }}</small>
-      }
-    </div>
-    <div class="journey__sync-actions">
-      @if (!activity.authReady()) {
-        <button type="button" class="journey__google" disabled aria-label="Restaurando la sesión guardada">
-          Restaurando sesión…
-        </button>
-      } @else if (signedInWithGoogle()) {
-        <button type="button" class="journey__logout" (click)="disconnectGoogle()" [disabled]="activity.syncing()">
-          Cerrar sesión
-        </button>
-      } @else {
-        <button type="button" class="journey__google" (click)="connectGoogle()" [disabled]="activity.syncing()">
-          <span aria-hidden="true">G</span>
-          {{ activity.syncing() ? 'Conectando…' : 'Continuar con Google' }}
-        </button>
-      }
-    </div>
-  </div>
-
   @if (expanded()) {
-    <div class="journey__details">
+    <div class="journey__details" id="daily-journey-details">
       <div class="journey__calendar-block">
         <div class="journey__section-heading">
           <div>
@@ -137,6 +110,39 @@
                 {{ achievement.unlocked ? 'Hecho' : achievement.progress + '/' + achievement.target }}
               </span>
             </article>
+          }
+        </div>
+      </div>
+
+      <div class="journey__sync">
+        <div>
+          <span class="journey__eyebrow">Respaldo</span>
+          <h3>{{ !activity.authReady() ? 'Restaurando sesión…' : signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
+          <p>
+            {{ !activity.authReady()
+              ? 'Estamos recuperando tu cuenta y tus estadísticas guardadas.'
+              : signedInWithGoogle()
+              ? 'Tus estadísticas, tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
+              : 'Las estadísticas quedan en este navegador. Conectá Google para recuperarlas en otros dispositivos.' }}
+          </p>
+          @if (activity.syncMessage()) {
+            <small class="journey__sync-status" role="status">{{ activity.syncMessage() }}</small>
+          }
+        </div>
+        <div class="journey__sync-actions">
+          @if (!activity.authReady()) {
+            <button type="button" class="journey__google" disabled aria-label="Restaurando la sesión guardada">
+              Restaurando sesión…
+            </button>
+          } @else if (signedInWithGoogle()) {
+            <button type="button" class="journey__logout" (click)="disconnectGoogle()" [disabled]="activity.syncing()">
+              Cerrar sesión
+            </button>
+          } @else {
+            <button type="button" class="journey__google" (click)="connectGoogle()" [disabled]="activity.syncing()">
+              <span aria-hidden="true">G</span>
+              {{ activity.syncing() ? 'Conectando…' : 'Continuar con Google' }}
+            </button>
           }
         </div>
       </div>

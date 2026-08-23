@@ -1,0 +1,18 @@
+.game-sidebar {
+  width: min(20rem, 86vw);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: 1rem 0 2.5rem rgba(8, 12, 9, .18);
+}
+
+.sidebar-nav { padding-bottom: 1rem; }
+
+.sidebar-game { gap: .75rem; }
+.sidebar-game > div { min-width: 0; }
+.sidebar-game > span { max-width: 6.5rem; flex: 0 0 auto; text-align: right; }
+.sidebar-game--active { box-shadow: inset 3px 0 0 currentColor; background: rgba(59, 130, 246, .12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .game-sidebar, .sidebar-game { transition: none !important; }
+}

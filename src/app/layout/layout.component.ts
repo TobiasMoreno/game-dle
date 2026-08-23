@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThemeService } from '../shared/services/theme.service';
@@ -11,7 +11,10 @@ import { SupportDialogService } from '../shared/services/support-dialog.service'
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnDestroy {
+  @ViewChild('menuButton') private menuButton?: ElementRef<HTMLButtonElement>;
+  @ViewChild(SidebarComponent) private sidebar?: SidebarComponent;
+
   isSidebarOpen = false;
   private themeService = inject(ThemeService);
   readonly supportDialog = inject(SupportDialogService);
@@ -24,8 +27,30 @@ export class LayoutComponent {
     return this.themeService.getHeaderTheme();
   }
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
+  toggleSidebar(): void {
+    this.isSidebarOpen ? this.closeSidebar() : this.openSidebar();
+  }
+
+  openSidebar(): void {
+    this.isSidebarOpen = true;
+    this.syncScrollLock();
+    window.setTimeout(() => this.sidebar?.focusCloseButton());
+  }
+
+  closeSidebar(returnFocus = true): void {
+    if (!this.isSidebarOpen) return;
+    this.isSidebarOpen = false;
+    this.syncScrollLock();
+    if (returnFocus) window.setTimeout(() => this.menuButton?.nativeElement.focus());
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeSidebar();
+  }
+
+  ngOnDestroy(): void {
+    if (typeof document !== 'undefined') document.body.style.removeProperty('overflow');
   }
 
   toggleColorMode() {
@@ -112,5 +137,12 @@ export class LayoutComponent {
       default:
         return 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
     }
+  }
+
+  private syncScrollLock(): void {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+    document.body.style.overflow = this.isSidebarOpen && window.matchMedia('(max-width: 767px)').matches
+      ? 'hidden'
+      : '';
   }
 }

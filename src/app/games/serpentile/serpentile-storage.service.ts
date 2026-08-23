@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { normalizeLegacyUtcDateKey } from '../../shared/utils/daily-activity.utils';
 import { SerpentileGameState } from './serpentile.models';
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +12,11 @@ export class SerpentileStorageService {
       if (!rawState) return null;
 
       const state = JSON.parse(rawState) as SerpentileGameState;
-      return state.version === 2 && state.date === date ? state : null;
+      if (state.version !== 2 || normalizeLegacyUtcDateKey(state.date) !== date) {
+        return null;
+      }
+
+      return state.date === date ? state : { ...state, date };
     } catch {
       return null;
     }

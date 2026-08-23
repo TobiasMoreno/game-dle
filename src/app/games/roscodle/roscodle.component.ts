@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
-import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { ThemeService } from '../../shared/services/theme.service';
@@ -13,7 +12,7 @@ import { RoscoCategory, RoscoLeague, RoscoLeagueOption, RoscoLetter, RoscoResult
 
 @Component({
   selector: 'app-roscodle',
-  imports: [CommonModule, FormsModule, AdSlotComponent, BackHomeButtonComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, AdSlotComponent, FooterComponent],
   templateUrl: './roscodle.component.html',
   styleUrl: './roscodle.component.css',
 })

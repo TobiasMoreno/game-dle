@@ -7,8 +7,8 @@ import { ThemeService } from '../../services/theme.service';
 import { DailyActivityService } from '../../services/daily-activity.service';
 import { FooterComponent } from '../footer/footer.component';
 import { AdSlotComponent } from '../ad-slot/ad-slot.component';
-import { BackHomeButtonComponent } from '../back-home-button/back-home-button.component';
 import { ADSENSE_CONFIG } from '../../config/adsense.config';
+import { argentinaDateKey } from '../../utils/daily-activity.utils';
 
 /**
  * Componente base para todos los juegos
@@ -16,7 +16,7 @@ import { ADSENSE_CONFIG } from '../../config/adsense.config';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [FooterComponent, AdSlotComponent, BackHomeButtonComponent],
+  imports: [FooterComponent, AdSlotComponent],
   templateUrl: './base-game.component.html',
   styles: []
 })
@@ -104,7 +104,7 @@ export class BaseGameComponent {
         return;
       }
 
-      const today = new Date().toISOString().split('T')[0];
+      const today = argentinaDateKey();
       const fullProgress: GameProgress = {
         date: today,
         currentAttempt: 0,

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
-import { BackHomeButtonComponent } from '../../shared/components/back-home-button/back-home-button.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { GameStorageService } from '../../shared/services/game-storage.service';
@@ -23,7 +22,7 @@ interface WordleWord {
 @Component({
   selector: 'app-wordle',
   standalone: true,
-  imports: [CommonModule, FormsModule, BaseGameComponent, BackHomeButtonComponent],
+  imports: [CommonModule, FormsModule, BaseGameComponent],
   templateUrl: './wordle.component.html',
   styleUrl: './wordle.component.css'
 })

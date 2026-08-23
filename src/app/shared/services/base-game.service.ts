@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameProgress } from '../models/game.model';
+import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
 
 export type CompareStatus = 'correct' | 'partial' | 'wrong';
 
@@ -18,7 +19,7 @@ export class BaseGameService {
         attempts: progress.attempts,
         maxAttempts: progress.maxAttempts,
         gameData: progress.gameData,
-        date: new Date().toISOString().split('T')[0],
+        date: argentinaDateKey(),
         lastUpdated: Date.now()
       };
 
@@ -54,8 +55,8 @@ export class BaseGameService {
       const stored = localStorage.getItem(`game_progress_${gameId}`);
       if (stored) {
         const progress: GameProgress = JSON.parse(stored);
-        const today = new Date().toISOString().split('T')[0];
-        return progress.date === today && progress.gameWon;
+        const today = argentinaDateKey();
+        return normalizeLegacyUtcDateKey(progress.date) === today && progress.gameWon;
       }
     } catch (error) {
       console.error('❌ Error al verificar estado diario:', error);
@@ -71,9 +72,9 @@ export class BaseGameService {
       const stored = localStorage.getItem(`game_progress_${gameId}`);
       if (stored) {
         const progress: GameProgress = JSON.parse(stored);
-        const today = new Date().toISOString().split('T')[0];
-        if (progress.date === today) {
-          return progress;
+        const today = argentinaDateKey();
+        if (normalizeLegacyUtcDateKey(progress.date) === today) {
+          return progress.date === today ? progress : { ...progress, date: today };
         }
       }
     } catch (error) {
@@ -223,4 +224,4 @@ export class BaseGameService {
       console.error('❌ Error al limpiar datos del juego:', error);
     }
   }
-} 
+}

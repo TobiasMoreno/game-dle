@@ -1,28 +1,34 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { GameState } from '../../shared/models/game.model';
+import { Component, ElementRef, ViewChild, inject, input, OnInit, output } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { GamePresentationState, GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
+import { GameCatalogSection, GamePresentationService, groupGameCatalog } from '../../shared/services/game-presentation.service';
 import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
+  @ViewChild('sidebarElement') private sidebarElement?: ElementRef<HTMLElement>;
+  @ViewChild('closeButton') private closeButton?: ElementRef<HTMLButtonElement>;
+
   isOpen = input<boolean>(true);
   toggleSidebar = output<void>();
 
   games: GameState[] = [];
+  catalogSections: GameCatalogSection[] = [];
 
-  router = inject(Router);
   gameManager = inject(GameManagerService);
+  private readonly gamePresentation = inject(GamePresentationService);
   themeService = inject(ThemeService);
   
   ngOnInit() {
     this.gameManager.games$.subscribe((games) => {
       this.games = games;
+      this.catalogSections = groupGameCatalog(games);
     });
   }
 
@@ -187,49 +193,46 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  /**
-   * Navega a un juego específico
-   */
-  navigateToGame(game: GameState): void {
-    this.router.navigate([game.route]);
+  onNavigate(): void {
     this.toggleSidebar.emit();
   }
 
-  /**
-   * Obtiene la clase CSS para el estado del juego
-   */
-  getGameStatusClass(game: GameState): string {
-    if (game.mode === 'unlimited') {
-      return 'text-amber-600 dark:text-amber-400';
-    }
+  focusCloseButton(): void {
+    this.closeButton?.nativeElement.focus();
+  }
 
-    if (!game.dailyState) {
-      return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
-    }
+  trapFocus(event: Event): void {
+    const keyboardEvent = event as KeyboardEvent;
+    const focusable = [...(this.sidebarElement?.nativeElement.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ) ?? [])];
+    if (focusable.length === 0) return;
 
-    if (game.dailyState.won) {
-      return 'text-green-600 dark:text-green-400'; // Ganado
-    } else {
-      return 'text-red-600 dark:text-red-400'; // Perdido
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (keyboardEvent.shiftKey && document.activeElement === first) {
+      keyboardEvent.preventDefault();
+      last.focus();
+    } else if (!keyboardEvent.shiftKey && document.activeElement === last) {
+      keyboardEvent.preventDefault();
+      first.focus();
     }
   }
 
-  /**
-   * Obtiene el texto del estado del juego
-   */
-  getGameStatusText(game: GameState): string {
-    if (game.mode === 'unlimited') {
-      return '∞ rondas';
-    }
+  getGamePresentation(game: GameState): GamePresentationState {
+    return this.gamePresentation.getState(game);
+  }
 
-    if (!game.dailyState) {
-      return 'Nuevo';
-    }
-
-    if (game.dailyState.won) {
-      return `✅ ${game.dailyState.attempts}/6`;
-    } else {
-      return '❌ 6/6';
+  getGameStatusClass(tone: GamePresentationState['tone']): string {
+    switch (tone) {
+      case 'success':
+        return 'text-green-600 dark:text-green-400';
+      case 'danger':
+        return 'text-red-600 dark:text-red-400';
+      case 'progress':
+        return 'text-amber-600 dark:text-amber-400';
+      default:
+        return 'text-gray-500 dark:text-gray-400';
     }
   }
 

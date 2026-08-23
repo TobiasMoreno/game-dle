@@ -1,7 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { GameState } from '../../shared/models/game.model';
+import { RouterLink } from '@angular/router';
+import { GamePresentationState, GameState } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
+import {
+  GameCatalogSection,
+  GamePresentationService,
+  NextGameRecommendation,
+  groupGameCatalog,
+} from '../../shared/services/game-presentation.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
@@ -10,15 +16,16 @@ import { DailyJourneyComponent } from '../../shared/components/daily-journey/dai
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent, AdSlotComponent, DailyJourneyComponent],
+  imports: [RouterLink, FooterComponent, AdSlotComponent, DailyJourneyComponent],
   templateUrl: './home.component.html',
-  styles: [],
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   readonly adSlots = ADSENSE_CONFIG.slots;
-  games: GameState[] = [];
-  router = inject(Router);
+  catalogSections: GameCatalogSection[] = [];
+  nextGame: NextGameRecommendation | null = null;
   gameManager = inject(GameManagerService);
+  private readonly gamePresentation = inject(GamePresentationService);
   private themeService = inject(ThemeService);
 
   ngOnInit() {
@@ -26,60 +33,25 @@ export class HomeComponent {
     this.themeService.setFooterTheme('default');
     
     this.gameManager.games$.subscribe((games) => {
-      this.games = games;
+      this.nextGame = this.gamePresentation.getNextGame(games);
+      this.catalogSections = groupGameCatalog(games);
     });
   }
 
-  /**
-   * Navega a un juego específico
-   */
-  navigateToGame(game: GameState): void {
-    this.router.navigate([game.route]);
+  getGamePresentation(game: GameState): GamePresentationState {
+    return this.gamePresentation.getState(game);
   }
 
-  /**
-   * Obtiene la clase CSS para el estado del juego
-   */
-  getGameStatusClass(game: GameState): string {
-    if (game.mode === 'unlimited') {
-      return 'text-amber-600 dark:text-amber-400';
-    }
-
-    if (!game.dailyState) {
-      return 'text-gray-500 dark:text-gray-400'; // No jugado hoy
-    }
-
-    if (game.scoreBased) {
-      return 'text-emerald-600 dark:text-emerald-400';
-    }
-
-    if (game.dailyState.won) {
-      return 'text-green-600 dark:text-green-400'; // Ganado
-    } else {
-      return 'text-red-600 dark:text-red-400'; // Perdido
-    }
-  }
-
-  /**
-   * Obtiene el texto del estado del juego
-   */
-  getGameStatusText(game: GameState): string {
-    if (game.mode === 'unlimited') {
-      return 'Rondas ilimitadas';
-    }
-
-    if (!game.dailyState) {
-      return 'Nuevo juego disponible';
-    }
-
-    if (game.scoreBased) {
-      return `Puntaje de hoy: ${game.dailyState.gameData?.score ?? 0}`;
-    }
-
-    if (game.dailyState.won) {
-      return `¡Ganaste en ${game.dailyState.attempts} intentos!`;
-    } else {
-      return 'Mejor suerte mañana';
+  getGameStatusClass(tone: GamePresentationState['tone']): string {
+    switch (tone) {
+      case 'success':
+        return 'text-green-600 dark:text-green-400';
+      case 'danger':
+        return 'text-red-600 dark:text-red-400';
+      case 'progress':
+        return 'text-amber-600 dark:text-amber-400';
+      default:
+        return 'text-gray-500 dark:text-gray-400';
     }
   }
 }

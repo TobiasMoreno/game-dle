@@ -4,6 +4,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { argentinaDateKey } from '../../shared/utils/daily-activity.utils';
 import { SerpentileEngineService } from './serpentile-engine.service';
 import { SerpentileGeneratorService } from './serpentile-generator.service';
 import {
@@ -49,7 +50,7 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.theme.setHeaderTheme('serpentile');
     this.theme.setFooterTheme('serpentile');
-    const date = new Date().toISOString().split('T')[0];
+    const date = argentinaDateKey();
     this.puzzle = this.generator.createDailyPuzzle(date);
     const restored = this.storage.load(date);
     this.state = restored && this.isValidState(restored)

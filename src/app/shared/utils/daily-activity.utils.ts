@@ -45,6 +45,16 @@ export function argentinaDateKey(date = new Date()): string {
   return `${value('year')}-${value('month')}-${value('day')}`;
 }
 
+/**
+ * Corrects date keys written by older versions with the UTC calendar date.
+ * Between 21:00 and midnight in Argentina that legacy key points to tomorrow.
+ */
+export function normalizeLegacyUtcDateKey(dateKey: string, now = new Date()): string {
+  const argentinaKey = argentinaDateKey(now);
+  const utcKey = now.toISOString().slice(0, 10);
+  return dateKey === utcKey ? argentinaKey : dateKey;
+}
+
 export function addDays(dateKey: string, days: number): string {
   const [year, month, day] = dateKey.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, day + days)).toISOString().slice(0, 10);
