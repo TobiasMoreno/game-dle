@@ -14,8 +14,9 @@ const COLORS: readonly SerpentileColor[] = ['coral', 'gold', 'mint'];
 export class SerpentileGeneratorService {
   constructor(private readonly engine: SerpentileEngineService) {}
 
-  createDailyPuzzle(date: string): SerpentilePuzzle {
-    const random = this.seededRandom(this.hash(date));
+  createDailyPuzzle(date: string, round = 0): SerpentilePuzzle {
+    const seed = round === 0 ? date : `${date}:round:${round}`;
+    const random = this.seededRandom(this.hash(seed));
     const cells = this.engine.createBoardCells();
     const tiles: SerpentileTile[] = cells.map((_, index) => {
       const pattern = PATH_PATTERNS[Math.floor(random() * PATH_PATTERNS.length)];
@@ -38,10 +39,11 @@ export class SerpentileGeneratorService {
       initialState: {
         version: 2,
         date,
+        round,
         status: 'running',
         placements,
         snake: { q: 0, r: 0, incomingSide: 3, trail: [{ q: 0, r: 0 }] },
-        target: this.targetFor(date, 0, 0, { q: 0, r: 0 }),
+        target: this.targetFor(date, 0, 0, { q: 0, r: 0 }, round),
         collected: 0,
         targetCount: 7,
         moves: 0,
@@ -49,11 +51,14 @@ export class SerpentileGeneratorService {
     };
   }
 
-  targetFor(date: string, collected: number, moves: number, exclude: { q: number; r: number }) {
+  targetFor(date: string, collected: number, moves: number, exclude: { q: number; r: number }, round = 0) {
     const cells = this.engine.createBoardCells().filter(
       (cell) => cell.q !== exclude.q || cell.r !== exclude.r
     );
-    const random = this.seededRandom(this.hash(`${date}:${collected}:${moves}`));
+    const targetSeed = round === 0
+      ? `${date}:${collected}:${moves}`
+      : `${date}:${round}:${collected}:${moves}`;
+    const random = this.seededRandom(this.hash(targetSeed));
     const cell = cells[Math.floor(random() * cells.length)];
     return { q: cell.q, r: cell.r };
   }

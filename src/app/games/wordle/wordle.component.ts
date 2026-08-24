@@ -1,12 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
-import { GameManagerService } from '../../shared/services/game-manager.service';
-import { GameStorageService } from '../../shared/services/game-storage.service';
 import { catchError, of } from 'rxjs';
 
 interface WordleWord {
@@ -39,13 +36,13 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
   targetWord: string = '';
   hasSavedProgress: boolean = false;
   isLoading: boolean = false;
+  roundIsDailyChallenge: boolean = true;
 
   // Lista de palabras optimizada con IDs
   private wordList: WordleWord[] = [];
   private wordMap: Map<string, WordleWord> = new Map();
 
   private http = inject(HttpClient);
-  private wordleGameManager = inject(GameManagerService);
 
   constructor() {
     super();
@@ -124,6 +121,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     if (progress.gameData?.targetWord) {
       this.targetWord = progress.gameData.targetWord;
     }
+    this.roundIsDailyChallenge = progress.gameData?.roundIsDailyChallenge ?? !this.isGamePlayedToday();
     
     console.log('Progreso Wordle restaurado:', progress);
   }
@@ -139,7 +137,8 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
       attempts: this.board,
       maxAttempts: this.maxAttempts,
       gameData: {
-        targetWord: this.targetWord
+        targetWord: this.targetWord,
+        roundIsDailyChallenge: this.roundIsDailyChallenge,
       }
     });
   }
@@ -153,11 +152,6 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
       return;
     }
 
-    // Si ya se jugó hoy, no inicializar
-    if (this.isGamePlayedToday()) {
-      return;
-    }
-
     // Inicializar tablero
     this.board = Array(this.maxAttempts).fill(null).map(() => 
       Array(this.wordLength).fill('')
@@ -167,6 +161,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
     this.gameWon = false;
     this.errorMessage = '';
     this.hasSavedProgress = false;
+    this.roundIsDailyChallenge = !this.isGamePlayedToday();
 
     // Obtener palabra del día desde la API
     this.getWordOfTheDay();
@@ -262,9 +257,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
   }
 
   playAgain(): void {
-    this.wordleGameManager.resetGameDailyState(this.gameId);
     this.clearProgress();
-    this.dailyState = null;
     this.currentAttempt = 0;
     this.currentGuess = '';
     this.gameWon = false;

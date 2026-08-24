@@ -256,7 +256,10 @@ export class GameManagerService {
     if (!game) return;
 
     const today = argentinaDateKey();
-    const dailyState: DailyGameState = {
+    const isRepeatRound = game.mode === 'daily' &&
+      game.dailyState?.completed === true &&
+      normalizeLegacyUtcDateKey(game.dailyState.date) === today;
+    const roundResult: DailyGameState = {
       date: today,
       completed: true,
       won,
@@ -264,6 +267,7 @@ export class GameManagerService {
       maxAttempts: typeof gameData?.maxAttempts === 'number' ? gameData.maxAttempts : 6,
       gameData
     };
+    const dailyState = isRepeatRound ? game.dailyState! : roundResult;
 
     // Actualizar estado diario
     // Persist after calculating stats so newly added games are stored too.
@@ -275,7 +279,7 @@ export class GameManagerService {
     // Actualizar el observable
     this.updateGameInList(gameId, { dailyState, stats });
 
-    if (game.mode === 'daily') {
+    if (game.mode === 'daily' && !isRepeatRound) {
       const score = typeof gameData?.score === 'number' ? gameData.score : undefined;
       void this.dailyActivity.recordDailyGame(gameId, won, attempts, score);
     }
@@ -287,11 +291,15 @@ export class GameManagerService {
     if (!game) return;
 
     const today = date ?? argentinaDateKey();
-    const dailyState: DailyGameState = {
+    const isRepeatRound = game.mode === 'daily' &&
+      game.dailyState?.completed === true &&
+      normalizeLegacyUtcDateKey(game.dailyState.date) === today;
+    const roundResult: DailyGameState = {
       date: today,
       completed: true,
       gameData: { ...gameData, score }
     };
+    const dailyState = isRepeatRound ? game.dailyState! : roundResult;
     const previousStats = game.stats ?? {
       totalGames: 0,
       wins: 0,
@@ -306,7 +314,7 @@ export class GameManagerService {
 
     this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
     this.updateGameInList(gameId, { dailyState, stats });
-    if (game.mode === 'daily') {
+    if (game.mode === 'daily' && !isRepeatRound) {
       void this.dailyActivity.recordDailyGame(gameId, true, 0, score);
     }
   }

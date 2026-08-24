@@ -9,12 +9,12 @@
   <main class="wordle-page">
     <header class="masthead">
       <div>
-        <p class="eyebrow">El acertijo diario de Game-DLE</p>
+        <p class="eyebrow">{{ roundIsDailyChallenge ? 'El acertijo diario de Game-DLE' : 'Ronda libre de Game-DLE' }}</p>
         <h2>Palabra<span>.</span></h2>
       </div>
       <div class="masthead-actions">
         <div class="edition" aria-label="Edición del juego">
-          <span>Edición diaria</span>
+          <span>{{ roundIsDailyChallenge ? 'Edición diaria' : 'Sin límite' }}</span>
           <strong>#{{ currentAttempt < maxAttempts ? currentAttempt + 1 : maxAttempts }}</strong>
         </div>
       </div>
@@ -26,7 +26,7 @@
         <h3>Preparando el reto</h3>
         <p>Estamos eligiendo las cinco letras de hoy.</p>
       </section>
-    } @else if (hasSavedProgress && !isGamePlayedToday()) {
+    } @else if (hasSavedProgress) {
       <section class="state-card">
         <div class="state-mark" aria-hidden="true">↗</div>
         <p class="eyebrow">Partida en pausa</p>
@@ -38,16 +38,9 @@
       <section class="state-card">
         <div class="state-mark" aria-hidden="true">{{ gameWon ? '✓' : '×' }}</div>
         <p class="eyebrow">{{ gameWon ? 'Caso resuelto' : 'Fin del recorrido' }}</p>
-        <h3>{{ gameWon ? 'Una deducción impecable.' : 'Mañana habrá revancha.' }}</h3>
+        <h3>{{ gameWon ? 'Una deducción impecable.' : 'La revancha puede empezar ahora.' }}</h3>
         <p>La palabra era <strong>{{ targetWord }}</strong>. Completaste la partida en {{ currentAttempt }} de {{ maxAttempts }} intentos.</p>
         <button type="button" class="state-button" (click)="playAgain()">Jugar otra vez</button>
-      </section>
-    } @else if (isGamePlayedToday()) {
-      <section class="state-card">
-        <div class="state-mark" aria-hidden="true">24</div>
-        <p class="eyebrow">Desafío completado</p>
-        <h3>La próxima palabra llega mañana.</h3>
-        <p>Tu resultado de hoy ya quedó registrado. Vuelve para una nueva edición.</p>
       </section>
     } @else {
       <section class="game-layout">

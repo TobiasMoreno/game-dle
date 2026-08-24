@@ -2,7 +2,7 @@
   <main class="game-shell">
     <header class="game-intro">
       <div>
-        <p class="eyebrow">Desafío diario · {{ formattedDate }}</p>
+        <p class="eyebrow">{{ roundNumber === 0 ? 'Desafío diario · ' + formattedDate : 'Ronda libre #' + roundNumber + ' · sin límite' }}</p>
         <h1>Serpentile</h1>
         <p class="intro-copy">La serpiente no se detiene. Girá los bloques con un clic y abrile camino hasta cada luciérnaga sin dejarla escapar del tablero.</p>
       </div>
@@ -81,6 +81,7 @@
           </button>
           <button type="button" (click)="restart()"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reiniciar</button>
           @if (state.status === 'won' || state.status === 'lost') {
+            <button type="button" (click)="playAnotherRound()"><i class="fa-solid fa-forward-step" aria-hidden="true"></i> Otra ronda</button>
             <button type="button" class="share-button" (click)="share()"><i class="fa-solid fa-arrow-up-from-bracket"></i> Compartir</button>
           }
         </div>

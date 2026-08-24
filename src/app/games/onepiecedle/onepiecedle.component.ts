@@ -61,6 +61,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   charactersLoaded: boolean = false;
   hasSavedProgress: boolean = false;
   revealedColumns: number[] = [];
+  roundIsDailyChallenge: boolean = true;
 
   // Getters para temas y configuración
   get onepieceTheme() { return this.onepieceThemeService.getMusicTheme(); }
@@ -89,6 +90,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
       this.gameWon = progress.gameWon;
       this.guesses = progress.attempts || [];
       this.hasSavedProgress = true;
+      this.roundIsDailyChallenge = progress.gameData?.roundIsDailyChallenge ?? !this.isGamePlayedToday();
       if (progress.gameData?.targetCharacter && this.characters.length > 0) {
         const targetData = progress.gameData.targetCharacter;
         this.targetCharacter = this.characters.find(
@@ -112,7 +114,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
         gameLost: this.currentAttempt >= this.config.maxAttempts,
         attempts: this.guesses,
         maxAttempts: this.config.maxAttempts,
-        gameData: { targetCharacter: targetCharacterData },
+        gameData: { targetCharacter: targetCharacterData, roundIsDailyChallenge: this.roundIsDailyChallenge },
       };
       this.updateProgress(progressData);
     } catch (error) {
@@ -137,6 +139,12 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
 
   private initializeGame(): void {
     if (this.characters.length === 0) return;
+    const savedProgress = this.getCurrentProgress();
+    if (savedProgress) {
+      this.restoreProgress(savedProgress);
+      return;
+    }
+    this.roundIsDailyChallenge = !this.isGamePlayedToday();
     
     // Limpiar progreso antiguo antes de iniciar un nuevo juego
     const gameIdValue = this.getGameIdSafely();
@@ -171,6 +179,7 @@ export class OnePieceDLEComponent extends BaseGameComponent implements OnInit, O
   }
 
   onPlayAgain(): void {
+    this.clearProgress();
     this.initializeGame();
   }
 

@@ -31,6 +31,8 @@ export interface SerpentileSnake extends HexCoordinate {
 export interface SerpentileGameState {
   version: 2;
   date: string;
+  /** Cero identifica el desafío diario; los valores siguientes son rondas libres. */
+  round?: number;
   status: SerpentileStatus;
   placements: SerpentilePlacement[];
   snake: SerpentileSnake;

@@ -11,18 +11,8 @@
   [hideDailyState]="false"
   [footerTheme]="'loldle'">
   
-  <!-- Mensaje si ya se jugó hoy -->
-  @if(isGamePlayedTodaySafe()) {
-  <div class="text-center py-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg p-6 shadow-lg border-2 border-yellow-400">
-    <div class="text-4xl mb-4">⚔️</div>
-    <h2 class="text-2xl font-bold text-white mb-4">
-      ¡Ya jugaste LoL DLE hoy!
-    </h2>
-    <p class="text-yellow-100">Vuelve mañana para un nuevo desafío de campeones.</p>
-  </div>
-  }
   <!-- Mensaje de progreso guardado -->
-  @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
+  @if(hasSavedProgress) {
   <div class="text-center py-8 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-lg p-6 shadow-lg border-2 border-cyan-400">
     <!-- Controles de música -->
     <div class="mb-6">
@@ -48,7 +38,7 @@
   </div>
   }
   <!-- Juego activo -->
-  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts &&
+  @if(!gameWon && currentAttempt < config.maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
     <!-- Controles de música -->
@@ -65,6 +55,7 @@
       <h2 class="text-2xl font-semibold mb-2 text-white">
         Adivina el campeón de League of Legends
       </h2>
+      <p class="text-yellow-100 font-bold mb-1">{{ roundIsDailyChallenge ? 'Desafío diario' : 'Ronda libre · sin límite' }}</p>
       <p class="text-yellow-100 font-medium">
         Tienes {{ currentAttempt }}/{{ config.maxAttempts }} intentos - Compara con el campeón.
       </p>
@@ -83,7 +74,7 @@
     </app-guess-input>
 
     <!-- Tablero de intentos -->
-    @defer (when !isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts) {
+    @defer (when !gameWon && currentAttempt < config.maxAttempts) {
       <app-game-board
         [columns]="boardColumns"
         [rows]="getBoardRows()"

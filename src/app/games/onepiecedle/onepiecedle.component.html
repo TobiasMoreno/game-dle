@@ -11,18 +11,8 @@
   [hideDailyState]="false"
   [footerTheme]="'onepiece'">
   
-  <!-- Mensaje si ya se jugó hoy -->
-  @if(isGamePlayedTodaySafe()) {
-  <div class="text-center py-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg p-6 shadow-lg">
-    <div class="text-4xl mb-4">🏴‍☠️</div>
-    <h2 class="text-2xl font-bold text-white mb-4">
-      ¡Ya jugaste One Piece DLE hoy!
-    </h2>
-    <p class="text-orange-100">Vuelve mañana para un nuevo desafío pirata.</p>
-  </div>
-  }
   <!-- Mensaje de progreso guardado -->
-  @if(hasSavedProgress && !isGamePlayedTodaySafe()) {
+  @if(hasSavedProgress) {
   <div class="text-center py-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg p-6 shadow-lg">
     <!-- Controles de música -->
     <div class="mb-6">
@@ -48,7 +38,7 @@
   </div>
   }
   <!-- Juego activo -->
-  @if(!isGamePlayedTodaySafe() && !gameWon && currentAttempt < config.maxAttempts &&
+  @if(!gameWon && currentAttempt < config.maxAttempts &&
   !hasSavedProgress) {
   <div class="space-y-6">
     <!-- Controles de música -->
@@ -65,6 +55,7 @@
       <h2 class="text-2xl font-semibold mb-2 text-white">
         Adivina el personaje de One Piece
       </h2>
+      <p class="text-orange-100 font-bold mb-1">{{ roundIsDailyChallenge ? 'Desafío diario' : 'Ronda libre · sin límite' }}</p>
       <p class="text-orange-100 font-medium">
         Tienes {{ currentAttempt }}/{{ config.maxAttempts }} intentos - Compara con el personaje.
       </p>

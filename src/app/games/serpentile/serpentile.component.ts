@@ -73,6 +73,10 @@ export class SerpentileComponent implements OnInit, OnDestroy {
     return (this.state.collected / this.state.targetCount) * 100;
   }
 
+  get roundNumber(): number {
+    return this.state.round ?? 0;
+  }
+
   get snakeLinePoints(): string {
     return this.renderTrail.map(({ x, y }) => `${x},${y}`).join(' ');
   }
@@ -123,6 +127,18 @@ export class SerpentileComponent implements OnInit, OnDestroy {
     this.state = this.cloneState(this.puzzle.initialState);
     this.displayHead = this.edgePointFor(this.state.snake, this.state.snake.incomingSide);
     this.renderTrail = [{ ...this.displayHead }];
+    this.storage.save(this.state);
+    this.scheduleNextStep(550);
+  }
+
+  playAnotherRound(): void {
+    this.stopAnimation();
+    const date = argentinaDateKey();
+    this.puzzle = this.generator.createDailyPuzzle(date, this.roundNumber + 1);
+    this.state = this.cloneState(this.puzzle.initialState);
+    this.displayHead = this.edgePointFor(this.state.snake, this.state.snake.incomingSide);
+    this.renderTrail = [{ ...this.displayHead }];
+    this.shareMessage = '';
     this.storage.save(this.state);
     this.scheduleNextStep(550);
   }
@@ -252,7 +268,7 @@ export class SerpentileComponent implements OnInit, OnDestroy {
       moves,
       snake: { ...move.coordinate, incomingSide: move.incomingSide, trail },
       target: collectedTarget && collected < this.state.targetCount
-        ? this.generator.targetFor(this.state.date, collected, moves, move.coordinate)
+        ? this.generator.targetFor(this.state.date, collected, moves, move.coordinate, this.roundNumber)
         : this.state.target,
     };
 

@@ -19,6 +19,15 @@ describe('SerpentileGeneratorService', () => {
       .not.toEqual(service.createDailyPuzzle('2026-08-13').tiles);
   });
 
+  it('genera rondas libres distintas y reproducibles para la misma fecha', () => {
+    const daily = service.createDailyPuzzle('2026-08-23');
+    const freeRound = service.createDailyPuzzle('2026-08-23', 1);
+
+    expect(service.createDailyPuzzle('2026-08-23', 1)).toEqual(freeRound);
+    expect(freeRound.tiles).not.toEqual(daily.tiles);
+    expect(freeRound.initialState.round).toBe(1);
+  });
+
   it('genera objetivos reproducibles que no coinciden con la serpiente', () => {
     const first = service.targetFor('2026-08-13', 2, 10, { q: 1, r: 0 });
     const second = service.targetFor('2026-08-13', 2, 10, { q: 1, r: 0 });

@@ -54,6 +54,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   charactersLoaded: boolean = false;
   hasSavedProgress: boolean = false;
   revealedColumns: number[] = [];
+  roundIsDailyChallenge: boolean = true;
 
   // Getters para temas y configuración
   get lolTheme() { return this.loldleThemeService.getMusicTheme(); }
@@ -82,6 +83,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
       this.gameWon = progress.gameWon;
       this.guesses = progress.attempts || [];
       this.hasSavedProgress = true;
+      this.roundIsDailyChallenge = progress.gameData?.roundIsDailyChallenge ?? !this.isGamePlayedToday();
       if (progress.gameData?.targetCharacter && this.characters.length > 0) {
         const targetData = progress.gameData.targetCharacter;
         this.targetCharacter = this.characters.find(
@@ -105,7 +107,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
         gameLost: this.currentAttempt >= this.config.maxAttempts,
         attempts: this.guesses,
         maxAttempts: this.config.maxAttempts,
-        gameData: { targetCharacter: targetCharacterData },
+        gameData: { targetCharacter: targetCharacterData, roundIsDailyChallenge: this.roundIsDailyChallenge },
       };
       this.updateProgress(progressData);
     } catch (error) {
@@ -130,6 +132,12 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
 
   private initializeGame(): void {
     if (this.characters.length === 0) return;
+    const savedProgress = this.getCurrentProgress();
+    if (savedProgress) {
+      this.restoreProgress(savedProgress);
+      return;
+    }
+    this.roundIsDailyChallenge = !this.isGamePlayedToday();
     this.targetCharacter = this.getRandomCharacter();
     this.currentAttempt = 0;
     this.gameWon = false;
@@ -157,6 +165,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   }
 
   onPlayAgain(): void {
+    this.clearProgress();
     this.initializeGame();
   }
 
