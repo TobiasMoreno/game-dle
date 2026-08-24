@@ -121,6 +121,52 @@
 .legend span:first-child i { background: var(--moss); }
 .legend span:nth-child(2) i { background: var(--mustard); }
 
+.keyboard {
+  display: grid;
+  width: min(22rem, 100%);
+  gap: .3rem;
+  margin-top: .35rem;
+  padding-top: .65rem;
+  border-top: 1px solid rgba(23, 34, 29, .14);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: .25rem;
+}
+
+.keyboard-key {
+  display: grid;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid #bdb4a3;
+  border-radius: .2rem;
+  padding: 0;
+  color: var(--ink);
+  background: rgba(255, 252, 245, .82);
+  font: 900 .68rem/1 'Trebuchet MS', sans-serif;
+  box-shadow: 1px 2px 0 rgba(23, 34, 29, .1);
+  transition: transform 120ms ease, background 160ms ease, color 160ms ease, opacity 160ms ease;
+}
+
+.keyboard-key:hover:not(:disabled) { transform: translateY(-1px); border-color: var(--moss); }
+.keyboard-key:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.keyboard-key--wide { flex: 1.45 1 0; font-size: .9rem; }
+.keyboard-key--correct { border-color: var(--moss-dark); color: #fffdf5; background: var(--moss); }
+.keyboard-key--present { border-color: #a77d1f; color: var(--ink); background: var(--mustard); }
+.keyboard-key--absent {
+  border-color: #565b56;
+  color: rgba(255, 255, 255, .7);
+  background: #656b65;
+  box-shadow: none;
+  opacity: .58;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
 .play-panel { border-left: 1px solid #c7bdab; padding-left: clamp(1.2rem, 3vw, 2rem); }
 .play-panel h3 { margin: 0; font: 500 1.65rem/1.1 Georgia, serif; }
 .play-panel > p { margin: .55rem 0 1.25rem; color: var(--muted); font: italic .85rem/1.5 Georgia, serif; }
@@ -197,6 +243,8 @@
   .board-row { grid-template-columns: repeat(5, clamp(2.75rem, 14vw, 3.25rem)); }
   .wordle-cell { width: clamp(2.75rem, 14vw, 3.25rem); height: clamp(2.75rem, 14vw, 3.25rem); }
   .play-panel { width: min(22rem, 100%); margin: auto; border-top: 1px solid #c7bdab; border-left: 0; padding: 1rem 0 0; }
+  .keyboard { width: min(24rem, 100%); }
+  .keyboard-key { height: 2.5rem; }
   .play-panel > p { margin-bottom: .8rem; }
   .progress-track { margin-bottom: .8rem; }
   .state-card { min-height: 22rem; }

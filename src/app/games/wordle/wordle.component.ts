@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { catchError, of } from 'rxjs';
+import { buildKeyboardState, WordleLetterState } from './wordle-keyboard.utils';
 
 interface WordleWord {
   id: number;
@@ -25,6 +26,11 @@ interface WordleWord {
 })
 export class WordleComponent extends BaseGameComponent implements OnInit {
   readonly maxAttempts = 6;
+  readonly keyboardRows = [
+    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+    ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE'],
+  ];
   private readonly wordLength = 5;
   private readonly gameId = 'wordle';
 
@@ -188,11 +194,59 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
    * Maneja el cambio en el input
    */
   onInputChange(event: any): void {
-    this.currentGuess = event.target.value
+    const normalizedGuess = event.target.value
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .toUpperCase();
-    this.errorMessage = '';
+      .toUpperCase()
+      .replace(/[^A-Z]/g, '');
+    const allowedGuess = [...normalizedGuess]
+      .filter((letter) => !this.isLetterDisabled(letter))
+      .join('')
+      .slice(0, this.wordLength);
+
+    this.currentGuess = allowedGuess;
+    event.target.value = allowedGuess;
+    this.errorMessage = allowedGuess === normalizedGuess
+      ? ''
+      : 'Esa letra ya fue descartada.';
+  }
+
+  onPhysicalKeyDown(event: KeyboardEvent): void {
+    const letter = event.key.toUpperCase();
+    if (letter.length === 1 && this.isLetterDisabled(letter)) {
+      event.preventDefault();
+      this.errorMessage = `La letra ${letter} ya fue descartada.`;
+    }
+  }
+
+  pressKeyboardKey(key: string): void {
+    if (key === 'ENTER') {
+      this.submitGuess();
+      return;
+    }
+    if (key === 'BACKSPACE') {
+      this.currentGuess = this.currentGuess.slice(0, -1);
+      this.errorMessage = '';
+      return;
+    }
+    if (this.currentGuess.length < this.wordLength && !this.isLetterDisabled(key)) {
+      this.currentGuess += key;
+      this.errorMessage = '';
+    }
+  }
+
+  getLetterState(letter: string): WordleLetterState | null {
+    return buildKeyboardState(this.board, this.targetWord, this.currentAttempt)[letter] ?? null;
+  }
+
+  isLetterDisabled(letter: string): boolean {
+    return this.getLetterState(letter) === 'absent';
+  }
+
+  getKeyboardKeyLabel(key: string): string {
+    if (key === 'ENTER') return 'Comprobar palabra';
+    if (key === 'BACKSPACE') return 'Borrar letra';
+    return `Letra ${key}`;
   }
 
   /**

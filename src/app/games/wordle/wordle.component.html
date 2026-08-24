@@ -61,6 +61,32 @@
             <span><i></i>Desubicada</span>
             <span><i></i>Ausente</span>
           </div>
+          <div class="keyboard" aria-label="Teclado de Wordle">
+            @for (row of keyboardRows; track $index) {
+              <div class="keyboard-row">
+                @for (key of row; track key) {
+                  <button
+                    type="button"
+                    class="keyboard-key"
+                    [class.keyboard-key--wide]="key === 'ENTER' || key === 'BACKSPACE'"
+                    [class.keyboard-key--correct]="getLetterState(key) === 'correct'"
+                    [class.keyboard-key--present]="getLetterState(key) === 'present'"
+                    [class.keyboard-key--absent]="getLetterState(key) === 'absent'"
+                    [disabled]="key.length === 1 && isLetterDisabled(key)"
+                    [attr.aria-label]="getKeyboardKeyLabel(key)"
+                    (click)="pressKeyboardKey(key)">
+                    @if (key === 'BACKSPACE') {
+                      <span aria-hidden="true">⌫</span>
+                    } @else if (key === 'ENTER') {
+                      <span aria-hidden="true">↵</span>
+                    } @else {
+                      {{ key }}
+                    }
+                  </button>
+                }
+              </div>
+            }
+          </div>
         </div>
 
         <aside class="play-panel">
@@ -82,6 +108,7 @@
             type="text"
             [(ngModel)]="currentGuess"
             (keyup.enter)="submitGuess()"
+            (keydown)="onPhysicalKeyDown($event)"
             (input)="onInputChange($event)"
             maxlength="5"
             autocomplete="off"
