@@ -67,6 +67,12 @@ export const routes: Routes = [
     loadComponent: () => import('./games/chronodle/chronodle.component').then(m => m.ChronodleComponent)
   },
   {
+    path: 'games/palmodle',
+    title: 'Palmó Primero | Game-DLE',
+    data: { description: 'Elegí cuál de dos figuras famosas murió primero y defendé tus tres vidas.' },
+    loadComponent: () => import('./games/palmodle/palmodle.component').then(m => m.PalmodleComponent)
+  },
+  {
     path: 'games/rankdle',
     title: 'RankDLE | Game-DLE',
     data: { description: 'Clasificá elementos según el desafío de cada ronda.' },

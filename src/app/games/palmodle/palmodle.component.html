@@ -1,0 +1,104 @@
+<div class="palmo-page">
+  <main class="palmo-shell">
+    <header class="masthead">
+      <div class="masthead__topline">
+        <span>Edición Nº {{ state.run }}</span>
+        <span>Archivo de despedidas</span>
+        <span>Precio: una vida</span>
+      </div>
+      <div class="brand-row">
+        <div class="mourning-mark" aria-hidden="true">†</div>
+        <div>
+          <p class="kicker">El duelo histórico</p>
+          <h1>¿Quién <em>palmó</em> primero?</h1>
+        </div>
+        <div class="issue-seal">10<br><small>duelos</small></div>
+      </div>
+      <p class="deck">Dos nombres. Dos finales. Elegí a la persona que murió antes y tratá de llegar al último duelo.</p>
+    </header>
+
+    <section class="scorebar" aria-label="Estado de la partida">
+      <div class="scorebar__item"><span>Duelo</span><strong>{{ state.round + 1 }} / {{ totalRounds }}</strong></div>
+      <div class="scorebar__item scorebar__lives">
+        <span>Vidas</span>
+        <strong [attr.aria-label]="state.lives + ' vidas restantes'">
+          @for (life of [1, 2, 3]; track life) { <i [class.is-lost]="life > state.lives">♥</i> }
+        </strong>
+      </div>
+      <div class="scorebar__item"><span>Aciertos</span><strong>{{ state.score }}</strong></div>
+      <div class="scorebar__item"><span>Récord</span><strong>{{ state.bestScore }}</strong></div>
+      <div class="progress-track" aria-hidden="true"><span [style.width.%]="progress"></span></div>
+    </section>
+
+    @if (state.status !== 'finished') {
+      <section class="duel" aria-labelledby="duel-title">
+        <div class="duel-heading">
+          <span class="rule-number">0{{ state.round + 1 }}</span>
+          <div><p>Última pregunta</p><h2 id="duel-title">¿Quién murió antes?</h2></div>
+          <span class="instruction">Tocá una esquela</span>
+        </div>
+
+        <div class="cards">
+          @for (person of [pair.left, pair.right]; track person.id; let index = $index) {
+            <button
+              type="button"
+              class="person-card"
+              [class.person-card--revealed]="state.status === 'revealed'"
+              [class.person-card--correct]="isCorrectPerson(person)"
+              [class.person-card--wrong]="isSelected(person) && !isCorrectPerson(person)"
+              [style.--portrait-accent]="person.accent"
+              [disabled]="state.status !== 'playing'"
+              (click)="choose(person)"
+            >
+              <span class="card-edition">{{ index === 0 ? 'A' : 'B' }} · In memoriam</span>
+              <span class="portrait" aria-hidden="true">
+                <b>{{ person.initials }}</b><i></i>
+              </span>
+              <span class="person-field">{{ person.field }}</span>
+              <strong>{{ person.name }}</strong>
+              <span class="person-meta">{{ person.country }} · nació en {{ person.born }}</span>
+              <span class="death-date">
+                @if (state.status === 'playing') { <small>Fecha reservada</small><b>•• ••• ••••</b> }
+                @else { <small>Murió el</small><b>{{ person.deathLabel }}</b> }
+              </span>
+              @if (isCorrectPerson(person)) { <span class="verdict verdict--correct">Fue primero</span> }
+              @if (isSelected(person) && !isCorrectPerson(person)) { <span class="verdict verdict--wrong">Tu elección</span> }
+            </button>
+          }
+          <div class="versus" aria-hidden="true"><span>VS</span></div>
+        </div>
+
+        @if (state.status === 'revealed') {
+          <section class="reveal" [class.reveal--wrong]="!latestAnswer?.correct" aria-live="polite">
+            <span class="reveal__mark">{{ latestAnswer?.correct ? '✓' : '×' }}</span>
+            <div>
+              <p>{{ latestAnswer?.correct ? 'Buen ojo' : 'La historia no perdona' }}</p>
+              <h3>{{ correctPerson.shortName }} murió primero.</h3>
+              <span>Entre ambas muertes pasó {{ gapLabel }}.</span>
+            </div>
+            <button type="button" (click)="next()">Siguiente duelo <span>→</span></button>
+          </section>
+        } @else {
+          <p class="quiet-note">Las fechas aparecen después de elegir. Tenés tres vidas para completar la edición.</p>
+        }
+      </section>
+    } @else {
+      <section class="finale" aria-live="polite">
+        <div class="finale__stamp">FIN<br><small>de la edición</small></div>
+        <p class="kicker">Cierre de archivo</p>
+        <h2>{{ state.score >= 8 ? 'Historiador de primera' : state.score >= 5 ? 'Buena memoria para las despedidas' : 'Te faltó leer los obituarios' }}</h2>
+        <p class="finale__score"><strong>{{ state.score }}</strong><span>aciertos<br>de {{ state.answers.length }}</span></p>
+        <div class="answer-tape" aria-label="Resumen de respuestas">
+          @for (answer of state.answers; track answer.round) { <span [class.is-correct]="answer.correct">{{ answer.correct ? '✓' : '×' }}</span> }
+        </div>
+        <p class="finale__copy">Tu mejor marca es {{ state.bestScore }}. Cada edición mezcla nuevos duelos para que la próxima partida no sea igual.</p>
+        <div class="finale__actions">
+          <button type="button" class="secondary-action" (click)="share()">Compartir resultado</button>
+          <button type="button" class="primary-action" (click)="playAgain()">Jugar otra edición <span>→</span></button>
+        </div>
+        @if (shareMessage) { <small class="share-message">{{ shareMessage }}</small> }
+      </section>
+    }
+  </main>
+  <app-footer theme="default" />
+</div>

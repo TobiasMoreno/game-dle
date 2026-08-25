@@ -129,6 +129,23 @@ export class GameManagerService {
       }
     },
     {
+      id: 'palmodle',
+      name: 'Palmó Primero',
+      description: 'Elegí cuál de dos figuras famosas murió antes',
+      route: '/games/palmodle',
+      icon: 'fas fa-book-skull',
+      mode: 'unlimited',
+      durationLabel: '2–4 min',
+      badge: 'Nuevo',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0]
+      }
+    },
+    {
       id: 'futboldle',
       name: 'FutbolDLE',
       description: 'Descubrí el apellido de 5 letras del futbolista oculto',
