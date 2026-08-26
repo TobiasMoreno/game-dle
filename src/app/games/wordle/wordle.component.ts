@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
@@ -49,6 +49,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
   private wordMap: Map<string, WordleWord> = new Map();
 
   private http = inject(HttpClient);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor() {
     super();
@@ -64,7 +65,7 @@ export class WordleComponent extends BaseGameComponent implements OnInit {
 
     this.setGameId(this.gameId);
     // Cargar palabras desde el JSON
-    this.loadWordsFromJson();
+    if (this.isBrowser) this.loadWordsFromJson();
   }
 
   /**

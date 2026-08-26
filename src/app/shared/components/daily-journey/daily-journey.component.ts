@@ -30,12 +30,14 @@ export class DailyJourneyComponent implements OnDestroy {
     return Boolean(user && !user.isAnonymous);
   });
 
-  private readonly countdownTimer = window.setInterval(() => {
-    this.countdown.set(this.formatCountdown(millisecondsUntilArgentinaMidnight()));
-  }, 1000);
+  private readonly countdownTimer = typeof window !== 'undefined'
+    ? window.setInterval(() => {
+        this.countdown.set(this.formatCountdown(millisecondsUntilArgentinaMidnight()));
+      }, 1000)
+    : null;
 
   ngOnDestroy(): void {
-    window.clearInterval(this.countdownTimer);
+    if (this.countdownTimer !== null) window.clearInterval(this.countdownTimer);
   }
 
   toggleExpanded(): void {

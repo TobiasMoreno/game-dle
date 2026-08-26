@@ -7,6 +7,7 @@ import { ThemeService } from '../../services/theme.service';
 import { DailyActivityService } from '../../services/daily-activity.service';
 import { FooterComponent } from '../footer/footer.component';
 import { AdSlotComponent } from '../ad-slot/ad-slot.component';
+import { GameEditorialContentComponent } from '../game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../config/adsense.config';
 import { argentinaDateKey } from '../../utils/daily-activity.utils';
 
@@ -16,7 +17,7 @@ import { argentinaDateKey } from '../../utils/daily-activity.utils';
  */
 @Component({
   selector: 'app-base-game',
-  imports: [FooterComponent, AdSlotComponent],
+  imports: [FooterComponent, AdSlotComponent, GameEditorialContentComponent],
   templateUrl: './base-game.component.html',
   styles: []
 })
@@ -36,6 +37,7 @@ export class BaseGameComponent {
   hideDailyState = input<boolean>(false);
   fitViewport = input<boolean>(false);
   footerTheme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle'>('default');
+  editorialGameId = input<string>('');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://game-dle.web.app/sitemap.xml

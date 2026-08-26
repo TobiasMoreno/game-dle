@@ -8,6 +8,28 @@ Convertir Game-DLE en un sitio que, además de ofrecer juegos funcionales, prese
 
 Este documento no garantiza la aprobación: Google realiza una revisión propia y no publica una cantidad mínima de páginas, palabras o visitas. El objetivo es corregir los problemas observables del proyecto y alinearlo con sus políticas oficiales.
 
+## Estado de ejecución
+
+Implementado en el código el 25 de agosto de 2026:
+
+- Páginas públicas de Acerca de, Privacidad, Términos y Contacto.
+- Enlaces permanentes a esas páginas desde el footer.
+- Títulos, descripciones, Open Graph y URL canonical por ruta.
+- Archivos públicos `robots.txt` y `sitemap.xml`.
+- Prerenderizado estático de 18 rutas públicas: home, juegos y páginas institucionales.
+- Compatibilidad de almacenamiento, autenticación, audio y animaciones con el render del servidor.
+- Verificación local de que el HTML generado contiene metadatos, canonical y contenido editorial sin depender de JavaScript.
+- Contenido editorial específico en los doce juegos: reglas, metodología, pistas, referencias, preguntas frecuentes y fecha de revisión.
+- Enlaces internos entre juegos relacionados.
+- Retiro de los anuncios laterales dobles de ChronoDLE, RankDLE, RoscoDLE y Tutti Frutti durante la etapa de revisión.
+
+Pendiente antes de solicitar revisión:
+
+- Desplegar y comprobar las nuevas rutas en producción.
+- Configurar Privacidad y mensajes/CMP dentro de la cuenta de AdSense.
+- Enviar y validar el sitemap en Search Console.
+- Auditar licencias y fuentes de imágenes, música y marcas de terceros.
+
 ## Diagnóstico actual
 
 Game-DLE ya contiene numerosos juegos y mecánicas originales. El problema más probable no es la cantidad de juegos, sino cómo puede interpretar el sitio un revisor o crawler:
@@ -124,10 +146,10 @@ Un simple enlace `mailto:` es útil, pero una página dedicada aporta contexto, 
 
 ### Criterio de terminado para la prioridad 1
 
-- [ ] Las cuatro rutas existen y cargan directamente mediante su URL.
-- [ ] Todas están enlazadas desde el footer.
-- [ ] El texto es específico de Game-DLE y coincide con los servicios realmente usados.
-- [ ] No existen placeholders como “Tu Nombre” o “correo de ejemplo”.
+- [x] Las cuatro rutas existen y cargan directamente mediante su URL.
+- [x] Todas están enlazadas desde el footer.
+- [x] El texto es específico de Game-DLE y coincide con los servicios realmente usados.
+- [x] No existen placeholders como “Tu Nombre” o “correo de ejemplo”.
 - [ ] Las páginas son legibles en dispositivos móviles.
 - [ ] Cada página tiene título y descripción SEO propios.
 
@@ -229,12 +251,12 @@ Los juegos ofrecen valor interactivo, pero el crawler y el revisor también nece
 
 ### Criterio de terminado para la prioridad 2
 
-- [ ] Cada juego tiene una introducción original y específica.
-- [ ] Las instrucciones pueden entenderse sin comenzar una partida.
-- [ ] Las fuentes están visibles y son accesibles.
-- [ ] Los datos muestran una fecha de revisión cuando corresponde.
-- [ ] Las preguntas frecuentes no son idénticas entre juegos.
-- [ ] El contenido informativo aparece antes de cualquier anuncio inferior.
+- [x] Cada juego tiene una introducción original y específica.
+- [x] Las instrucciones pueden entenderse sin comenzar una partida.
+- [x] Las fuentes están visibles y son accesibles.
+- [x] Los datos muestran una fecha de revisión cuando corresponde.
+- [x] Las preguntas frecuentes no son idénticas entre juegos.
+- [x] El contenido informativo aparece antes de cualquier anuncio inferior.
 - [ ] No se generó contenido masivo sin revisión manual.
 
 ---
@@ -352,7 +374,7 @@ Cada ruta debe tener:
 
 ### Criterio de terminado para la prioridad 4
 
-- [ ] El HTML descargado de cada ruta contiene título, descripción y texto útil.
+- [x] El HTML generado de cada ruta contiene título, descripción y texto útil.
 - [ ] `robots.txt` responde con HTTP 200.
 - [ ] `sitemap.xml` responde con HTTP 200 y contiene las rutas correctas.
 - [ ] Existe una sola versión canónica de cada URL.
@@ -494,18 +516,18 @@ Responsabilidades:
 
 ### Etapa C — Rastreo
 
-- [ ] Implementar prerenderizado.
-- [ ] Crear sitemap y robots.
-- [ ] Añadir canonical y metadatos únicos.
-- [ ] Revisar enlaces internos y rutas huérfanas.
+- [x] Implementar prerenderizado.
+- [x] Crear sitemap y robots.
+- [x] Añadir canonical y metadatos únicos.
+- [x] Revisar enlaces internos y rutas huérfanas.
 
 ### Etapa D — Validación
 
-- [ ] Ejecutar build y tests.
+- [x] Ejecutar build de producción.
 - [ ] Revisar escritorio y móvil.
 - [ ] Validar enlaces y fuentes.
 - [ ] Inspeccionar rutas en Search Console.
-- [ ] Verificar que el contenido aparezca en el HTML renderizado.
+- [x] Verificar que el contenido aparezca en el HTML renderizado.
 - [ ] Confirmar que no existan anuncios en estados sin contenido.
 
 ### Etapa E — Nueva solicitud
@@ -554,12 +576,12 @@ Responsabilidades:
 
 ### Técnica
 
-- [ ] Rutas prerenderizadas o HTML inicial con contenido significativo.
+- [x] Rutas prerenderizadas o HTML inicial con contenido significativo.
 - [ ] Sitemap válido y enviado.
 - [ ] Robots válido.
-- [ ] Canonical correcto.
-- [ ] Metadatos únicos.
-- [ ] Sin errores visibles de consola o red.
+- [x] Canonical correcto en el HTML generado.
+- [x] Metadatos únicos.
+- [x] Build de producción sin errores.
 - [ ] Sitio rápido y usable en móvil.
 
 ### Privacidad

@@ -13,6 +13,30 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
+    path: 'acerca-de',
+    title: 'Acerca de Game-DLE | Juegos creados en Argentina',
+    data: { page: 'about', description: 'Conocé quién crea Game-DLE, cómo se desarrollan sus juegos y qué buscamos aportar con cada desafío.' },
+    loadComponent: () => import('./pages/site-info/site-info.component').then(m => m.SiteInfoComponent)
+  },
+  {
+    path: 'privacidad',
+    title: 'Política de privacidad | Game-DLE',
+    data: { page: 'privacy', description: 'Información sobre almacenamiento local, Firebase, YouTube, publicidad, cookies y opciones de privacidad en Game-DLE.' },
+    loadComponent: () => import('./pages/site-info/site-info.component').then(m => m.SiteInfoComponent)
+  },
+  {
+    path: 'terminos',
+    title: 'Términos de uso | Game-DLE',
+    data: { page: 'terms', description: 'Condiciones de uso, propiedad intelectual, disponibilidad y responsabilidades aplicables a Game-DLE.' },
+    loadComponent: () => import('./pages/site-info/site-info.component').then(m => m.SiteInfoComponent)
+  },
+  {
+    path: 'contacto',
+    title: 'Contacto | Game-DLE',
+    data: { page: 'contact', description: 'Contactá al responsable de Game-DLE para informar errores, sugerencias, privacidad o derechos de autor.' },
+    loadComponent: () => import('./pages/site-info/site-info.component').then(m => m.SiteInfoComponent)
+  },
+  {
     path: 'games/wordle',
     title: 'Wordle | Game-DLE',
     data: { description: 'Adiviná la palabra diaria en seis intentos.' },

@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { ThemeService } from '../../shared/services/theme.service';
 import { ROSCO_GENERAL_CATEGORIES, ROSCO_LEAGUES } from './roscodle-catalog';
@@ -12,7 +13,7 @@ import { RoscoCategory, RoscoLeague, RoscoLeagueOption, RoscoLetter, RoscoResult
 
 @Component({
   selector: 'app-roscodle',
-  imports: [CommonModule, FormsModule, AdSlotComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, AdSlotComponent, FooterComponent, GameEditorialContentComponent],
   templateUrl: './roscodle.component.html',
   styleUrl: './roscodle.component.css',
 })

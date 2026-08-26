@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameProgress } from '../../shared/models/game.model';
 import { GameStorageService } from '../../shared/services/game-storage.service';
@@ -17,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-geodle',
-  imports: [FormsModule, AdSlotComponent, FooterComponent],
+  imports: [FormsModule, AdSlotComponent, FooterComponent, GameEditorialContentComponent],
   templateUrl: './geodle.component.html',
   styleUrl: './geodle.component.css',
 })

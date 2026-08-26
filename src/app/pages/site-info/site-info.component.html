@@ -1,0 +1,149 @@
+<div class="info-page">
+  <main class="info-shell">
+    <nav class="crumbs" aria-label="Migas de pan">
+      <a routerLink="/home">Game-DLE</a><span aria-hidden="true">/</span>
+      <span>
+        @if (page === 'about') { Acerca del proyecto }
+        @if (page === 'privacy') { Privacidad }
+        @if (page === 'terms') { Términos de uso }
+        @if (page === 'contact') { Contacto }
+      </span>
+    </nav>
+
+    @if (page === 'about') {
+      <article class="document document--about">
+        <header class="document-hero">
+          <span class="folio">01 · EL PROYECTO</span>
+          <p class="eyebrow">Hecho en Argentina</p>
+          <h1>Juegos cortos,<br><em>curiosidad larga.</em></h1>
+          <p class="lead">Game-DLE es una colección independiente de desafíos de palabras, música, geografía, historia y cultura popular. Cada juego busca transformar datos y reglas conocidas en una experiencia propia, clara y fácil de compartir.</p>
+        </header>
+
+        <div class="manifesto-grid">
+          <section>
+            <span class="section-number">01</span>
+            <h2>Quién está detrás</h2>
+            <p>Game-DLE fue creado y es mantenido por <strong>Tobias Emiliano Moreno</strong>, desarrollador web argentino. Es un proyecto personal: no pertenece a una empresa de medios ni está producido automáticamente por una red de sitios.</p>
+            <p>El desarrollo incluye el diseño de las mecánicas, la programación de los juegos, la selección de catálogos y la revisión de los datos publicados.</p>
+          </section>
+          <section>
+            <span class="section-number">02</span>
+            <h2>Qué intentamos aportar</h2>
+            <p>No buscamos reunir clones idénticos. Cada juego tiene una identidad, reglas y forma de presentar las pistas: desde ordenar acontecimientos hasta reconocer canciones o resolver un recorrido.</p>
+            <p>La intención es que una partida dure pocos minutos, pero deje una respuesta, una historia o un dato nuevo para recordar.</p>
+          </section>
+          <section>
+            <span class="section-number">03</span>
+            <h2>Cómo trabajamos</h2>
+            <p>Los catálogos se preparan y revisan antes de incorporarse. Cuando un juego depende de fechas, estadísticas o información externa, procuramos identificar sus fuentes y su período de vigencia.</p>
+            <p>Los errores pueden existir. Por eso ofrecemos una vía directa para informar datos incorrectos, problemas técnicos o dudas sobre recursos de terceros.</p>
+          </section>
+          <section>
+            <span class="section-number">04</span>
+            <h2>Independencia</h2>
+            <p>Game-DLE no está afiliado con Riot Games, Shueisha, Toei Animation, YouTube ni con otras marcas que puedan aparecer como referencia temática. Las marcas y obras pertenecen a sus respectivos titulares.</p>
+            <p>El proyecto puede financiarse mediante aportes voluntarios y publicidad, sin cambiar las respuestas ni dar ventajas dentro de los juegos.</p>
+          </section>
+        </div>
+
+        <aside class="signature-card">
+          <span aria-hidden="true">TM</span>
+          <div><small>Creador y responsable</small><strong>Tobias Emiliano Moreno</strong><p>Buenos Aires, Argentina · Actualizado el {{ updatedAt }}</p></div>
+          <a routerLink="/contacto">Escribirme <span aria-hidden="true">→</span></a>
+        </aside>
+      </article>
+    }
+
+    @if (page === 'privacy') {
+      <article class="document legal-document">
+        <header class="document-hero">
+          <span class="folio">02 · INFORMACIÓN LEGAL</span>
+          <p class="eyebrow">Transparencia de datos</p>
+          <h1>Política de <em>privacidad</em></h1>
+          <p class="lead">Esta política explica qué información utiliza Game-DLE, para qué se usa y qué opciones tenés al jugar.</p>
+          <p class="effective-date">Vigente y actualizada el {{ updatedAt }}</p>
+        </header>
+
+        <div class="legal-layout">
+          <aside class="legal-index" aria-label="Contenido de la política">
+            <strong>En esta página</strong>
+            <a href="#responsable">Responsable</a><a href="#datos">Datos utilizados</a><a href="#firebase">Firebase</a><a href="#publicidad">Publicidad y cookies</a><a href="#youtube">YouTube</a><a href="#conservacion">Conservación</a><a href="#opciones">Tus opciones</a>
+          </aside>
+          <div class="legal-copy">
+            <section id="responsable"><span>01</span><h2>Responsable y contacto</h2><p>Game-DLE es administrado por <strong>Tobias Emiliano Moreno</strong>, en Argentina. Para consultas de privacidad, solicitudes relacionadas con tus datos o reportes de seguridad podés escribir a <a href="mailto:tobiasmoreno.tm.21@gmail.com">tobiasmoreno.tm.21&#64;gmail.com</a>.</p></section>
+
+            <section id="datos"><span>02</span><h2>Información utilizada por Game-DLE</h2><p>La aplicación guarda en tu navegador preferencias y datos necesarios para continuar las partidas: tema visual, resultados, estadísticas, rachas, respuestas, progreso y, en Tutti Frutti, el nombre elegido y el código de la sala. Este almacenamiento local permanece en tu dispositivo y puede eliminarse borrando los datos del sitio desde el navegador.</p><p>No solicitamos tu nombre legal, domicilio, teléfono ni datos bancarios para jugar. Si realizás un aporte por transferencia, la operación sucede en tu banco o billetera y no dentro de Game-DLE.</p></section>
+
+            <section id="firebase"><span>03</span><h2>Firebase y sincronización</h2><p>Utilizamos servicios de Google Firebase para autenticación y base de datos. Al usar el sitio puede crearse un identificador anónimo que permite sincronizar actividad diaria. Si elegís iniciar sesión con Google, Firebase procesa la información básica necesaria para autenticarte. Las salas multijugador almacenan temporalmente el nombre elegido, respuestas, puntajes y estado de la partida.</p><p>Estos servicios pueden procesar información técnica como dirección IP, identificadores, datos del dispositivo y registros de funcionamiento de acuerdo con las políticas de Google.</p><p><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacidad y seguridad de Firebase <span aria-hidden="true">↗</span></a></p></section>
+
+            <section id="publicidad"><span>04</span><h2>Google AdSense, cookies y publicidad</h2><p>Game-DLE utiliza Google AdSense para mostrar y medir anuncios. Google y sus socios pueden utilizar cookies, web beacons, direcciones IP u otros identificadores para seleccionar, limitar y medir publicidad, prevenir fraude y elaborar informes.</p><p>Los proveedores externos, incluido Google, pueden utilizar cookies para mostrar anuncios basados en visitas anteriores a este u otros sitios. Podés administrar o desactivar la personalización desde la <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Configuración de anuncios de Google <span aria-hidden="true">↗</span></a>. Cuando sea legalmente necesario, se solicitará consentimiento mediante una plataforma de gestión compatible.</p><p>Más información en <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Cómo usa Google la información de sitios asociados <span aria-hidden="true">↗</span></a>.</p></section>
+
+            <section id="youtube"><span>05</span><h2>Contenido de YouTube</h2><p>MusicDLE utiliza el reproductor incorporado y la API de YouTube para reproducir fragmentos. Al abrir ese juego, YouTube puede recibir información técnica y aplicar sus propias tecnologías de almacenamiento conforme a sus condiciones y política de privacidad.</p><p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google <span aria-hidden="true">↗</span></a></p></section>
+
+            <section id="conservacion"><span>06</span><h2>Conservación y seguridad</h2><p>Los datos locales permanecen hasta que los borres desde el navegador. La actividad sincronizada y los datos de salas se conservan mientras sean necesarios para operar las funciones, mantener estadísticas y prevenir abusos, o hasta que se eliminen durante tareas de mantenimiento o por una solicitud aplicable.</p><p>Ningún sistema es completamente infalible, pero limitamos el acceso mediante reglas de Firebase y evitamos solicitar información que no sea necesaria para jugar.</p></section>
+
+            <section id="opciones"><span>07</span><h2>Tus opciones</h2><p>Podés jugar sin vincular una cuenta de Google, borrar el almacenamiento local, cerrar una sesión vinculada, administrar la personalización publicitaria o solicitar información y eliminación de datos asociados cuando podamos identificarlos razonablemente.</p><p>Para ejercer una solicitud, escribí desde el correo vinculado e incluí solamente la información necesaria para localizar el registro. También podés contactarnos si sos responsable de un menor o si considerás que se almacenó información de forma incorrecta.</p></section>
+
+            <section><span>08</span><h2>Cambios en esta política</h2><p>Podemos actualizar esta política cuando cambien los juegos, proveedores o requisitos aplicables. La fecha publicada al comienzo permite identificar la versión vigente.</p></section>
+          </div>
+        </div>
+      </article>
+    }
+
+    @if (page === 'terms') {
+      <article class="document legal-document">
+        <header class="document-hero">
+          <span class="folio">03 · INFORMACIÓN LEGAL</span>
+          <p class="eyebrow">Reglas del sitio</p>
+          <h1>Términos de <em>uso</em></h1>
+          <p class="lead">Al utilizar Game-DLE aceptás estas condiciones básicas, pensadas para mantener el proyecto accesible y disfrutable.</p>
+          <p class="effective-date">Vigentes y actualizados el {{ updatedAt }}</p>
+        </header>
+
+        <div class="terms-grid">
+          <section><span>01</span><h2>Finalidad</h2><p>Game-DLE ofrece juegos recreativos y educativos. El acceso es gratuito, salvo que en el futuro se identifique expresamente una función diferente. No se prometen premios económicos ni resultados con valor profesional.</p></section>
+          <section><span>02</span><h2>Uso permitido</h2><p>Podés jugar, compartir resultados y enlazar las páginas públicas. No está permitido interferir con el servicio, vulnerar salas, automatizar tráfico dañino, intentar acceder a datos ajenos o utilizar la aplicación para acosar a otras personas.</p></section>
+          <section><span>03</span><h2>Datos y exactitud</h2><p>Revisamos los catálogos antes de publicarlos, pero pueden existir errores, interpretaciones o información desactualizada. Los juegos no deben utilizarse como única fuente académica, histórica, geográfica, deportiva o profesional. Podés reportar una corrección desde la página de contacto.</p></section>
+          <section><span>04</span><h2>Propiedad intelectual</h2><p>El código, los textos editoriales, la selección y el diseño original de Game-DLE pertenecen a su autor salvo indicación distinta. Las marcas, personajes, música, imágenes y nombres de terceros pertenecen a sus titulares. Su aparición no implica patrocinio ni afiliación.</p></section>
+          <section><span>05</span><h2>Disponibilidad</h2><p>Podemos modificar, suspender o retirar funciones para corregir errores, actualizar catálogos o proteger el servicio. Procuramos conservar el progreso, pero no garantizamos que los datos locales o partidas multijugador permanezcan disponibles indefinidamente.</p></section>
+          <section><span>06</span><h2>Servicios externos</h2><p>Algunas funciones dependen de Firebase, YouTube, Google AdSense y enlaces a fuentes externas. Esos servicios tienen sus propias condiciones y políticas. Game-DLE no controla la disponibilidad ni todo el contenido de sitios externos.</p></section>
+          <section><span>07</span><h2>Responsabilidad</h2><p>El sitio se ofrece según disponibilidad. En la medida permitida por la normativa aplicable, no somos responsables por pérdidas derivadas de interrupciones, decisiones tomadas a partir de una respuesta del juego o actos de terceros.</p></section>
+          <section><span>08</span><h2>Cambios y consultas</h2><p>Estos términos pueden actualizarse junto con el proyecto. El uso posterior a una modificación se rige por la versión publicada. Para consultas, reclamos o derechos de autor, utilizá nuestros <a routerLink="/contacto">canales de contacto</a>.</p></section>
+        </div>
+        <aside class="legal-note"><strong>Importante</strong><p>Nada en estos términos limita derechos irrenunciables que pudieran corresponderte como consumidor según la legislación aplicable.</p></aside>
+      </article>
+    }
+
+    @if (page === 'contact') {
+      <article class="document document--contact">
+        <header class="document-hero">
+          <span class="folio">04 · CONTACTO</span>
+          <p class="eyebrow">La puerta está abierta</p>
+          <h1>Hablemos de<br><em>Game-DLE.</em></h1>
+          <p class="lead">¿Encontraste un dato incorrecto, un error o tenés una idea? Tu mensaje ayuda a que cada edición sea mejor.</p>
+        </header>
+
+        <div class="contact-layout">
+          <a class="mail-card" href="mailto:tobiasmoreno.tm.21@gmail.com">
+            <span class="mail-card__icon" aria-hidden="true">&#64;</span>
+            <small>Correo principal</small>
+            <strong>tobiasmoreno.tm.21<br>&#64;gmail.com</strong>
+            <p>Abrir aplicación de correo <span aria-hidden="true">→</span></p>
+          </a>
+          <div class="contact-reasons">
+            <article><span>01</span><div><h2>Correcciones</h2><p>Indicá el juego, la respuesta o dato cuestionado y, si es posible, una fuente confiable.</p></div></article>
+            <article><span>02</span><div><h2>Privacidad</h2><p>Para solicitudes de datos, escribí desde el correo vinculado y no envíes documentos sensibles salvo que sean necesarios.</p></div></article>
+            <article><span>03</span><div><h2>Derechos de autor</h2><p>Identificá el recurso, la URL donde aparece y tu relación con la obra o su titular.</p></div></article>
+            <article><span>04</span><div><h2>Ideas y errores</h2><p>Contanos qué esperabas que ocurriera, qué pasó y desde qué dispositivo estabas jugando.</p></div></article>
+          </div>
+        </div>
+
+        <footer class="contact-footer">
+          <div><small>Responsable</small><strong>Tobias Emiliano Moreno</strong><span>Buenos Aires, Argentina</span></div>
+          <div class="profile-links"><a href="https://github.com/TobiasMoreno" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/tobiasmoreno/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+        </footer>
+      </article>
+    }
+  </main>
+  <app-footer theme="default" />
+</div>

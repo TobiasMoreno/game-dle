@@ -1,0 +1,72 @@
+@if (content(); as article) {
+  <section class="editorial" [attr.data-game]="gameId()" [attr.aria-labelledby]="'about-' + gameId()">
+    <header class="editorial__header">
+      <div>
+        <span class="editorial__kicker">{{ article.kicker }}</span>
+        <h2 [id]="'about-' + gameId()">Más que una partida:<br><em>{{ article.title }}</em></h2>
+      </div>
+      <p>{{ article.intro }}</p>
+    </header>
+
+    <div class="editorial__grid">
+      <article class="editorial__rules">
+        <span class="editorial__index">01</span>
+        <h3>Cómo jugar</h3>
+        <ol>
+          @for (rule of article.rules; track rule; let index = $index) {
+            <li><b>{{ index + 1 }}</b><span>{{ rule }}</span></li>
+          }
+        </ol>
+      </article>
+
+      <article>
+        <span class="editorial__index">02</span>
+        <h3>Cómo preparamos el desafío</h3>
+        <p>{{ article.methodology }}</p>
+      </article>
+
+      <article>
+        <span class="editorial__index">03</span>
+        <h3>Cómo leer las pistas</h3>
+        <p>{{ article.feedback }}</p>
+      </article>
+    </div>
+
+    <div class="editorial__lower">
+      <section class="editorial__sources" aria-labelledby="sources-title">
+        <span class="editorial__index">04</span>
+        <h3 id="sources-title">Referencias de consulta</h3>
+        <div>
+          @for (source of article.sources; track source.url) {
+            @if (source.url.startsWith('/')) {
+              <a [routerLink]="source.url"><strong>{{ source.label }}</strong><span>{{ source.note }}</span><i aria-hidden="true">→</i></a>
+            } @else {
+              <a [href]="source.url" target="_blank" rel="noopener noreferrer"><strong>{{ source.label }}</strong><span>{{ source.note }}</span><i aria-hidden="true">↗</i></a>
+            }
+          }
+        </div>
+      </section>
+
+      <section class="editorial__faq" aria-labelledby="faq-title">
+        <span class="editorial__index">05</span>
+        <h3 id="faq-title">Preguntas frecuentes</h3>
+        @for (faq of article.faqs; track faq.question) {
+          <details>
+            <summary>{{ faq.question }}<span aria-hidden="true">+</span></summary>
+            <p>{{ faq.answer }}</p>
+          </details>
+        }
+      </section>
+    </div>
+
+    <footer class="editorial__footer">
+      <p><span>Catálogo revisado</span><strong>{{ article.reviewed }}</strong></p>
+      <nav aria-label="Juegos relacionados">
+        <span>Seguí jugando</span>
+        @for (game of article.related; track game.route) {
+          <a [routerLink]="game.route"><small>{{ game.reason }}</small><strong>{{ game.name }} →</strong></a>
+        }
+      </nav>
+    </footer>
+  </section>
+}

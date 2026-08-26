@@ -1,11 +1,4 @@
 <div class="rankdle-page">
-  <aside class="rankdle-side-ad rankdle-side-ad--left" aria-label="Publicidad lateral izquierda">
-    <app-ad-slot [slot]="adSlots.gameFooter" placement="rankdle-side-left" [vertical]="true" />
-  </aside>
-  <aside class="rankdle-side-ad rankdle-side-ad--right" aria-label="Publicidad lateral derecha">
-    <app-ad-slot [slot]="adSlots.gameFooter" placement="rankdle-side-right" [vertical]="true" />
-  </aside>
-
   <main class="rankdle-shell">
     <div class="topbar">
       <span>Ronda {{ puzzle.number }} · Archivo ilimitado</span>
@@ -132,6 +125,7 @@
       </section>
     }
 
+    <app-game-editorial-content gameId="rankdle" />
     <app-ad-slot class="rankdle-ad" [slot]="adSlots.gameFooter" placement="rankdle-footer" />
   </main>
 

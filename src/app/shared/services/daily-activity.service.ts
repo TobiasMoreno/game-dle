@@ -1,4 +1,5 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
   browserLocalPersistence,
   GoogleAuthProvider,
@@ -24,6 +25,7 @@ interface CloudActivityByDate {
 
 @Injectable({ providedIn: 'root' })
 export class DailyActivityService {
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly storageKey = 'game-dle-daily-activity-v1';
   private readonly entriesState = signal<DailyActivityEntry[]>(this.readLocalEntries());
 
@@ -38,6 +40,12 @@ export class DailyActivityService {
   private readonly authReadyPromise: Promise<void>;
 
   constructor() {
+    if (!this.isBrowser) {
+      this.authReady.set(true);
+      this.authReadyPromise = Promise.resolve();
+      return;
+    }
+
     onAuthStateChanged(firebaseAuth, (user) => {
       this.user.set(user);
       if (user) void this.syncWithCloud(user);

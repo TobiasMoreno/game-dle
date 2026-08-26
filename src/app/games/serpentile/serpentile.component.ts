@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
@@ -21,7 +23,7 @@ import { SerpentileStorageService } from './serpentile-storage.service';
 
 @Component({
   selector: 'app-serpentile',
-  imports: [AdSlotComponent, FooterComponent],
+  imports: [AdSlotComponent, FooterComponent, GameEditorialContentComponent],
   templateUrl: './serpentile.component.html',
   styleUrl: './serpentile.component.css',
 })
@@ -33,6 +35,7 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   private readonly storage = inject(SerpentileStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private animationFrameId: number | null = null;
   private stepTimeoutId: ReturnType<typeof setTimeout> | null = null;
   private activeMove: SerpentileMove | null = null;
@@ -58,7 +61,7 @@ export class SerpentileComponent implements OnInit, OnDestroy {
       : this.cloneState(this.puzzle.initialState);
     this.displayHead = this.edgePointFor(this.state.snake, this.state.snake.incomingSide);
     this.renderTrail = [{ ...this.displayHead }];
-    if (this.state.status === 'running') this.scheduleNextStep(550);
+    if (this.isBrowser && this.state.status === 'running') this.scheduleNextStep(550);
   }
 
   ngOnDestroy(): void {

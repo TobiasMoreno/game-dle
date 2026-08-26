@@ -1,19 +1,5 @@
 <main class="tf-page">
   <div class="paper-noise" aria-hidden="true"></div>
-  <aside class="tf-side-ad tf-side-ad--left" aria-label="Publicidad lateral izquierda">
-    <app-ad-slot
-      [slot]="adSlots.gameFooter"
-      placement="tuttifrutti-side-left"
-      [vertical]="true"
-    />
-  </aside>
-  <aside class="tf-side-ad tf-side-ad--right" aria-label="Publicidad lateral derecha">
-    <app-ad-slot
-      [slot]="adSlots.gameFooter"
-      placement="tuttifrutti-side-right"
-      [vertical]="true"
-    />
-  </aside>
   @if (!room) {
     <section class="entry-shell">
       <header class="entry-hero">
@@ -270,4 +256,5 @@
       }
     </section>
   }
+  <app-game-editorial-content gameId="tuttifrutti" />
 </main>

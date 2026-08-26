@@ -1,11 +1,4 @@
 <main class="rosco-page">
-  <aside class="roscodle-side-ad roscodle-side-ad--left" aria-label="Publicidad lateral izquierda">
-    <app-ad-slot [slot]="adSlots.gameFooter" placement="roscodle-side-left" [vertical]="true" />
-  </aside>
-  <aside class="roscodle-side-ad roscodle-side-ad--right" aria-label="Publicidad lateral derecha">
-    <app-ad-slot [slot]="adSlots.gameFooter" placement="roscodle-side-right" [vertical]="true" />
-  </aside>
-
   <div class="page-shell">
     <header class="game-header">
       <div class="brand-block">
@@ -213,6 +206,7 @@
       </section>
     }
 
+    <app-game-editorial-content gameId="roscodle" />
     <app-ad-slot
       class="mx-auto mt-12 block"
       [slot]="adSlots.gameFooter"

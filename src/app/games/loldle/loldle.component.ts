@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
@@ -41,6 +42,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
   private guessHandler: GuessHandlerService = inject(GuessHandlerService);
   private loldleThemeService: LoldleThemeService = inject(LoldleThemeService);
   private configService: LoldleConfigService = inject(LoldleConfigService);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   // Propiedades del juego
   characters: LoLCharacter[] = [];
@@ -64,7 +66,7 @@ export class LoldleComponent extends BaseGameComponent implements OnInit, OnDest
 
   ngOnInit(): void {
     this.setGameId(this.config.gameId);
-    this.loadCharacters();
+    if (this.isBrowser) this.loadCharacters();
     this.audioService.initializeAudio(this.config.musicFile);
     this.progressLoaded.subscribe((progress: GameProgress | null) => {
       if (progress) {

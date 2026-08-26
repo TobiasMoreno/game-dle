@@ -304,6 +304,10 @@
     </div>
     }
 
+    @if (editorialGameId() || game?.id; as contentGameId) {
+      <app-game-editorial-content [gameId]="contentGameId" />
+    }
+
     <app-ad-slot
       [class]="fitViewport() ? 'mt-3 shrink-0' : 'mt-8'"
       [slot]="adSlots.gameFooter"

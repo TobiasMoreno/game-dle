@@ -1,18 +1,4 @@
 <div class="chronodle-page">
-  <aside class="chronodle-side-ad chronodle-side-ad--left" aria-label="Publicidad lateral izquierda">
-    <app-ad-slot
-      [slot]="adSlots.gameFooter"
-      placement="chronodle-side-left"
-      [vertical]="true"
-    />
-  </aside>
-  <aside class="chronodle-side-ad chronodle-side-ad--right" aria-label="Publicidad lateral derecha">
-    <app-ad-slot
-      [slot]="adSlots.gameFooter"
-      placement="chronodle-side-right"
-      [vertical]="true"
-    />
-  </aside>
   <main class="chronodle-shell">
     <div class="top-actions">
       <span class="edition">Archivo ilimitado · Ronda {{ puzzle.number }}</span>
@@ -148,6 +134,7 @@
       </section>
     }
 
+    <app-game-editorial-content gameId="chronodle" />
     <app-ad-slot class="chronodle-ad" [slot]="adSlots.gameFooter" placement="chronodle-footer" />
   </main>
 

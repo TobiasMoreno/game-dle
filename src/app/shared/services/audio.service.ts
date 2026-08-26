@@ -24,6 +24,8 @@ export class AudioService {
    * Inicializa el audio con un archivo de música
    */
   initializeAudio(musicUrl: string): void {
+    if (typeof Audio === 'undefined') return;
+
     try {
       this.audio = new Audio(musicUrl);
       this.audio.loop = true;
@@ -151,4 +153,4 @@ export class AudioService {
     const newState = { ...currentState, ...updates };
     this.audioStateSubject.next(newState);
   }
-} 
+}

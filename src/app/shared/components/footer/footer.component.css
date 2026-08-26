@@ -155,3 +155,21 @@ footer.bg-gray-800 a::after {
 footer a:hover::after {
   width: 100%;
 }
+
+.footer-info-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .55rem 1rem;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.footer-info-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .footer-info-links { order: 3; width: 100%; }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { PalmodleEngineService } from './palmodle-engine.service';
@@ -8,7 +9,7 @@ import { PalmodleStorageService } from './palmodle-storage.service';
 
 @Component({
   selector: 'app-palmodle',
-  imports: [FooterComponent],
+  imports: [FooterComponent, GameEditorialContentComponent],
   templateUrl: './palmodle.component.html',
   styleUrl: './palmodle.component.css',
 })
