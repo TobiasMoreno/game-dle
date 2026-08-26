@@ -28,8 +28,9 @@ export interface PalmodleAnswer {
 }
 
 export interface PalmodleGameState {
-  version: 1;
+  version: 2;
   run: number;
+  seed: number;
   round: number;
   lives: number;
   score: number;

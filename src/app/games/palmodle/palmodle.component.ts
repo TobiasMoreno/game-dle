@@ -29,7 +29,7 @@ export class PalmodleComponent implements OnInit {
     this.state = this.storage.load() ?? this.initialState(1, 0);
   }
 
-  get pair() { return this.engine.createPair(this.state.run, this.state.round); }
+  get pair() { return this.engine.createPair(this.state.seed, this.state.round); }
   get correctPerson() { return this.engine.firstToDie(this.pair); }
   get latestAnswer() { return this.state.answers.at(-1) ?? null; }
   get yearsApart() { return this.engine.yearsApart(this.pair); }
@@ -108,8 +108,9 @@ export class PalmodleComponent implements OnInit {
 
   private initialState(run: number, bestScore: number): PalmodleGameState {
     const state: PalmodleGameState = {
-      version: 1,
+      version: 2,
       run,
+      seed: this.engine.createSeed(),
       round: 0,
       lives: this.maxLives,
       score: 0,

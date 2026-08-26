@@ -4,8 +4,15 @@ import { PalmodlePair, PalmodlePerson } from './palmodle.models';
 
 @Injectable({ providedIn: 'root' })
 export class PalmodleEngineService {
-  createPair(run: number, round: number): PalmodlePair {
-    const shuffled = this.shuffle([...PALMODLE_PEOPLE], run * 104729 + 7919);
+  createSeed(): number {
+    if (globalThis.crypto?.getRandomValues) {
+      return globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
+    }
+    return (Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0;
+  }
+
+  createPair(seed: number, round: number): PalmodlePair {
+    const shuffled = this.shuffle([...PALMODLE_PEOPLE], seed);
     const start = (round * 2) % shuffled.length;
     return { left: shuffled[start], right: shuffled[(start + 1) % shuffled.length] };
   }

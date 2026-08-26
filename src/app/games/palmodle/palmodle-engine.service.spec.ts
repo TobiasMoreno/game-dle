@@ -11,9 +11,15 @@ describe('PalmodleEngineService', () => {
   });
 
   it('creates stable pairs with two different people', () => {
-    expect(service.createPair(3, 4)).toEqual(service.createPair(3, 4));
-    expect(service.createPair(3, 4).left.id).not.toBe(service.createPair(3, 4).right.id);
-    expect(service.createPair(3, 5)).not.toEqual(service.createPair(3, 4));
+    expect(service.createPair(123456, 4)).toEqual(service.createPair(123456, 4));
+    expect(service.createPair(123456, 4).left.id).not.toBe(service.createPair(123456, 4).right.id);
+    expect(service.createPair(123456, 5)).not.toEqual(service.createPair(123456, 4));
+  });
+
+  it('does not repeat a person during a ten-round game', () => {
+    const ids = Array.from({ length: 10 }, (_, round) => service.createPair(987654, round))
+      .flatMap((pair) => [pair.left.id, pair.right.id]);
+    expect(new Set(ids).size).toBe(20);
   });
 
   it('identifies who died first and calculates the year gap', () => {
