@@ -43,6 +43,19 @@
     </div>
 
     <nav class="sidebar-nav" aria-label="Catálogo de juegos">
+      <section class="mb-5">
+        <h3 class="text-xs font-black uppercase tracking-widest mb-2" [class]="getSectionTitleClasses()">Universos</h3>
+        <div class="space-y-1">
+          <a routerLink="/lol" routerLinkActive="sidebar-game--active" ariaCurrentWhenActive="page" (click)="onNavigate()" class="sidebar-game w-full px-3 py-2 text-left rounded-lg transition-colors flex items-center gap-3 no-underline" [class]="getGameButtonClasses()">
+            <i class="fas fa-wand-sparkles h-5 w-5" [class]="getGameIconClasses()" aria-hidden="true"></i>
+            <span class="font-medium" [class]="getSidebarTextClasses()">League of Legends</span>
+          </a>
+          <a routerLink="/futbol" routerLinkActive="sidebar-game--active" ariaCurrentWhenActive="page" (click)="onNavigate()" class="sidebar-game w-full px-3 py-2 text-left rounded-lg transition-colors flex items-center gap-3 no-underline" [class]="getGameButtonClasses()">
+            <i class="fas fa-futbol h-5 w-5" [class]="getGameIconClasses()" aria-hidden="true"></i>
+            <span class="font-medium" [class]="getSidebarTextClasses()">Fútbol</span>
+          </a>
+        </div>
+      </section>
       @for (section of catalogSections; track section.id) {
       <section class="mb-5">
         <h3 class="text-xs font-black uppercase tracking-widest mb-2" [class]="getSectionTitleClasses()">{{ section.title }}</h3>

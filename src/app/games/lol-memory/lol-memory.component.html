@@ -1,0 +1,24 @@
+<app-lol-game-shell [title]="title" [instructions]="instructions" [score]="score" [rounds]="rounds">
+  @if (loading) {
+    <div class="grid min-h-80 place-items-center border border-white/10 bg-white/[.025]"><span class="animate-pulse text-xs font-black uppercase tracking-[.16em] text-cyan-400">Preparando cartas…</span></div>
+  } @else if (!cards.length) {
+    <p class="border border-red-400/30 bg-red-400/10 p-5 text-sm text-red-200">{{ feedback }}</p>
+  } @else {
+    <section aria-label="Tablero de memoria">
+      <div class="mb-3 flex justify-between text-[.62rem] font-black uppercase tracking-[.12em] text-slate-400"><span>Uní retrato + nombre</span><span>{{ matches }} / 6 parejas</span></div>
+      <div class="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+        @for (card of cards; track card.key; let index = $index) {
+          <button type="button" (click)="revealCard(index)" [disabled]="card.matched" class="relative grid aspect-[4/5] place-items-center overflow-hidden border border-white/15 bg-[#081d22] p-2 transition hover:-translate-y-0.5 hover:border-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 disabled:border-emerald-400/50 disabled:bg-emerald-400/10">
+            @if (card.revealed || card.matched) {
+              @if (card.imageUrl) { <img [src]="card.imageUrl" [alt]="card.label" (error)="onImageError($event)" class="h-full w-full rounded object-cover" /> }
+              @else { <strong class="font-serif text-base leading-tight text-amber-200">{{ card.label }}</strong> }
+            } @else { <span class="font-serif text-4xl text-amber-400/40">?</span> }
+          </button>
+        }
+      </div>
+    </section>
+    @if (feedback) {
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-l-2 border-amber-400 bg-white/[.035] p-4" role="status"><strong class="font-serif text-lg">{{ feedback }}</strong><button type="button" (click)="startRound()" class="bg-cyan-400 px-5 py-2.5 text-xs font-black uppercase tracking-[.1em] text-[#06161b] transition hover:bg-cyan-300">Nueva ronda →</button></div>
+    }
+  }
+</app-lol-game-shell>

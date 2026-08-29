@@ -52,6 +52,38 @@
 
       <app-daily-journey />
 
+      <section class="mx-auto mb-16 mt-10 w-full max-w-6xl" aria-labelledby="universes-title">
+        <header class="mb-5 grid grid-cols-[minmax(13rem,.55fr)_1fr] items-end max-[700px]:grid-cols-1">
+          <span class="text-[.64rem] font-black uppercase tracking-[.16em] text-[#d95130]">Entrá por temática</span>
+          <h2 id="universes-title" class="col-start-1 mb-0 mt-1 font-serif text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[.95] tracking-[-.045em] text-[#172019] dark:text-[#fff8e9]">Elegí tu universo</h2>
+          <p class="col-start-2 row-start-1 row-end-3 m-0 leading-relaxed text-[#626b64] dark:text-[#b7c0b9] max-[700px]:col-start-1 max-[700px]:row-auto max-[700px]:mt-3">Cada mundo tiene su propio espacio con todos sus modos de juego.</p>
+        </header>
+
+        <div class="grid grid-cols-2 gap-4 max-[700px]:grid-cols-1">
+          <a routerLink="/lol" class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071a20] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber-400">
+            <span class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30">01</span>
+            <div class="grid h-14 w-14 place-items-center rounded-full border border-amber-400 text-amber-400 shadow-[.25rem_.25rem_0_rgba(10,200,185,.45)]"><i class="fas fa-wand-sparkles" aria-hidden="true"></i></div>
+            <div>
+              <small class="text-[.58rem] font-black uppercase tracking-[.14em] text-cyan-400">La Grieta</small>
+              <h3 class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]">League of Legends</h3>
+              <p class="m-0 text-[.78rem] leading-snug text-slate-400">Campeones, roles y regiones en un espacio dedicado.</p>
+            </div>
+            <strong class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-amber-400">Explorar LoL <span class="ml-2 text-base transition-all group-hover:ml-3" aria-hidden="true">→</span></strong>
+          </a>
+
+          <a routerLink="/futbol" class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071d15] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-lime-300">
+            <span class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30">02</span>
+            <div class="grid h-14 w-14 place-items-center rounded-full border border-lime-300 text-lime-300 shadow-[.25rem_.25rem_0_rgba(55,212,134,.45)]"><i class="fas fa-futbol" aria-hidden="true"></i></div>
+            <div>
+              <small class="text-[.58rem] font-black uppercase tracking-[.14em] text-emerald-400">Pasión de cancha</small>
+              <h3 class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]">Fútbol</h3>
+              <p class="m-0 text-[.78rem] leading-snug text-slate-400">Jugadores, clubes y cultura futbolera en todos sus formatos.</p>
+            </div>
+            <strong class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-lime-300">Explorar fútbol <span class="ml-2 text-base transition-all group-hover:ml-3" aria-hidden="true">→</span></strong>
+          </a>
+        </div>
+      </section>
+
       <section class="catalog" aria-labelledby="catalog-title">
         <header class="catalog__intro">
           <span>Elegí tu ritmo</span>

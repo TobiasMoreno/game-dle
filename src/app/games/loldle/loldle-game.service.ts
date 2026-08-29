@@ -9,7 +9,15 @@ export interface LoLCharacter {
   recurso: string[];
   tipo_de_gama: string[];
   region: string[];
+  rol?: string[];
+  skins?: LoLSkin[];
   anio_de_lanzamiento: number;
+  img_url: string;
+}
+
+export interface LoLSkin {
+  nombre: string;
+  numero: number;
   img_url: string;
 }
 

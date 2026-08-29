@@ -46,8 +46,10 @@ describe('SidebarComponent', () => {
     const element = fixture.nativeElement as HTMLElement;
     const headings = [...element.querySelectorAll('nav h3')].map((item) => item.textContent?.trim());
 
-    expect(headings).toEqual(['Desafíos de hoy', 'Rondas ilimitadas', 'Para jugar con amigos']);
+    expect(headings).toEqual(['Universos', 'Desafíos de hoy', 'Rondas ilimitadas', 'Para jugar con amigos']);
     expect(element.querySelectorAll('nav a[href^="/games/"]').length).toBe(component.games.length);
+    expect(element.querySelector('nav a[href="/lol"]')).not.toBeNull();
+    expect(element.querySelector('nav a[href="/futbol"]')).not.toBeNull();
     expect(element.querySelector('button[aria-label="Cerrar menú de juegos"]')).not.toBeNull();
   });
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://game-dle.web.app/home</loc><lastmod>2026-08-25</lastmod></url>
+  <url><loc>https://game-dle.web.app/lol</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://game-dle.web.app/futbol</loc><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://game-dle.web.app/acerca-de</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/privacidad</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/terminos</loc><lastmod>2026-08-25</lastmod></url>
@@ -9,6 +11,10 @@
   <url><loc>https://game-dle.web.app/games/futboldle</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/games/onepiecedle</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/games/loldle</loc><lastmod>2026-08-25</lastmod></url>
+  <url><loc>https://game-dle.web.app/games/lol-who</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://game-dle.web.app/games/lol-memory</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://game-dle.web.app/games/lol-timeline</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://game-dle.web.app/games/lol-connections</loc><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://game-dle.web.app/games/musicdle</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/games/serpentile</loc><lastmod>2026-08-25</lastmod></url>
   <url><loc>https://game-dle.web.app/games/tuttifrutti</loc><lastmod>2026-08-25</lastmod></url>

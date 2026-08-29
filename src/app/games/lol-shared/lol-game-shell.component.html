@@ -1,0 +1,29 @@
+<div class="flex min-h-screen flex-col bg-[#06161b] text-[#e7f6f4]">
+  <main class="relative mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
+    <div class="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" aria-hidden="true"></div>
+
+    <nav class="relative mb-8 flex flex-wrap items-center gap-2 text-[.68rem] font-black uppercase tracking-[.12em] text-slate-400" aria-label="Migas de pan">
+      <a routerLink="/lol" class="text-amber-400 no-underline hover:underline">League of Legends</a>
+      <span aria-hidden="true">/</span>
+      <span>{{ title() }}</span>
+    </nav>
+
+    <header class="relative mb-8 border-b border-white/15 pb-6">
+      <div class="flex flex-wrap items-start justify-between gap-5">
+        <div>
+          <span class="text-[.65rem] font-black uppercase tracking-[.18em] text-cyan-400">LoL Arcade · Rondas ilimitadas</span>
+          <h1 class="mb-3 mt-2 font-serif text-[clamp(2.7rem,8vw,5.5rem)] font-medium leading-[.85] tracking-[-.06em]">{{ title() }}</h1>
+          <p class="m-0 max-w-2xl text-sm leading-relaxed text-slate-400">{{ instructions() }}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-px overflow-hidden rounded border border-white/15 bg-white/15 text-center">
+          <div class="bg-[#081d22] px-4 py-2"><small class="block text-[.55rem] font-black uppercase tracking-widest text-slate-500">Puntos</small><strong class="font-serif text-2xl text-amber-400">{{ score() }}</strong></div>
+          <div class="bg-[#081d22] px-4 py-2"><small class="block text-[.55rem] font-black uppercase tracking-widest text-slate-500">Rondas</small><strong class="font-serif text-2xl">{{ rounds() }}</strong></div>
+        </div>
+      </div>
+    </header>
+
+    <ng-content />
+  </main>
+
+  <app-footer theme="loldle" />
+</div>

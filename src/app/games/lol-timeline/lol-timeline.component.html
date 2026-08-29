@@ -1,0 +1,30 @@
+<app-lol-game-shell [title]="title" [instructions]="instructions" [score]="score" [rounds]="rounds">
+  @if (loading) {
+    <div class="grid min-h-80 place-items-center border border-white/10 bg-white/[.025]"><span class="animate-pulse text-xs font-black uppercase tracking-[.16em] text-cyan-400">Consultando archivos…</span></div>
+  } @else if (!timeline.length) {
+    <p class="border border-red-400/30 bg-red-400/10 p-5 text-sm text-red-200">{{ feedback }}</p>
+  } @else {
+    <section aria-label="Timeline de campeones">
+      <div class="mb-4 flex justify-between text-[.62rem] font-black uppercase tracking-[.12em] text-slate-400"><span>Más antiguo</span><span>Más reciente</span></div>
+      <div class="grid gap-3 md:grid-cols-5">
+        @for (champion of timeline; track champion.id; let index = $index) {
+          <article class="relative overflow-hidden border border-white/15 bg-[#081d22]">
+            <img [src]="champion.img_url" [alt]="champion.nombre" (error)="onImageError($event)" class="aspect-square w-full object-cover" />
+            <div class="p-3">
+              <strong class="block font-serif text-lg leading-none">{{ champion.nombre }}</strong>
+              @if (roundComplete) { <span class="mt-1 block text-xs font-black text-amber-400">{{ champion.anio_de_lanzamiento }}</span> }
+              <div class="mt-3 grid grid-cols-2 gap-1">
+                <button type="button" (click)="move(index, -1)" [disabled]="index === 0 || roundComplete" class="border border-white/15 py-1.5 text-xs text-cyan-300 transition hover:border-cyan-400 disabled:opacity-20" [attr.aria-label]="'Mover ' + champion.nombre + ' hacia lo más antiguo'">←</button>
+                <button type="button" (click)="move(index, 1)" [disabled]="index === timeline.length - 1 || roundComplete" class="border border-white/15 py-1.5 text-xs text-cyan-300 transition hover:border-cyan-400 disabled:opacity-20" [attr.aria-label]="'Mover ' + champion.nombre + ' hacia lo más reciente'">→</button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+      @if (!roundComplete) { <button type="button" (click)="check()" class="mt-5 w-full bg-amber-400 px-5 py-3 text-xs font-black uppercase tracking-[.12em] text-[#06161b] transition hover:bg-amber-300">Comprobar orden</button> }
+    </section>
+    @if (feedback) {
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-l-2 border-amber-400 bg-white/[.035] p-4" role="status"><strong class="font-serif text-lg">{{ feedback }}</strong><button type="button" (click)="startRound()" class="bg-cyan-400 px-5 py-2.5 text-xs font-black uppercase tracking-[.1em] text-[#06161b] transition hover:bg-cyan-300">Nueva ronda →</button></div>
+    }
+  }
+</app-lol-game-shell>

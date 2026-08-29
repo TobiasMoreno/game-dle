@@ -13,6 +13,24 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
+    path: 'lol',
+    title: 'Juegos de League of Legends | Game-DLE',
+    data: {
+      universe: 'lol',
+      description: 'Todos los juegos y desafíos de League of Legends disponibles en Game-DLE.'
+    },
+    loadComponent: () => import('./pages/game-universe/game-universe.component').then(m => m.GameUniverseComponent)
+  },
+  {
+    path: 'futbol',
+    title: 'Juegos de fútbol | Game-DLE',
+    data: {
+      universe: 'futbol',
+      description: 'Todos los juegos de fútbol de Game-DLE: futbolistas, clubes y desafíos futboleros.'
+    },
+    loadComponent: () => import('./pages/game-universe/game-universe.component').then(m => m.GameUniverseComponent)
+  },
+  {
     path: 'acerca-de',
     title: 'Acerca de Game-DLE | Juegos creados en Argentina',
     data: { page: 'about', description: 'Conocé quién crea Game-DLE, cómo se desarrollan sus juegos y qué buscamos aportar con cada desafío.' },
@@ -59,6 +77,30 @@ export const routes: Routes = [
     title: 'LoL DLE | Game-DLE',
     data: { description: 'Adiviná el campeón diario de League of Legends.' },
     loadComponent: () => import('./games/loldle/loldle.component').then(m => m.LoldleComponent)
+  },
+  {
+    path: 'games/lol-who',
+    title: 'LoL: ¿Quién es? | Game-DLE',
+    data: { description: 'Reconocé al campeón de League of Legends a partir de un detalle ampliado.' },
+    loadComponent: () => import('./games/lol-who/lol-who.component').then(m => m.LolWhoComponent)
+  },
+  {
+    path: 'games/lol-memory',
+    title: 'Memoria de campeones de LoL | Game-DLE',
+    data: { description: 'Uní cada campeón de League of Legends con su retrato.' },
+    loadComponent: () => import('./games/lol-memory/lol-memory.component').then(m => m.LolMemoryComponent)
+  },
+  {
+    path: 'games/lol-timeline',
+    title: 'Timeline de campeones de LoL | Game-DLE',
+    data: { description: 'Ordená campeones de League of Legends según su año de lanzamiento.' },
+    loadComponent: () => import('./games/lol-timeline/lol-timeline.component').then(m => m.LolTimelineComponent)
+  },
+  {
+    path: 'games/lol-connections',
+    title: 'Conexiones LoL | Game-DLE',
+    data: { description: 'Agrupá 16 campeones de League of Legends según las características que comparten.' },
+    loadComponent: () => import('./games/lol-connections/lol-connections.component').then(m => m.LolConnectionsComponent)
   },
   {
     path: 'games/musicdle',

@@ -1,0 +1,78 @@
+<div
+  class="group relative min-h-screen overflow-hidden text-[#e7f6f4]"
+  [attr.data-universe]="universe.id"
+  [class.bg-[#06161b]]="universe.id === 'lol'"
+  [class.bg-[#061b14]]="universe.id === 'futbol'"
+>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(rgba(255,255,255,.22)_0.55px,transparent_0.55px)] [background-size:6px_6px] [mask-image:linear-gradient(to_bottom,#000,transparent_78%)]"
+    aria-hidden="true"
+  ></div>
+  <div class="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-cyan-400/10 blur-3xl group-data-[universe=futbol]:bg-lime-300/10" aria-hidden="true"></div>
+
+  <main class="relative mx-auto w-[min(72rem,calc(100%-2rem))] pb-20 pt-8 max-md:pt-5">
+    <nav class="flex gap-2.5 text-[.7rem] font-extrabold uppercase tracking-[.1em] text-slate-400" aria-label="Migas de pan">
+      <a routerLink="/home" class="text-amber-400 no-underline hover:underline group-data-[universe=futbol]:text-lime-300">Game-DLE</a>
+      <span aria-hidden="true">/</span>
+      <span>{{ universe.title }}</span>
+    </nav>
+
+    <header class="grid min-h-[31rem] grid-cols-[minmax(0,1fr)_minmax(16rem,.65fr)] items-center gap-12 max-md:min-h-0 max-md:grid-cols-1 max-md:gap-10 max-md:py-20">
+      <div>
+        <span class="text-[.68rem] font-black uppercase tracking-[.18em] text-amber-400 group-data-[universe=futbol]:text-lime-300">{{ universe.eyebrow }}</span>
+        <h1 class="mb-5 mt-2 max-w-3xl font-serif text-[clamp(4rem,10vw,8.5rem)] font-medium leading-[.78] tracking-[-.07em] text-[#e7f6f4] max-md:text-[clamp(3.8rem,21vw,6.5rem)]">{{ universe.title }}</h1>
+        <p class="m-0 max-w-xl text-[clamp(.98rem,2vw,1.15rem)] leading-relaxed text-slate-400">{{ universe.lead }}</p>
+        <a class="mt-8 inline-flex items-center gap-6 border-b border-amber-400 py-2.5 text-xs font-black uppercase tracking-[.1em] text-[#e7f6f4] no-underline group-data-[universe=futbol]:border-lime-300" href="#juegos">
+          Ver {{ games.length === 1 ? 'el juego disponible' : 'los juegos disponibles' }}
+          <span class="text-lg text-amber-400 transition-transform hover:translate-y-1 group-data-[universe=futbol]:text-lime-300" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="relative grid aspect-square w-full max-w-[22rem] place-items-center justify-self-end rounded-full border border-white/15 shadow-[inset_0_0_0_2rem_rgba(255,255,255,.018),0_0_5rem_rgba(10,200,185,.08)] max-md:w-[min(15rem,72vw)] max-md:justify-self-center" aria-hidden="true">
+        <div class="absolute inset-[12%] animate-[spin_30s_linear_infinite] rounded-full border border-dashed border-white/15 motion-reduce:animate-none"></div>
+        <div class="absolute inset-[28%] animate-[spin_18s_linear_infinite_reverse] rounded-full border border-white/15 motion-reduce:animate-none"></div>
+        <span class="font-serif text-[clamp(4rem,9vw,7rem)] font-black leading-none tracking-[-.08em] text-white/5">{{ universe.id === 'lol' ? 'LOL' : '90′' }}</span>
+        <i [class]="universe.icon" class="absolute text-4xl text-amber-400 group-data-[universe=futbol]:text-lime-300"></i>
+      </div>
+    </header>
+
+    <section id="juegos" class="scroll-mt-8" aria-labelledby="universe-games-title">
+      <header class="flex items-end justify-between gap-4 border-b border-white/15 pb-4 max-md:flex-col max-md:items-start">
+        <div>
+          <span class="text-[.68rem] font-black uppercase tracking-[.18em] text-amber-400 group-data-[universe=futbol]:text-lime-300">Elegí tu desafío</span>
+          <h2 id="universe-games-title" class="mb-0 mt-1.5 font-serif text-[clamp(2rem,5vw,3.5rem)] font-medium leading-none tracking-[-.045em]">Todos los juegos de {{ universe.title }}</h2>
+        </div>
+        <strong class="rounded-full border border-white/15 px-3 py-1.5 text-[.65rem] uppercase tracking-[.08em] text-slate-400">{{ games.length }} {{ games.length === 1 ? 'modo' : 'modos' }}</strong>
+      </header>
+
+      <div class="grid gap-4 pt-5">
+        @for (game of games; track game.id; let index = $index) {
+          @let presentation = getGamePresentation(game);
+          <a class="grid min-h-40 grid-cols-[3rem_4.5rem_minmax(0,1fr)_auto] items-center gap-5 border border-white/15 bg-[#081d22]/80 px-6 py-5 text-inherit no-underline backdrop-blur-xl transition hover:translate-x-1.5 hover:border-amber-400 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber-400 group-data-[universe=futbol]:bg-[#062319]/80 group-data-[universe=futbol]:hover:border-lime-300 max-md:grid-cols-[2rem_3.5rem_minmax(0,1fr)] max-md:gap-3 max-md:p-4" [routerLink]="game.route" [attr.data-game]="game.id">
+            <span class="self-start font-serif text-base font-bold italic text-amber-400 group-data-[universe=futbol]:text-lime-300">0{{ index + 1 }}</span>
+            <div class="grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border border-white/15 text-xl text-amber-400 shadow-[.3rem_.3rem_0_rgba(10,200,185,.35)] group-data-[universe=futbol]:text-lime-300 group-data-[universe=futbol]:shadow-[.3rem_.3rem_0_rgba(55,212,134,.35)] max-md:h-14 max-md:w-14"><i [class]="game.icon" aria-hidden="true"></i></div>
+            <div>
+              <span class="text-[.6rem] font-black uppercase tracking-[.12em] text-cyan-400 group-data-[universe=futbol]:text-emerald-400">{{ presentation.modeLabel }} · {{ game.durationLabel }}</span>
+              <h3 class="mb-1.5 mt-1 font-serif text-[clamp(1.7rem,3vw,2.35rem)] font-semibold leading-none">{{ game.name }}</h3>
+              <p class="m-0 text-[.82rem] text-slate-400">{{ game.description }}</p>
+            </div>
+            <div class="grid min-w-32 justify-items-end gap-2.5 max-md:col-start-2 max-md:col-end-4 max-md:min-w-0 max-md:grid-cols-[1fr_auto] max-md:justify-items-start">
+              <span class="text-[.62rem] font-extrabold text-slate-400">{{ presentation.statusLabel }}</span>
+              <strong class="text-[.72rem] uppercase tracking-[.08em] text-amber-400 group-data-[universe=futbol]:text-lime-300 max-md:justify-self-end">{{ presentation.actionLabel }} <b class="ml-2 text-base" aria-hidden="true">→</b></strong>
+            </div>
+          </a>
+        }
+      </div>
+    </section>
+
+    <aside class="mt-10 flex max-w-2xl items-center gap-4 border-l-2 border-amber-400 py-1 pl-4 group-data-[universe=futbol]:border-lime-300">
+      <i class="fas fa-plus grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-400 text-[#06161b] group-data-[universe=futbol]:bg-lime-300" aria-hidden="true"></i>
+      <div>
+        <strong class="font-serif text-lg">Esto recién empieza</strong>
+        <p class="mb-0 mt-1 text-xs text-slate-400">{{ universe.note }}</p>
+      </div>
+    </aside>
+  </main>
+
+  <app-footer [theme]="universe.id === 'lol' ? 'loldle' : 'default'" />
+</div>

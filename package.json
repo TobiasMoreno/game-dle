@@ -10,6 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "validate:musicdle": "node scripts/validate-musicdle-catalog.mjs",
+    "update:lol-skins": "node scripts/update-lol-skins.mjs",
     "update:geodle": "node scripts/update-geodle-catalog.mjs",
     "validate:geodle": "node scripts/validate-geodle-catalog.mjs"
   },

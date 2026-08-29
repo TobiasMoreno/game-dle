@@ -129,6 +129,46 @@ export class GameManagerService {
       }
     },
     {
+      id: 'lol-who',
+      name: '¿Quién es?',
+      description: 'Reconocé al campeón por su silueta',
+      route: '/games/lol-who',
+      icon: 'fas fa-user-secret',
+      mode: 'unlimited',
+      durationLabel: '1–2 min',
+      badge: 'Nuevo'
+    },
+    {
+      id: 'lol-memory',
+      name: 'Memoria LoL',
+      description: 'Uní cada campeón con su retrato',
+      route: '/games/lol-memory',
+      icon: 'fas fa-clone',
+      mode: 'unlimited',
+      durationLabel: '2–4 min',
+      badge: 'Nuevo'
+    },
+    {
+      id: 'lol-timeline',
+      name: 'Timeline LoL',
+      description: 'Ordená campeones por su año de lanzamiento',
+      route: '/games/lol-timeline',
+      icon: 'fas fa-timeline',
+      mode: 'unlimited',
+      durationLabel: '2–3 min',
+      badge: 'Nuevo'
+    },
+    {
+      id: 'lol-connections',
+      name: 'Conexiones LoL',
+      description: 'Agrupá campeones por lo que tienen en común',
+      route: '/games/lol-connections',
+      icon: 'fas fa-link',
+      mode: 'unlimited',
+      durationLabel: '3–6 min',
+      badge: 'Nuevo'
+    },
+    {
       id: 'palmodle',
       name: 'Palmó Primero',
       description: 'Elegí cuál de dos figuras famosas murió antes',

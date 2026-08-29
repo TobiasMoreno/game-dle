@@ -1,0 +1,67 @@
+<app-lol-game-shell [title]="title" [instructions]="instructions" [score]="score" [rounds]="rounds">
+  @if (loading) {
+    <div class="grid min-h-80 place-items-center border border-white/10 bg-white/[.025]"><span class="animate-pulse text-xs font-black uppercase tracking-[.16em] text-cyan-400">Preparando conexiones…</span></div>
+  } @else if (!groups.length) {
+    <p class="border border-red-400/30 bg-red-400/10 p-5 text-sm text-red-200">{{ feedback || 'No hay suficientes datos para crear este tablero.' }}</p>
+  } @else {
+    <section aria-label="Tablero de conexiones de League of Legends">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3 border-y border-white/10 py-3">
+        <div class="flex items-center gap-4 text-[.65rem] font-black uppercase tracking-[.12em]">
+          <span class="text-slate-400">Grupos <strong class="ml-1 text-amber-400">{{ solvedGroups.length }}/4</strong></span>
+          <span class="text-slate-400">Errores <strong class="ml-1 text-red-300">{{ errors }}</strong></span>
+        </div>
+        <p class="m-0 text-xs text-slate-500">Cada campeón pertenece a una sola solución del tablero.</p>
+      </div>
+
+      <div class="mb-4 grid gap-3">
+        @for (group of solvedGroups; track group.id; let index = $index) {
+          <article class="relative overflow-hidden border border-amber-400/45 bg-amber-400/[.08] px-4 py-4 sm:px-6">
+            <span class="absolute inset-y-0 left-0 w-1 bg-amber-400" aria-hidden="true"></span>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <span class="text-[.58rem] font-black uppercase tracking-[.18em] text-amber-400">Conexión {{ index + 1 }}</span>
+                <h2 class="m-0 mt-1 font-serif text-xl leading-none text-white">{{ group.title }}</h2>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                @for (champion of group.champions; track champion.id) {
+                  <span class="border border-white/15 bg-[#06161b]/80 px-2.5 py-1.5 text-xs font-bold text-slate-200">{{ champion.nombre }}</span>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+
+      @if (!roundComplete) {
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-label="Campeones disponibles">
+          @for (champion of board; track champion.id) {
+            <button type="button" (click)="toggleChampion(champion)" [attr.aria-pressed]="isSelected(champion.id)"
+              class="group relative isolate min-h-28 overflow-hidden border border-white/15 bg-[#081d22] text-left transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 sm:min-h-36"
+              [class.-translate-y-1]="isSelected(champion.id)" [class.ring-2]="isSelected(champion.id)" [class.ring-amber-400]="isSelected(champion.id)"
+              [class.shadow-[0_10px_30px_rgba(251,191,36,0.2)]]="isSelected(champion.id)">
+              <img [src]="imageFor(champion)" [alt]="champion.nombre" (error)="onImageError($event, champion)" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-55 grayscale-[20%] transition duration-300 group-hover:scale-105 group-hover:opacity-75" />
+              <span class="absolute inset-0 -z-10 bg-gradient-to-t from-[#031014] via-[#031014]/35 to-transparent" aria-hidden="true"></span>
+              <span class="absolute bottom-0 left-0 right-0 p-3">
+                <span class="block font-serif text-lg leading-none text-white drop-shadow-md sm:text-xl">{{ champion.nombre }}</span>
+                <span class="mt-1 block text-[.55rem] font-black uppercase tracking-[.12em]" [class.text-amber-300]="isSelected(champion.id)" [class.text-cyan-300]="!isSelected(champion.id)">{{ isSelected(champion.id) ? 'Seleccionado' : 'Elegir' }}</span>
+              </span>
+            </button>
+          }
+        </div>
+
+        <div class="mt-5 grid grid-cols-2 gap-2 sm:flex sm:justify-center">
+          <button type="button" (click)="shuffleBoard()" class="border border-white/15 px-4 py-3 text-[.65rem] font-black uppercase tracking-[.12em] text-slate-300 transition hover:border-cyan-400 hover:text-cyan-300">Mezclar</button>
+          <button type="button" (click)="clearSelection()" [disabled]="selectedIds.size === 0" class="border border-white/15 px-4 py-3 text-[.65rem] font-black uppercase tracking-[.12em] text-slate-300 transition hover:border-cyan-400 hover:text-cyan-300 disabled:cursor-not-allowed disabled:opacity-30">Deseleccionar</button>
+          <button type="button" (click)="submitSelection()" [disabled]="selectedIds.size !== 4" class="col-span-2 bg-amber-400 px-7 py-3 text-[.65rem] font-black uppercase tracking-[.12em] text-[#06161b] transition hover:bg-amber-300 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400 sm:ml-3">Comprobar {{ selectedIds.size }}/4</button>
+        </div>
+      }
+
+      @if (feedback) {
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-4 border-l-2 bg-white/[.035] p-4" [class.border-emerald-400]="feedbackKind === 'success'" [class.border-red-400]="feedbackKind === 'error'" [class.border-cyan-400]="feedbackKind === 'neutral'" role="status">
+          <strong class="font-serif text-lg" [class.text-red-200]="feedbackKind === 'error'">{{ feedback }}</strong>
+          @if (roundComplete) { <button type="button" (click)="startRound()" class="bg-cyan-400 px-5 py-2.5 text-xs font-black uppercase tracking-[.1em] text-[#06161b] transition hover:bg-cyan-300">Nueva ronda →</button> }
+        </div>
+      }
+    </section>
+  }
+</app-lol-game-shell>

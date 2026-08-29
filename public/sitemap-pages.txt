@@ -1,4 +1,6 @@
 https://game-dle.web.app/home
+https://game-dle.web.app/lol
+https://game-dle.web.app/futbol
 https://game-dle.web.app/acerca-de
 https://game-dle.web.app/privacidad
 https://game-dle.web.app/terminos
@@ -7,6 +9,10 @@ https://game-dle.web.app/games/wordle
 https://game-dle.web.app/games/futboldle
 https://game-dle.web.app/games/onepiecedle
 https://game-dle.web.app/games/loldle
+https://game-dle.web.app/games/lol-who
+https://game-dle.web.app/games/lol-memory
+https://game-dle.web.app/games/lol-timeline
+https://game-dle.web.app/games/lol-connections
 https://game-dle.web.app/games/musicdle
 https://game-dle.web.app/games/serpentile
 https://game-dle.web.app/games/tuttifrutti
