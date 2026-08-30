@@ -42,28 +42,34 @@
 
             <div class="skin-stage__controls">
               <div class="skin-dropdown" (focusout)="onSkinDropdownFocusOut($event)">
-                <button
-                  id="who-skin"
-                  type="button"
-                  class="skin-dropdown__trigger"
-                  aria-haspopup="listbox"
-                  aria-controls="skin-options"
-                  [attr.aria-expanded]="skinDropdownOpen"
-                  [attr.aria-activedescendant]="skinDropdownOpen && highlightedSkinIndex >= 0 ? 'skin-option-' + highlightedSkinIndex : null"
-                  (click)="toggleSkinDropdown()"
-                  (keydown)="onSkinDropdownKeydown($event)">
-                  <span class="skin-dropdown__value" [class.skin-dropdown__value--placeholder]="!selectedSkin">
-                    <span class="skin-dropdown__value-mark" aria-hidden="true">{{ selectedSkin ? '◆' : '◇' }}</span>
-                    {{ selectedSkin?.nombre ?? 'Seleccioná el aspecto correcto…' }}
-                  </span>
-                  <span class="skin-dropdown__chevron" [class.skin-dropdown__chevron--open]="skinDropdownOpen" aria-hidden="true"></span>
-                </button>
+                <div class="skin-dropdown__trigger" [class.skin-dropdown__trigger--open]="skinDropdownOpen">
+                  <span class="skin-dropdown__value-mark" aria-hidden="true">{{ selectedSkin ? '◆' : '◇' }}</span>
+                  <input
+                    id="who-skin"
+                    type="text"
+                    role="combobox"
+                    class="skin-dropdown__input"
+                    autocomplete="off"
+                    aria-autocomplete="list"
+                    aria-haspopup="listbox"
+                    aria-controls="skin-options"
+                    [value]="skinSearch"
+                    [attr.aria-expanded]="skinDropdownOpen"
+                    [attr.aria-activedescendant]="skinDropdownOpen && highlightedSkinIndex >= 0 ? 'skin-option-' + highlightedSkinIndex : null"
+                    (focus)="openSkinDropdown()"
+                    (input)="onSkinSearch($any($event.target).value)"
+                    (keydown)="onSkinDropdownKeydown($event)"
+                    placeholder="Escribí para buscar una skin…" />
+                  <button type="button" class="skin-dropdown__toggle" (click)="toggleSkinDropdown()" [attr.aria-label]="skinDropdownOpen ? 'Cerrar opciones' : 'Abrir opciones'" tabindex="-1">
+                    <span class="skin-dropdown__chevron" [class.skin-dropdown__chevron--open]="skinDropdownOpen" aria-hidden="true"></span>
+                  </button>
+                </div>
 
                 @if (skinDropdownOpen) {
                   <div id="skin-options" class="skin-dropdown__menu" role="listbox" aria-label="Skins disponibles">
-                    <div class="skin-dropdown__menu-head"><span>Archivo de aspectos</span><span>{{ skinOptions.length }}</span></div>
+                    <div class="skin-dropdown__menu-head"><span>{{ skinSearch ? 'Resultados encontrados' : 'Archivo de aspectos' }}</span><span>{{ filteredSkinOptions.length }}</span></div>
                     <div class="skin-dropdown__scroll">
-                      @for (skin of skinOptions; track skin.numero; let index = $index) {
+                      @for (skin of filteredSkinOptions; track skin.numero; let index = $index) {
                         <button
                           type="button"
                           role="option"
@@ -78,6 +84,8 @@
                           <span class="skin-dropdown__name">{{ skin.nombre }}</span>
                           <span class="skin-dropdown__check" aria-hidden="true">{{ selectedSkinNumber === skin.numero ? '✓' : '→' }}</span>
                         </button>
+                      } @empty {
+                        <div class="skin-dropdown__empty"><span aria-hidden="true">◇</span><strong>Sin coincidencias</strong><small>Probá con otro nombre.</small></div>
                       }
                     </div>
                     <div class="skin-dropdown__keys"><span>↑↓ Navegar</span><span>Enter Elegir</span><span>Esc Cerrar</span></div>
@@ -88,7 +96,7 @@
                 <span>Confirmar skin</span><span aria-hidden="true">→</span>
               </button>
             </div>
-            <p class="skin-stage__hint"><span aria-hidden="true">◆</span> Una sola elección. Observá los detalles antes de confirmar.</p>
+            <p class="skin-stage__hint"><span aria-hidden="true">◆</span> Escribí para filtrar y elegí una sola opción.</p>
           </form>
         }
 

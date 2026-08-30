@@ -29,6 +29,7 @@ export class LolWhoComponent implements OnInit, OnDestroy {
   roundComplete = false;
   championGuessed = false;
   selectedSkinNumber: number | null = null;
+  skinSearch = '';
   skinDropdownOpen = false;
   highlightedSkinIndex = -1;
   guess = '';
@@ -61,6 +62,12 @@ export class LolWhoComponent implements OnInit, OnDestroy {
 
   get selectedSkin(): LoLSkin | null {
     return this.skinOptions.find((skin) => skin.numero === this.selectedSkinNumber) ?? null;
+  }
+
+  get filteredSkinOptions(): LoLSkin[] {
+    const search = this.normalizeSearch(this.skinSearch);
+    if (!search) return this.skinOptions;
+    return this.skinOptions.filter((skin) => this.normalizeSearch(skin.nombre).includes(search));
   }
 
   ngOnInit(): void {
@@ -104,6 +111,7 @@ export class LolWhoComponent implements OnInit, OnDestroy {
     this.roundComplete = false;
     this.championGuessed = false;
     this.selectedSkinNumber = null;
+    this.skinSearch = '';
     this.skinDropdownOpen = false;
     this.highlightedSkinIndex = -1;
 
@@ -216,31 +224,48 @@ export class LolWhoComponent implements OnInit, OnDestroy {
   toggleSkinDropdown(): void {
     this.skinDropdownOpen = !this.skinDropdownOpen;
     if (this.skinDropdownOpen) {
-      const selectedIndex = this.skinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
+      const selectedIndex = this.filteredSkinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
       this.highlightedSkinIndex = selectedIndex >= 0 ? selectedIndex : 0;
     }
   }
 
+  openSkinDropdown(): void {
+    this.skinDropdownOpen = true;
+    const selectedIndex = this.filteredSkinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
+    this.highlightedSkinIndex = selectedIndex >= 0 ? selectedIndex : (this.filteredSkinOptions.length ? 0 : -1);
+  }
+
+  onSkinSearch(value: string): void {
+    this.skinSearch = value;
+    if (this.selectedSkin && this.normalizeSearch(value) !== this.normalizeSearch(this.selectedSkin.nombre)) {
+      this.selectedSkinNumber = null;
+    }
+    this.skinDropdownOpen = true;
+    this.highlightedSkinIndex = this.filteredSkinOptions.length ? 0 : -1;
+  }
+
   selectSkin(skin: LoLSkin): void {
     this.selectedSkinNumber = skin.numero;
-    this.highlightedSkinIndex = this.skinOptions.findIndex((option) => option.numero === skin.numero);
+    this.skinSearch = skin.nombre;
+    this.highlightedSkinIndex = this.filteredSkinOptions.findIndex((option) => option.numero === skin.numero);
     this.skinDropdownOpen = false;
   }
 
   onSkinDropdownKeydown(event: KeyboardEvent): void {
-    if (!this.skinOptions.length) return;
-
     if (event.key === 'Escape') {
       this.skinDropdownOpen = false;
       return;
     }
+
+    const options = this.filteredSkinOptions;
+    if (!options.length) return;
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       if (!this.skinDropdownOpen) {
         this.toggleSkinDropdown();
       } else if (this.highlightedSkinIndex >= 0) {
-        this.selectSkin(this.skinOptions[this.highlightedSkinIndex]);
+        this.selectSkin(options[this.highlightedSkinIndex]);
       }
       return;
     }
@@ -250,21 +275,21 @@ export class LolWhoComponent implements OnInit, OnDestroy {
       event.preventDefault();
       if (!this.skinDropdownOpen) {
         this.skinDropdownOpen = true;
-        const selectedIndex = this.skinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
+        const selectedIndex = options.findIndex((skin) => skin.numero === this.selectedSkinNumber);
         this.highlightedSkinIndex = selectedIndex >= 0
           ? selectedIndex
-          : (event.key === 'ArrowDown' ? 0 : this.skinOptions.length - 1);
+          : (event.key === 'ArrowDown' ? 0 : options.length - 1);
         return;
       }
       const currentIndex = this.highlightedSkinIndex >= 0 ? this.highlightedSkinIndex : 0;
-      this.highlightedSkinIndex = (currentIndex + movements[event.key] + this.skinOptions.length) % this.skinOptions.length;
+      this.highlightedSkinIndex = (currentIndex + movements[event.key] + options.length) % options.length;
       return;
     }
 
     if (event.key === 'Home' || event.key === 'End') {
       event.preventDefault();
       this.skinDropdownOpen = true;
-      this.highlightedSkinIndex = event.key === 'Home' ? 0 : this.skinOptions.length - 1;
+      this.highlightedSkinIndex = event.key === 'Home' ? 0 : options.length - 1;
     }
   }
 
@@ -286,6 +311,10 @@ export class LolWhoComponent implements OnInit, OnDestroy {
   private closeSuggestions(): void {
     this.suggestions = [];
     this.suggestionIndex = -1;
+  }
+
+  private normalizeSearch(value: string): string {
+    return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').trim();
   }
 
 }

@@ -48,6 +48,7 @@ async function main() {
       const officialChampion = detail.data[officialId];
       assert(officialChampion, `${champion.nombre}: respuesta individual inválida.`);
 
+      champion.img_url ??= `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${officialId}_0.jpg`;
       champion.skins = officialChampion.skins
         .filter((skin) => skin.num > 0 && skin.parentSkin === undefined)
         .map((skin) => ({

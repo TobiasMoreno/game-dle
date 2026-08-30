@@ -1215,6 +1215,7 @@
     {
         "id": 15,
         "nombre": "Fiddlesticks",
+        "img_url": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiddlesticks_0.jpg",
         "genero": "Otros",
         "posicion": [
             "Jungla",
@@ -5187,6 +5188,7 @@
     {
         "id": 59,
         "nombre": "Maestro Yi",
+        "img_url": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MasterYi_0.jpg",
         "genero": "Masculino",
         "posicion": [
             "Jungla"
@@ -12220,6 +12222,7 @@
     {
         "id": 144,
         "nombre": "Bardo",
+        "img_url": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Bard_0.jpg",
         "genero": "Masculino",
         "posicion": [
             "Soporte"
@@ -12287,6 +12290,7 @@
     {
         "id": 145,
         "nombre": "Bel'Veth",
+        "img_url": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Belveth_0.jpg",
         "genero": "Femenino",
         "posicion": [
             "Jungla"
@@ -14435,6 +14439,7 @@
     {
         "id": 169,
         "nombre": "Wukong",
+        "img_url": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MonkeyKing_0.jpg",
         "genero": "Masculino",
         "posicion": [
             "Jungla"

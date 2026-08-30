@@ -69,14 +69,25 @@ describe('LolWhoComponent', () => {
     component.submitGuess();
 
     fixture.detectChanges();
-    const dropdown = fixture.nativeElement.querySelector('#who-skin') as HTMLButtonElement;
+    const dropdown = fixture.nativeElement.querySelector('#who-skin') as HTMLInputElement;
     expect(component.championGuessed).toBeTrue();
     expect(component.roundComplete).toBeFalse();
-    expect(dropdown.getAttribute('aria-haspopup')).toBe('listbox');
+    expect(dropdown.getAttribute('role')).toBe('combobox');
 
-    dropdown.click();
+    component.openSkinDropdown();
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('[role="option"]').length).toBe(component.skinOptions.length);
+  });
+
+  it('filters skin names while typing', () => {
+    component.onInput(component.target!.nombre);
+    component.submitGuess();
+    component.onSkinSearch(' b');
+
+    fixture.detectChanges();
+    expect(component.filteredSkinOptions.length).toBe(1);
+    expect(component.filteredSkinOptions[0].nombre).toContain(' B');
+    expect(fixture.nativeElement.querySelectorAll('[role="option"]').length).toBe(1);
   });
 
   it('selects one skin with the keyboard', () => {

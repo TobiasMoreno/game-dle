@@ -91,48 +91,56 @@
 .skin-dropdown { position: relative; }
 
 .skin-dropdown__trigger {
-  display: flex;
+  display: grid;
   width: 100%;
   min-height: 3.35rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: .7rem;
   border: 1px solid rgb(148 163 184 / 28%);
   border-left: 2px solid #22d3ee;
   background:
     linear-gradient(90deg, rgb(34 211 238 / 7%), transparent 24%),
     #06161b;
-  padding: .75rem 1rem;
+  padding-left: 1rem;
   color: #e7f6f4;
-  font-size: .86rem;
-  font-weight: 700;
-  letter-spacing: .015em;
-  text-align: left;
-  outline: none;
-  cursor: pointer;
   transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .skin-dropdown__trigger:hover { border-color: rgb(34 211 238 / 58%); }
 
-.skin-dropdown__trigger:focus-visible,
-.skin-dropdown__trigger[aria-expanded='true'] {
+.skin-dropdown__trigger:focus-within,
+.skin-dropdown__trigger--open {
   border-color: #22d3ee;
   box-shadow: 0 0 0 3px rgb(34 211 238 / 13%), 0 0 1.6rem rgb(34 211 238 / 10%);
 }
 
-.skin-dropdown__value {
-  display: flex;
+.skin-dropdown__input {
+  width: 100%;
   min-width: 0;
-  align-items: center;
-  gap: .7rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  align-self: stretch;
+  border: 0;
+  background: transparent;
+  color: #e7f6f4;
+  font-size: .86rem;
+  font-weight: 700;
+  letter-spacing: .015em;
+  outline: 0;
 }
 
-.skin-dropdown__value--placeholder { color: #64748b; font-weight: 600; }
+.skin-dropdown__input::placeholder { color: #64748b; font-weight: 600; }
 .skin-dropdown__value-mark { color: #fbbf24; font-size: .62rem; }
+
+.skin-dropdown__toggle {
+  display: grid;
+  width: 3rem;
+  align-self: stretch;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid rgb(255 255 255 / 8%);
+  background: transparent;
+  cursor: pointer;
+}
 
 .skin-dropdown__chevron {
   flex: 0 0 auto;
@@ -257,6 +265,20 @@
 
 .skin-dropdown__check { color: #22d3ee; font-size: .78rem; }
 .skin-dropdown__option--selected .skin-dropdown__check { color: #fbbf24; }
+
+.skin-dropdown__empty {
+  display: grid;
+  min-height: 7.5rem;
+  place-items: center;
+  align-content: center;
+  gap: .3rem;
+  color: #475569;
+  text-align: center;
+}
+
+.skin-dropdown__empty span { color: #fbbf24; font-size: .75rem; }
+.skin-dropdown__empty strong { color: #94a3b8; font-family: Georgia, 'Times New Roman', serif; font-size: .9rem; }
+.skin-dropdown__empty small { font-size: .62rem; }
 
 .skin-dropdown__keys {
   gap: .65rem;
