@@ -34,6 +34,11 @@ describe('FutboldleEngineService', () => {
     expect(service.players.every(player => player.answer.length === 5)).toBeTrue();
   });
 
+  it('includes the expanded five-letter player catalog', () => {
+    expect(service.getPlayerByAnswer('TEVEZ')?.player).toBe('Carlos Tévez');
+    expect(service.getPlayerByAnswer('POGBA')?.player).toBe('Paul Pogba');
+  });
+
   it('selects another player for the next unlimited round', () => {
     const first = service.players[0];
     const next = service.getRandomPlayer(first.answer, () => 0);
