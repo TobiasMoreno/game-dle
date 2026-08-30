@@ -21,7 +21,10 @@ describe('LolWhoComponent', () => {
     region: ['Runaterra'],
     anio_de_lanzamiento: 2010 + index,
     img_url: `img_lol/champion-${index + 1}.jpg`,
-    skins: [{ nombre: `Skin ${index + 1}`, numero: 1, img_url: `https://example.test/champion-${index + 1}-skin.jpg` }],
+    skins: [
+      { nombre: `Skin ${index + 1} A`, numero: 1, img_url: `https://example.test/champion-${index + 1}-skin-a.jpg` },
+      { nombre: `Skin ${index + 1} B`, numero: 2, img_url: `https://example.test/champion-${index + 1}-skin-b.jpg` },
+    ],
   }));
 
   beforeEach(async () => {
@@ -51,19 +54,60 @@ describe('LolWhoComponent', () => {
   });
 
   it('uses a random skin image for the hidden champion', () => {
-    expect(component.targetImageUrl).toBe(component.target!.skins![0].img_url);
+    expect(component.target!.skins!.map((skin) => skin.img_url)).toContain(component.targetImageUrl);
+    expect(component.targetSkin?.img_url).toBe(component.targetImageUrl);
   });
 
   it('falls back to the local image when a skin fails to load', () => {
     component.onTargetImageError();
     expect(component.targetImageUrl).toBe(component.target!.img_url);
+    expect(component.targetSkin).toBeNull();
   });
 
-  it('scores a correct answer', () => {
+  it('asks for one skin selection after guessing the champion', () => {
     component.onInput(component.target!.nombre);
     component.submitGuess();
 
+    fixture.detectChanges();
+    const dropdown = fixture.nativeElement.querySelector('#who-skin') as HTMLButtonElement;
+    expect(component.championGuessed).toBeTrue();
+    expect(component.roundComplete).toBeFalse();
+    expect(dropdown.getAttribute('aria-haspopup')).toBe('listbox');
+
+    dropdown.click();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('[role="option"]').length).toBe(component.skinOptions.length);
+  });
+
+  it('selects one skin with the keyboard', () => {
+    component.onInput(component.target!.nombre);
+    component.submitGuess();
+
+    component.onSkinDropdownKeydown(new KeyboardEvent('keydown', { key: 'ArrowDown', cancelable: true }));
+    component.onSkinDropdownKeydown(new KeyboardEvent('keydown', { key: 'Enter', cancelable: true }));
+
+    expect(component.selectedSkinNumber).toBe(component.skinOptions[0].numero);
+    expect(component.skinDropdownOpen).toBeFalse();
+  });
+
+  it('scores after choosing the correct skin', () => {
+    component.onInput(component.target!.nombre);
+    component.submitGuess();
+    component.selectedSkinNumber = component.targetSkin!.numero;
+    component.submitSkinGuess();
+
     expect(component.score).toBe(1);
+    expect(component.rounds).toBe(1);
+    expect(component.roundComplete).toBeTrue();
+  });
+
+  it('finishes without scoring after choosing the wrong skin', () => {
+    component.onInput(component.target!.nombre);
+    component.submitGuess();
+    component.selectedSkinNumber = component.skinOptions.find((skin) => skin.numero !== component.targetSkin!.numero)!.numero;
+    component.submitSkinGuess();
+
+    expect(component.score).toBe(0);
     expect(component.rounds).toBe(1);
     expect(component.roundComplete).toBeTrue();
   });

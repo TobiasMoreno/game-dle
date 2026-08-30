@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '../../shared/services/theme.service';
-import { LoLCharacter } from '../loldle/loldle-game.service';
+import { LoLCharacter, LoLSkin } from '../loldle/loldle-game.service';
 import { LolGameShellComponent } from '../lol-shared/lol-game-shell.component';
 import { randomChampionImage, shuffleChampions, validChampions } from '../lol-shared/lol-game.utils';
 
@@ -11,20 +11,26 @@ import { randomChampionImage, shuffleChampions, validChampions } from '../lol-sh
   selector: 'app-lol-who',
   imports: [LolGameShellComponent],
   templateUrl: './lol-who.component.html',
+  styleUrl: './lol-who.component.css',
 })
 export class LolWhoComponent implements OnInit, OnDestroy {
   readonly title = '¿Quién es?';
-  readonly instructions = 'Escribí el nombre del campeón. Cada intento incorrecto reduce el zoom de la imagen.';
+  readonly instructions = 'Escribí el nombre del campeón. Cada intento incorrecto reduce el zoom; si acertás, elegí el nombre de la skin.';
   readonly maxAttempts = 6;
 
   champions: LoLCharacter[] = [];
   target: LoLCharacter | null = null;
+  targetSkin: LoLSkin | null = null;
   targetImageUrl = '';
   loading = true;
   score = 0;
   rounds = 0;
   feedback = '';
   roundComplete = false;
+  championGuessed = false;
+  selectedSkinNumber: number | null = null;
+  skinDropdownOpen = false;
+  highlightedSkinIndex = -1;
   guess = '';
   suggestions: LoLCharacter[] = [];
   suggestionIndex = -1;
@@ -41,12 +47,20 @@ export class LolWhoComponent implements OnInit, OnDestroy {
   private zoomTransitionFrame: number | null = null;
 
   get imageScaleClass(): string {
-    return this.roundComplete ? 'scale-100' : this.zoomClasses[Math.min(this.attempts.length, this.zoomClasses.length - 1)];
+    return this.championGuessed || this.roundComplete ? 'scale-100' : this.zoomClasses[Math.min(this.attempts.length, this.zoomClasses.length - 1)];
   }
 
   get zoomPercent(): number {
     const levels = [300, 255, 215, 180, 150, 125, 100];
-    return this.roundComplete ? 100 : levels[Math.min(this.attempts.length, levels.length - 1)];
+    return this.championGuessed || this.roundComplete ? 100 : levels[Math.min(this.attempts.length, levels.length - 1)];
+  }
+
+  get skinOptions(): LoLSkin[] {
+    return this.target?.skins ?? [];
+  }
+
+  get selectedSkin(): LoLSkin | null {
+    return this.skinOptions.find((skin) => skin.numero === this.selectedSkinNumber) ?? null;
   }
 
   ngOnInit(): void {
@@ -79,6 +93,7 @@ export class LolWhoComponent implements OnInit, OnDestroy {
     this.zoomTransitionEnabled = false;
     this.target = shuffleChampions(this.champions)[0];
     this.targetImageUrl = randomChampionImage(this.target);
+    this.targetSkin = this.target.skins?.find((skin) => skin.img_url === this.targetImageUrl) ?? null;
     const availableOrigins = this.imageOrigins.filter((origin) => origin !== this.imageOriginClass);
     this.imageOriginClass = availableOrigins[Math.floor(Math.random() * availableOrigins.length)];
     this.guess = '';
@@ -87,6 +102,10 @@ export class LolWhoComponent implements OnInit, OnDestroy {
     this.attempts = [];
     this.feedback = '';
     this.roundComplete = false;
+    this.championGuessed = false;
+    this.selectedSkinNumber = null;
+    this.skinDropdownOpen = false;
+    this.highlightedSkinIndex = -1;
 
     if (this.isBrowser) {
       if (this.zoomTransitionFrame !== null) cancelAnimationFrame(this.zoomTransitionFrame);
@@ -142,7 +161,7 @@ export class LolWhoComponent implements OnInit, OnDestroy {
   }
 
   submitGuess(): void {
-    if (this.roundComplete || !this.target) return;
+    if (this.roundComplete || this.championGuessed || !this.target) return;
     const normalizedGuess = this.guess.toLocaleLowerCase('es').trim();
     const champion = this.champions.find((item) => item.nombre.toLocaleLowerCase('es') === normalizedGuess);
     if (!champion) {
@@ -158,10 +177,15 @@ export class LolWhoComponent implements OnInit, OnDestroy {
     this.closeSuggestions();
 
     if (champion.id === this.target.id) {
-      this.score++;
-      this.rounds++;
-      this.roundComplete = true;
-      this.feedback = `¡Correcto! Era ${this.target.nombre}.`;
+      this.championGuessed = true;
+      if (this.targetSkin && this.skinOptions.length) {
+        this.feedback = `¡Correcto! Era ${this.target.nombre}. Ahora elegí el nombre de la skin.`;
+      } else {
+        this.score++;
+        this.rounds++;
+        this.roundComplete = true;
+        this.feedback = `¡Correcto! Era ${this.target.nombre}.`;
+      }
     } else if (this.attempts.length >= this.maxAttempts) {
       this.rounds++;
       this.roundComplete = true;
@@ -172,9 +196,88 @@ export class LolWhoComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitSkinGuess(): void {
+    if (!this.championGuessed || this.roundComplete || !this.target || !this.targetSkin) return;
+    if (this.selectedSkinNumber === null) {
+      this.feedback = 'Elegí una skin antes de confirmar.';
+      return;
+    }
+
+    const selectedSkin = this.skinOptions.find((skin) => skin.numero === this.selectedSkinNumber);
+    const isCorrect = selectedSkin?.numero === this.targetSkin.numero;
+    if (isCorrect) this.score++;
+    this.rounds++;
+    this.roundComplete = true;
+    this.feedback = isCorrect
+      ? `¡Perfecto! La skin es ${this.targetSkin.nombre}.`
+      : `La skin era ${this.targetSkin.nombre}. Elegiste ${selectedSkin?.nombre ?? 'una opción desconocida'}.`;
+  }
+
+  toggleSkinDropdown(): void {
+    this.skinDropdownOpen = !this.skinDropdownOpen;
+    if (this.skinDropdownOpen) {
+      const selectedIndex = this.skinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
+      this.highlightedSkinIndex = selectedIndex >= 0 ? selectedIndex : 0;
+    }
+  }
+
+  selectSkin(skin: LoLSkin): void {
+    this.selectedSkinNumber = skin.numero;
+    this.highlightedSkinIndex = this.skinOptions.findIndex((option) => option.numero === skin.numero);
+    this.skinDropdownOpen = false;
+  }
+
+  onSkinDropdownKeydown(event: KeyboardEvent): void {
+    if (!this.skinOptions.length) return;
+
+    if (event.key === 'Escape') {
+      this.skinDropdownOpen = false;
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (!this.skinDropdownOpen) {
+        this.toggleSkinDropdown();
+      } else if (this.highlightedSkinIndex >= 0) {
+        this.selectSkin(this.skinOptions[this.highlightedSkinIndex]);
+      }
+      return;
+    }
+
+    const movements: Record<string, number> = { ArrowDown: 1, ArrowUp: -1 };
+    if (event.key in movements) {
+      event.preventDefault();
+      if (!this.skinDropdownOpen) {
+        this.skinDropdownOpen = true;
+        const selectedIndex = this.skinOptions.findIndex((skin) => skin.numero === this.selectedSkinNumber);
+        this.highlightedSkinIndex = selectedIndex >= 0
+          ? selectedIndex
+          : (event.key === 'ArrowDown' ? 0 : this.skinOptions.length - 1);
+        return;
+      }
+      const currentIndex = this.highlightedSkinIndex >= 0 ? this.highlightedSkinIndex : 0;
+      this.highlightedSkinIndex = (currentIndex + movements[event.key] + this.skinOptions.length) % this.skinOptions.length;
+      return;
+    }
+
+    if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      this.skinDropdownOpen = true;
+      this.highlightedSkinIndex = event.key === 'Home' ? 0 : this.skinOptions.length - 1;
+    }
+  }
+
+  onSkinDropdownFocusOut(event: FocusEvent): void {
+    const container = event.currentTarget as HTMLElement;
+    const nextElement = event.relatedTarget as Node | null;
+    if (!nextElement || !container.contains(nextElement)) this.skinDropdownOpen = false;
+  }
+
   onTargetImageError(event?: Event): void {
     if (this.target && this.targetImageUrl !== this.target.img_url) {
       this.targetImageUrl = this.target.img_url;
+      this.targetSkin = null;
     } else if (event) {
       (event.target as HTMLImageElement).style.visibility = 'hidden';
     }
