@@ -56,6 +56,23 @@ describe('LolConnectionsComponent', () => {
     http.verify();
   });
 
+  it('keeps the selection and warns when three champions are correct', async () => {
+    const { fixture, http } = await createComponent();
+    const component = fixture.componentInstance;
+    const group = component.groups[0];
+    const groupIds = new Set(group.champions.map((champion) => champion.id));
+    const incorrectChampion = component.board.find((champion) => !groupIds.has(champion.id))!;
+    [...group.champions.slice(0, 3), incorrectChampion].forEach((champion) => component.toggleChampion(champion));
+
+    component.submitSelection();
+
+    expect(component.feedback).toContain('3 correctos y 1 incorrecto');
+    expect(component.selectedIds.size).toBe(4);
+    expect(component.solvedGroups.length).toBe(0);
+    expect(component.errors).toBe(1);
+    http.verify();
+  });
+
   it('uses a skin image for every champion on the board', async () => {
     const { fixture, http } = await createComponent();
     const component = fixture.componentInstance;

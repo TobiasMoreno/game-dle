@@ -113,16 +113,24 @@ export class LolConnectionsComponent implements OnInit, OnDestroy {
 
   submitSelection(): void {
     if (this.selectedIds.size !== 4 || this.roundComplete) return;
-    const matchingGroup = this.groups.find((group) =>
+    const pendingGroups = this.groups.filter((group) =>
       !this.solvedGroups.some((solved) => solved.id === group.id)
-      && group.champions.every((champion) => this.selectedIds.has(champion.id))
+    );
+    const matchingGroup = pendingGroups.find((group) =>
+      group.champions.every((champion) => this.selectedIds.has(champion.id))
     );
 
     if (!matchingGroup) {
       this.errors++;
-      this.feedback = 'Esos cuatro no forman uno de los grupos esperados. Probá otra combinación.';
+      const bestMatch = Math.max(...pendingGroups.map((group) =>
+        group.champions.filter((champion) => this.selectedIds.has(champion.id)).length
+      ));
+      const isOneAway = bestMatch === 3;
+      this.feedback = isOneAway
+        ? '¡Casi! Tenés 3 correctos y 1 incorrecto. Cambiá uno y volvé a comprobar.'
+        : 'Esos cuatro no forman uno de los grupos esperados. Probá otra combinación.';
       this.feedbackKind = 'error';
-      this.selectedIds = new Set<number>();
+      if (!isOneAway) this.selectedIds = new Set<number>();
       this.saveRound();
       return;
     }
