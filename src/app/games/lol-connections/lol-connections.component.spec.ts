@@ -73,6 +73,36 @@ describe('LolConnectionsComponent', () => {
     http.verify();
   });
 
+  it('allows surrendering and reveals every group after ten errors', async () => {
+    const { fixture, http } = await createComponent();
+    const component = fixture.componentInstance;
+    component.errors = 10;
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.connections-give-up')).not.toBeNull();
+    component.giveUp();
+
+    expect(component.roundComplete).toBeTrue();
+    expect(component.solvedGroups.length).toBe(4);
+    expect(component.board.length).toBe(0);
+    expect(component.rounds).toBe(1);
+    expect(component.feedback).toContain('Te rendiste');
+    http.verify();
+  });
+
+  it('does not allow surrendering before ten errors', async () => {
+    const { fixture, http } = await createComponent();
+    const component = fixture.componentInstance;
+    component.errors = 9;
+
+    component.giveUp();
+    fixture.detectChanges();
+
+    expect(component.roundComplete).toBeFalse();
+    expect(fixture.nativeElement.querySelector('.connections-give-up')).toBeNull();
+    http.verify();
+  });
+
   it('uses a skin image for every champion on the board', async () => {
     const { fixture, http } = await createComponent();
     const component = fixture.componentInstance;

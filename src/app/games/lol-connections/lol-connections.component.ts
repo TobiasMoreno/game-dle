@@ -29,6 +29,7 @@ export interface ConnectionGroup extends ConnectionCandidate {
 export class LolConnectionsComponent implements OnInit, OnDestroy {
   readonly title = 'Conexiones LoL';
   readonly instructions = 'Encontrá los cuatro grupos ocultos. Cada conexión puede combinar dos características y tiene exactamente cuatro coincidencias en el tablero.';
+  readonly surrenderErrorThreshold = 10;
   champions: LoLCharacter[] = [];
   groups: ConnectionGroup[] = [];
   board: LoLCharacter[] = [];
@@ -146,6 +147,18 @@ export class LolConnectionsComponent implements OnInit, OnDestroy {
       this.roundComplete = true;
       this.feedback = '¡Tablero resuelto! Encontraste las cuatro conexiones.';
     }
+    this.saveRound();
+  }
+
+  giveUp(): void {
+    if (this.roundComplete || this.errors < this.surrenderErrorThreshold) return;
+    this.solvedGroups = [...this.groups];
+    this.board = [];
+    this.selectedIds = new Set<number>();
+    this.rounds++;
+    this.roundComplete = true;
+    this.feedback = 'Te rendiste. Estas eran las cuatro conexiones del tablero.';
+    this.feedbackKind = 'neutral';
     this.saveRound();
   }
 
