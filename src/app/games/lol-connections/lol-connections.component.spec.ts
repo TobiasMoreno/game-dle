@@ -6,12 +6,17 @@ import { LoLCharacter } from '../loldle/loldle-game.service';
 import { LolConnectionsComponent } from './lol-connections.component';
 
 describe('LolConnectionsComponent', () => {
+  const storageKey = 'game-dle-lol-connections-state-v2';
   const champions: LoLCharacter[] = Array.from({ length: 32 }, (_, index) => ({
     id: index + 1, nombre: `Campeón ${index + 1}`, genero: '',
-    posicion: [index < 16 ? 'Medio' : 'Superior'], especie: [index % 2 === 0 ? 'Vastaya' : 'Yordle'],
-    recurso: [index % 3 === 0 ? 'Energía' : 'Sin Maná'], tipo_de_gama: [index % 2 === 0 ? 'A distancia' : 'Cuerpo a cuerpo'],
-    region: [index < 16 ? 'Demacia' : 'Noxus'], rol: [index % 2 === 0 ? 'Mago' : 'Luchador'],
-    anio_de_lanzamiento: 2009 + (index % 12), img_url: `img_lol/${index}.jpg`,
+    posicion: [index < 4 ? 'Medio' : 'Reserva'],
+    especie: [index >= 4 && index < 8 ? 'Yordle' : 'Humano'],
+    recurso: [index >= 8 && index < 12 ? 'Energía' : 'Maná'],
+    tipo_de_gama: ['A distancia'],
+    region: [index >= 12 && index < 16 ? 'Demacia' : 'Runaterra'],
+    rol: ['Mago'],
+    anio_de_lanzamiento: 2009,
+    img_url: `img_lol/${index}.jpg`,
     skins: [{ nombre: `Skin ${index}`, numero: 1, img_url: `https://example.test/${index}-skin.jpg` }],
   }));
 
@@ -25,11 +30,18 @@ describe('LolConnectionsComponent', () => {
     return { fixture, http };
   }
 
+  beforeEach(() => localStorage.removeItem(storageKey));
+
   it('creates four groups with sixteen unique champions', async () => {
     const { fixture, http } = await createComponent();
     expect(fixture.componentInstance.groups.length).toBe(4);
     expect(fixture.componentInstance.board.length).toBe(16);
     expect(new Set(fixture.componentInstance.board.map((champion) => champion.id)).size).toBe(16);
+    const roundIds = fixture.componentInstance.groups.flatMap((group) => group.champions.map((champion) => champion.id));
+    for (const group of fixture.componentInstance.groups) {
+      const matchingIds = roundIds.filter((id) => group.qualifierChampionIds.includes(id));
+      expect(new Set(matchingIds)).toEqual(new Set(group.champions.map((champion) => champion.id)));
+    }
     http.verify();
   });
 
@@ -48,6 +60,32 @@ describe('LolConnectionsComponent', () => {
     const { fixture, http } = await createComponent();
     const component = fixture.componentInstance;
     expect(component.board.every((champion) => component.imageFor(champion) === champion.skins![0].img_url)).toBeTrue();
+    http.verify();
+  });
+
+  it('stores the four generated connections with champion names', async () => {
+    const { http } = await createComponent();
+    const stored = JSON.parse(localStorage.getItem(storageKey)!);
+
+    expect(stored.groups.length).toBe(4);
+    expect(stored.groups.every((group: { championNames: string[] }) => group.championNames.length === 4)).toBeTrue();
+    expect(stored.groups.every((group: { qualifierChampionNames: string[] }) => group.qualifierChampionNames.length >= 4)).toBeTrue();
+    expect(stored.boardIds.length).toBe(16);
+    http.verify();
+  });
+
+  it('restores the same connections after reloading', async () => {
+    const { fixture, http } = await createComponent();
+    const expectedGroups = fixture.componentInstance.groups.map((group) => group.champions.map((champion) => champion.id));
+    fixture.destroy();
+
+    const restoredFixture = TestBed.createComponent(LolConnectionsComponent);
+    restoredFixture.detectChanges();
+    http.expectOne('campeones_lol.json').flush(champions);
+    restoredFixture.detectChanges();
+
+    expect(restoredFixture.componentInstance.groups.map((group) => group.champions.map((champion) => champion.id))).toEqual(expectedGroups);
+    restoredFixture.destroy();
     http.verify();
   });
 });
