@@ -61,6 +61,12 @@ export const routes: Routes = [
     loadComponent: () => import('./games/wordle/wordle.component').then(m => m.WordleComponent)
   },
   {
+    path: 'games/clave-extrema',
+    title: 'Clave Extrema | Game-DLE',
+    data: { description: 'Descifrá una palabra de cinco letras usando solamente los totales de cada intento.' },
+    loadComponent: () => import('./games/clave-extrema/clave-extrema.component').then(m => m.ClaveExtremaComponent)
+  },
+  {
     path: 'games/futboldle',
     title: 'FutbolDLE | Game-DLE',
     data: { description: 'Descubrí el apellido oculto del futbolista en rondas ilimitadas.' },

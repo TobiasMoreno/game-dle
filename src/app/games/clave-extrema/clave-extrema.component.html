@@ -1,0 +1,101 @@
+<app-base-game
+  editorialGameId="clave-extrema"
+  [footerTheme]="'wordle'"
+  [hideHeader]="true"
+  [hideDailyState]="true"
+  [hideStats]="true"
+  [customBackground]="'linear-gradient(145deg, #101512 0%, #17201b 55%, #0b0f0d 100%)'"
+  [customCardBg]="'#101512'">
+  <main class="extreme-page">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">{{ roundIsDailyChallenge ? 'Desafío cifrado diario' : 'Laboratorio sin límite' }}</p>
+        <h2>Clave <em>extrema</em></h2>
+      </div>
+      <div class="status-strip" aria-label="Estado de la ronda">
+        <span><b>{{ attempts.length }}</b>/{{ maxAttempts }} intentos</span>
+        <span><b>{{ elapsedSeconds }}</b>s</span>
+      </div>
+    </header>
+
+    @if (isLoading) {
+      <section class="state-card" aria-live="polite"><div class="loader"></div><h3>Cifrando la palabra</h3></section>
+    } @else if (hasSavedProgress) {
+      <section class="state-card">
+        <span class="state-symbol">∴</span><p class="eyebrow">Expediente en pausa</p>
+        <h3>La pista sigue abierta.</h3>
+        <p>Conservamos tus {{ attempts.length }} {{ attempts.length === 1 ? 'intento' : 'intentos' }} y todos sus totales.</p>
+        <button type="button" class="primary-button" (click)="continueGame()">Retomar deducción</button>
+      </section>
+    } @else if (finished) {
+      <section class="state-card result-card">
+        <span class="state-symbol">{{ gameWon ? '✓' : '×' }}</span>
+        <p class="eyebrow">{{ gameWon ? 'Código descifrado' : 'Archivo cerrado' }}</p>
+        <h3>{{ gameWon ? 'Encontraste la clave.' : 'La clave se resistió.' }}</h3>
+        <p>La palabra era <strong>{{ targetWord }}</strong>.</p>
+        @if (gameWon) { <div class="score-card"><span>Puntaje</span><b>{{ score }}</b><small>{{ attempts.length }} intentos · {{ elapsedSeconds }} segundos</small></div> }
+        <button type="button" class="primary-button" (click)="playAgain()">Jugar otra ronda</button>
+      </section>
+    } @else {
+      <section class="game-shell">
+        <div class="board-zone">
+          <div class="column-labels" aria-hidden="true"><span>Palabra cifrada</span><span>Exactas</span><span>Movidas</span><span>Fuera</span></div>
+          <div class="board" aria-label="Tablero de Clave Extrema">
+            @for (_ of rows; track $index; let rowIndex = $index) {
+              @let attempt = getAttempt(rowIndex);
+              <div class="board-row" [class.board-row--active]="rowIndex === attempts.length">
+                <div class="letter-group">
+                  @for (__ of slots; track $index; let columnIndex = $index) {
+                    @if (attempt) {
+                      <button
+                        type="button"
+                        class="letter-cell letter-cell--markable"
+                        [class.letter-cell--green]="getLetterMark(rowIndex, columnIndex) === 'green'"
+                        [class.letter-cell--orange]="getLetterMark(rowIndex, columnIndex) === 'orange'"
+                        [class.letter-cell--red]="getLetterMark(rowIndex, columnIndex) === 'red'"
+                        [attr.aria-label]="getLetterMarkLabel(rowIndex, columnIndex)"
+                        (click)="cycleLetterMark(rowIndex, columnIndex)">
+                        {{ getCellLetter(rowIndex, columnIndex) }}
+                      </button>
+                    } @else {
+                      <span class="letter-cell">{{ getCellLetter(rowIndex, columnIndex) }}</span>
+                    }
+                  }
+                </div>
+                <span class="counter counter--exact">{{ attempt ? attempt.feedback.exact : '·' }}</span>
+                <span class="counter counter--displaced">{{ attempt ? attempt.feedback.displaced : '·' }}</span>
+                <span class="counter counter--absent">{{ attempt ? attempt.feedback.absent : '·' }}</span>
+              </div>
+            }
+          </div>
+          <div class="progress-track"><span [style.width.%]="rowProgress"></span></div>
+          <p class="annotation-tip"><b>Ayuda manual</b> Tocá una letra enviada para marcarla <i class="tip-green">verde</i>, <i class="tip-orange">naranja</i> o <i class="tip-red">rojo</i>.</p>
+        </div>
+
+        <aside class="console">
+          <div class="rule-note"><span>Regla 01</span><p>El juego sólo revela los <strong>totales</strong>. Los colores que agregues sobre las letras son tus propias anotaciones.</p></div>
+          <div class="legend">
+            <span><i class="exact"></i><b>Exactas</b> lugar correcto</span>
+            <span><i class="displaced"></i><b>Movidas</b> lugar incorrecto</span>
+            <span><i class="absent"></i><b>Fuera</b> no aparecen</span>
+          </div>
+          <label for="extreme-guess">Intento {{ attempts.length + 1 }}</label>
+          <input id="extreme-guess" class="guess-input" [(ngModel)]="currentGuess" (input)="onInputChange($event)" (keydown)="onPhysicalKeyDown($event)" maxlength="5" autocomplete="off" spellcheck="false" placeholder="_ _ _ _ _" autofocus>
+          <button type="button" class="primary-button" (click)="submitGuess()" [disabled]="currentGuess.length !== 5">Cruzar datos</button>
+          @if (errorMessage) { <p class="error-note" role="alert">{{ errorMessage }}</p> }
+          <div class="keyboard" aria-label="Teclado en pantalla">
+            @for (row of keyboardRows; track $index) {
+              <div class="keyboard-row">
+                @for (key of row; track key) {
+                  <button type="button" [class.wide]="key === 'ENTER' || key === 'BACKSPACE'" (click)="pressKey(key)" [attr.aria-label]="key === 'BACKSPACE' ? 'Borrar letra' : key === 'ENTER' ? 'Comprobar palabra' : 'Letra ' + key">
+                    {{ key === 'BACKSPACE' ? '⌫' : key === 'ENTER' ? '↵' : key }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        </aside>
+      </section>
+    }
+  </main>
+</app-base-game>

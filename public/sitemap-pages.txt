@@ -6,6 +6,7 @@ https://game-dle.web.app/privacidad
 https://game-dle.web.app/terminos
 https://game-dle.web.app/contacto
 https://game-dle.web.app/games/wordle
+https://game-dle.web.app/games/clave-extrema
 https://game-dle.web.app/games/futboldle
 https://game-dle.web.app/games/onepiecedle
 https://game-dle.web.app/games/loldle

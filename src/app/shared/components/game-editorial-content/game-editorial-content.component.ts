@@ -46,6 +46,19 @@ const CONTENT: Record<string, GameEditorialContent> = {
     faqs: [{ question: '¿La palabra cambia si recargo?', answer: 'No. La solución es la misma durante todo el día según la fecha de Argentina.' }, { question: '¿Se tienen en cuenta las tildes?', answer: 'El tablero prioriza las cinco letras de la palabra; las reglas concretas de normalización se aplican de manera uniforme a todos los intentos.' }],
     related: [{ name: 'RoscoDLE', route: '/games/roscodle', reason: 'Más vocabulario' }, { name: 'FutbolDLE', route: '/games/futboldle', reason: 'Cinco letras y fútbol' }], reviewed: '25 de agosto de 2026',
   },
+  'clave-extrema': {
+    name: 'Clave Extrema', kicker: 'Manual de criptografía', title: 'La palabra no cambia de color: los números cuentan la historia.',
+    intro: 'Clave Extrema convierte la deducción de cinco letras en un problema de totales. Cada intento informa cuántas letras están bien ubicadas, cuántas pertenecen a la palabra en otro lugar y cuántas quedan fuera.',
+    rules: ['Escribí una palabra válida de cinco letras.', 'Leé los tres totales de la fila; ninguna letra individual revela su estado.', 'Compará intentos y resolvé el código antes de la octava oportunidad.'],
+    methodology: 'La solución diaria se selecciona de forma determinista según la fecha de Argentina. La validación reutiliza el catálogo local de palabras de Game-DLE y el cálculo descuenta cada ocurrencia para tratar correctamente las letras repetidas.',
+    feedback: 'Exactas suma letras correctas en su posición; Movidas suma ocurrencias correctas en otra posición; Fuera completa siempre un total de cinco. El teclado permanece neutral para no revelar qué letra produjo cada dato.',
+    sources: [
+      { label: 'Diccionario de la lengua española', url: 'https://dle.rae.es/', note: 'Referencia de vocabulario español.' },
+      { label: 'Reglas de Game-DLE', url: '/acerca-de', note: 'Implementación y sistema de puntuación propios.' },
+    ],
+    faqs: [{ question: '¿Por qué el teclado no descarta letras?', answer: 'Porque hacerlo revelaría qué letra individual está ausente. En este modo sólo se conocen los tres totales de la fila.' }, { question: '¿Cómo se cuentan las letras repetidas?', answer: 'Cada copia puede coincidir una sola vez con una copia de la solución, empezando por las posiciones exactas.' }],
+    related: [{ name: 'Wordle', route: '/games/wordle', reason: 'Modo clásico' }, { name: 'RoscoDLE', route: '/games/roscodle', reason: 'Más vocabulario' }], reviewed: '4 de septiembre de 2026',
+  },
   onepiecedle: {
     name: 'One Piece DLE', kicker: 'Guía del Grand Line', title: 'Compará pistas hasta encontrar al personaje del día.',
     intro: 'One Piece DLE es un desafío diario para fans de la obra de Eiichiro Oda. Cada intento compara un personaje con la respuesta oculta mediante atributos del universo de One Piece.',

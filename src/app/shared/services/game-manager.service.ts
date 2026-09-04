@@ -35,6 +35,23 @@ export class GameManagerService {
       }
     },
     {
+      id: 'clave-extrema',
+      name: 'Clave Extrema',
+      description: 'Descifrá la palabra usando sólo tres totales por intento',
+      route: '/games/clave-extrema',
+      icon: 'fas fa-user-secret',
+      mode: 'daily',
+      durationLabel: '4–7 min',
+      badge: 'Nuevo',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0, 0, 0]
+      }
+    },
+    {
       id: 'onepiecedle',
       name: 'One Piece DLE',
       description: 'Adivina el personaje de One Piece',
