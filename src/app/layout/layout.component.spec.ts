@@ -28,7 +28,7 @@ describe('LayoutComponent', () => {
     const brand = element.querySelector<HTMLAnchorElement>('a[aria-label="Ir al inicio de Game-DLE"]');
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('false');
-    expect(brand?.getAttribute('href')).toBe('/home');
+    expect(brand?.getAttribute('href')).toBe('/');
   });
 
   it('opens the drawer and closes it with Escape', fakeAsync(() => {

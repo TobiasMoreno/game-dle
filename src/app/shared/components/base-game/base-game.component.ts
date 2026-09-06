@@ -182,7 +182,7 @@ export class BaseGameComponent {
    * Navega a la página de inicio
    */
   protected goHome(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   /**

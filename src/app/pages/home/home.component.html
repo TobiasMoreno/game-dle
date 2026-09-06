@@ -105,7 +105,6 @@
 
             <div class="catalog-shelf__grid">
         @for (game of section.games; track game.id) {
-          @defer (on viewport) {
             @let presentation = getGamePresentation(game);
             <a
               [routerLink]="game.route"
@@ -207,15 +206,66 @@
               </div>
               <!-- Fin contenido -->
             </a>
-          } @placeholder {
-            <div class="catalog-card catalog-card--loading" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-          }
         }
             </div>
           </section>
         }
+      </section>
+
+      <section class="home-editorial" aria-labelledby="home-editorial-title">
+        <header class="home-editorial__intro">
+          <span>Hecho y revisado en Argentina</span>
+          <h2 id="home-editorial-title">Más que una colección de juegos</h2>
+          <p>
+            Game-DLE reúne desafíos. Cada juego tiene
+            reglas, criterios y una selección de datos propios; no es un directorio de enlaces ni
+            una reproducción automática de contenido ajeno.
+          </p>
+        </header>
+
+        <div class="home-editorial__grid">
+          <article>
+            <span class="home-editorial__number">01</span>
+            <h3>Desafíos con decisiones de diseño</h3>
+            <p>
+              La palabra diaria, las pistas geográficas, los tableros de Serpentile y las
+              categorías de RankDLE siguen reglas distintas. En la página de cada juego se explica
+              qué se evalúa, cómo interpretar las pistas y cuándo se revisaron sus datos.
+            </p>
+            <a routerLink="/games/serpentile">Ver un juego original <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article>
+            <span class="home-editorial__number">02</span>
+            <h3>Información que se puede comprobar</h3>
+            <p>
+              Los juegos de geografía, historia, fútbol y cultura popular incluyen metodología,
+              fuentes y aclaraciones sobre el alcance de sus catálogos. Cuando un dato puede
+              cambiar, indicamos la fecha de revisión en lugar de presentarlo como definitivo.
+            </p>
+            <a routerLink="/games/chronodle">Explorar fuentes y metodología <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article>
+            <span class="home-editorial__number">03</span>
+            <h3>Un proyecto con responsable visible</h3>
+            <p>
+              Las correcciones y sugerencias se revisan de forma manual. También publicamos quién
+              mantiene el sitio, cómo contactarlo y qué servicios técnicos utiliza Game-DLE para
+              que el funcionamiento y el tratamiento de datos sean transparentes.
+            </p>
+            <a routerLink="/acerca-de">Conocer el proyecto <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <div class="home-editorial__note">
+          <strong>¿Por dónde empezar?</strong>
+          <p>
+            Si preferís una partida corta, probá Wordle o Clave Extrema. Para aprender mientras
+            jugás, GeoDLE y ChronoDLE explican sus pistas y fuentes. Si buscás una mecánica propia,
+            Serpentile propone resolver un recorrido girando las piezas de un tablero diario.
+          </p>
+        </div>
       </section>
 
       <app-ad-slot

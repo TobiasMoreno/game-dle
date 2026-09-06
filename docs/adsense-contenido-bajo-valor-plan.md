@@ -23,6 +23,14 @@ Implementado en el código el 25 de agosto de 2026:
 - Enlaces internos entre juegos relacionados.
 - Retiro de los anuncios laterales dobles de ChronoDLE, RankDLE, RoscoDLE y Tutti Frutti durante la etapa de revisión.
 
+Refuerzo implementado el 5 de septiembre de 2026 tras un nuevo rechazo:
+
+- La raíz `/` ahora renderiza la portada completa en lugar de entregar una página HTML casi vacía con `meta refresh` hacia `/home`.
+- `/home` se conserva solamente como alias y redirige hacia la URL canónica `/`.
+- El sitemap, los breadcrumbs y los enlaces globales apuntan a la raíz canónica.
+- Las tarjetas del catálogo se prerenderizan como contenido y enlaces reales, sin placeholders diferidos.
+- La portada incorpora un bloque editorial visible sobre autoría, metodología, revisión y recorridos recomendados.
+
 Pendiente antes de solicitar revisión:
 
 - Desplegar y comprobar las nuevas rutas en producción.
@@ -313,7 +321,7 @@ Reincorporar posiciones publicitarias de forma gradual, comprobando:
 
 Generar HTML estático para:
 
-- `/home`
+- `/`
 - todas las rutas de juegos;
 - `/acerca-de`;
 - `/privacidad`;
@@ -368,7 +376,7 @@ Cada ruta debe tener:
 - Verificar ambas propiedades si conviven `web.app` y un dominio propio.
 - Elegir un solo dominio canónico.
 - Enviar el sitemap.
-- Inspeccionar `/home`, varias rutas de juegos y todas las páginas institucionales.
+- Inspeccionar `/`, varias rutas de juegos y todas las páginas institucionales.
 - Confirmar que Google ve el texto renderizado.
 - Corregir páginas excluidas, errores 404 blandos y duplicados.
 

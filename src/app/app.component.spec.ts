@@ -37,6 +37,6 @@ describe('AppComponent', () => {
       'a[aria-label="Ir al inicio de Game-DLE"]'
     );
 
-    expect(homeLink?.getAttribute('href')).toBe('/home');
+    expect(homeLink?.getAttribute('href')).toBe('/');
   });
 });

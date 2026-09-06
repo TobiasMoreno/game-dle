@@ -3,14 +3,14 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
     title: 'Game-DLE | Elegí tu próximo desafío',
     data: { description: 'Desafíos diarios, rondas ilimitadas y juegos multijugador en un solo lugar.' },
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+  },
+  {
+    path: 'home',
+    redirectTo: '',
+    pathMatch: 'full'
   },
   {
     path: 'lol',
@@ -158,6 +158,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: ''
   }
 ];

@@ -15,6 +15,6 @@ export class BackHomeButtonComponent {
   private readonly router = inject(Router);
 
   goHome(): void {
-    void this.router.navigate(['/home']);
+    void this.router.navigate(['/']);
   }
 }
