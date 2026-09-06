@@ -61,6 +61,13 @@
 .mode-switch button.active { border-color: var(--lime); color: var(--night); background: var(--lime); }
 .mode-switch small { display: block; margin-top: .14rem; font-size: .48rem; font-weight: 700; opacity: .72; }
 .mode-switch button:disabled { cursor: default; }
+.length-picker { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: -.25rem 0 .8rem; }
+.length-picker > span { color: #91a99e; font-size: .57rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.length-options { display: flex; overflow: hidden; border: 1px solid var(--line); border-radius: 2rem; background: rgba(0,0,0,.13); }
+.length-options button { min-width: 2.1rem; border: 0; border-right: 1px solid var(--line); padding: .42rem .62rem; color: #a9bcb3; background: transparent; font: 900 .62rem/1 'Trebuchet MS', sans-serif; cursor: pointer; }
+.length-options button:last-child { border-right: 0; }
+.length-options button.active { color: var(--night); background: var(--lime); }
+.length-options button:disabled { cursor: default; }
 .board-scroll { overflow-x: auto; padding: .2rem; scrollbar-width: thin; }
 .board { display: grid; width: max-content; min-width: 100%; justify-content: center; gap: .38rem; }
 .guess-row { --tile-size: clamp(2rem, 6vw, 3.1rem); display: grid; grid-template-columns: repeat(var(--letters), var(--tile-size)); justify-content: center; gap: clamp(.22rem, .65vw, .38rem); }

@@ -205,7 +205,7 @@ export class GameManagerService {
     {
       id: 'futboldle',
       name: 'FutbolDLE',
-      description: 'Descubrí el apellido de 5 letras del futbolista oculto',
+      description: 'Descubrí el apellido de 5, 6 o 7 letras del futbolista oculto',
       route: '/games/futboldle',
       icon: 'fas fa-futbol',
       mode: 'unlimited',

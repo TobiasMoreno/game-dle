@@ -24,7 +24,7 @@
     <section class="score-strip" aria-label="Estado del partido">
       <span>PARTIDA LIBRE</span>
       <strong>{{ guesses.length }} <i>/</i> {{ maxAttempts }}</strong>
-      <span>5 LETRAS</span>
+      <span>{{ wordLength }} LETRAS</span>
     </section>
 
     @if (!finished) {
@@ -37,6 +37,20 @@
             <button type="button" [class.active]="mode === 'easy'" [disabled]="guesses.length > 0" (click)="setMode('easy')">
               Fácil <small>cualquier palabra</small>
             </button>
+          </div>
+
+          <div class="length-picker" aria-label="Cantidad de letras">
+            <span>Letras</span>
+            <div class="length-options">
+              <button type="button" [class.active]="lengthPreference === 'random'" [disabled]="guesses.length > 0" (click)="setLengthPreference('random')">
+                Aleatorio
+              </button>
+              @for (length of wordLengthOptions; track length) {
+                <button type="button" [class.active]="lengthPreference === length" [disabled]="guesses.length > 0" (click)="setLengthPreference(length)">
+                  {{ length }}
+                </button>
+              }
+            </div>
           </div>
 
           <div class="board-scroll">
@@ -129,7 +143,7 @@
           <button class="close-button" type="button" aria-label="Cerrar" (click)="showHelp = false">×</button>
           <p class="kicker">Reglamento</p>
           <h2 id="rules-title">Cómo jugar</h2>
-          <p>Tenés seis intentos para descubrir el apellido del futbolista oculto. Al terminar podés jugar otra ronda.</p>
+          <p>Tenés seis intentos para descubrir un apellido de 5, 6 o 7 letras. Podés elegir la longitud o dejar que se sortee en cada ronda.</p>
           <div class="rule-example"><i class="correct">M</i><span>La letra está en el lugar correcto.</span></div>
           <div class="rule-example"><i class="present">E</i><span>Está en el apellido, pero en otro lugar.</span></div>
           <div class="rule-example"><i class="absent">S</i><span>No forma parte de la respuesta.</span></div>

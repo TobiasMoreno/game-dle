@@ -29,9 +29,10 @@ describe('FutboldleEngineService', () => {
     expect(service.getDailyPlayer(date)).toEqual(service.getDailyPlayer(date));
   });
 
-  it('only uses five-letter surnames', () => {
+  it('only uses surnames with a supported length', () => {
     expect(service.players.length).toBeGreaterThan(0);
-    expect(service.players.every(player => player.answer.length === 5)).toBeTrue();
+    expect(service.players.every(player => [5, 6, 7].includes(player.answer.length))).toBeTrue();
+    expect([5, 6, 7].every(length => service.players.some(player => player.answer.length === length))).toBeTrue();
   });
 
   it('includes the expanded five-letter player catalog', () => {
@@ -43,6 +44,17 @@ describe('FutboldleEngineService', () => {
     const first = service.players[0];
     const next = service.getRandomPlayer(first.answer, () => 0);
     expect(next.answer).not.toBe(first.answer);
+  });
+
+  it('selects a player with the requested word length', () => {
+    expect(service.getRandomPlayerByLength(6, undefined, () => 0).answer.length).toBe(6);
+    expect(service.getRandomPlayerByLength(7, undefined, () => 0).answer.length).toBe(7);
+  });
+
+  it('selects the word length uniformly from the available options', () => {
+    expect(service.getRandomWordLength(() => 0)).toBe(5);
+    expect(service.getRandomWordLength(() => 0.34)).toBe(6);
+    expect(service.getRandomWordLength(() => 0.99)).toBe(7);
   });
 
   it('restores a player by its saved normalized answer', () => {

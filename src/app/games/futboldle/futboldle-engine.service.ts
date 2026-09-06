@@ -8,9 +8,12 @@ export interface LetterResult {
   state: LetterState;
 }
 
+export const FUTBOLDLE_WORD_LENGTHS = [5, 6, 7] as const;
+export type FutboldleWordLength = typeof FUTBOLDLE_WORD_LENGTHS[number];
+
 @Injectable({ providedIn: 'root' })
 export class FutboldleEngineService {
-  readonly players = FOOTBALLERS.filter(player => player.answer.length === 5);
+  readonly players = FOOTBALLERS.filter(player => this.isSupportedLength(player.answer.length));
 
   normalize(value: string): string {
     return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z]/g, '').toUpperCase();
@@ -32,6 +35,24 @@ export class FutboldleEngineService {
       : this.players;
     const index = Math.min(Math.floor(random() * candidates.length), candidates.length - 1);
     return candidates[Math.max(0, index)];
+  }
+
+  getRandomPlayerByLength(
+    length: FutboldleWordLength,
+    excludedAnswer?: string,
+    random = Math.random
+  ): FootballerEntry {
+    const playersOfLength = this.players.filter(player => player.answer.length === length);
+    const candidates = excludedAnswer && playersOfLength.length > 1
+      ? playersOfLength.filter(player => player.answer !== excludedAnswer)
+      : playersOfLength;
+    const index = Math.min(Math.floor(random() * candidates.length), candidates.length - 1);
+    return candidates[Math.max(0, index)];
+  }
+
+  getRandomWordLength(random = Math.random): FutboldleWordLength {
+    const index = Math.min(Math.floor(random() * FUTBOLDLE_WORD_LENGTHS.length), FUTBOLDLE_WORD_LENGTHS.length - 1);
+    return FUTBOLDLE_WORD_LENGTHS[Math.max(0, index)];
   }
 
   getPlayerByAnswer(answer: string): FootballerEntry | undefined {
@@ -68,5 +89,9 @@ export class FutboldleEngineService {
     }
 
     return result;
+  }
+
+  private isSupportedLength(length: number): length is FutboldleWordLength {
+    return FUTBOLDLE_WORD_LENGTHS.some(supportedLength => supportedLength === length);
   }
 }

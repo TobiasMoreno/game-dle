@@ -3,9 +3,16 @@ import { CommonModule } from '@angular/common';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { FootballerEntry } from './futboldle.data';
-import { FutboldleEngineService, LetterResult, LetterState } from './futboldle-engine.service';
+import {
+  FUTBOLDLE_WORD_LENGTHS,
+  FutboldleEngineService,
+  FutboldleWordLength,
+  LetterResult,
+  LetterState
+} from './futboldle-engine.service';
 
 type GameMode = 'normal' | 'easy';
+type LengthPreference = FutboldleWordLength | 'random';
 
 @Component({
   selector: 'app-futboldle',
@@ -18,12 +25,15 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
   readonly maxAttempts = 6;
   readonly keyboardRows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
   readonly statePriority: Record<LetterState, number> = { absent: 1, present: 2, correct: 3 };
+  readonly wordLengthOptions = FUTBOLDLE_WORD_LENGTHS;
+  readonly selectedPlayerStorageKey = 'game-dle-futboldle-selected-player';
 
   private readonly engine = inject(FutboldleEngineService);
   target!: FootballerEntry;
   guesses: string[] = [];
   currentGuess = '';
   mode: GameMode = 'normal';
+  lengthPreference: LengthPreference = 'random';
   errorMessage = '';
   won = false;
   finished = false;
@@ -32,8 +42,10 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.progressLoaded.subscribe(progress => this.restoreProgress(progress));
-    this.target = this.engine.getRandomPlayer();
+    this.target = this.createTarget();
     this.setGameId('futboldle');
+    this.persistSelectedPlayer();
+    this.saveGameProgress();
   }
 
   get wordLength(): number { return this.target.answer.length; }
@@ -42,9 +54,17 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   onPhysicalKey(event: KeyboardEvent): void {
-    if (this.finished || this.showHelp || event.ctrlKey || event.metaKey || event.altKey) return;
-    if (event.key === 'Enter') this.submitGuess();
-    else if (event.key === 'Backspace') this.removeLetter();
+    if (this.showHelp || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.key === 'Enter') {
+      if (this.finished) {
+        if (!event.repeat) this.playAgain();
+      } else {
+        this.submitGuess();
+      }
+      return;
+    }
+    if (this.finished) return;
+    if (event.key === 'Backspace') this.removeLetter();
     else if (/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]$/.test(event.key)) this.addLetter(event.key);
   }
 
@@ -94,6 +114,16 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
     this.saveGameProgress();
   }
 
+  setLengthPreference(preference: LengthPreference): void {
+    if (this.guesses.length > 0 || this.finished || this.lengthPreference === preference) return;
+    this.lengthPreference = preference;
+    this.target = this.createTarget();
+    this.currentGuess = '';
+    this.errorMessage = '';
+    this.persistSelectedPlayer();
+    this.saveGameProgress();
+  }
+
   getEvaluation(guess: string): LetterResult[] { return this.engine.evaluate(guess, this.target.answer); }
 
   getKeyState(letter: string): LetterState | '' {
@@ -124,13 +154,15 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
   playAgain(): void {
     const previousAnswer = this.target.answer;
     this.clearProgress();
-    this.target = this.engine.getRandomPlayer(previousAnswer);
+    this.target = this.createTarget(previousAnswer);
     this.guesses = [];
     this.currentGuess = '';
     this.errorMessage = '';
     this.won = false;
     this.finished = false;
     this.copied = false;
+    this.persistSelectedPlayer();
+    this.saveGameProgress();
   }
 
   private restoreProgress(progress: GameProgress | null): void {
@@ -145,6 +177,8 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
     this.target = savedTarget;
     this.guesses = progress.attempts ?? [];
     this.mode = progress.gameData?.mode === 'easy' ? 'easy' : 'normal';
+    const savedLength = progress.gameData?.lengthPreference;
+    this.lengthPreference = savedLength === 5 || savedLength === 6 || savedLength === 7 ? savedLength : 'random';
   }
 
   private saveGameProgress(): void {
@@ -154,7 +188,22 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
       gameWon: false,
       gameLost: false,
       attempts: this.guesses,
-      gameData: { answer: this.target.answer, mode: this.mode }
+      gameData: { answer: this.target.answer, mode: this.mode, lengthPreference: this.lengthPreference }
     });
+  }
+
+  private createTarget(excludedAnswer?: string): FootballerEntry {
+    const length = this.lengthPreference === 'random'
+      ? this.engine.getRandomWordLength()
+      : this.lengthPreference;
+    return this.engine.getRandomPlayerByLength(length, excludedAnswer);
+  }
+
+  private persistSelectedPlayer(): void {
+    try {
+      localStorage.setItem(this.selectedPlayerStorageKey, JSON.stringify(this.target));
+    } catch (error) {
+      console.error('No se pudo guardar el futbolista seleccionado:', error);
+    }
   }
 }
