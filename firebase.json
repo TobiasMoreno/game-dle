@@ -17,6 +17,7 @@
   },
   "hosting": {
     "public": "dist/game-dle/browser",
+    "trailingSlash": false,
     "ignore": [
       "firebase.json",
       "**/.*",
