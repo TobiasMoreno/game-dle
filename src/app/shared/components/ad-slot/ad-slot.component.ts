@@ -34,6 +34,7 @@ export class AdSlotComponent implements AfterViewInit {
 
   readonly publisherId = ADSENSE_CONFIG.publisherId;
   readonly hasConfiguredSlot = computed(() => isAdsenseSlotConfigured(this.slot()));
+  readonly advertisingEnabled = ADSENSE_CONFIG.enabled;
   readonly showDevelopmentPreview = computed(
     () => this.isBrowser && (isDevMode() || this.isLocalHostname)
   );
@@ -43,7 +44,7 @@ export class AdSlotComponent implements AfterViewInit {
   private hasRequestedAd = false;
 
   ngAfterViewInit(): void {
-    if (!this.isBrowser || this.showDevelopmentPreview() || !this.hasConfiguredSlot()) {
+    if (!this.advertisingEnabled || !this.isBrowser || this.showDevelopmentPreview() || !this.hasConfiguredSlot()) {
       return;
     }
 

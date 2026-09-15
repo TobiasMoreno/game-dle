@@ -1,4 +1,6 @@
 <app-base-game
+  gameTitle="MusicDLE"
+  gameDescription="Reconocé canciones con fragmentos de audio en rondas ilimitadas."
   editorialGameId="musicdle"
   [customBackground]="isDarkMode
     ? 'radial-gradient(circle at 14% 10%, rgba(245, 158, 11, .14), transparent 28%), #0c0a09'
@@ -23,18 +25,33 @@
         <p class="studio-kicker">Modo continuo · sin límite de rondas</p>
         <h2>Reconoce la señal.</h2>
       </div>
-      <label class="filter-control">
-        <span>Colección</span>
-        <select
-          [(ngModel)]="selectedFilterKey"
-          (ngModelChange)="onFilterChange($event)"
-          aria-label="Seleccionar categoría musical"
-        >
-          @for (option of filterOptions; track option.key) {
-            <option [value]="option.key">{{ option.label }}</option>
-          }
-        </select>
-      </label>
+      <div class="filter-control">
+        <span>Categorías</span>
+        <details class="category-picker" #categoryPicker (keydown.escape)="categoryPicker.open = false">
+          <summary aria-label="Seleccionar categorías musicales">
+            <span class="category-picker__selection">{{ selectedFilter.label }}</span>
+            <span class="category-picker__arrow" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="category-picker__options">
+            <p>Combina las categorías que quieras jugar.</p>
+            @for (option of filterOptions; track option.key) {
+              <label class="category-option" [class.category-option--selected]="isFilterSelected(option)">
+                <input
+                  type="checkbox"
+                  [checked]="isFilterSelected(option)"
+                  [disabled]="isLoading || (isRoundActive && (round?.attempts?.length ?? 0) > 0)"
+                  (change)="onFilterChange(option.key); $any($event.target).checked = isFilterSelected(option)"
+                >
+                <span>{{ option.label }}</span>
+              </label>
+            }
+            @if (isRoundActive && (round?.attempts?.length ?? 0) > 0) {
+              <p role="status">Termina la ronda para cambiar las categorías.</p>
+            }
+            <button type="button" (click)="categoryPicker.open = false">Listo</button>
+          </div>
+        </details>
+      </div>
     </header>
 
     @if (message) {

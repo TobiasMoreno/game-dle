@@ -65,6 +65,18 @@
       </div>
     </section>
 
+    <section class="mt-12 max-w-3xl border-t border-white/15 pt-8">
+      <h2 class="font-serif text-3xl">¿Qué modo conviene elegir?</h2>
+      @if (universe.id === 'lol') {
+        <p class="leading-relaxed text-slate-300">Si conocés retratos y nombres, empezá por Memoria. ¿Quién es? agrega el desafío de reconocer un detalle y luego una skin. Si preferís datos, Timeline compara años originales y Conexiones combina atributos para encontrar grupos. LoL DLE usa los intentos para comparar características con un campeón oculto.</p>
+        <p class="leading-relaxed text-slate-300">Reconocimiento visual, cronología y deducción son habilidades distintas: una puntuación no representa tu rango competitivo. Las guías explican qué información usa cada modo y qué queda fuera del catálogo local.</p>
+      } @else {
+        <p class="leading-relaxed text-slate-300">FutbolDLE mezcla apellidos de cinco letras con deducción de posiciones. RoscoDLE requiere responder definiciones por letra y administrar el tiempo. Si reconocés jugadores pero todavía te cuesta el vocabulario de categorías, empezá por apellidos; si preferís definiciones y clubes, probá el rosco.</p>
+        <p class="leading-relaxed text-slate-300">Los modos utilizan selecciones locales de nombres y preguntas. No son bases deportivas en vivo ni listados exhaustivos de planteles. Las variantes y los criterios de respuesta se explican en cada juego; podés informar una corrección con una referencia desde Contacto.</p>
+      }
+      <a routerLink="/guias" class="font-bold text-amber-300 underline">Consultar reglas y ejemplos →</a>
+    </section>
+
     <aside class="mt-10 flex max-w-2xl items-center gap-4 border-l-2 border-amber-400 py-1 pl-4 group-data-[universe=futbol]:border-lime-300">
       <i class="fas fa-plus grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-400 text-[#06161b] group-data-[universe=futbol]:bg-lime-300" aria-hidden="true"></i>
       <div>

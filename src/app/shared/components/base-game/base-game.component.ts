@@ -38,6 +38,8 @@ export class BaseGameComponent {
   fitViewport = input<boolean>(false);
   footerTheme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle'>('default');
   editorialGameId = input<string>('');
+  gameTitle = input<string>('');
+  gameDescription = input<string>('');
 
   gameCompleted = output<{won: boolean, attempts: number, gameData?: any}>();
   progressLoaded = output<GameProgress | null>();

@@ -20,6 +20,7 @@ export interface MusicdleSong {
 export interface MusicdleFilter {
   kind: MusicdleFilterKind;
   value: string;
+  values?: string[];
   label: string;
 }
 

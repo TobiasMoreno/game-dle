@@ -27,6 +27,7 @@ export class RouteMetadataService {
       : 'Desafíos diarios, rondas ilimitadas y juegos para compartir.';
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ name: 'robots', content: route.data['noindex'] ? 'noindex, follow' : 'index, follow' });
     const canonicalUrl = `https://game-dle.web.app${this.router.url.split('?')[0].split('#')[0]}`;
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });

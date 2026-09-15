@@ -1,4 +1,4 @@
-<app-lol-game-shell [title]="title" [instructions]="instructions" [score]="score" [rounds]="rounds">
+<app-lol-game-shell gameId="lol-memory" [title]="title" [instructions]="instructions" [score]="score" [rounds]="rounds">
   @if (loading) {
     <div class="grid min-h-80 place-items-center border border-white/10 bg-white/[.025]"><span class="animate-pulse text-xs font-black uppercase tracking-[.16em] text-cyan-400">Preparando cartas…</span></div>
   } @else if (!cards.length) {

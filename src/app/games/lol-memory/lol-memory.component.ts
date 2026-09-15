@@ -46,10 +46,6 @@ export class LolMemoryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.themeService.setHeaderTheme('loldle');
     this.themeService.setFooterTheme('loldle');
-    if (!this.isBrowser) {
-      this.loading = false;
-      return;
-    }
     this.subscriptions.add(this.http.get<LoLCharacter[]>('campeones_lol.json').subscribe({
       next: (champions) => {
         this.champions = validChampions(champions);

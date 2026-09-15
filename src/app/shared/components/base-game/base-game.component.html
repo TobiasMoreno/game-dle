@@ -23,14 +23,14 @@
             class="text-3xl font-bold"
             [style.color]="customTextColor() || '#111827'"
           >
-            {{ game?.name }}
+            {{ gameTitle() || game?.name }}
           </h1>
           <p
             [style.color]="
               customTextColor() ? 'rgba(255,255,255,0.8)' : '#6b7280'
             "
           >
-            {{ game?.description }}
+            {{ gameDescription() || game?.description }}
           </p>
         </div>
       </div>

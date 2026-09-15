@@ -16,7 +16,7 @@ MusicDLE es un modo musical original de `game-dle`, pensado para jugar rondas co
 
 ## Selección y persistencia
 
-El usuario puede jugar con todo el catálogo o elegir una colección. La canción se elige al azar dentro del filtro activo. Las primeras colecciones son `Rock nacional` y `Trap argentino`; género, década e idioma se conservan como metadatos y no generan opciones en el selector.
+El usuario puede jugar con todo el catálogo o elegir una colección. La canción se elige al azar dentro del filtro activo. Las colecciones son `Rock nacional`, `Trap argentino`, `Trap latino` y `Cuarteto`; género, década e idioma se conservan como metadatos y no generan opciones en el selector.
 
 Las canciones jugadas y los videos reportados como no disponibles entran en una lista de espera individual de 24 horas en `localStorage`. Una vez vencido ese tiempo vuelven automáticamente al conjunto elegible. Si todo el conjunto filtrado está en espera, la interfaz informa que no hay canciones disponibles para ese filtro.
 
@@ -50,7 +50,7 @@ Para sumar canciones:
 4. Incorporar aliases útiles sin crear respuestas duplicadas.
 5. Ejecutar `npm run validate:musicdle` antes de publicar.
 
-El catálogo contiene 110 canciones en español: 65 de `Rock nacional` y 45 de `Trap argentino`. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
+El catálogo contiene 584 canciones en español: 165 de `Rock nacional`, 68 de `Trap argentino`, 11 de `Trap latino` y 340 de `Cuarteto`. Incluye 10 temas de cada una de estas bandas: Las Pastillas del Abuelo, No Te Va Gustar, La Vela Puerca, Airbag y Estelares. También se sumaron 10 canciones nuevas de Turf, 10 de Rata Blanca y 10 de Cruzando el Charco, conservando los temas que ya estaban cargados. Los 80 videos de estas incorporaciones se verificaron el 15 de septiembre de 2026: permiten reproducción embebida y están disponibles en Argentina. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
 
 ## Restricciones conocidas
 

@@ -1,5 +1,4 @@
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
@@ -28,7 +27,6 @@ import { ThemeService } from '../../shared/services/theme.service';
 @Component({
   selector: 'app-musicdle',
   imports: [
-    FormsModule,
     BaseGameComponent,
     GuessInputComponent,
     MusicdleYoutubePlayerComponent,
@@ -74,7 +72,6 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
   songs: MusicdleSong[] = [];
   filterOptions: MusicdleFilterOption[] = [];
-  selectedFilterKey = 'all:*';
   selectedFilter: MusicdleFilter = {
     kind: 'all',
     value: '*',
@@ -151,28 +148,45 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     );
   }
 
+  isFilterSelected(option: MusicdleFilterOption): boolean {
+    if (option.kind === 'all') return this.selectedFilter.kind === 'all';
+    return this.selectedFilter.kind === option.kind &&
+      (this.selectedFilter.values ?? [this.selectedFilter.value]).includes(option.value);
+  }
+
   onFilterChange(key: string): void {
     const option = this.filterOptions.find((filter) => filter.key === key);
     if (!option) return;
 
     if (this.isRoundActive && (this.round?.attempts.length ?? 0) > 0) {
-      this.selectedFilterKey = this.getFilterKey(this.selectedFilter);
-      this.message = 'Termina la ronda actual antes de cambiar de categoría.';
+      this.message = 'Termina la ronda actual antes de cambiar las categorías.';
       return;
     }
 
-    this.selectedFilter = {
-      kind: option.kind,
-      value: option.value,
-      label: option.label,
-    };
-    this.selectedFilterKey = option.key;
+    if (option.kind === 'all') {
+      this.selectedFilter = { kind: 'all', value: '*', label: option.label };
+    } else {
+      const values = this.selectedFilter.kind === 'collection'
+        ? this.selectedFilter.values ?? [this.selectedFilter.value]
+        : [];
+      const nextValues = values.includes(option.value)
+        ? values.filter((value) => value !== option.value)
+        : [...values, option.value];
+      if (!nextValues.length) {
+        this.message = 'Selecciona al menos una categoría o elige todas las canciones.';
+        return;
+      }
+      this.selectedFilter = this.catalogService.resolveFilter(
+        { kind: 'collection', value: nextValues[0], values: nextValues, label: '' },
+        this.filterOptions
+      )!;
+    }
     this.musicStorage.saveFilter(this.selectedFilter);
     this.message = this.isRoundFinished
-      ? 'La nueva categoría se aplicará en la siguiente canción.'
+      ? 'Las categorías elegidas se aplicarán en la siguiente canción.'
       : '';
 
-    if (this.isRoundActive) {
+    if (!this.isRoundFinished) {
       this.musicStorage.clearRound();
       this.startNewRound();
     }
@@ -183,7 +197,11 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     this.selectedSongId = null;
     this.errorMessage = '';
     this.suggestions = this.catalogService
-      .searchSongs(this.songs, value, this.guessedSongIds)
+      .searchSongs(
+        this.catalogService.filterSongs(this.songs, this.round?.filter ?? this.selectedFilter),
+        value,
+        this.guessedSongIds
+      )
       .map((song) => this.toSuggestion(song));
   }
 
@@ -295,17 +313,15 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       const nextFilter = storedRound.status === 'active'
         ? storedRound.filter
         : this.musicStorage.getFilter() ?? storedRound.filter;
-      const matchingOption = this.filterOptions.find(
-        (option) => option.key === this.getFilterKey(nextFilter)
-      );
+      const matchingFilter = this.catalogService.resolveFilter(nextFilter, this.filterOptions);
 
-      if (storedRound.status === 'active' && !matchingOption) {
+      if (storedRound.status === 'active' && (!matchingFilter ||
+          !this.catalogService.filterSongs([storedSong], matchingFilter).length)) {
         this.musicStorage.clearRound();
       } else {
         this.round = storedRound;
         this.targetSong = storedSong;
-        this.selectedFilter = matchingOption ?? this.filterOptions[0];
-        this.selectedFilterKey = this.getFilterKey(this.selectedFilter);
+        this.selectedFilter = matchingFilter ?? this.filterOptions[0];
         if (storedRound.status !== 'active') this.prepareRevealedVideo();
         return;
       }
@@ -313,11 +329,10 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
     const savedFilter = this.musicStorage.getFilter();
     const matchingFilter = savedFilter
-      ? this.filterOptions.find((option) => option.key === this.getFilterKey(savedFilter))
+      ? this.catalogService.resolveFilter(savedFilter, this.filterOptions)
       : null;
     if (matchingFilter) {
       this.selectedFilter = matchingFilter;
-      this.selectedFilterKey = matchingFilter.key;
     }
     this.startNewRound();
   }
@@ -340,7 +355,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     if (!target) {
       this.targetSong = null;
       this.round = null;
-      this.errorMessage = 'No quedan canciones disponibles en esta categoría durante las próximas 24 horas. Prueba con otra.';
+      this.errorMessage = 'No quedan canciones disponibles en las categorías elegidas durante las próximas 24 horas. Prueba con otras.';
       return;
     }
 
@@ -377,9 +392,5 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       nombre: `${song.title} — ${song.artist}`,
       searchText: [song.title, song.artist, ...song.aliases].join(' '),
     };
-  }
-
-  private getFilterKey(filter: MusicdleFilter): string {
-    return `${filter.kind}:${filter.value}`;
   }
 }

@@ -9,10 +9,16 @@
     "deploy": "npm run build && firebase deploy --only hosting",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --progress=false",
     "validate:musicdle": "node scripts/validate-musicdle-catalog.mjs",
     "update:lol-skins": "node scripts/update-lol-skins.mjs",
     "update:geodle": "node scripts/update-geodle-catalog.mjs",
-    "validate:geodle": "node scripts/validate-geodle-catalog.mjs"
+    "validate:geodle": "node scripts/validate-geodle-catalog.mjs",
+    "prepare:site": "node scripts/prepare-site.mjs",
+    "prebuild": "npm run prepare:site",
+    "postbuild": "npm run validate:site",
+    "validate:site": "node scripts/validate-site.mjs",
+    "validate:hosting": "node scripts/validate-site.mjs --url=https://game-dle.web.app"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +50,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "parse5": "^7.2.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.0",
     "typescript": "~5.6.2"

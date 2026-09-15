@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface OnePieceCharacter {
   id: number;
@@ -40,7 +41,7 @@ export class OnePieceGameService {
   private arcs: OnePieceArc[] = [];
 
   constructor() {
-    this.loadArcs();
+    if (isPlatformBrowser(inject(PLATFORM_ID))) this.loadArcs();
   }
 
   private loadArcs(): void {

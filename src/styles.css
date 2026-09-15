@@ -426,7 +426,7 @@ app-musicdle .musicdle-studio--dark .attempt-row__feedback .attempt-feedback--ma
   app-musicdle .musicdle-studio .studio-header { padding-bottom: 0.75rem; }
   app-musicdle .musicdle-studio .studio-header h2 { font-size: clamp(1.6rem, 3vw, 2.65rem); }
   app-musicdle .musicdle-studio .result-copy h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
-  app-musicdle .musicdle-studio .filter-control select { padding-block: 0.55rem; }
+  app-musicdle .musicdle-studio .filter-control summary { padding-block: 0.55rem; }
   app-musicdle .musicdle-studio .attempt-meter { margin: 0.75rem 0; }
   app-musicdle .musicdle-studio .meter-step { min-height: 2.25rem; padding: 0.35rem 0.55rem; }
   app-musicdle .musicdle-studio :is(.deck-labels, .console-heading) { margin-bottom: 0.45rem; }
@@ -451,7 +451,7 @@ app-musicdle .musicdle-studio--dark .attempt-row__feedback .attempt-feedback--ma
   app-musicdle .musicdle-studio .studio-header h2 { font-size: clamp(1.45rem, 6vw, 2rem); }
   app-musicdle .musicdle-studio .studio-kicker { font-size: 0.58rem; }
   app-musicdle .musicdle-studio .filter-control { min-width: min(13rem, 52%); }
-  app-musicdle .musicdle-studio .filter-control select { padding: 0.5rem 1.8rem 0.5rem 0.65rem; font-size: 0.75rem; }
+  app-musicdle .musicdle-studio .filter-control summary { padding: 0.5rem 0.65rem; font-size: 0.75rem; }
   app-musicdle .musicdle-studio .attempt-meter { margin: 0.55rem 0; }
   app-musicdle .musicdle-studio .meter-step { min-height: 2rem; padding: 0.25rem; justify-content: center; }
   app-musicdle .musicdle-studio .meter-step span { display: none; }

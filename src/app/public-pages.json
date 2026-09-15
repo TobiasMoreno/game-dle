@@ -1,0 +1,325 @@
+[
+  {
+    "path": "",
+    "title": "Game-DLE | Elegí tu próximo desafío",
+    "description": "Desafíos diarios, rondas ilimitadas y juegos multijugador en un solo lugar.",
+    "kind": "existing"
+  },
+  {
+    "path": "lol",
+    "title": "Juegos de League of Legends | Game-DLE",
+    "description": "Todos los juegos y desafíos de League of Legends disponibles en Game-DLE.",
+    "kind": "existing"
+  },
+  {
+    "path": "futbol",
+    "title": "Juegos de fútbol | Game-DLE",
+    "description": "Todos los juegos de fútbol de Game-DLE: futbolistas, clubes y desafíos futboleros.",
+    "kind": "existing"
+  },
+  {
+    "path": "acerca-de",
+    "title": "Acerca de Game-DLE | Juegos creados en Argentina",
+    "description": "Conocé quién crea Game-DLE, cómo se desarrollan sus juegos y qué buscamos aportar con cada desafío.",
+    "kind": "existing"
+  },
+  {
+    "path": "privacidad",
+    "title": "Política de privacidad | Game-DLE",
+    "description": "Información sobre almacenamiento local, Firebase, YouTube, publicidad, cookies y opciones de privacidad en Game-DLE.",
+    "kind": "existing"
+  },
+  {
+    "path": "terminos",
+    "title": "Términos de uso | Game-DLE",
+    "description": "Condiciones de uso, propiedad intelectual, disponibilidad y responsabilidades aplicables a Game-DLE.",
+    "kind": "existing"
+  },
+  {
+    "path": "contacto",
+    "title": "Contacto | Game-DLE",
+    "description": "Contactá al responsable de Game-DLE para informar errores, sugerencias, privacidad o derechos de autor.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/wordle",
+    "title": "Wordle | Game-DLE",
+    "description": "Adiviná la palabra diaria en seis intentos.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/clave-extrema",
+    "title": "Clave Extrema | Game-DLE",
+    "description": "Descifrá una palabra de cinco letras usando solamente los totales de cada intento.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/futboldle",
+    "title": "FutbolDLE | Game-DLE",
+    "description": "Descubrí el apellido oculto del futbolista en rondas ilimitadas.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/onepiecedle",
+    "title": "One Piece DLE | Game-DLE",
+    "description": "Adiviná el personaje diario de One Piece.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/loldle",
+    "title": "LoL DLE | Game-DLE",
+    "description": "Adiviná el campeón diario de League of Legends.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/lol-who",
+    "title": "LoL: ¿Quién es? | Game-DLE",
+    "description": "Reconocé al campeón de League of Legends a partir de un detalle ampliado.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/lol-memory",
+    "title": "Memoria de campeones de LoL | Game-DLE",
+    "description": "Uní cada campeón de League of Legends con su retrato.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/lol-timeline",
+    "title": "Timeline de campeones de LoL | Game-DLE",
+    "description": "Ordená campeones de League of Legends según su año de lanzamiento.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/lol-connections",
+    "title": "Conexiones LoL | Game-DLE",
+    "description": "Agrupá 16 campeones de League of Legends según las características que comparten.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/musicdle",
+    "title": "MusicDLE | Game-DLE",
+    "description": "Reconocé canciones escuchando fragmentos breves.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/serpentile",
+    "title": "Serpentile | Game-DLE",
+    "description": "Guiá a la serpiente girando las piezas del tablero diario.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/tuttifrutti",
+    "title": "Tutti Frutti | Game-DLE",
+    "description": "Creá una sala y competí en vivo con tus amigos.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/geodle",
+    "title": "GeoDLE | Game-DLE",
+    "description": "Encontrá el país oculto mediante pistas geográficas.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/chronodle",
+    "title": "ChronoDLE | Game-DLE",
+    "description": "Ordená acontecimientos históricos en rondas ilimitadas.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/palmodle",
+    "title": "Palmó Primero | Game-DLE",
+    "description": "Elegí cuál de dos figuras famosas murió primero y defendé tus tres vidas.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/rankdle",
+    "title": "RankDLE | Game-DLE",
+    "description": "Clasificá elementos según el desafío de cada ronda.",
+    "kind": "existing"
+  },
+  {
+    "path": "games/roscodle",
+    "title": "RoscoDLE | Game-DLE",
+    "description": "Completá el abecedario futbolero antes de que termine el tiempo.",
+    "kind": "existing"
+  },
+  {
+    "path": "como-jugar",
+    "title": "Cómo jugar en Game-DLE | Game-DLE",
+    "heading": "Cómo jugar en Game-DLE",
+    "description": "Reglas, tipos de partida, progreso y salas para comenzar a jugar.",
+    "kind": "article",
+    "article": "como-jugar"
+  },
+  {
+    "path": "guias",
+    "title": "Guías de Game-DLE | Game-DLE",
+    "heading": "Guías de Game-DLE",
+    "description": "Ejemplos para interpretar las mecánicas de Game-DLE.",
+    "kind": "guides"
+  },
+  {
+    "path": "historia",
+    "title": "Archivo histórico de ChronoDLE | Game-DLE",
+    "heading": "Archivo histórico de ChronoDLE",
+    "description": "Acontecimientos, fechas, resúmenes y referencias sin completar una partida.",
+    "kind": "history"
+  },
+  {
+    "path": "rankings",
+    "title": "Categorías y datos de RankDLE | Game-DLE",
+    "heading": "Categorías y datos de RankDLE",
+    "description": "Unidades, criterios y valores de las clasificaciones del juego.",
+    "kind": "rankings"
+  },
+  {
+    "path": "metodologia",
+    "title": "Metodología y catálogos de Game-DLE | Game-DLE",
+    "heading": "Metodología y catálogos de Game-DLE",
+    "description": "Procedencia, normalización, alcance y límites de los catálogos.",
+    "kind": "methodology"
+  },
+  {
+    "path": "preguntas-frecuentes",
+    "title": "Preguntas frecuentes de Game-DLE | Game-DLE",
+    "heading": "Preguntas frecuentes de Game-DLE",
+    "description": "Respuestas sobre partidas, progreso, cuentas y servicios externos.",
+    "kind": "faq"
+  },
+  {
+    "path": "guias/wordle-letras-repetidas",
+    "title": "Wordle: letras repetidas y normalización | Game-DLE",
+    "heading": "Wordle: letras repetidas y normalización",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "wordle-letras-repetidas"
+  },
+  {
+    "path": "guias/clave-extrema",
+    "title": "Clave Extrema: deducir con tres totales | Game-DLE",
+    "heading": "Clave Extrema: deducir con tres totales",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "clave-extrema"
+  },
+  {
+    "path": "guias/geodle",
+    "title": "GeoDLE: interpretar atributos y flechas | Game-DLE",
+    "heading": "GeoDLE: interpretar atributos y flechas",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "geodle"
+  },
+  {
+    "path": "guias/serpentile",
+    "title": "Serpentile: anticipar un recorrido hexagonal | Game-DLE",
+    "heading": "Serpentile: anticipar un recorrido hexagonal",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "serpentile"
+  },
+  {
+    "path": "guias/tuttifrutti",
+    "title": "Tutti Frutti: salas, votos y puntos | Game-DLE",
+    "heading": "Tutti Frutti: salas, votos y puntos",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "tuttifrutti"
+  },
+  {
+    "path": "guias/lol-memory",
+    "title": "Memoria LoL: relacionar retratos y nombres | Game-DLE",
+    "heading": "Memoria LoL: relacionar retratos y nombres",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "lol-memory"
+  },
+  {
+    "path": "guias/lol-timeline",
+    "title": "Timeline LoL: años originales y empates | Game-DLE",
+    "heading": "Timeline LoL: años originales y empates",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "lol-timeline"
+  },
+  {
+    "path": "guias/lol-who",
+    "title": "LoL: campeón primero, skin después | Game-DLE",
+    "heading": "LoL: campeón primero, skin después",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "lol-who"
+  },
+  {
+    "path": "guias/lol-connections",
+    "title": "Conexiones LoL: razonar cuatro grupos | Game-DLE",
+    "heading": "Conexiones LoL: razonar cuatro grupos",
+    "description": "Reglas, ejemplos y límites de esta mecánica.",
+    "kind": "article",
+    "article": "lol-connections"
+  },
+  {
+    "path": "rankings/planetas-diametro",
+    "title": "Ordená estos planetas por su diámetro ecuatorial. | Game-DLE",
+    "heading": "Ordená estos planetas por su diámetro ecuatorial.",
+    "description": "Ordená estos planetas por su diámetro ecuatorial. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "planetas-diametro"
+  },
+  {
+    "path": "rankings/montanas-altura",
+    "title": "Ordená estas montañas por su altura sobre el nivel del mar. | Game-DLE",
+    "heading": "Ordená estas montañas por su altura sobre el nivel del mar.",
+    "description": "Ordená estas montañas por su altura sobre el nivel del mar. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "montanas-altura"
+  },
+  {
+    "path": "rankings/paises-superficie",
+    "title": "Ordená estos países sudamericanos por superficie. | Game-DLE",
+    "heading": "Ordená estos países sudamericanos por superficie.",
+    "description": "Ordená estos países sudamericanos por superficie. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "paises-superficie"
+  },
+  {
+    "path": "rankings/elementos-atomicos",
+    "title": "Ordená estos elementos por su número atómico. | Game-DLE",
+    "heading": "Ordená estos elementos por su número atómico.",
+    "description": "Ordená estos elementos por su número atómico. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "elementos-atomicos"
+  },
+  {
+    "path": "rankings/rascacielos-altura",
+    "title": "Ordená estos edificios por su altura arquitectónica. | Game-DLE",
+    "heading": "Ordená estos edificios por su altura arquitectónica.",
+    "description": "Ordená estos edificios por su altura arquitectónica. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "rascacielos-altura"
+  },
+  {
+    "path": "rankings/videojuegos-lanzamiento",
+    "title": "Ordená estos videojuegos por su primer lanzamiento. | Game-DLE",
+    "heading": "Ordená estos videojuegos por su primer lanzamiento.",
+    "description": "Ordená estos videojuegos por su primer lanzamiento. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "videojuegos-lanzamiento"
+  },
+  {
+    "path": "rankings/animales-peso",
+    "title": "Ordená estos animales por su peso adulto aproximado. | Game-DLE",
+    "heading": "Ordená estos animales por su peso adulto aproximado.",
+    "description": "Ordená estos animales por su peso adulto aproximado. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "animales-peso"
+  },
+  {
+    "path": "rankings/peliculas-duracion",
+    "title": "Ordená estas películas por su duración. | Game-DLE",
+    "heading": "Ordená estas películas por su duración.",
+    "description": "Ordená estas películas por su duración. Valores, contexto y referencia del cat?logo.",
+    "kind": "ranking",
+    "ranking": "peliculas-duracion"
+  }
+]

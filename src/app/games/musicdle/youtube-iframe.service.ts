@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 declare global {
   interface Window {
@@ -22,9 +23,14 @@ export interface MusicdleYoutubePlayer {
 
 @Injectable({ providedIn: 'root' })
 export class YoutubeIframeService {
+  private readonly platformId = inject(PLATFORM_ID);
   private apiPromise?: Promise<NonNullable<Window['YT']>>;
 
   loadApi(): Promise<NonNullable<Window['YT']>> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return Promise.reject(new Error('La API de YouTube solo está disponible en el navegador'));
+    }
+
     if (window.YT?.Player) return Promise.resolve(window.YT);
     if (this.apiPromise) return this.apiPromise;
 

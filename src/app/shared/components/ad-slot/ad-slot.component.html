@@ -9,7 +9,7 @@
     <strong>{{ hasConfiguredSlot() ? 'Unidad preparada' : 'Falta configurar el ID del slot' }}</strong>
     <small>{{ placement() }}</small>
   </aside>
-} @else if (hasConfiguredSlot()) {
+} @else if (advertisingEnabled && hasConfiguredSlot()) {
   <aside
     class="ad-shell"
     [class.ad-shell--compact]="compact()"

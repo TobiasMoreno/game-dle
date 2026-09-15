@@ -55,13 +55,13 @@
   text-transform: uppercase;
 }
 
-.masthead h2 {
+.masthead h1 {
   margin: 0;
   font: 500 clamp(2.5rem, 7vw, 4.5rem)/.82 Georgia, serif;
   letter-spacing: -.075em;
 }
 
-.masthead h2 span { color: var(--moss); font-style: italic; }
+.masthead h1 span { color: var(--moss); font-style: italic; }
 
 .masthead-actions {
   display: flex;
@@ -235,7 +235,7 @@
   .wordle-page { min-height: 0; padding: 1rem .75rem 1.5rem; }
   .wordle-page::after { display: none; }
   .masthead { margin-bottom: 1.1rem; }
-  .masthead h2 { font-size: 2.7rem; }
+  .masthead h1 { font-size: 2.7rem; }
   .masthead-actions { gap: .55rem; }
   .edition span { display: none; }
   .edition { display: none; }

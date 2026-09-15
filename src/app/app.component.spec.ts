@@ -22,11 +22,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('game-dle');
   });
 
-  it('should render title', () => {
+  it('renders the brand without competing with the page heading', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Game-DLE');
+    expect(compiled.querySelector('a[aria-label="Ir al inicio de Game-DLE"]')?.textContent).toContain('Game-DLE');
+    expect(compiled.querySelector('h1')).toBeNull();
   });
 
   it('should link the Game-DLE brand to home', () => {

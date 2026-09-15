@@ -33,6 +33,22 @@ describe('MusicdleStorageService', () => {
     expect(service.getCooldownSongIds(start + oneDay).has('song-1')).toBeFalse();
   });
 
+  it('conserva la selección múltiple y el filtro de la ronda al recargar', () => {
+    const filter = {
+      kind: 'collection' as const,
+      value: 'Cuarteto',
+      values: ['Cuarteto', 'Rock nacional'],
+      label: 'Cuarteto + Rock nacional',
+    };
+    const round = new MusicdleEngineService().createRound('song-1', filter, 100);
+    service.saveFilter(filter);
+    service.saveRound(round);
+
+    const restored = new MusicdleStorageService();
+    expect(restored.getFilter()).toEqual(filter);
+    expect(restored.getRound()?.filter).toEqual(filter);
+  });
+
   it('reemplaza el motivo y renueva el vencimiento sin duplicar la canción', () => {
     service.addCooldown('song-1', 'played', 1_000);
     service.addCooldown('song-1', 'unavailable', 2_000);

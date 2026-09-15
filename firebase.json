@@ -21,19 +21,14 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "index.csr.html"
     ],
     "redirects": [
       {
         "source": "/home",
         "destination": "/",
         "type": 301
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   }

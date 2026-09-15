@@ -1,39 +1,43 @@
-# Configuración de AdSense
+# AdSense: configuración y operación
 
-El publisher global de `game-dle` es `ca-pub-9225896761341125`. El script de AdSense y la meta de verificación están en `src/index.html`; el inventario autorizado está publicado mediante `public/ads.txt`.
+Actualizado el 15 de septiembre de 2026. Dominio confirmado: `game-dle.web.app`.
 
-## Unidades configuradas
+## Estado de esta versión
 
-Las dos unidades **Display responsive** están configuradas en `src/app/shared/config/adsense.config.ts`:
+- Publisher: `ca-pub-9225896761341125`.
+- Verificación: meta `google-adsense-account` en `src/index.html`.
+- Autorización: `public/ads.txt`, copiado a `dist/game-dle/browser/ads.txt` y publicado en `/ads.txt`.
+- Unidades conservadas en `src/app/shared/config/adsense.config.ts`: portada `1844562103`, pie de juego `6525063208`.
+- Solicitudes deshabilitadas mediante `ADSENSE_CONFIG.enabled = false`; script publicitario global retirado.
+- Desarrollo puede mostrar una maqueta identificada, sin solicitar anuncios reales.
 
-1. `game-dle-home`: `1844562103`
-2. `game-dle-game-footer`: `6525063208`
+La desactivación es una decisión de esta implementación: no se acreditaron aprobación y CMP efectiva. Google no exige aquí retirar el script como condición de revisión. La meta mantiene la vía de verificación.
 
-La configuración resultante es:
+## Build y publicación
 
-```ts
-slots: {
-  home: '1844562103',
-  gameFooter: '6525063208',
-}
+```powershell
+npm run build
+npm run validate:musicdle
+npm run validate:geodle
+firebase deploy --only hosting --project game-dle
+npm run validate:hosting
 ```
 
-Desarrollo muestra una maqueta identificada y no solicita anuncios reales. El build de producción inicializa cada unidad una sola vez.
+prebuild genera sitemap y resumen de catálogos. postbuild comprueba todas las rutas públicas y detiene el comando si encuentra errores. Firebase publica los deep links prerenderizados, sin catch-all hacia portada. 404.html atiende desconocidas; index.csr.html queda excluido.
 
-## Ubicaciones
+## Reactivación
 
-- Home: después del listado de juegos y antes de la ayuda.
-- Juegos diarios: al final de estadísticas y contenido, antes del footer.
-- MusicDLE: debajo del tablero y antes del footer, con una reserva compacta para conservar el layout de viewport completo.
-- Serpentile: debajo del tablero y antes del footer, integrado en su layout propio.
-- Tutti Frutti: en los laterales del área de juego, integrado en su layout propio.
+1. Comprobar aprobación y publisher en AdSense.
+2. Configurar y probar mensaje de privacidad y CMP certificada aplicable, incluida su integración con las solicitudes. El repositorio no incorpora una CMP propia ni demuestra consentimiento.
+3. Restituir en src/index.html el script asíncrono oficial `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9225896761341125`, con crossorigin="anonymous", y habilitar ADSENSE_CONFIG.enabled una vez verificada esa integración. Cambiar solamente el flag no instala script ni CMP.
+4. Comprobar consentimiento, rechazo, preferencias y ubicaciones en escritorio y móvil antes de publicar la reactivación.
 
-Las unidades se inicializan una sola vez al entrar a una página. No se refrescan con intentos, respuestas o rondas.
+Las unidades manuales no se refrescan por cada intento. No agregar publicidad a legales o biblioteca ni confundir consentimiento publicitario con aceptación de términos de una sala.
 
-## Antes de producción
+## Acciones de cuenta
 
-- Configurar en AdSense `Privacy & messaging` y publicar el mensaje de consentimiento correspondiente al tráfico objetivo.
-- Verificar `https://DOMINIO/ads.txt`.
-- Confirmar que AdSense muestre el sitio como `Ready`.
-- Probar las unidades en desktop y móvil sin hacer clic sobre anuncios propios.
-- Mantener publicidad separada de botones, navegación, desplegables, tableros y reproductores.
+En AdSense: confirmar game-dle.web.app, actualizar comprobación de ads.txt y solicitar revisión. En Search Console: enviar /sitemap.xml e inspeccionar portada, juegos y biblioteca. Estas acciones requieren acceso y no se han acreditado como realizadas.
+
+«No encontrado» en el panel no prueba un fallo de Hosting: la auditoría inicial comprobó HTTP 200 y texto correcto, también con agentes de Google. La actualización depende de su rastreo.
+
+Ver [auditoría y ejecución](adsense-auditoria-tecnica-2026-09-15.md).

@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -7,6 +8,7 @@ import {
   OnChanges,
   OnDestroy,
   output,
+  PLATFORM_ID,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -40,12 +42,18 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
   volume = this.storage.getVolume();
 
   private readonly youtubeApi = inject(YoutubeIframeService);
+  private readonly platformId = inject(PLATFORM_ID);
+  private destroyed = false;
   private player: MusicdleYoutubePlayer | null = null;
   private monitorId: ReturnType<typeof setInterval> | null = null;
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.youtubeApi.loadApi()
       .then((YT) => {
+        if (this.destroyed) return;
+
         this.player = new YT.Player(this.playerHost.nativeElement, {
           width: '100%',
           height: '100%',
@@ -71,7 +79,9 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
           },
         });
       })
-      .catch(() => this.onApiUnavailable());
+      .catch(() => {
+        if (!this.destroyed) this.onApiUnavailable();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -84,6 +94,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
     this.stopMonitor();
     this.player?.destroy();
   }

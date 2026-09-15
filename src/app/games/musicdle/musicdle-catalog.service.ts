@@ -38,7 +38,7 @@ export class MusicdleCatalogService {
   filterSongs(songs: MusicdleSong[], filter: MusicdleFilter): MusicdleSong[] {
     switch (filter.kind) {
       case 'collection':
-        return songs.filter((song) => song.collection === filter.value);
+        return songs.filter((song) => (filter.values ?? [filter.value]).includes(song.collection));
       case 'genre':
         return songs.filter((song) => song.genres.includes(filter.value));
       case 'decade':
@@ -48,6 +48,28 @@ export class MusicdleCatalogService {
       default:
         return songs;
     }
+  }
+
+  resolveFilter(
+    filter: MusicdleFilter,
+    options: MusicdleFilterOption[]
+  ): MusicdleFilter | null {
+    if (filter.kind !== 'collection') {
+      return options.find((option) => option.kind === filter.kind && option.value === filter.value) ?? null;
+    }
+
+    const values = this.unique(filter.values ?? [filter.value]);
+    const selected = values.map((value) => options.find(
+      (option) => option.kind === 'collection' && option.value === value
+    ));
+    if (!selected.length || selected.some((option) => !option)) return null;
+
+    return {
+      kind: 'collection',
+      value: values[0],
+      values,
+      label: selected.map((option) => option!.label).join(' + '),
+    };
   }
 
   searchSongs(

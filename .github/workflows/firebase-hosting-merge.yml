@@ -31,9 +31,20 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: Validate game catalogs
+        run: |
+          npm run validate:geodle
+          npm run validate:musicdle
+
+      - name: Test application
+        run: npm run test:ci
+
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAME_DLE }}
           channelId: live
           projectId: game-dle
+
+      - name: Validate deployed pages
+        run: npm run validate:hosting

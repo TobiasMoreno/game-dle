@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 import {
   TUTTIFRUTTI_LETTERS,
   TuttiFruttiPlayer,
@@ -26,7 +27,7 @@ interface ScoreEntry extends PlayerEntry {
 
 @Component({
   selector: 'app-tuttifrutti',
-  imports: [CommonModule, FormsModule, GameEditorialContentComponent],
+  imports: [CommonModule, FormsModule, GameEditorialContentComponent, FooterComponent],
   templateUrl: './tuttifrutti.component.html',
   styleUrl: './tuttifrutti.component.css',
 })

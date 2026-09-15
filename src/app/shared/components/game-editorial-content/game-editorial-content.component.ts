@@ -1,5 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LOL_EDITORIAL_CONTENT } from './lol-editorial-content';
 
 interface EditorialSource {
   label: string;
@@ -18,7 +19,7 @@ interface RelatedGame {
   reason: string;
 }
 
-interface GameEditorialContent {
+export interface GameEditorialContent {
   name: string;
   kicker: string;
   title: string;
@@ -33,6 +34,7 @@ interface GameEditorialContent {
 }
 
 const CONTENT: Record<string, GameEditorialContent> = {
+  ...LOL_EDITORIAL_CONTENT,
   wordle: {
     name: 'Wordle', kicker: 'Guía de juego', title: 'Una palabra, seis intentos y ninguna pista desperdiciada.',
     intro: 'Wordle propone descubrir una palabra española de cinco letras. El desafío cambia cada día y todas las personas reciben la misma solución, por lo que el resultado puede compartirse sin revelar la respuesta.',
@@ -43,7 +45,7 @@ const CONTENT: Record<string, GameEditorialContent> = {
       { label: 'Diccionario de la lengua española', url: 'https://dle.rae.es/', note: 'Referencia para significado y vigencia de palabras.' },
       { label: 'FundéuRAE', url: 'https://www.fundeu.es/', note: 'Consulta complementaria de uso y escritura en español.' },
     ],
-    faqs: [{ question: '¿La palabra cambia si recargo?', answer: 'No. La solución es la misma durante todo el día según la fecha de Argentina.' }, { question: '¿Se tienen en cuenta las tildes?', answer: 'El tablero prioriza las cinco letras de la palabra; las reglas concretas de normalización se aplican de manera uniforme a todos los intentos.' }],
+    faqs: [{ question: '¿La palabra cambia si recargo?', answer: 'No. La solución es la misma durante todo el día según la fecha de Argentina.' }, { question: '¿Se tienen en cuenta las tildes?', answer: 'El campo transforma a mayúsculas y elimina tildes. En esta implementación Ñ se normaliza a N. La guía explica la validación y el tratamiento de letras repetidas.' }],
     related: [{ name: 'RoscoDLE', route: '/games/roscodle', reason: 'Más vocabulario' }, { name: 'FutbolDLE', route: '/games/futboldle', reason: 'Cinco letras y fútbol' }], reviewed: '25 de agosto de 2026',
   },
   'clave-extrema': {
@@ -91,12 +93,12 @@ const CONTENT: Record<string, GameEditorialContent> = {
   },
   serpentile: {
     name: 'Serpentile', kicker: 'Manual del tablero', title: 'Un recorrido lógico construido para tener solución.',
-    intro: 'Serpentile es un rompecabezas diario de conexiones. Cada bloque puede girarse y el objetivo es construir un camino continuo para la serpiente sin dejarla salir del tablero.',
-    rules: ['Tocá una pieza para girarla.', 'Conectá la entrada con la salida sin cortes.', 'Terminá usando la menor cantidad posible de movimientos.'],
-    methodology: 'Los tableros se generan dentro de Game-DLE a partir de un recorrido válido y luego se mezclan sus orientaciones. Antes de jugar se verifica que exista una solución y que el estado inicial no esté ya resuelto.',
-    feedback: 'Las conexiones y bordes muestran por dónde puede continuar el recorrido. El puntaje considera resolución, movimientos y tiempo según las reglas visibles de la partida.',
+    intro: 'Serpentile es un juego de recorrido hexagonal en movimiento. Cada bloque gira 60 grados y el objetivo es alcanzar luciérnagas sin que la serpiente salga del tablero.',
+    rules: ['Tocá una pieza para girarla.', 'Orientá el cauce según el lado por el que entra la serpiente.', 'Recogé los objetivos y usá Pausar para planificar el próximo recorrido.'],
+    methodology: 'El tablero y sus objetivos se preparan localmente según fecha y número de ronda. La entrada en cada hexágono determina el cauce que sigue la serpiente; los objetivos se reemplazan al recogerlos.',
+    feedback: 'Las conexiones y bordes muestran por dónde puede continuar el recorrido. El puntaje suma 100 por objetivo recogido; los pasos cuentan avance y no clics de rotación.',
     sources: [{ label: 'Generador propio de Game-DLE', url: '/acerca-de', note: 'La lógica y validación del tablero se ejecutan localmente.' }],
-    faqs: [{ question: '¿El tablero puede ser imposible?', answer: 'La generación parte de una solución válida. Si encontrás un caso imposible, podés informarlo con la fecha del desafío.' }, { question: '¿Recargar cambia el tablero?', answer: 'No. El desafío diario se mantiene estable durante esa fecha.' }],
+    faqs: [{ question: '¿El tablero puede ser imposible?', answer: 'El resultado depende de cómo orientás los cauces. Si encontrás un problema del generador, informá fecha y número de ronda.' }, { question: '¿Recargar cambia el tablero?', answer: 'No. El desafío diario se mantiene estable durante esa fecha.' }],
     related: [{ name: 'Wordle', route: '/games/wordle', reason: 'Otro desafío diario' }, { name: 'GeoDLE', route: '/games/geodle', reason: 'Resolver con pistas' }], reviewed: '25 de agosto de 2026',
   },
   tuttifrutti: {
@@ -110,14 +112,14 @@ const CONTENT: Record<string, GameEditorialContent> = {
     related: [{ name: 'RoscoDLE', route: '/games/roscodle', reason: 'Palabras y categorías' }, { name: 'Wordle', route: '/games/wordle', reason: 'Jugar en solitario' }], reviewed: '25 de agosto de 2026',
   },
   geodle: {
-    name: 'GeoDLE', kicker: 'Cuaderno de viaje', title: 'Cada intento dibuja un camino hacia el país oculto.',
-    intro: 'GeoDLE propone encontrar un país mediante distancia, dirección, continente y otras pistas geográficas. Las rondas son ilimitadas y cada respuesta reduce el mapa posible.',
-    rules: ['Elegí un país como primer intento.', 'Usá la distancia y la flecha para orientar la búsqueda.', 'Combiná continente, superficie y población hasta encontrar la respuesta.'],
-    methodology: 'El catálogo normaliza nombres, coordenadas representativas, códigos y atributos de países. Las distancias son aproximaciones geodésicas entre puntos de referencia y no representan la separación mínima exacta entre fronteras.',
-    feedback: 'La flecha marca una dirección general hacia la respuesta. Los colores indican coincidencia o cercanía según el tipo de dato; deben interpretarse junto con la distancia mostrada.',
-    sources: [{ label: 'World Bank Open Data', url: 'https://data.worldbank.org/', note: 'Referencia de indicadores por país.' }, { label: 'UN M49', url: 'https://unstats.un.org/unsd/methodology/m49/', note: 'Regiones y códigos geográficos.' }, { label: 'Natural Earth', url: 'https://www.naturalearthdata.com/', note: 'Referencia cartográfica pública.' }],
-    faqs: [{ question: '¿La distancia es hasta la frontera?', answer: 'No. Es una aproximación entre coordenadas representativas, útil como pista del juego.' }, { question: '¿Qué pasa con territorios y países transcontinentales?', answer: 'Game-DLE usa una clasificación normalizada para que cada ronda tenga una comparación consistente.' }],
-    related: [{ name: 'ChronoDLE', route: '/games/chronodle', reason: 'Historia mundial' }, { name: 'RankDLE', route: '/games/rankdle', reason: 'Comparar magnitudes' }], reviewed: '25 de agosto de 2026',
+    name: 'GeoDLE', kicker: 'Cuaderno de viaje', title: 'Compará países sin confundir valores con distancias.',
+    intro: 'GeoDLE propone descubrir un país en seis intentos comparando continente, subregión, hemisferios, idiomas, superficie, población y cantidad de fronteras terrestres. Las rondas son ilimitadas.',
+    rules: ['Escribí un país y seleccioná una entrada del buscador.', 'Compará sus siete atributos con los del país oculto.', 'Usá coincidencias, coincidencias parciales y flechas para resolver en seis intentos.'],
+    methodology: 'El catálogo local reúne 195 estados: 193 miembros de la ONU y dos observadores. Los datos proceden de countries.dev, se normalizan al español y se guardan en una versión local; no se consultan indicadores en vivo durante cada intento. Los hemisferios se derivan de coordenadas representativas, no de toda la extensión territorial.',
+    feedback: 'Verde indica coincidencia exacta. Idiomas y hemisferios pueden ser parciales si comparten algún valor. En superficie y población se marca cercanía hasta un 15 % de diferencia respecto del destino; en fronteras se exige igualdad. La flecha arriba indica que el país oculto tiene un valor mayor. No se calcula distancia ni rumbo geográfico.',
+    sources: [{ label: 'countries.dev', url: 'https://countries.dev/countries?full=true', note: 'Fuente del catálogo geográfico local.' }, { label: 'Metodología de Game-DLE', url: '/metodologia', note: 'Normalización, fechas y límites del catálogo.' }],
+    faqs: [{ question: '¿La flecha apunta hacia el país?', answer: 'No. Indica mayor o menor superficie, población o cantidad de fronteras.' }, { question: '¿Se incluyen todos los territorios?', answer: 'Se usan 195 estados. Los territorios dependientes no forman parte del conjunto jugable.' }, { question: '¿Los indicadores son actuales en tiempo real?', answer: 'No. Son una instantánea del catálogo local; la fecha de generación se informa en Metodología.' }],
+    related: [{ name: 'Guía de GeoDLE', route: '/guias/geodle', reason: 'Ejemplos de pistas' }, { name: 'ChronoDLE', route: '/games/chronodle', reason: 'Historia mundial' }], reviewed: '15 de septiembre de 2026',
   },
   chronodle: {
     name: 'ChronoDLE', kicker: 'Notas del archivo', title: 'La historia se entiende mejor cuando cada hecho encuentra su lugar.',
@@ -125,7 +127,7 @@ const CONTENT: Record<string, GameEditorialContent> = {
     rules: ['Arrastrá las tarjetas para construir una línea temporal.', 'Comprobá el orden y seguí las indicaciones.', 'Resolvé la ronda en un máximo de cuatro intentos.'],
     methodology: 'Cada acontecimiento incluye fecha, región, categoría, resumen y fuente. Las rondas combinan eventos de distintas épocas mediante una semilla estable; el orden inicial nunca coincide deliberadamente con la solución completa.',
     feedback: 'Verde indica posición correcta. Las flechas señalan que el acontecimiento debe moverse hacia una época anterior o posterior dentro de la lista.',
-    sources: [{ label: 'Fuentes por acontecimiento', url: '/games/chronodle', note: 'La cronología final enlaza archivos, instituciones y referencias utilizadas en cada tarjeta.' }],
+    sources: [{ label: 'Fuentes por acontecimiento', url: '/historia', note: 'Archivo público de acontecimientos y referencias, sin necesidad de terminar una partida.' }],
     faqs: [{ question: '¿Por qué algunas fechas históricas varían?', answer: 'Cuando existen calendarios o interpretaciones diferentes, elegimos una fecha de referencia y procuramos respaldarla con la fuente enlazada.' }, { question: '¿Las rondas se terminan?', answer: 'No. El archivo combina acontecimientos en rondas ilimitadas.' }],
     related: [{ name: 'Palmó Primero', route: '/games/palmodle', reason: 'Fechas y personajes' }, { name: 'GeoDLE', route: '/games/geodle', reason: 'Contexto mundial' }], reviewed: '25 de agosto de 2026',
   },
@@ -135,7 +137,7 @@ const CONTENT: Record<string, GameEditorialContent> = {
     rules: ['Leé con atención el criterio y la dirección solicitada.', 'Arrastrá los cinco elementos hasta formar el ranking.', 'Usá el feedback para corregir posiciones en cuatro intentos.'],
     methodology: 'Cada categoría define unidad, sentido del orden, valores, explicación y fuente. Los conjuntos se revisan manualmente y mantienen valores comparables dentro de la misma referencia.',
     feedback: 'Una posición correcta queda marcada; las flechas indican hacia qué extremo del ranking debe moverse el elemento. Los valores exactos se revelan al terminar.',
-    sources: [{ label: 'Fuentes por categoría', url: '/games/rankdle', note: 'La explicación final enlaza NASA, Banco Mundial, IUPAC y otras referencias según la ronda.' }],
+    sources: [{ label: 'Fuentes por categoría', url: '/rankings', note: 'Categorías, valores y referencias disponibles sin jugar.' }],
     faqs: [{ question: '¿Se mezclan fuentes dentro de una ronda?', answer: 'Cada desafío busca mantener una referencia principal para que las cifras sean comparables.' }, { question: '¿Los rankings pueden cambiar?', answer: 'Sí, especialmente los basados en población o récords. La fecha de revisión indica la vigencia del catálogo.' }],
     related: [{ name: 'ChronoDLE', route: '/games/chronodle', reason: 'Orden cronológico' }, { name: 'GeoDLE', route: '/games/geodle', reason: 'Datos geográficos' }], reviewed: '25 de agosto de 2026',
   },

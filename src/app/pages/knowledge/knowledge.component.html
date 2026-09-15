@@ -1,0 +1,58 @@
+<main class="reading-room">
+  <nav class="crumbs" aria-label="Migas de pan"><a routerLink="/">Game-DLE</a><span>/</span><a routerLink="/guias">Biblioteca de juego</a></nav>
+  <header class="reading-hero"><p class="eyebrow">GAME-DLE · REGLAS Y CONTEXTO</p><h1>{{ title }}</h1><p class="lead">{{ article?.lead || 'Información para entender los desafíos y consultar sus datos sin depender de una partida.' }}</p><p class="review">Texto actualizado el 15 de septiembre de 2026 · Tobias Emiliano Moreno</p></header>
+
+  @if (kind === 'article' && article) {
+    <article class="article-copy">
+      @for (section of article.sections; track section.title) {
+        <section><h2>{{ section.title }}</h2>
+          @for (paragraph of section.paragraphs; track paragraph) { <p>{{ paragraph }}</p> }
+          @if (section.rows; as rows) {
+            <div class="table-wrap"><table><thead><tr>@for (cell of rows[0]; track $index) { <th scope="col">{{ cell }}</th> }</tr></thead><tbody>@for (row of rows.slice(1); track $index) { <tr>@for (cell of row; track $index) { <td>{{ cell }}</td> }</tr> }</tbody></table></div>
+          }
+        </section>
+      }
+      @if (article.game) { <a class="reading-action" [routerLink]="article.game">Probar este juego →</a> }
+    </article>
+  }
+
+  @if (kind === 'guides') {
+    <section><h2>Guías de mecánicas</h2><p>Elegí la pregunta que querés resolver: cómo se cuentan las letras, qué significa una flecha o cómo se validan los puntos. Cada guía contiene ejemplos y límites de la implementación.</p>
+      <div class="reading-grid">@for (guide of guides; track guide[0]) { <a class="reading-card" [routerLink]="'/guias/' + guide[0]"><h3>{{ guide[1].title }}</h3><p>{{ guide[1].lead }}</p><span>Leer guía →</span></a> }</div>
+    </section>
+    <section><h2>Datos que podés consultar</h2><p>El archivo histórico y las categorías de clasificación reúnen material que antes solo se mostraba al terminar una ronda. Se ofrecen como lectura y referencia, con sus criterios y fuentes.</p><div class="reading-grid"><a class="reading-card" routerLink="/historia"><h3>Archivo de ChronoDLE</h3><p>Acontecimientos, fechas y resúmenes.</p></a><a class="reading-card" routerLink="/rankings"><h3>Categorías de RankDLE</h3><p>Unidades, magnitudes y notas explicativas.</p></a><a class="reading-card" routerLink="/metodologia"><h3>Metodología</h3><p>Procedencia, versiones y normalización.</p></a></div></section>
+  }
+
+  @if (kind === 'history') {
+    <section><h2>Cómo leer esta cronología</h2><p>ChronoDLE utiliza acontecimientos de distintas épocas. Esta página publica sus resúmenes y referencias sin ocultarlos detrás de una partida. Las fechas expresan la referencia elegida para ordenar: cuando se conserva solo un año aproximado, no hay que interpretar el día interno de ordenación como una fecha histórica precisa.</p><p>El archivo es una selección del juego, no una historia universal completa. Un acontecimiento puede tener procesos anteriores y consecuencias posteriores; el resumen ubica el hecho seleccionado y la fuente permite ampliar su contexto.</p></section>
+    <div class="history-list">@for (event of history; track event.id) { <article [id]="event.id"><p class="eyebrow">{{ event.displayDate }} · {{ event.category }} · {{ event.region }}</p><h2>{{ event.title }}</h2><p>{{ event.summary }}</p><a [href]="event.sourceUrl" target="_blank" rel="noopener noreferrer">Ampliar en la referencia ↗</a></article> }</div>
+    <a class="reading-action" routerLink="/games/chronodle">Practicar el orden en ChronoDLE →</a>
+  }
+
+  @if (kind === 'rankings') {
+    <section><h2>Primero el criterio, después el orden</h2><p>Clasificar por tamaño, masa, fecha o duración produce órdenes distintos. Estas categorías explican la unidad que utiliza RankDLE y ofrecen los valores sin exigir completar el juego. Las cifras pertenecen al catálogo del sitio y no constituyen una actualización estadística en vivo.</p><div class="reading-grid">@for (item of rankings; track item.id) { <a class="reading-card" [routerLink]="'/rankings/' + item.id"><p class="eyebrow">{{ item.category }}</p><h3>{{ item.question }}</h3><p>De {{ item.lowerLabel.toLowerCase() }} a {{ item.upperLabel.toLowerCase() }}.</p><span>Consultar valores →</span></a> }</div></section>
+  }
+
+  @if (kind === 'ranking' && ranking) {
+    <article class="article-copy"><section><h2>Qué se compara</h2><p>{{ ranking.question }} El recorrido va de {{ ranking.lowerLabel.toLowerCase() }} a {{ ranking.upperLabel.toLowerCase() }}.</p>@for (paragraph of rankingContext; track paragraph) { <p>{{ paragraph }}</p> }</section>
+      <section><h2>Los valores del catálogo</h2><div class="table-wrap"><table><thead><tr><th scope="col">Elemento</th><th scope="col">Valor</th><th scope="col">Contexto</th></tr></thead><tbody>@for (item of rankingItems; track item.id) { <tr><th scope="row">{{ item.name }}</th><td>{{ item.displayValue }}</td><td>{{ item.note }}</td></tr> }</tbody></table></div></section>
+      <section><h2>Referencia y vigencia</h2><p>La fuente de consulta de esta categoría es <a [href]="ranking.sourceUrl" target="_blank" rel="noopener noreferrer">{{ ranking.sourceLabel }} ↗</a>. Los valores se conservan en una versión local. Esta publicación documenta el catálogo utilizado; la fecha del texto no acredita que cada cifra haya sido actualizada por su proveedor ese mismo día.</p><p>Si encontrás una discrepancia, comprobá primero unidad, versión y criterio de medición. Podés informar una corrección con una referencia específica desde <a routerLink="/contacto">Contacto</a>.</p></section>
+      <a class="reading-action" routerLink="/games/rankdle">Practicar clasificaciones en RankDLE →</a>
+    </article>
+  }
+
+  @if (kind === 'methodology') {
+    <section><h2>Una instantánea local, con límites explícitos</h2><p>Los juegos trabajan con catálogos incluidos en la publicación. La búsqueda de una palabra, campeón o país no consulta una enciclopedia en vivo. Esto permite comparaciones consistentes, pero implica que una actualización externa no llega automáticamente al sitio.</p><p>La fecha de generación pertenece al catálogo cuando este la registra. La fecha de revisión de una guía identifica el texto de reglas y no certifica una auditoría independiente de cada imagen o cifra.</p></section>
+    <div class="table-wrap"><table><thead><tr><th scope="col">Catálogo</th><th scope="col">Alcance</th><th scope="col">Referencia</th></tr></thead><tbody><tr><th scope="row">GeoDLE</th><td>{{ catalogs.countries }} estados · generado {{ catalogs.countriesGeneratedAt }}</td><td><a [href]="catalogs.countriesSource" target="_blank" rel="noopener noreferrer">countries.dev ↗</a></td></tr><tr><th scope="row">LoL</th><td>{{ catalogs.champions }} entradas locales</td><td><a href="https://developer.riotgames.com/docs/lol" target="_blank" rel="noopener noreferrer">Riot y Data Dragon ↗</a></td></tr><tr><th scope="row">One Piece</th><td>{{ catalogs.characters }} personajes · {{ catalogs.arcs }} arcos</td><td><a href="https://one-piece.com/" target="_blank" rel="noopener noreferrer">Portal de la franquicia ↗</a></td></tr><tr><th scope="row">Palabras</th><td>{{ catalogs.words }} entradas del catálogo</td><td>Validación local; referencia de uso: <a href="https://dle.rae.es/" target="_blank" rel="noopener noreferrer">DLE ↗</a></td></tr><tr><th scope="row">MusicDLE</th><td>{{ catalogs.songs }} entradas · {{ catalogs.enabledSongs }} habilitadas</td><td>Identificadores de videos y reproducción incorporada de YouTube</td></tr></tbody></table></div>
+    <section><h2>Normalización y procedencia</h2><p>GeoDLE conserva nombres españoles, códigos, regiones e indicadores de countries.dev. Solo son jugables 193 miembros de la ONU y dos observadores. Población y superficie son valores del archivo, no mediciones actuales; hemisferios usan un punto representativo.</p><p>Los modos LoL reutilizan un catálogo común de atributos y skins. One Piece usa personajes y arcos locales; recompensas, nombres y clasificación pueden depender de la etapa de la obra. La presencia de referencias generales no demuestra una licencia sobre cada recurso de terceros ni afiliación oficial.</p><p>Wordle conserva A–Z después de normalizar su entrada. Clave Extrema valida su catálogo de cinco letras y cuenta ocurrencias. Tutti Frutti normaliza respuestas para detectar repeticiones después de que la mesa vote su validez.</p></section>
+    <section><h2>Contenido educativo accesible</h2><p><a routerLink="/historia">El archivo histórico</a> publica resúmenes y enlaces por acontecimiento. <a routerLink="/rankings">Las categorías de RankDLE</a> explican la unidad y referencia de sus valores. Las selecciones se publican juntas con contexto para evitar fichas vacías que contengan solo un nombre o una cifra.</p></section>
+    <section><h2>Correcciones y mantenimiento</h2><p>Game-DLE es mantenido por Tobias Emiliano Moreno. Para reportar un dato, indicá juego, nombre o categoría, valor cuestionado y fuente. Para reportar un fallo técnico, incluí el mensaje y dispositivo. Los datos no se presentan como autoridad académica única; consultá las referencias cuando necesites precisión fuera del juego.</p><a class="reading-action" routerLink="/contacto">Informar una corrección →</a></section>
+  }
+
+  @if (kind === 'faq') {
+    <section><h2>Respuestas antes de comenzar</h2><p>Estas preguntas cubren funciones del sitio completo. Las reglas de cada mecánica están desarrolladas en sus guías y en la propia página del juego.</p>@for (faq of faqs; track faq[0]) { <article class="faq-answer"><h3>{{ faq[0] }}</h3><p>{{ faq[1] }}</p></article> }</section>
+  }
+
+  <nav class="reading-links" aria-label="Lecturas relacionadas"><a routerLink="/como-jugar">Cómo jugar</a><a routerLink="/guias">Todas las guías</a><a routerLink="/historia">Historia</a><a routerLink="/rankings">Rankings</a><a routerLink="/metodologia">Metodología</a><a routerLink="/preguntas-frecuentes">Preguntas frecuentes</a></nav>
+</main>
+<app-footer />

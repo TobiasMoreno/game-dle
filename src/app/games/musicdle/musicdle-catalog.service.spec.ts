@@ -49,6 +49,36 @@ describe('MusicdleCatalogService', () => {
     expect(service.searchSongs(songs, 'r', new Set())).toEqual([]);
   });
 
+  it('combina Cuarteto y Rock nacional sin incluir otras categorías ni duplicados', () => {
+    const catalog = [...songs, createSong('cuarteto-1', 'Cuarteto')];
+    const filtered = service.filterSongs(catalog, {
+      kind: 'collection',
+      value: 'Cuarteto',
+      values: ['Cuarteto', 'Rock nacional', 'Cuarteto'],
+      label: 'Cuarteto + Rock nacional',
+    });
+
+    expect(filtered.map((song) => song.id)).toEqual(['rock-1', 'rock-2', 'cuarteto-1']);
+  });
+
+  it('restaura los filtros anteriores de una sola categoría', () => {
+    expect(service.resolveFilter({
+      kind: 'collection', value: 'Rock nacional', label: 'Rock nacional',
+    }, service.buildFilterOptions(songs))).toEqual({
+      kind: 'collection', value: 'Rock nacional', values: ['Rock nacional'], label: 'Rock nacional',
+    });
+  });
+
+  it('rechaza una selección vacía o con categorías que ya no existen', () => {
+    const options = service.buildFilterOptions(songs);
+    expect(service.resolveFilter({
+      kind: 'collection', value: '', values: [], label: '',
+    }, options)).toBeNull();
+    expect(service.resolveFilter({
+      kind: 'collection', value: 'Rock nacional', values: ['Rock nacional', 'Otra'], label: '',
+    }, options)).toBeNull();
+  });
+
   it('devuelve todas las coincidencias sin ocultar resultados posteriores', () => {
     const firstMatches = Array.from({ length: 11 }, (_, index) => ({
       ...createSong(`tema-${index}`, 'Cuarteto'),
