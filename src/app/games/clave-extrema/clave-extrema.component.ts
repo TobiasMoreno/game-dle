@@ -7,6 +7,7 @@ import { BaseGameComponent } from '../../shared/components/base-game/base-game.c
 import { GameProgress } from '../../shared/models/game.model';
 import { argentinaDateKey } from '../../shared/utils/daily-activity.utils';
 import {
+  buildExtremeKeyboardState,
   calculateExtremeScore,
   ClaveFeedback,
   dailyWordIndex,
@@ -198,6 +199,16 @@ export class ClaveExtremaComponent extends BaseGameComponent implements OnInit, 
       return { ...attempt, marks };
     });
     this.saveRoundProgress();
+  }
+  getKeyboardMark(key: string): ManualLetterMark {
+    return buildExtremeKeyboardState(this.attempts)[key] ?? null;
+  }
+  getKeyboardKeyLabel(key: string): string {
+    if (key === 'BACKSPACE') return 'Borrar letra';
+    if (key === 'ENTER') return 'Comprobar palabra';
+    const mark = this.getKeyboardMark(key);
+    const markLabel = mark === 'green' ? ', marcada verde' : mark === 'orange' ? ', marcada naranja' : mark === 'red' ? ', marcada roja' : '';
+    return `Letra ${key}${markLabel}`;
   }
   getCellLetter(rowIndex: number, columnIndex: number): string {
     return this.attempts[rowIndex]?.word[columnIndex]

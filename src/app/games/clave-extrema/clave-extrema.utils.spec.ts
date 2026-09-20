@@ -1,4 +1,4 @@
-import { calculateExtremeScore, dailyWordIndex, nextManualMark, scoreExtremeGuess } from './clave-extrema.utils';
+import { buildExtremeKeyboardState, calculateExtremeScore, dailyWordIndex, nextManualMark, scoreExtremeGuess } from './clave-extrema.utils';
 
 describe('Clave Extrema helpers', () => {
   it('reports only row totals and respects repeated letters', () => {
@@ -22,5 +22,12 @@ describe('Clave Extrema helpers', () => {
     expect(nextManualMark('green')).toBe('orange');
     expect(nextManualMark('orange')).toBe('red');
     expect(nextManualMark('red')).toBeNull();
+  });
+
+  it('paints the keyboard from manual marks using the most useful color', () => {
+    expect(buildExtremeKeyboardState([
+      { word: 'PERRO', marks: ['red', 'orange', 'red', null, 'green'] },
+      { word: 'RARAS', marks: ['green', null, null, null, null] },
+    ])).toEqual({ P: 'red', E: 'orange', R: 'green', O: 'green' });
   });
 });

@@ -87,7 +87,14 @@
             @for (row of keyboardRows; track $index) {
               <div class="keyboard-row">
                 @for (key of row; track key) {
-                  <button type="button" [class.wide]="key === 'ENTER' || key === 'BACKSPACE'" (click)="pressKey(key)" [attr.aria-label]="key === 'BACKSPACE' ? 'Borrar letra' : key === 'ENTER' ? 'Comprobar palabra' : 'Letra ' + key">
+                  <button
+                    type="button"
+                    [class.wide]="key === 'ENTER' || key === 'BACKSPACE'"
+                    [class.keyboard-key--green]="getKeyboardMark(key) === 'green'"
+                    [class.keyboard-key--orange]="getKeyboardMark(key) === 'orange'"
+                    [class.keyboard-key--red]="getKeyboardMark(key) === 'red'"
+                    (click)="pressKey(key)"
+                    [attr.aria-label]="getKeyboardKeyLabel(key)">
                     {{ key === 'BACKSPACE' ? '⌫' : key === 'ENTER' ? '↵' : key }}
                   </button>
                 }

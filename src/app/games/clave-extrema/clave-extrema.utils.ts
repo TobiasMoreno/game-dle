@@ -6,11 +6,40 @@ export interface ClaveFeedback {
 
 export type ManualLetterMark = 'green' | 'orange' | 'red' | null;
 
+type MarkedLetter = Exclude<ManualLetterMark, null>;
+
+const MARK_PRIORITY: Record<MarkedLetter, number> = {
+  red: 1,
+  orange: 2,
+  green: 3,
+};
+
 export function nextManualMark(mark: ManualLetterMark): ManualLetterMark {
   if (mark === null) return 'green';
   if (mark === 'green') return 'orange';
   if (mark === 'orange') return 'red';
   return null;
+}
+
+/** Resume las anotaciones del tablero en el teclado sin revelar pistas nuevas. */
+export function buildExtremeKeyboardState(
+  attempts: ReadonlyArray<{ word: string; marks?: readonly ManualLetterMark[] }>,
+): Readonly<Record<string, MarkedLetter>> {
+  const state: Record<string, MarkedLetter> = {};
+
+  attempts.forEach(({ word, marks }) => {
+    word.toUpperCase().split('').forEach((letter, index) => {
+      const mark = marks?.[index];
+      if (!mark) return;
+
+      const currentMark = state[letter];
+      if (!currentMark || MARK_PRIORITY[mark] > MARK_PRIORITY[currentMark]) {
+        state[letter] = mark;
+      }
+    });
+  });
+
+  return state;
 }
 
 /** Compara ocurrencias, no solo letras, para resolver correctamente las repetidas. */
