@@ -9,14 +9,14 @@ MusicDLE es un modo musical original de `game-dle`, pensado para jugar rondas co
 - Cada ronda empieza con 2 segundos y permite hasta 6 intentos.
 - Una respuesta incorrecta o pasar consume un intento y suma 2 segundos, hasta un máximo de 12.
 - Volver a reproducir el fragmento desbloqueado no consume intentos.
-- La respuesta se elige mediante autocompletado; busca por título, artista y aliases.
+- La respuesta se elige mediante autocompletado; busca por título, artista y aliases. En la colección de openings, los aliases incluyen el nombre del anime y sus variantes habituales.
 - Al ganar o perder se revela la canción y se habilita el video completo de YouTube.
 - La siguiente ronda conserva el filtro, pero no empieza a reproducirse hasta que el usuario lo solicita.
 - El resultado se puede compartir sin incluir el nombre de la canción.
 
 ## Selección y persistencia
 
-El usuario puede jugar con todo el catálogo o elegir una colección. La canción se elige al azar dentro del filtro activo. Las colecciones son `Rock nacional`, `Trap argentino`, `Trap latino` y `Cuarteto`; género, década e idioma se conservan como metadatos y no generan opciones en el selector.
+El usuario puede jugar con todo el catálogo o elegir una colección. La canción se elige al azar dentro del filtro activo. Las colecciones son `Rock nacional`, `Trap argentino`, `Trap latino`, `Cuarteto` y `Openings de anime`; género, década e idioma se conservan como metadatos y no generan opciones en el selector.
 
 Las canciones jugadas y los videos reportados como no disponibles entran en una lista de espera individual de 24 horas en `localStorage`. Una vez vencido ese tiempo vuelven automáticamente al conjunto elegible. Si todo el conjunto filtrado está en espera, la interfaz informa que no hay canciones disponibles para ese filtro.
 
@@ -50,7 +50,7 @@ Para sumar canciones:
 4. Incorporar aliases útiles sin crear respuestas duplicadas.
 5. Ejecutar `npm run validate:musicdle` antes de publicar.
 
-El catálogo contiene 584 canciones en español: 165 de `Rock nacional`, 68 de `Trap argentino`, 11 de `Trap latino` y 340 de `Cuarteto`. Incluye 10 temas de cada una de estas bandas: Las Pastillas del Abuelo, No Te Va Gustar, La Vela Puerca, Airbag y Estelares. También se sumaron 10 canciones nuevas de Turf, 10 de Rata Blanca y 10 de Cruzando el Charco, conservando los temas que ya estaban cargados. Los 80 videos de estas incorporaciones se verificaron el 15 de septiembre de 2026: permiten reproducción embebida y están disponibles en Argentina. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
+El catálogo contiene 614 canciones: 165 de `Rock nacional`, 68 de `Trap argentino`, 11 de `Trap latino`, 340 de `Cuarteto` y 30 de `Openings de anime`. Los openings representan una serie por entrada y aceptan como búsqueda el título del anime; por ejemplo, `Dragon Ball` encuentra `Mi corazón encantado`. Incluye 10 temas de cada una de estas bandas: Las Pastillas del Abuelo, No Te Va Gustar, La Vela Puerca, Airbag y Estelares. También se sumaron 10 canciones nuevas de Turf, 10 de Rata Blanca y 10 de Cruzando el Charco, conservando los temas que ya estaban cargados. Los 80 videos de esas incorporaciones se verificaron el 15 de septiembre de 2026. Como YouTube puede retirar, bloquear por región o impedir la reproducción embebida en cualquier momento, el estado de cada video debe revisarse periódicamente. El cliente captura errores del reproductor y aparta el video durante 24 horas, pero no puede garantizar disponibilidad global.
 
 ## Restricciones conocidas
 

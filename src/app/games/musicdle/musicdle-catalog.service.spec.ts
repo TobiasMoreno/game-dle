@@ -49,6 +49,17 @@ describe('MusicdleCatalogService', () => {
     expect(service.searchSongs(songs, 'r', new Set())).toEqual([]);
   });
 
+  it('encuentra un opening por el nombre del anime configurado como alias', () => {
+    const opening = {
+      ...createSong('dragon-ball-gt-mi-corazon-encantado', 'Openings de anime'),
+      title: 'Mi corazón encantado',
+      artist: 'Aarón Montalvo',
+      aliases: ['Dragon Ball', 'Dragon Ball GT'],
+    };
+
+    expect(service.searchSongs([opening], 'dragon ball', new Set())).toEqual([opening]);
+  });
+
   it('combina Cuarteto y Rock nacional sin incluir otras categorías ni duplicados', () => {
     const catalog = [...songs, createSong('cuarteto-1', 'Cuarteto')];
     const filtered = service.filterSongs(catalog, {
