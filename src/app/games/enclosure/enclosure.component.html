@@ -1,0 +1,110 @@
+<div class="enclosure-page">
+  <div class="topography" aria-hidden="true"></div>
+
+  <main class="enclosure-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Laboratorio de territorio · optimización exacta</span>
+        <h1>Cerco <em>óptimo</em></h1>
+        <p>Usá el agua como defensa natural. Cerrá la región del caballo y protegé la mayor superficie posible sin superar K.</p>
+      </div>
+      <div class="hero-seal" aria-label="El resultado está garantizado como óptimo">
+        <span>100%</span>
+        <small>óptimo</small>
+      </div>
+    </header>
+
+    <section class="level-strip" aria-labelledby="level-title">
+      <div>
+        <span class="section-index">01</span>
+        <div><small>Elegí el terreno</small><h2 id="level-title">Mapas de la reserva</h2></div>
+      </div>
+      <div class="level-tabs" role="tablist" aria-label="Mapas disponibles">
+        @for (candidate of levels; track candidate.name; let index = $index) {
+          <button type="button" role="tab" [attr.aria-selected]="levelIndex === index" [class.active]="levelIndex === index" [disabled]="isBusy" (click)="selectLevel(index)">
+            <span>0{{ index + 1 }}</span><strong>{{ candidate.name }}</strong><small>{{ candidate.size }} × {{ candidate.size }} · {{ candidate.wallCount }} paredes</small>
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="workbench">
+      <aside class="briefing">
+        <span class="section-index">02</span>
+        <small class="overline">Parte de campo</small>
+        <h2>{{ level.name }}</h2>
+        <p>{{ level.description }}</p>
+
+        <div class="budget-control budget-control--fixed">
+          <div><span>Presupuesto fijo</span><output>K = {{ wallBudget }}</output></div>
+          <p>La cantidad no se puede modificar en este nivel.</p>
+        </div>
+
+        <dl class="field-stats">
+          <div><dt>Paredes puestas</dt><dd>{{ wallsUsed }}</dd></div>
+          <div><dt>Disponibles</dt><dd>{{ wallsRemaining }}</dd></div>
+          <div><dt>Dimensiones</dt><dd>{{ level.size }}²</dd></div>
+          <div><dt>Área óptima</dt><dd>{{ solution ? solution.enclosedTileCount : '—' }}</dd></div>
+        </dl>
+
+        <div class="legend" aria-label="Leyenda del tablero">
+          <span><i class="legend-grass"></i>Césped</span><span><i class="legend-water"></i>Agua</span>
+          <span><i class="legend-wall"></i>Pared</span><span><i class="legend-region"></i>Protegido</span>
+        </div>
+      </aside>
+
+      <div class="board-panel">
+        <div class="board-heading">
+          <div><small>Mapa {{ mapCode }} · {{ levelIndex + 1 }}/{{ levels.length }}</small><h2>Marcá el perímetro</h2></div>
+          <div class="board-heading-actions">
+            <button type="button" class="clear-button" (click)="resetBoard()" [disabled]="isBusy || (wallsUsed === 0 && !solution)">Limpiar</button>
+            <button type="button" class="new-map-button" (click)="generateNewMap()" [disabled]="isBusy">Nuevo mapa ↻</button>
+          </div>
+        </div>
+
+        <div class="map-frame">
+          <div class="map-board" [style.grid-template-columns]="'repeat(' + columns + ', var(--cell-size))'" role="grid" [attr.aria-label]="'Tablero aleatorio de ' + level.name">
+            @for (row of board; track $index; let rowIndex = $index) {
+              @for (tile of row; track $index; let columnIndex = $index) {
+                <button type="button" class="map-cell"
+                  [class.grass]="tile === 'grass'" [class.water]="tile === 'water'" [class.horse]="tile === 'horse'"
+                  [class.fixed-wall]="tile === 'wall'" [class.placed-wall]="isWall(rowIndex, columnIndex)"
+                  [class.optimal-wall]="isOptimalWall(rowIndex, columnIndex)" [class.protected]="isProtected(rowIndex, columnIndex)"
+                  [disabled]="isBusy || tile !== 'grass'" [attr.aria-pressed]="tile === 'grass' ? isWall(rowIndex, columnIndex) : null"
+                  [attr.aria-label]="cellLabel(tile, rowIndex, columnIndex)" (click)="toggleWall(rowIndex, columnIndex)">
+                  @if (tile === 'horse') { <span class="horse-mark" aria-hidden="true">♞</span> }
+                  @if (isWall(rowIndex, columnIndex) || tile === 'wall') { <span class="fence" aria-hidden="true"></span> }
+                </button>
+              }
+            }
+          </div>
+          <span class="north-mark" aria-hidden="true">N ↑</span>
+        </div>
+
+        <div class="feedback" [attr.data-tone]="feedbackTone" [attr.aria-busy]="isBusy" aria-live="polite">
+          <span [class.is-loading]="isBusy" aria-hidden="true">{{ isBusy ? '…' : feedbackTone === 'success' ? '✓' : feedbackTone === 'warning' ? '!' : 'i' }}</span><p>{{ feedback }}</p>
+        </div>
+
+        <div class="board-actions">
+          <button type="button" class="secondary-action" (click)="evaluateWalls()" [disabled]="isBusy">
+            {{ checking ? 'Comprobando…' : 'Comprobar mis paredes' }}
+          </button>
+          <button type="button" class="primary-action" (click)="revealOptimal()" [disabled]="isBusy">
+            @if (solving) { Calculando… } @else { Mostrar solución óptima <span aria-hidden="true">→</span> }
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="method-note" aria-labelledby="method-title">
+      <span class="section-index">03</span>
+      <div><small>Por qué podés confiar en el resultado</small><h2 id="method-title">No adivina: demuestra.</h2></div>
+      <p>El motor trata cada pared como un corte entre el caballo y el exterior. Explora todas las alternativas necesarias y usa el corte mínimo solamente para descartar ramas que ya no pueden mejorar el resultado.</p>
+      <ul><li><strong>{{ level.size }}²</strong><span>bloques</span></li><li><strong>= K</strong><span>presupuesto fijo</span></li><li><strong>∞</strong><span>mapas aleatorios</span></li></ul>
+    </section>
+
+    <app-game-editorial-content gameId="enclosure" />
+  </main>
+
+  <app-footer theme="default" [compact]="true" />
+</div>

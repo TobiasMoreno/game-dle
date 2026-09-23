@@ -108,6 +108,12 @@
     "kind": "existing"
   },
   {
+    "path": "games/enclosure",
+    "title": "Cerco Óptimo | Game-DLE",
+    "description": "Encerrá al caballo y maximizá el área protegida usando agua y un presupuesto configurable de paredes.",
+    "kind": "existing"
+  },
+  {
     "path": "games/tuttifrutti",
     "title": "Tutti Frutti | Game-DLE",
     "description": "Creá una sala y competí en vivo con tus amigos.",

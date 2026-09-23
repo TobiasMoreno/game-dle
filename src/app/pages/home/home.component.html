@@ -139,6 +139,12 @@
                   style="background: radial-gradient(circle at 25% 20%, rgba(85, 230, 165, .28), transparent 42%), repeating-linear-gradient(60deg, rgba(255, 209, 102, .08) 0 1px, transparent 1px 18px), #102b20;"
                 ></div>
               }
+              @if (game.id === 'enclosure') {
+                <div
+                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: radial-gradient(circle at 78% 18%, rgba(231, 200, 92, .48), transparent 32%), repeating-radial-gradient(ellipse at 15% 70%, transparent 0 13px, rgba(166, 191, 120, .17) 14px 15px, transparent 16px 24px), #173e32;"
+                ></div>
+              }
               @if (game.id === 'tuttifrutti') {
                 <div
                   class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"

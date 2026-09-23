@@ -236,6 +236,16 @@ export class GameManagerService {
       }
     },
     {
+      id: 'enclosure',
+      name: 'Cerco Óptimo',
+      description: 'Encerrá al caballo y protegé la mayor superficie usando agua y paredes',
+      route: '/games/enclosure',
+      icon: 'fas fa-chess-knight',
+      mode: 'unlimited',
+      durationLabel: '3–8 min',
+      badge: 'Nuevo'
+    },
+    {
       id: 'roscodle',
       name: 'RoscoDLE',
       description: 'Completá el abecedario general o jugá un especial dedicado a tu club',
