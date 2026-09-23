@@ -54,6 +54,8 @@ export class SidebarComponent implements OnInit {
         return 'bg-emerald-950 border-emerald-700';
       case 'geodle':
         return 'bg-[#173b4a] border-[#d85d45]';
+      case 'banderadle':
+        return 'bg-[#071923] border-[#efc94c]';
       default:
         return 'bg-[#fff8e9] dark:bg-[#172019] border-[#e95d38]';
     }
@@ -73,6 +75,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-50';
       case 'geodle':
         return 'text-[#f3ead7]';
+      case 'banderadle':
+        return 'text-[#f4efd9]';
       default:
         return 'text-[#172019] dark:text-[#fff8e9]';
     }
@@ -92,6 +96,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-200';
       case 'geodle':
         return 'text-[#e8b94f]';
+      case 'banderadle':
+        return 'text-[#efc94c]';
       default:
         return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
@@ -111,6 +117,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-200 hover:text-amber-200';
       case 'geodle':
         return 'text-[#f3ead7] hover:text-[#e8b94f]';
+      case 'banderadle':
+        return 'text-[#66d4cf] hover:text-[#ffe786]';
       default:
         return 'text-[#626b64] dark:text-[#c7d2ca] hover:text-[#d95130] dark:hover:text-[#f1bd4b]';
     }
@@ -130,6 +138,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-50 hover:bg-emerald-800/70 hover:text-amber-100';
       case 'geodle':
         return 'text-[#f3ead7] hover:bg-[#d85d45]/20 hover:text-white';
+      case 'banderadle':
+        return 'text-[#f4efd9] hover:bg-[#efc94c]/10 hover:text-[#ffe786]';
       default:
         return 'text-[#29332c] dark:text-[#e8eee9] hover:bg-[#e95d38]/10 dark:hover:bg-[#f1bd4b]/10 hover:text-[#b94227] dark:hover:text-[#f1bd4b]';
     }
@@ -149,6 +159,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-300';
       case 'geodle':
         return 'text-[#e8b94f]';
+      case 'banderadle':
+        return 'text-[#66d4cf]';
       default:
         return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
@@ -168,6 +180,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-300';
       case 'geodle':
         return 'text-[#e8b94f]';
+      case 'banderadle':
+        return 'text-[#efc94c]';
       default:
         return 'text-[#d95130] dark:text-[#f1bd4b]';
     }
@@ -187,6 +201,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-200';
       case 'geodle':
         return 'text-[#c8d4ce]';
+      case 'banderadle':
+        return 'text-[#aebfbd]';
       default:
         return 'text-[#626b64] dark:text-[#aeb9b0]';
     }
@@ -206,6 +222,8 @@ export class SidebarComponent implements OnInit {
         return 'text-emerald-400';
       case 'geodle':
         return 'text-[#a9bcb7]';
+      case 'banderadle':
+        return 'text-[#7f9b9b]';
       default:
         return 'text-[#72786f] dark:text-[#8f9c92]';
     }

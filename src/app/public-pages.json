@@ -126,6 +126,12 @@
     "kind": "existing"
   },
   {
+    "path": "games/banderadle",
+    "title": "BanderaDLE | Game-DLE",
+    "description": "Adiviná el país mientras su bandera se revela progresivamente.",
+    "kind": "existing"
+  },
+  {
     "path": "games/chronodle",
     "title": "ChronoDLE | Game-DLE",
     "description": "Ordená acontecimientos históricos en rondas ilimitadas.",

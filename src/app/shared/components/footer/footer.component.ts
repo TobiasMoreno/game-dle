@@ -10,7 +10,7 @@ import { SupportDialogService } from '../../services/support-dialog.service';
 })
 export class FooterComponent {
   readonly supportDialog = inject(SupportDialogService);
-  theme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle'>('default');
+  theme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle' | 'banderadle'>('default');
   compact = input<boolean>(false);
   year = new Date().getFullYear();
 
@@ -28,6 +28,8 @@ export class FooterComponent {
         return 'serpentile-footer text-emerald-50 border-emerald-700';
       case 'geodle':
         return 'bg-[#173b4a] text-[#f3ead7] border-[#d85d45]';
+      case 'banderadle':
+        return 'bg-[#071923] text-[#f4efd9] border-[#efc94c]';
       default:
         return 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600';
     }
@@ -47,6 +49,8 @@ export class FooterComponent {
         return '🐍';
       case 'geodle':
         return '🌎';
+      case 'banderadle':
+        return '⚑';
       default:
         return '💼';
     }

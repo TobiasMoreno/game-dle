@@ -1,0 +1,169 @@
+<div class="banderadle-page">
+
+  <main class="focus-shell">
+    <header class="game-heading">
+      <div class="heading-copy">
+        <p class="eyebrow"><span></span> Archivo óptico · 195 países</p>
+        <h1>Bandera<span>DLE</span></h1>
+        <p class="lede">Identificá el país mientras su bandera entra en foco. Cada error despeja un poco más la imagen.</p>
+      </div>
+
+      <div class="attempt-readout" aria-live="polite">
+        <small>{{ finished ? 'Ronda terminada' : 'Intento actual' }}</small>
+        <strong>{{ currentAttempt }}<span>/{{ maxAttempts }}</span></strong>
+        <div class="readout-line"><i [style.width.%]="finished ? 100 : (currentAttempt / maxAttempts) * 100"></i></div>
+      </div>
+    </header>
+
+    @if (loading) {
+      <section class="loading-panel" role="status">
+        <div class="focus-loader" aria-hidden="true"><span></span></div>
+        <h2>Calibrando la lente</h2>
+        <p>Preparando el archivo mundial de banderas…</p>
+      </section>
+    } @else if (!target) {
+      <section class="loading-panel loading-panel--error" role="alert">
+        <strong>Señal interrumpida</strong>
+        <p>{{ feedback }}</p>
+      </section>
+    } @else {
+      <section class="game-console" [class.game-console--finished]="finished">
+        <div class="visual-column">
+          <div class="visual-labels" aria-hidden="true">
+            <span>Entrada {{ target.code === '' ? '--' : 'clasificada' }}</span>
+            <span>{{ finished ? 'Identidad confirmada' : 'Desenfoque ' + blurPercentage + '%' }}</span>
+          </div>
+
+          <figure class="flag-viewport">
+            <img
+              #flagImage
+              [src]="target.flagPath"
+              [alt]="finished ? 'Bandera de ' + target.name : 'Bandera desenfocada de un país oculto'"
+              [style.filter]="'blur(' + flagBlur + 'px)'"
+              [class.flag-image--revealed]="finished"
+              [class.flag-image--ready]="flagReady"
+              [class.flag-image--loading]="!flagReady"
+              (load)="onFlagLoad()"
+              (error)="onFlagError()"
+              class="flag-image"
+            />
+          </figure>
+
+          <div class="focus-scale" aria-label="Nivel de enfoque de la bandera">
+            <div class="focus-scale__copy">
+              <span>Fuera de foco</span>
+              <strong>{{ finished ? 'Imagen revelada' : 'Nivel ' + currentAttempt + ' de ' + maxAttempts }}</strong>
+              <span>Nítida</span>
+            </div>
+            <div class="focus-scale__track">
+              @for (slot of attemptSlots; track slot) {
+                <i [class.is-cleared]="slot < attempts.length || finished" [class.is-current]="slot === attempts.length && !finished"></i>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="control-column">
+          @if (!finished) {
+            <div class="control-heading">
+              <span>Identificación</span>
+              <h2>¿De qué país es?</h2>
+              <p>Escribí el nombre y elegilo de la lista. No repetimos países dentro de la ronda.</p>
+            </div>
+
+            <form class="country-form" (ngSubmit)="submitGuess()" autocomplete="off">
+              <label for="banderadle-country">País</label>
+              <div class="country-input">
+                <input
+                  id="banderadle-country"
+                  name="country"
+                  type="text"
+                  [(ngModel)]="query"
+                  (ngModelChange)="onQueryChange($event)"
+                  (focus)="inputFocused = true"
+                  (blur)="hideSuggestionsSoon()"
+                  (keydown)="onInputKeydown($event)"
+                  placeholder="Ej.: Argentina"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-controls="banderadle-suggestions"
+                  [attr.aria-expanded]="inputFocused && suggestions.length > 0"
+                  [attr.aria-activedescendant]="suggestionIndex >= 0 ? 'banderadle-option-' + suggestionIndex : null"
+                />
+                <button type="submit" [disabled]="!query.trim()">
+                  Confirmar <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+
+              @if (inputFocused && suggestions.length > 0) {
+                <div id="banderadle-suggestions" class="suggestions" role="listbox">
+                  @for (country of suggestions; track country.code; let index = $index) {
+                    <button
+                      type="button"
+                      role="option"
+                      [id]="'banderadle-option-' + index"
+                      [attr.aria-selected]="suggestionIndex === index"
+                      [class.is-highlighted]="suggestionIndex === index"
+                      (mouseenter)="suggestionIndex = index"
+                      (mousedown)="$event.preventDefault()"
+                      (click)="selectCountry(country)"
+                    >
+                      <span>{{ country.name }}</span><small>{{ country.code }}</small>
+                    </button>
+                  }
+                </div>
+              }
+            </form>
+
+            <div class="pass-control">
+              <span>o</span>
+              <button type="button" (click)="passAttempt()">
+                <strong>Pasar intento</strong>
+                <small>Sin elegir país · menos desenfoque</small>
+              </button>
+            </div>
+          } @else {
+            <section class="result-panel" [class.result-panel--won]="won" aria-live="polite">
+              <span class="result-kicker">{{ won ? 'Identidad confirmada' : 'Archivo revelado' }}</span>
+              <h2>{{ target.name }}</h2>
+              <p>{{ target.capital }} <i>·</i> {{ target.continent }}</p>
+              <div class="result-score">
+                <strong>{{ won ? attempts.length : 'X' }}</strong>
+                <span>de {{ maxAttempts }} intentos</span>
+              </div>
+              <div class="result-actions">
+                <button type="button" class="primary-action" (click)="startNewRound()">Nueva bandera <span>→</span></button>
+                <button type="button" class="secondary-action" (click)="share()">Compartir resultado</button>
+              </div>
+              @if (shareMessage) { <small class="share-message">{{ shareMessage }}</small> }
+            </section>
+          }
+
+          <section class="attempt-log" aria-labelledby="attempt-log-title">
+            <div class="attempt-log__heading">
+              <h3 id="attempt-log-title">Registro de intentos</h3>
+              <span>{{ attempts.length }}/{{ maxAttempts }}</span>
+            </div>
+            <ol>
+              @for (slot of attemptSlots; track slot) {
+                @let attempt = attempts[slot];
+                <li [class.is-current]="slot === attempts.length && !finished" [class.is-correct]="attempt?.correct" [class.is-wrong]="attempt && !attempt.correct" [class.is-pass]="attempt?.kind === 'pass'">
+                  <span>{{ slot + 1 < 10 ? '0' + (slot + 1) : slot + 1 }}</span>
+                  <strong>{{ attempt ? attempt.name : (slot === attempts.length && !finished ? 'En espera' : '—') }}</strong>
+                  <small>{{ attempt?.correct ? 'Correcto' : attempt?.kind === 'pass' ? 'Pasado' : attempt ? 'Más enfoque' : '' }}</small>
+                </li>
+              }
+            </ol>
+          </section>
+
+          @if (feedback) {
+            <p class="feedback" [class.feedback--success]="won" [class.feedback--final]="finished" role="status">{{ feedback }}</p>
+          }
+        </div>
+      </section>
+    }
+  </main>
+
+  <app-game-editorial-content gameId="banderadle" />
+  <app-footer theme="banderadle" />
+</div>

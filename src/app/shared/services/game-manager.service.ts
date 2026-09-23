@@ -129,6 +129,23 @@ export class GameManagerService {
       badge: 'Actualizado'
     },
     {
+      id: 'banderadle',
+      name: 'BanderaDLE',
+      description: 'Reconocé el país mientras su bandera entra en foco',
+      route: '/games/banderadle',
+      icon: 'fas fa-flag',
+      mode: 'unlimited',
+      durationLabel: '1–3 min',
+      badge: 'Nuevo',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0]
+      }
+    },
+    {
       id: 'chronodle',
       name: 'ChronoDLE',
       description: 'Ordená cinco acontecimientos de la historia',

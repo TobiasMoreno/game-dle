@@ -23,6 +23,7 @@ const loaders: Record<string, NonNullable<Route['loadComponent']>> = {
   'games/enclosure': () => import('./games/enclosure/enclosure.component').then(m => m.EnclosureComponent),
   'games/tuttifrutti': () => import('./games/tuttifrutti/tuttifrutti.component').then(m => m.TuttiFruttiComponent),
   'games/geodle': () => import('./games/geodle/geodle.component').then(m => m.GeodleComponent),
+  'games/banderadle': () => import('./games/banderadle/banderadle.component').then(m => m.BanderadleComponent),
   'games/chronodle': () => import('./games/chronodle/chronodle.component').then(m => m.ChronodleComponent),
   'games/palmodle': () => import('./games/palmodle/palmodle.component').then(m => m.PalmodleComponent),
   'games/rankdle': () => import('./games/rankdle/rankdle.component').then(m => m.RankdleComponent),

@@ -50,6 +50,7 @@ app-home .catalog-card[data-game='musicdle'] { --game-accent: #d99a25; }
 app-home .catalog-card[data-game='serpentile'] { --game-accent: #2f8b62; }
 app-home .catalog-card[data-game='tuttifrutti'] { --game-accent: #df5943; }
 app-home .catalog-card[data-game='geodle'] { --game-accent: #27758c; }
+app-home .catalog-card[data-game='banderadle'] { --game-accent: #e0b83f; }
 app-home .catalog-card[data-game='chronodle'] { --game-accent: #a64232; }
 app-home .catalog-card[data-game='futboldle'] { --game-accent: #4c8a55; }
 app-home .catalog-card[data-game='rankdle'] { --game-accent: #718f1f; }
