@@ -5,7 +5,7 @@ import {
 } from './banderadle.models';
 
 export const BANDERADLE_MAX_ATTEMPTS = 6;
-export const BANDERADLE_BLUR_LEVELS = [28, 22, 17, 12, 7, 2.8] as const;
+export const BANDERADLE_PIXEL_RESOLUTION_LEVELS = [0.05, 0.07, 0.1, 0.14, 0.2, 0.28] as const;
 
 const COUNTRY_NAME_OVERRIDES: Readonly<Record<string, string>> = {
   CZ: 'Chequia',
@@ -66,10 +66,10 @@ export class BanderadleEngineService {
     ) ?? null;
   }
 
-  blurFor(attempts: number, status: BanderadleRoundStatus): number {
-    if (status !== 'active') return 0;
-    return BANDERADLE_BLUR_LEVELS[
-      Math.min(Math.max(attempts, 0), BANDERADLE_BLUR_LEVELS.length - 1)
+  pixelResolutionFor(attempts: number, status: BanderadleRoundStatus): number {
+    if (status !== 'active') return 1;
+    return BANDERADLE_PIXEL_RESOLUTION_LEVELS[
+      Math.min(Math.max(attempts, 0), BANDERADLE_PIXEL_RESOLUTION_LEVELS.length - 1)
     ];
   }
 

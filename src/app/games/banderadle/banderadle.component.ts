@@ -8,7 +8,6 @@ import { GameManagerService } from '../../shared/services/game-manager.service';
 import { GameStorageService } from '../../shared/services/game-storage.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import {
-  BANDERADLE_BLUR_LEVELS,
   BANDERADLE_MAX_ATTEMPTS,
   BanderadleEngineService,
 } from './banderadle-engine.service';
@@ -26,10 +25,20 @@ import {
   styleUrl: './banderadle.component.css',
 })
 export class BanderadleComponent implements OnInit {
+  private flagImageElement: HTMLImageElement | null = null;
+  private flagCanvasElement: HTMLCanvasElement | null = null;
+
   @ViewChild('flagImage')
   set flagImage(element: ElementRef<HTMLImageElement> | undefined) {
     const image = element?.nativeElement;
-    if (image?.complete && image.naturalWidth > 0) this.flagReady = true;
+    this.flagImageElement = image ?? null;
+    if (image?.complete && image.naturalWidth > 0) this.drawPixelatedFlag();
+  }
+
+  @ViewChild('flagCanvas')
+  set flagCanvas(element: ElementRef<HTMLCanvasElement> | undefined) {
+    this.flagCanvasElement = element?.nativeElement ?? null;
+    if (this.flagImageElement?.complete) this.drawPixelatedFlag();
   }
 
   readonly maxAttempts = BANDERADLE_MAX_ATTEMPTS;
@@ -74,12 +83,12 @@ export class BanderadleComponent implements OnInit {
     return this.status === 'won';
   }
 
-  get flagBlur(): number {
-    return this.engine.blurFor(this.attempts.length, this.status);
+  get pixelResolution(): number {
+    return this.engine.pixelResolutionFor(this.attempts.length, this.status);
   }
 
-  get blurPercentage(): number {
-    return Math.round((this.flagBlur / BANDERADLE_BLUR_LEVELS[0]) * 100);
+  get pixelResolutionPercentage(): number {
+    return Math.round(this.pixelResolution * 100);
   }
 
   get currentAttempt(): number {
@@ -150,6 +159,7 @@ export class BanderadleComponent implements OnInit {
       this.resolveIncorrectAttempt(`No es ${country.name}.`);
     }
 
+    this.drawPixelatedFlag();
     this.persistAttemptResult();
   }
 
@@ -163,6 +173,7 @@ export class BanderadleComponent implements OnInit {
     this.query = '';
     this.closeSuggestions();
     this.resolveIncorrectAttempt('Pasaste el intento.');
+    this.drawPixelatedFlag();
     this.persistAttemptResult();
   }
 
@@ -206,6 +217,33 @@ export class BanderadleComponent implements OnInit {
   }
 
   onFlagLoad(): void {
+    this.drawPixelatedFlag();
+  }
+
+  private drawPixelatedFlag(): void {
+    const image = this.flagImageElement;
+    const canvas = this.flagCanvasElement;
+    if (!image || !canvas || !image.complete || image.naturalWidth === 0 || image.naturalHeight === 0) return;
+
+    const width = image.naturalWidth;
+    const height = image.naturalHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const sampleWidth = Math.max(1, Math.round(width * this.pixelResolution));
+    const sampleHeight = Math.max(1, Math.round(height * this.pixelResolution));
+    const sample = canvas.ownerDocument.createElement('canvas');
+    sample.width = sampleWidth;
+    sample.height = sampleHeight;
+
+    const sampleContext = sample.getContext('2d');
+    const context = canvas.getContext('2d');
+    if (!sampleContext || !context) return;
+
+    sampleContext.drawImage(image, 0, 0, sampleWidth, sampleHeight);
+    context.clearRect(0, 0, width, height);
+    context.imageSmoothingEnabled = false;
+    context.drawImage(sample, 0, 0, sampleWidth, sampleHeight, 0, 0, width, height);
     this.flagReady = true;
   }
 
@@ -257,7 +295,7 @@ export class BanderadleComponent implements OnInit {
       return;
     }
     const remaining = this.maxAttempts - this.attempts.length;
-    this.feedback = `${prefix} La bandera se enfocó un poco más · ${remaining} ${remaining === 1 ? 'intento' : 'intentos'}.`;
+    this.feedback = `${prefix} La bandera ganó un poco más de resolución · ${remaining} ${remaining === 1 ? 'intento' : 'intentos'}.`;
   }
 
   private persistAttemptResult(): void {

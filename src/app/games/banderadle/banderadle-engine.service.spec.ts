@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  BANDERADLE_BLUR_LEVELS,
+  BANDERADLE_PIXEL_RESOLUTION_LEVELS,
   BanderadleEngineService,
 } from './banderadle-engine.service';
 import { BanderadleCountry } from './banderadle.models';
@@ -37,11 +37,11 @@ describe('BanderadleEngineService', () => {
     expect(service.getRandomCountry([argentina, japan], 'AR').code).toBe('JP');
   });
 
-  it('reduce el desenfoque y revela por completo al terminar', () => {
-    expect(service.blurFor(0, 'active')).toBe(BANDERADLE_BLUR_LEVELS[0]);
-    expect(service.blurFor(5, 'active')).toBe(2.8);
-    expect(service.blurFor(6, 'lost')).toBe(0);
-    expect(service.blurFor(2, 'won')).toBe(0);
+  it('aumenta la resolución pixelada y revela por completo al terminar', () => {
+    expect(service.pixelResolutionFor(0, 'active')).toBe(BANDERADLE_PIXEL_RESOLUTION_LEVELS[0]);
+    expect(service.pixelResolutionFor(5, 'active')).toBe(0.28);
+    expect(service.pixelResolutionFor(6, 'lost')).toBe(1);
+    expect(service.pixelResolutionFor(2, 'won')).toBe(1);
   });
 
   function country(code: string, code3: string, name: string, aliases: string[]): BanderadleCountry {

@@ -31,21 +31,25 @@
         <div class="visual-column">
           <div class="visual-labels" aria-hidden="true">
             <span>Entrada {{ target.code === '' ? '--' : 'clasificada' }}</span>
-            <span>{{ finished ? 'Identidad confirmada' : 'Desenfoque ' + blurPercentage + '%' }}</span>
+            <span>{{ finished ? 'Identidad confirmada' : 'Resolución ' + pixelResolutionPercentage + '%' }}</span>
           </div>
 
           <figure class="flag-viewport">
+            <canvas
+              #flagCanvas
+              role="img"
+              [attr.aria-label]="finished ? 'Bandera de ' + target.name : 'Bandera pixelada de un país oculto'"
+              [class.flag-canvas--ready]="flagReady"
+              class="flag-canvas"
+            ></canvas>
             <img
               #flagImage
               [src]="target.flagPath"
-              [alt]="finished ? 'Bandera de ' + target.name : 'Bandera desenfocada de un país oculto'"
-              [style.filter]="'blur(' + flagBlur + 'px)'"
-              [class.flag-image--revealed]="finished"
-              [class.flag-image--ready]="flagReady"
-              [class.flag-image--loading]="!flagReady"
+              alt=""
+              aria-hidden="true"
               (load)="onFlagLoad()"
               (error)="onFlagError()"
-              class="flag-image"
+              class="flag-source"
             />
           </figure>
 
@@ -119,7 +123,7 @@
               <span>o</span>
               <button type="button" (click)="passAttempt()">
                 <strong>Pasar intento</strong>
-                <small>Sin elegir país · menos desenfoque</small>
+                <small>Sin elegir país · mayor resolución</small>
               </button>
             </div>
           } @else {
@@ -150,7 +154,7 @@
                 <li [class.is-current]="slot === attempts.length && !finished" [class.is-correct]="attempt?.correct" [class.is-wrong]="attempt && !attempt.correct" [class.is-pass]="attempt?.kind === 'pass'">
                   <span>{{ slot + 1 < 10 ? '0' + (slot + 1) : slot + 1 }}</span>
                   <strong>{{ attempt ? attempt.name : (slot === attempts.length && !finished ? 'En espera' : '—') }}</strong>
-                  <small>{{ attempt?.correct ? 'Correcto' : attempt?.kind === 'pass' ? 'Pasado' : attempt ? 'Más enfoque' : '' }}</small>
+                  <small>{{ attempt?.correct ? 'Correcto' : attempt?.kind === 'pass' ? 'Pasado' : attempt ? 'Más detalle' : '' }}</small>
                 </li>
               }
             </ol>
