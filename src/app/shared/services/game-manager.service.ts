@@ -3,14 +3,17 @@ import { BehaviorSubject } from 'rxjs';
 import { GameState, DailyGameState, GameStats } from '../models/game.model';
 import { GameStorageService } from './game-storage.service';
 import { DailyActivityService } from './daily-activity.service';
-import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
+import {
+  argentinaDateKey,
+  normalizeLegacyUtcDateKey,
+} from '../utils/daily-activity.utils';
 
 /**
  * Servicio principal para gestionar los juegos
  * Maneja la lógica de negocio y la comunicación entre componentes
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameManagerService {
   private gamesSubject = new BehaviorSubject<GameState[]>([]);
@@ -31,8 +34,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'clave-extrema',
@@ -48,8 +51,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'onepiecedle',
@@ -64,8 +67,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'loldle',
@@ -80,8 +83,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'musicdle',
@@ -90,12 +93,13 @@ export class GameManagerService {
       route: '/games/musicdle',
       icon: 'fas fa-headphones',
       mode: 'unlimited',
-      durationLabel: '2–4 min'
+      durationLabel: '2–4 min',
     },
     {
       id: 'serpentile',
       name: 'Serpentile',
-      description: 'Girá los bloques y guiá a la serpiente sin salir del tablero',
+      description:
+        'Girá los bloques y guiá a la serpiente sin salir del tablero',
       route: '/games/serpentile',
       icon: 'fas fa-bezier-curve',
       mode: 'daily',
@@ -106,8 +110,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: []
-      }
+        guessDistribution: [],
+      },
     },
     {
       id: 'tuttifrutti',
@@ -116,7 +120,7 @@ export class GameManagerService {
       route: '/games/tuttifrutti',
       icon: 'fas fa-users',
       mode: 'multiplayer',
-      durationLabel: '10–20 min'
+      durationLabel: '10–20 min',
     },
     {
       id: 'geodle',
@@ -126,7 +130,7 @@ export class GameManagerService {
       icon: 'fas fa-earth-americas',
       mode: 'unlimited',
       durationLabel: '3–5 min',
-      badge: 'Actualizado'
+      badge: 'Actualizado',
     },
     {
       id: 'banderadle',
@@ -142,8 +146,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'chronodle',
@@ -159,8 +163,8 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0],
+      },
     },
     {
       id: 'lol-who',
@@ -170,7 +174,7 @@ export class GameManagerService {
       icon: 'fas fa-user-secret',
       mode: 'unlimited',
       durationLabel: '1–2 min',
-      badge: 'Nuevo'
+      badge: 'Nuevo',
     },
     {
       id: 'lol-memory',
@@ -180,7 +184,7 @@ export class GameManagerService {
       icon: 'fas fa-clone',
       mode: 'unlimited',
       durationLabel: '2–4 min',
-      badge: 'Nuevo'
+      badge: 'Nuevo',
     },
     {
       id: 'lol-timeline',
@@ -190,7 +194,7 @@ export class GameManagerService {
       icon: 'fas fa-timeline',
       mode: 'unlimited',
       durationLabel: '2–3 min',
-      badge: 'Nuevo'
+      badge: 'Nuevo',
     },
     {
       id: 'lol-connections',
@@ -200,7 +204,7 @@ export class GameManagerService {
       icon: 'fas fa-link',
       mode: 'unlimited',
       durationLabel: '3–6 min',
-      badge: 'Nuevo'
+      badge: 'Nuevo',
     },
     {
       id: 'palmodle',
@@ -216,13 +220,14 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'futboldle',
       name: 'FutbolDLE',
-      description: 'Descubrí el apellido de 5, 6 o 7 letras del futbolista oculto',
+      description:
+        'Descubrí el apellido de 5, 6 o 7 letras del futbolista oculto',
       route: '/games/futboldle',
       icon: 'fas fa-futbol',
       mode: 'unlimited',
@@ -232,8 +237,25 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
+    },
+    {
+      id: 'futbol-mayor',
+      name: '¿Quién tiene más?',
+      description: 'Compará goles, asistencias, partidos, tarjetas y títulos',
+      route: '/games/futbol-mayor',
+      icon: 'fas fa-arrow-up-wide-short',
+      mode: 'unlimited',
+      durationLabel: '3–5 min',
+      badge: 'Nuevo',
+      stats: {
+        totalGames: 0,
+        wins: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        guessDistribution: [0, 0, 0, 0, 0, 0],
+      },
     },
     {
       id: 'rankdle',
@@ -249,33 +271,35 @@ export class GameManagerService {
         wins: 0,
         currentStreak: 0,
         bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0]
-      }
+        guessDistribution: [0, 0, 0, 0],
+      },
     },
     {
       id: 'enclosure',
       name: 'Cerco Óptimo',
-      description: 'Encerrá al caballo y protegé la mayor superficie usando agua y paredes',
+      description:
+        'Encerrá al caballo y protegé la mayor superficie usando agua y paredes',
       route: '/games/enclosure',
       icon: 'fas fa-chess-knight',
       mode: 'unlimited',
       durationLabel: '3–8 min',
-      badge: 'Nuevo'
+      badge: 'Nuevo',
     },
     {
       id: 'roscodle',
       name: 'RoscoDLE',
-      description: 'Completá el abecedario general o jugá un especial dedicado a tu club',
+      description:
+        'Completá el abecedario general o jugá un especial dedicado a tu club',
       route: '/games/roscodle',
       icon: 'fas fa-circle-nodes',
       mode: 'unlimited',
-      durationLabel: '8–15 min'
-    }
+      durationLabel: '8–15 min',
+    },
   ];
 
   constructor(
     private storageService: GameStorageService,
-    private dailyActivity: DailyActivityService
+    private dailyActivity: DailyActivityService,
   ) {
     this.initializeGames();
   }
@@ -285,10 +309,10 @@ export class GameManagerService {
    */
   private initializeGames(): void {
     const storedGames = this.storageService.getGames();
-    
+
     // Combinar juegos disponibles con datos almacenados
-    const games = this.availableGames.map(availableGame => {
-      const storedGame = storedGames.find(g => g.id === availableGame.id);
+    const games = this.availableGames.map((availableGame) => {
+      const storedGame = storedGames.find((g) => g.id === availableGame.id);
       if (storedGame) {
         const normalizedDailyState = storedGame.dailyState
           ? {
@@ -302,7 +326,9 @@ export class GameManagerService {
           // La modalidad pertenece a la configuración actual, no al estado persistido.
           mode: availableGame.mode,
           // Verificar si necesitamos resetear el estado diario
-          dailyState: this.shouldResetDailyState(normalizedDailyState) ? undefined : normalizedDailyState
+          dailyState: this.shouldResetDailyState(normalizedDailyState)
+            ? undefined
+            : normalizedDailyState,
         };
       }
       return availableGame;
@@ -316,7 +342,7 @@ export class GameManagerService {
    */
   private shouldResetDailyState(dailyState?: DailyGameState): boolean {
     if (!dailyState) return false;
-    
+
     const today = argentinaDateKey();
     return normalizeLegacyUtcDateKey(dailyState.date) !== today;
   }
@@ -332,7 +358,7 @@ export class GameManagerService {
    * Obtiene un juego específico por ID
    */
   getGame(gameId: string): GameState | null {
-    return this.gamesSubject.value.find(game => game.id === gameId) || null;
+    return this.gamesSubject.value.find((game) => game.id === gameId) || null;
   }
 
   /**
@@ -352,12 +378,18 @@ export class GameManagerService {
   /**
    * Completa un juego y actualiza estadísticas
    */
-  completeGame(gameId: string, won: boolean, attempts: number, gameData?: any): void {
+  completeGame(
+    gameId: string,
+    won: boolean,
+    attempts: number,
+    gameData?: any,
+  ): void {
     const game = this.getGame(gameId);
     if (!game) return;
 
     const today = argentinaDateKey();
-    const isRepeatRound = game.mode === 'daily' &&
+    const isRepeatRound =
+      game.mode === 'daily' &&
       game.dailyState?.completed === true &&
       normalizeLegacyUtcDateKey(game.dailyState.date) === today;
     const roundResult: DailyGameState = {
@@ -365,8 +397,9 @@ export class GameManagerService {
       completed: true,
       won,
       attempts,
-      maxAttempts: typeof gameData?.maxAttempts === 'number' ? gameData.maxAttempts : 6,
-      gameData
+      maxAttempts:
+        typeof gameData?.maxAttempts === 'number' ? gameData.maxAttempts : 6,
+      gameData,
     };
     const dailyState = isRepeatRound ? game.dailyState! : roundResult;
 
@@ -375,30 +408,42 @@ export class GameManagerService {
 
     // Actualizar estadísticas
     const stats = this.updateGameStats(game, won, attempts);
-    this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
+    this.storageService.saveGame({
+      ...game,
+      dailyState,
+      stats,
+      lastPlayed: today,
+    });
 
     // Actualizar el observable
     this.updateGameInList(gameId, { dailyState, stats });
 
     if (game.mode === 'daily' && !isRepeatRound) {
-      const score = typeof gameData?.score === 'number' ? gameData.score : undefined;
+      const score =
+        typeof gameData?.score === 'number' ? gameData.score : undefined;
       void this.dailyActivity.recordDailyGame(gameId, won, attempts, score);
     }
   }
 
   /** Completa un desafío diario cuyo resultado principal es un puntaje. */
-  completeScoreGame(gameId: string, score: number, gameData?: any, date?: string): void {
+  completeScoreGame(
+    gameId: string,
+    score: number,
+    gameData?: any,
+    date?: string,
+  ): void {
     const game = this.getGame(gameId);
     if (!game) return;
 
     const today = date ?? argentinaDateKey();
-    const isRepeatRound = game.mode === 'daily' &&
+    const isRepeatRound =
+      game.mode === 'daily' &&
       game.dailyState?.completed === true &&
       normalizeLegacyUtcDateKey(game.dailyState.date) === today;
     const roundResult: DailyGameState = {
       date: today,
       completed: true,
-      gameData: { ...gameData, score }
+      gameData: { ...gameData, score },
     };
     const dailyState = isRepeatRound ? game.dailyState! : roundResult;
     const previousStats = game.stats ?? {
@@ -406,14 +451,19 @@ export class GameManagerService {
       wins: 0,
       currentStreak: 0,
       bestStreak: 0,
-      guessDistribution: []
+      guessDistribution: [],
     };
     const stats: GameStats = {
       ...previousStats,
-      totalGames: previousStats.totalGames + 1
+      totalGames: previousStats.totalGames + 1,
     };
 
-    this.storageService.saveGame({ ...game, dailyState, stats, lastPlayed: today });
+    this.storageService.saveGame({
+      ...game,
+      dailyState,
+      stats,
+      lastPlayed: today,
+    });
     this.updateGameInList(gameId, { dailyState, stats });
     if (game.mode === 'daily' && !isRepeatRound) {
       void this.dailyActivity.recordDailyGame(gameId, true, 0, score);
@@ -423,22 +473,26 @@ export class GameManagerService {
   /**
    * Actualiza las estadísticas del juego
    */
-  private updateGameStats(game: GameState, won: boolean, attempts: number): GameStats {
+  private updateGameStats(
+    game: GameState,
+    won: boolean,
+    attempts: number,
+  ): GameStats {
     const stats = game.stats || {
       totalGames: 0,
       wins: 0,
       currentStreak: 0,
       bestStreak: 0,
-      guessDistribution: [0, 0, 0, 0, 0, 0]
+      guessDistribution: [0, 0, 0, 0, 0, 0],
     };
 
     stats.totalGames++;
-    
+
     if (won) {
       stats.wins++;
       stats.currentStreak++;
       stats.bestStreak = Math.max(stats.bestStreak, stats.currentStreak);
-      
+
       // Actualizar distribución de intentos (índice 0-5 para 1-6 intentos)
       if (attempts >= 1 && attempts <= 6) {
         stats.guessDistribution[attempts - 1]++;
@@ -455,8 +509,8 @@ export class GameManagerService {
    */
   private updateGameInList(gameId: string, updates: Partial<GameState>): void {
     const games = this.gamesSubject.value;
-    const index = games.findIndex(g => g.id === gameId);
-    
+    const index = games.findIndex((g) => g.id === gameId);
+
     if (index >= 0) {
       games[index] = { ...games[index], ...updates };
       this.gamesSubject.next([...games]);

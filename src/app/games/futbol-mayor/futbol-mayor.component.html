@@ -1,0 +1,206 @@
+<div class="mayor-page">
+  <main class="mayor-shell">
+    <header class="matchday-header">
+      <div class="matchday-header__line">
+        <span>Game-DLE · Fútbol</span>
+        <span>Edición {{ state.run.toString().padStart(2, "0") }}</span>
+        <span>Datos verificados</span>
+      </div>
+      <div class="title-lockup">
+        <div class="title-lockup__ball" aria-hidden="true">
+          <i class="fas fa-futbol"></i>
+        </div>
+        <div>
+          <p class="kicker">Cara a cara estadístico</p>
+          <h1>¿Quién tiene <em>más?</em></h1>
+          <p>
+            Diez duelos. Tres vidas. Elegí al jugador o equipo con la cifra más
+            alta.
+          </p>
+        </div>
+        <div class="data-stamp"><strong>10</strong><span>duelos</span></div>
+      </div>
+    </header>
+
+    <section class="scoreboard" aria-label="Estado de la partida">
+      <div>
+        <span>Duelo</span
+        ><strong
+          >{{ state.round + 1 }}<small>/{{ totalRounds }}</small></strong
+        >
+      </div>
+      <div>
+        <span>Vidas</span
+        ><strong
+          class="lives"
+          [attr.aria-label]="state.lives + ' vidas restantes'"
+        >
+          @for (life of [1, 2, 3]; track life) {
+            <i [class.is-lost]="life > state.lives">●</i>
+          }
+        </strong>
+      </div>
+      <div>
+        <span>Aciertos</span><strong>{{ state.score }}</strong>
+      </div>
+      <div>
+        <span>Récord</span><strong>{{ state.bestScore }}</strong>
+      </div>
+      <div class="scoreboard__progress" aria-hidden="true">
+        <span [style.width.%]="progress"></span>
+      </div>
+    </section>
+
+    @if (state.status !== "finished") {
+      <section class="duel" aria-labelledby="comparison-question">
+        <div class="question-block">
+          <div class="question-block__index">0{{ state.round + 1 }}</div>
+          <div>
+            <span class="category">{{ comparison.category }}</span>
+            <h2 id="comparison-question">{{ comparison.question }}</h2>
+            <p>{{ comparison.metric }}</p>
+          </div>
+          <span class="tap-note">Elegí una tarjeta</span>
+        </div>
+
+        <div class="versus-grid">
+          @for (
+            competitor of competitors;
+            track competitor.id;
+            let index = $index
+          ) {
+            <button
+              type="button"
+              class="competitor-card"
+              [class.is-revealed]="state.status === 'revealed'"
+              [class.is-winner]="isWinner(competitor)"
+              [class.is-wrong]="isSelected(competitor) && !isWinner(competitor)"
+              [style.--accent]="competitor.accent"
+              [disabled]="state.status !== 'playing'"
+              (click)="choose(competitor)"
+            >
+              <span class="competitor-card__label">{{
+                index === 0 ? "LOCAL" : "VISITANTE"
+              }}</span>
+              <span class="monogram" aria-hidden="true">{{
+                competitor.initials
+              }}</span>
+              <span class="competitor-card__detail">{{
+                competitor.detail
+              }}</span>
+              <strong>{{ competitor.name }}</strong>
+              <span
+                class="hidden-value"
+                [class.is-visible]="state.status === 'revealed'"
+              >
+                @if (state.status === "playing") {
+                  <b>?</b><small>{{ comparison.unit }}</small>
+                } @else {
+                  <b>{{ competitor.value }}</b
+                  ><small>{{ comparison.unit }}</small>
+                }
+              </span>
+              @if (state.status === "revealed") {
+                <span class="value-track" aria-hidden="true"
+                  ><i [style.width.%]="valueWidth(competitor)"></i
+                ></span>
+              }
+              @if (isWinner(competitor)) {
+                <span class="verdict">Tiene más</span>
+              }
+              @if (isSelected(competitor) && !isWinner(competitor)) {
+                <span class="verdict verdict--wrong">Tu elección</span>
+              }
+            </button>
+          }
+          <div class="versus-mark" aria-hidden="true">VS</div>
+        </div>
+
+        @if (state.status === "revealed") {
+          <section
+            class="reveal-panel"
+            [class.is-wrong]="!latestAnswer?.correct"
+            aria-live="polite"
+          >
+            <div class="reveal-panel__result">
+              {{ latestAnswer?.correct ? "✓" : "×" }}
+            </div>
+            <div class="reveal-panel__copy">
+              <span>{{
+                latestAnswer?.correct ? "Lectura perfecta" : "Dato traicionero"
+              }}</span>
+              <h3>
+                {{ winner.shortName }} gana por {{ gap }} {{ comparison.unit }}.
+              </h3>
+              <p>{{ comparison.scope }} · Corte: {{ comparison.cutoff }}</p>
+              <a
+                [href]="comparison.sourceUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver fuente: {{ comparison.sourceLabel }} ↗</a
+              >
+            </div>
+            <button type="button" (click)="next()">
+              Siguiente duelo <span>→</span>
+            </button>
+          </section>
+        } @else {
+          <p class="data-note">
+            <span aria-hidden="true">◉</span> Las cifras se revelan después de
+            elegir. Cada duelo indica su alcance y fecha de corte.
+          </p>
+        }
+      </section>
+    } @else {
+      <section class="finale" aria-live="polite">
+        <span class="finale__eyebrow">Planilla cerrada</span>
+        <h2>
+          {{
+            state.score >= 8
+              ? "Analista de élite"
+              : state.score >= 5
+                ? "Buen ojo para los números"
+                : "La pelota sabe más"
+          }}
+        </h2>
+        <div class="finale__score">
+          <strong>{{ state.score }}</strong
+          ><span>aciertos<br />de {{ state.answers.length }}</span>
+        </div>
+        <div class="answer-tape" aria-label="Resumen de respuestas">
+          @for (answer of state.answers; track answer.round) {
+            <span [class.is-correct]="answer.correct">{{
+              answer.correct ? "✓" : "×"
+            }}</span>
+          }
+        </div>
+        <p>
+          Tu mejor marca es {{ state.bestScore }}. La próxima edición mezcla los
+          duelos y cambia los lados.
+        </p>
+        <div class="finale__actions">
+          <button type="button" class="secondary-action" (click)="share()">
+            Compartir resultado
+          </button>
+          <button type="button" class="primary-action" (click)="playAgain()">
+            Jugar otra edición <span>→</span>
+          </button>
+        </div>
+        @if (shareMessage) {
+          <small>{{ shareMessage }}</small>
+        }
+      </section>
+    }
+
+    <aside class="method-note">
+      <span>METODOLOGÍA / 01</span>
+      <p>
+        Las comparaciones usan cifras editoriales de FIFA, UEFA y Premier
+        League. No mezclamos amistosos, fases previas ni categorías distintas.
+        El alcance exacto aparece al revelar cada respuesta.
+      </p>
+    </aside>
+    <app-game-editorial-content gameId="futbol-mayor" />
+  </main>
+  <app-footer theme="default" />
+</div>

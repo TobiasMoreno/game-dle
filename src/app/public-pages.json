@@ -60,6 +60,12 @@
     "kind": "existing"
   },
   {
+    "path": "games/futbol-mayor",
+    "title": "¿Quién tiene más? | Game-DLE",
+    "description": "Compará jugadores y equipos por goles, asistencias, partidos, tarjetas y títulos.",
+    "kind": "existing"
+  },
+  {
     "path": "games/onepiecedle",
     "title": "One Piece DLE | Game-DLE",
     "description": "Adiviná el personaje diario de One Piece.",

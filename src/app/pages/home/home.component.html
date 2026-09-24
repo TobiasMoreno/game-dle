@@ -1,13 +1,20 @@
-<div class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+<div
+  class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors duration-200"
+>
   <div class="flex-1 flex flex-col">
     <div class="container mx-auto px-4 py-8 flex-1 flex flex-col">
       <!-- Header -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2 transition-colors duration-200 tracking-tight">
+        <h1
+          class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2 transition-colors duration-200 tracking-tight"
+        >
           Game-DLE
         </h1>
-        <p class="text-lg text-gray-500 dark:text-gray-300 transition-colors duration-200">
-          Desafíos diarios y partidas ilimitadas para poner a prueba lo que sabes
+        <p
+          class="text-lg text-gray-500 dark:text-gray-300 transition-colors duration-200"
+        >
+          Desafíos diarios y partidas ilimitadas para poner a prueba lo que
+          sabes
         </p>
       </div>
 
@@ -26,7 +33,10 @@
             <h2 id="next-game-title">{{ recommendation.game.name }}</h2>
             <p>{{ recommendation.description }}</p>
 
-            <div class="next-game__meta" aria-label="Estado de la recomendación">
+            <div
+              class="next-game__meta"
+              aria-label="Estado de la recomendación"
+            >
               <span>{{ recommendation.presentation.modeLabel }}</span>
               <span>{{ recommendation.presentation.statusLabel }}</span>
             </div>
@@ -34,7 +44,11 @@
             <a
               class="next-game__action"
               [routerLink]="recommendation.game.route"
-              [attr.aria-label]="recommendation.presentation.actionLabel + ' ' + recommendation.game.name"
+              [attr.aria-label]="
+                recommendation.presentation.actionLabel +
+                ' ' +
+                recommendation.game.name
+              "
             >
               <span>{{ recommendation.presentation.actionLabel }}</span>
               <span aria-hidden="true">→</span>
@@ -52,34 +66,105 @@
 
       <app-daily-journey />
 
-      <section class="mx-auto mb-16 mt-10 w-full max-w-6xl" aria-labelledby="universes-title">
-        <header class="mb-5 grid grid-cols-[minmax(13rem,.55fr)_1fr] items-end max-[700px]:grid-cols-1">
-          <span class="text-[.64rem] font-black uppercase tracking-[.16em] text-[#d95130]">Entrá por temática</span>
-          <h2 id="universes-title" class="col-start-1 mb-0 mt-1 font-serif text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[.95] tracking-[-.045em] text-[#172019] dark:text-[#fff8e9]">Elegí tu universo</h2>
-          <p class="col-start-2 row-start-1 row-end-3 m-0 leading-relaxed text-[#626b64] dark:text-[#b7c0b9] max-[700px]:col-start-1 max-[700px]:row-auto max-[700px]:mt-3">Cada mundo tiene su propio espacio con todos sus modos de juego.</p>
+      <section
+        class="mx-auto mb-16 mt-10 w-full max-w-6xl"
+        aria-labelledby="universes-title"
+      >
+        <header
+          class="mb-5 grid grid-cols-[minmax(13rem,.55fr)_1fr] items-end max-[700px]:grid-cols-1"
+        >
+          <span
+            class="text-[.64rem] font-black uppercase tracking-[.16em] text-[#d95130]"
+            >Entrá por temática</span
+          >
+          <h2
+            id="universes-title"
+            class="col-start-1 mb-0 mt-1 font-serif text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[.95] tracking-[-.045em] text-[#172019] dark:text-[#fff8e9]"
+          >
+            Elegí tu universo
+          </h2>
+          <p
+            class="col-start-2 row-start-1 row-end-3 m-0 leading-relaxed text-[#626b64] dark:text-[#b7c0b9] max-[700px]:col-start-1 max-[700px]:row-auto max-[700px]:mt-3"
+          >
+            Cada mundo tiene su propio espacio con todos sus modos de juego.
+          </p>
         </header>
 
         <div class="grid grid-cols-2 gap-4 max-[700px]:grid-cols-1">
-          <a routerLink="/lol" class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071a20] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber-400">
-            <span class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30">01</span>
-            <div class="grid h-14 w-14 place-items-center rounded-full border border-amber-400 text-amber-400 shadow-[.25rem_.25rem_0_rgba(10,200,185,.45)]"><i class="fas fa-wand-sparkles" aria-hidden="true"></i></div>
-            <div>
-              <small class="text-[.58rem] font-black uppercase tracking-[.14em] text-cyan-400">La Grieta</small>
-              <h3 class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]">League of Legends</h3>
-              <p class="m-0 text-[.78rem] leading-snug text-slate-400">Campeones, roles y regiones en un espacio dedicado.</p>
+          <a
+            routerLink="/lol"
+            class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071a20] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber-400"
+          >
+            <span
+              class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30"
+              >01</span
+            >
+            <div
+              class="grid h-14 w-14 place-items-center rounded-full border border-amber-400 text-amber-400 shadow-[.25rem_.25rem_0_rgba(10,200,185,.45)]"
+            >
+              <i class="fas fa-wand-sparkles" aria-hidden="true"></i>
             </div>
-            <strong class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-amber-400">Explorar LoL <span class="ml-2 text-base transition-all group-hover:ml-3" aria-hidden="true">→</span></strong>
+            <div>
+              <small
+                class="text-[.58rem] font-black uppercase tracking-[.14em] text-cyan-400"
+                >La Grieta</small
+              >
+              <h3
+                class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]"
+              >
+                League of Legends
+              </h3>
+              <p class="m-0 text-[.78rem] leading-snug text-slate-400">
+                Campeones, roles y regiones en un espacio dedicado.
+              </p>
+            </div>
+            <strong
+              class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-amber-400"
+              >Explorar LoL
+              <span
+                class="ml-2 text-base transition-all group-hover:ml-3"
+                aria-hidden="true"
+                >→</span
+              ></strong
+            >
           </a>
 
-          <a routerLink="/futbol" class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071d15] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-lime-300">
-            <span class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30">02</span>
-            <div class="grid h-14 w-14 place-items-center rounded-full border border-lime-300 text-lime-300 shadow-[.25rem_.25rem_0_rgba(55,212,134,.45)]"><i class="fas fa-futbol" aria-hidden="true"></i></div>
-            <div>
-              <small class="text-[.58rem] font-black uppercase tracking-[.14em] text-emerald-400">Pasión de cancha</small>
-              <h3 class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]">Fútbol</h3>
-              <p class="m-0 text-[.78rem] leading-snug text-slate-400">Jugadores, clubes y cultura futbolera en todos sus formatos.</p>
+          <a
+            routerLink="/futbol"
+            class="group relative grid min-h-64 grid-cols-[auto_minmax(0,1fr)] content-end gap-x-5 gap-y-4 overflow-hidden rounded-xl border border-white/15 bg-[#071d15] p-6 text-[#e9f4f3] no-underline shadow-[0_1rem_2rem_rgba(23,32,25,.16)] transition hover:-translate-y-1 hover:shadow-[0_1.4rem_2.4rem_rgba(23,32,25,.24)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-lime-300"
+          >
+            <span
+              class="absolute left-5 top-4 font-serif text-sm font-bold italic text-white/30"
+              >02</span
+            >
+            <div
+              class="grid h-14 w-14 place-items-center rounded-full border border-lime-300 text-lime-300 shadow-[.25rem_.25rem_0_rgba(55,212,134,.45)]"
+            >
+              <i class="fas fa-futbol" aria-hidden="true"></i>
             </div>
-            <strong class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-lime-300">Explorar fútbol <span class="ml-2 text-base transition-all group-hover:ml-3" aria-hidden="true">→</span></strong>
+            <div>
+              <small
+                class="text-[.58rem] font-black uppercase tracking-[.14em] text-emerald-400"
+                >Pasión de cancha</small
+              >
+              <h3
+                class="mb-2 mt-1 font-serif text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-none tracking-[-.035em]"
+              >
+                Fútbol
+              </h3>
+              <p class="m-0 text-[.78rem] leading-snug text-slate-400">
+                Jugadores, clubes y cultura futbolera en todos sus formatos.
+              </p>
+            </div>
+            <strong
+              class="col-start-2 text-[.66rem] uppercase tracking-[.1em] text-lime-300"
+              >Explorar fútbol
+              <span
+                class="ml-2 text-base transition-all group-hover:ml-3"
+                aria-hidden="true"
+                >→</span
+              ></strong
+            >
           </a>
         </div>
       </section>
@@ -88,151 +173,362 @@
         <header class="catalog__intro">
           <span>Elegí tu ritmo</span>
           <h2 id="catalog-title">Todos los juegos</h2>
-          <p>Un desafío para cada momento: mantené la racha, jugá sin límites o invitá a tu grupo.</p>
+          <p>
+            Un desafío para cada momento: mantené la racha, jugá sin límites o
+            invitá a tu grupo.
+          </p>
         </header>
 
         @for (section of catalogSections; track section.id) {
-          <section class="catalog-shelf" [attr.data-mode]="section.id" [attr.aria-labelledby]="'catalog-' + section.id">
+          <section
+            class="catalog-shelf"
+            [attr.data-mode]="section.id"
+            [attr.aria-labelledby]="'catalog-' + section.id"
+          >
             <header class="catalog-shelf__header">
-              <span class="catalog-shelf__index" aria-hidden="true">{{ section.index }}</span>
+              <span class="catalog-shelf__index" aria-hidden="true">{{
+                section.index
+              }}</span>
               <div>
-                <span class="catalog-shelf__eyebrow">{{ section.eyebrow }}</span>
+                <span class="catalog-shelf__eyebrow">{{
+                  section.eyebrow
+                }}</span>
                 <h3 [id]="'catalog-' + section.id">{{ section.title }}</h3>
                 <p>{{ section.description }}</p>
               </div>
-              <strong>{{ section.games.length }} {{ section.games.length === 1 ? 'juego' : 'juegos' }}</strong>
+              <strong
+                >{{ section.games.length }}
+                {{ section.games.length === 1 ? "juego" : "juegos" }}</strong
+              >
             </header>
 
             <div class="catalog-shelf__grid">
-        @for (game of section.games; track game.id) {
-            @let presentation = getGamePresentation(game);
-            <a
-              [routerLink]="game.route"
-              [attr.aria-label]="game.name + '. ' + presentation.statusLabel + '. ' + presentation.actionLabel"
-              [attr.data-game]="game.id"
-              class="catalog-card relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
-            >
-              <!-- Fondo dinámico en hover -->
-              @if (game.name === 'One Piece DLE') {
-                <div
-                  class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background-image: url('img/bg_zoro.png');"
-                  loading="lazy"
-                ></div>
-              }
-              @if (game.name === 'LoL DLE') {
-                <div
-                  class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background-image: url('img/bg_lol.jpeg');"
-                  loading="lazy"
-                ></div>
-              }
-              @if (game.id === 'musicdle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 20% 20%, rgba(245, 158, 11, .35), transparent 42%), repeating-linear-gradient(90deg, rgba(245, 158, 11, .08) 0 2px, transparent 2px 14px), #0c0a09;"
-                ></div>
-              }
-              @if (game.id === 'serpentile') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 25% 20%, rgba(85, 230, 165, .28), transparent 42%), repeating-linear-gradient(60deg, rgba(255, 209, 102, .08) 0 1px, transparent 1px 18px), #102b20;"
-                ></div>
-              }
-              @if (game.id === 'enclosure') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 78% 18%, rgba(231, 200, 92, .48), transparent 32%), repeating-radial-gradient(ellipse at 15% 70%, transparent 0 13px, rgba(166, 191, 120, .17) 14px 15px, transparent 16px 24px), #173e32;"
-                ></div>
-              }
-              @if (game.id === 'tuttifrutti') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 18% 25%, rgba(230, 83, 63, .3), transparent 38%), repeating-linear-gradient(0deg, rgba(23, 37, 31, .05) 0 1px, transparent 1px 8px), #fffaf0;"
-                ></div>
-              }
-              @if (game.id === 'geodle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 78% 18%, rgba(216, 93, 69, .32), transparent 32%), repeating-linear-gradient(0deg, rgba(23, 59, 74, .08) 0 1px, transparent 1px 20px), #e8e2d1;"
-                ></div>
-              }
-              @if (game.id === 'banderadle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 22% 24%, rgba(102, 212, 207, .24), transparent 34%), repeating-linear-gradient(90deg, rgba(239, 201, 76, .08) 0 1px, transparent 1px 16px), #071923;"
-                ></div>
-              }
-              @if (game.id === 'chronodle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 82% 18%, rgba(166, 66, 50, .3), transparent 34%), repeating-linear-gradient(0deg, rgba(39, 35, 30, .06) 0 1px, transparent 1px 9px), #f4ecd9;"
-                ></div>
-              }
-              @if (game.id === 'palmodle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 78% 18%, rgba(168, 52, 43, .28), transparent 34%), repeating-linear-gradient(0deg, rgba(24, 23, 19, .06) 0 1px, transparent 1px 7px), #eee7d6;"
-                ></div>
-              }
-              @if (game.id === 'rankdle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 82% 18%, rgba(217, 239, 98, .65), transparent 34%), repeating-linear-gradient(115deg, rgba(23, 63, 71, .08) 0 2px, transparent 2px 18px), #f5f1df;"
-                ></div>
-              }
-              @if (game.id === 'futboldle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 75% 20%, rgba(234, 255, 115, .32), transparent 32%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .035) 0 9%, transparent 9% 18%), #0b2c20;"
-                ></div>
-              }
-              @if (game.id === 'roscodle') {
-                <div
-                  class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style="background: radial-gradient(circle at 75% 20%, rgba(239, 255, 88, .3), transparent 30%), repeating-radial-gradient(circle at 25% 70%, rgba(239, 255, 88, .08) 0 2px, transparent 2px 15px), #071c16;"
-                ></div>
-              }
-
-              <!-- Contenido de la tarjeta -->
-              <div class="relative z-10">
-                <div class="flex items-center mb-4 gap-2">
-                  <i [class]="game.icon + ' text-2xl text-blue-500 dark:text-blue-400 mr-3'" aria-hidden="true"></i>
-                  <h3 class="min-w-0 text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200">
-                    {{ game.name }}
-                  </h3>
-                  @if (game.badge) {
-                    <span class="catalog-card__badge">{{ game.badge }}</span>
+              @for (game of section.games; track game.id) {
+                @let presentation = getGamePresentation(game);
+                <a
+                  [routerLink]="game.route"
+                  [attr.aria-label]="
+                    game.name +
+                    '. ' +
+                    presentation.statusLabel +
+                    '. ' +
+                    presentation.actionLabel
+                  "
+                  [attr.data-game]="game.id"
+                  class="catalog-card relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer p-6 border border-gray-200 dark:border-gray-700 hover:scale-[1.03] group overflow-hidden"
+                >
+                  <!-- Fondo dinámico en hover -->
+                  @if (game.name === "One Piece DLE") {
+                    <div
+                      class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="background-image: url(&quot;img/bg_zoro.png&quot;)"
+                      loading="lazy"
+                    ></div>
                   }
-                </div>
-                <p class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200">{{ game.description }}</p>
-                <div class="flex items-center justify-between">
-                  <span class="catalog-card__state">
-                    <span [class]="getGameStatusClass(presentation.tone)" class="text-sm font-medium">{{ presentation.statusLabel }}</span>
-                    @if (game.durationLabel) { <small>{{ game.durationLabel }}</small> }
-                  </span>
-                  <span class="text-sm font-bold text-blue-600 transition-colors group-hover:text-blue-700 dark:text-blue-300 dark:group-hover:text-blue-200">
-                    {{ presentation.actionLabel }} <span aria-hidden="true">→</span>
-                  </span>
-                </div>
-              </div>
-              <!-- Fin contenido -->
-            </a>
-        }
+                  @if (game.name === "LoL DLE") {
+                    <div
+                      class="absolute inset-0 z-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="background-image: url(&quot;img/bg_lol.jpeg&quot;)"
+                      loading="lazy"
+                    ></div>
+                  }
+                  @if (game.id === "musicdle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 20% 20%,
+                            rgba(245, 158, 11, 0.35),
+                            transparent 42%
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            rgba(245, 158, 11, 0.08) 0 2px,
+                            transparent 2px 14px
+                          ),
+                          #0c0a09;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "serpentile") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 25% 20%,
+                            rgba(85, 230, 165, 0.28),
+                            transparent 42%
+                          ),
+                          repeating-linear-gradient(
+                            60deg,
+                            rgba(255, 209, 102, 0.08) 0 1px,
+                            transparent 1px 18px
+                          ),
+                          #102b20;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "enclosure") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 78% 18%,
+                            rgba(231, 200, 92, 0.48),
+                            transparent 32%
+                          ),
+                          repeating-radial-gradient(
+                            ellipse at 15% 70%,
+                            transparent 0 13px,
+                            rgba(166, 191, 120, 0.17) 14px 15px,
+                            transparent 16px 24px
+                          ),
+                          #173e32;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "tuttifrutti") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 18% 25%,
+                            rgba(230, 83, 63, 0.3),
+                            transparent 38%
+                          ),
+                          repeating-linear-gradient(
+                            0deg,
+                            rgba(23, 37, 31, 0.05) 0 1px,
+                            transparent 1px 8px
+                          ),
+                          #fffaf0;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "geodle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 78% 18%,
+                            rgba(216, 93, 69, 0.32),
+                            transparent 32%
+                          ),
+                          repeating-linear-gradient(
+                            0deg,
+                            rgba(23, 59, 74, 0.08) 0 1px,
+                            transparent 1px 20px
+                          ),
+                          #e8e2d1;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "banderadle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 22% 24%,
+                            rgba(102, 212, 207, 0.24),
+                            transparent 34%
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            rgba(239, 201, 76, 0.08) 0 1px,
+                            transparent 1px 16px
+                          ),
+                          #071923;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "chronodle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 82% 18%,
+                            rgba(166, 66, 50, 0.3),
+                            transparent 34%
+                          ),
+                          repeating-linear-gradient(
+                            0deg,
+                            rgba(39, 35, 30, 0.06) 0 1px,
+                            transparent 1px 9px
+                          ),
+                          #f4ecd9;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "palmodle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 78% 18%,
+                            rgba(168, 52, 43, 0.28),
+                            transparent 34%
+                          ),
+                          repeating-linear-gradient(
+                            0deg,
+                            rgba(24, 23, 19, 0.06) 0 1px,
+                            transparent 1px 7px
+                          ),
+                          #eee7d6;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "rankdle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 82% 18%,
+                            rgba(217, 239, 98, 0.65),
+                            transparent 34%
+                          ),
+                          repeating-linear-gradient(
+                            115deg,
+                            rgba(23, 63, 71, 0.08) 0 2px,
+                            transparent 2px 18px
+                          ),
+                          #f5f1df;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "futboldle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 75% 20%,
+                            rgba(234, 255, 115, 0.32),
+                            transparent 32%
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            rgba(255, 255, 255, 0.035) 0 9%,
+                            transparent 9% 18%
+                          ),
+                          #0b2c20;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "futbol-mayor") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 78% 18%,
+                            rgba(220, 255, 63, 0.34),
+                            transparent 31%
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            rgba(255, 255, 255, 0.04) 0 1px,
+                            transparent 1px 12.5%
+                          ),
+                          #0b2d20;
+                      "
+                    ></div>
+                  }
+                  @if (game.id === "roscodle") {
+                    <div
+                      class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style="
+                        background:
+                          radial-gradient(
+                            circle at 75% 20%,
+                            rgba(239, 255, 88, 0.3),
+                            transparent 30%
+                          ),
+                          repeating-radial-gradient(
+                            circle at 25% 70%,
+                            rgba(239, 255, 88, 0.08) 0 2px,
+                            transparent 2px 15px
+                          ),
+                          #071c16;
+                      "
+                    ></div>
+                  }
+
+                  <!-- Contenido de la tarjeta -->
+                  <div class="relative z-10">
+                    <div class="flex items-center mb-4 gap-2">
+                      <i
+                        [class]="
+                          game.icon +
+                          ' text-2xl text-blue-500 dark:text-blue-400 mr-3'
+                        "
+                        aria-hidden="true"
+                      ></i>
+                      <h3
+                        class="min-w-0 text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200"
+                      >
+                        {{ game.name }}
+                      </h3>
+                      @if (game.badge) {
+                        <span class="catalog-card__badge">{{
+                          game.badge
+                        }}</span>
+                      }
+                    </div>
+                    <p
+                      class="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-200"
+                    >
+                      {{ game.description }}
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <span class="catalog-card__state">
+                        <span
+                          [class]="getGameStatusClass(presentation.tone)"
+                          class="text-sm font-medium"
+                          >{{ presentation.statusLabel }}</span
+                        >
+                        @if (game.durationLabel) {
+                          <small>{{ game.durationLabel }}</small>
+                        }
+                      </span>
+                      <span
+                        class="text-sm font-bold text-blue-600 transition-colors group-hover:text-blue-700 dark:text-blue-300 dark:group-hover:text-blue-200"
+                      >
+                        {{ presentation.actionLabel }}
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Fin contenido -->
+                </a>
+              }
             </div>
           </section>
         }
       </section>
 
       <section class="home-editorial" aria-labelledby="home-editorial-title">
-        <nav class="mb-8 flex flex-wrap gap-5" aria-label="Reglas y biblioteca"><a routerLink="/como-jugar">Cómo jugar</a><a routerLink="/guias">Guías con ejemplos</a><a routerLink="/historia">Archivo histórico</a><a routerLink="/rankings">Datos y clasificaciones</a></nav>
+        <nav class="mb-8 flex flex-wrap gap-5" aria-label="Reglas y biblioteca">
+          <a routerLink="/como-jugar">Cómo jugar</a
+          ><a routerLink="/guias">Guías con ejemplos</a
+          ><a routerLink="/historia">Archivo histórico</a
+          ><a routerLink="/rankings">Datos y clasificaciones</a>
+        </nav>
         <header class="home-editorial__intro">
           <span>Hecho y revisado en Argentina</span>
           <h2 id="home-editorial-title">Más que una colección de juegos</h2>
           <p>
-            Game-DLE reúne desafíos. Cada juego tiene
-            reglas, criterios y una selección de datos propios; no es un directorio de enlaces ni
-            una reproducción automática de contenido ajeno.
+            Game-DLE reúne desafíos. Cada juego tiene reglas, criterios y una
+            selección de datos propios; no es un directorio de enlaces ni una
+            reproducción automática de contenido ajeno.
           </p>
         </header>
 
@@ -241,60 +537,74 @@
             <span class="home-editorial__number">01</span>
             <h3>Desafíos con decisiones de diseño</h3>
             <p>
-              La palabra diaria, las pistas geográficas, los tableros de Serpentile y las
-              categorías de RankDLE siguen reglas distintas. En la página de cada juego se explica
-              qué se evalúa, cómo interpretar las pistas y cuándo se revisaron sus datos.
+              La palabra diaria, las pistas geográficas, los tableros de
+              Serpentile y las categorías de RankDLE siguen reglas distintas. En
+              la página de cada juego se explica qué se evalúa, cómo interpretar
+              las pistas y cuándo se revisaron sus datos.
             </p>
-            <a routerLink="/games/serpentile">Ver un juego original <span aria-hidden="true">→</span></a>
+            <a routerLink="/games/serpentile"
+              >Ver un juego original <span aria-hidden="true">→</span></a
+            >
           </article>
 
           <article>
             <span class="home-editorial__number">02</span>
             <h3>Información que se puede comprobar</h3>
             <p>
-              Los juegos de geografía, historia, fútbol y cultura popular incluyen metodología,
-              fuentes y aclaraciones sobre el alcance de sus catálogos. Cuando un dato puede
-              cambiar, indicamos la fecha de revisión en lugar de presentarlo como definitivo.
+              Los juegos de geografía, historia, fútbol y cultura popular
+              incluyen metodología, fuentes y aclaraciones sobre el alcance de
+              sus catálogos. Cuando un dato puede cambiar, indicamos la fecha de
+              revisión en lugar de presentarlo como definitivo.
             </p>
-            <a routerLink="/games/chronodle">Explorar fuentes y metodología <span aria-hidden="true">→</span></a>
+            <a routerLink="/games/chronodle"
+              >Explorar fuentes y metodología
+              <span aria-hidden="true">→</span></a
+            >
           </article>
 
           <article>
             <span class="home-editorial__number">03</span>
             <h3>Un proyecto con responsable visible</h3>
             <p>
-              Las correcciones y sugerencias se revisan de forma manual. También publicamos quién
-              mantiene el sitio, cómo contactarlo y qué servicios técnicos utiliza Game-DLE para
-              que el funcionamiento y el tratamiento de datos sean transparentes.
+              Las correcciones y sugerencias se revisan de forma manual. También
+              publicamos quién mantiene el sitio, cómo contactarlo y qué
+              servicios técnicos utiliza Game-DLE para que el funcionamiento y
+              el tratamiento de datos sean transparentes.
             </p>
-            <a routerLink="/acerca-de">Conocer el proyecto <span aria-hidden="true">→</span></a>
+            <a routerLink="/acerca-de"
+              >Conocer el proyecto <span aria-hidden="true">→</span></a
+            >
           </article>
         </div>
 
         <div class="home-editorial__note">
           <strong>¿Por dónde empezar?</strong>
           <p>
-            Si preferís una partida corta, probá Wordle o Clave Extrema. Para aprender mientras
-            jugás, GeoDLE y ChronoDLE explican sus pistas y fuentes. Si buscás una mecánica propia,
-            Serpentile propone resolver un recorrido girando las piezas de un tablero diario.
+            Si preferís una partida corta, probá Wordle o Clave Extrema. Para
+            aprender mientras jugás, GeoDLE y ChronoDLE explican sus pistas y
+            fuentes. Si buscás una mecánica propia, Serpentile propone resolver
+            un recorrido girando las piezas de un tablero diario.
           </p>
         </div>
       </section>
 
-      <app-ad-slot
-        class="mb-12"
-        [slot]="adSlots.home"
-        placement="home"
-      />
+      <app-ad-slot class="mb-12" [slot]="adSlots.home" placement="home" />
 
       <details class="catalog-help">
         <summary>¿Cómo funcionan los desafíos?</summary>
-        <p>Los diarios se renuevan a medianoche de Argentina. Los ilimitados permiten repetir rondas y los multijugador se comparten mediante una sala.</p>
+        <p>
+          Los diarios se renuevan a medianoche de Argentina. Los ilimitados
+          permiten repetir rondas y los multijugador se comparten mediante una
+          sala.
+        </p>
       </details>
 
       <!-- Contacto -->
       <div class="mt-6 text-center">
-        <a href="mailto:tobiasmoreno.tm.21@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center justify-center gap-2">
+        <a
+          href="mailto:tobiasmoreno.tm.21@gmail.com"
+          class="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center justify-center gap-2"
+        >
           <span>✉️</span> ¿Tienes sugerencias? ¡Contáctanos!
         </a>
       </div>

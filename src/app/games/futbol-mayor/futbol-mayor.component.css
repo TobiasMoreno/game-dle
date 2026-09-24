@@ -1,0 +1,744 @@
+:host {
+  display: block;
+}
+
+.mayor-page {
+  --ink: #10241a;
+  --pitch: #0b2d20;
+  --paper: #f3f0df;
+  --acid: #dcff3f;
+  --orange: #ff6b35;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      circle at 82% 5%,
+      rgba(220, 255, 63, 0.18),
+      transparent 24rem
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 0 1px,
+      transparent 1px 8.333%
+    ),
+    var(--pitch);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.mayor-shell {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 80px;
+}
+.matchday-header {
+  color: var(--paper);
+}
+.matchday-header__line {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 9px 0;
+  border-block: 1px solid rgba(255, 255, 255, 0.2);
+  font:
+    800 0.62rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.matchday-header__line span:nth-child(2) {
+  text-align: center;
+}
+.matchday-header__line span:last-child {
+  color: var(--acid);
+  text-align: right;
+}
+.title-lockup {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) 82px;
+  align-items: center;
+  gap: 24px;
+  padding: 42px 0 35px;
+}
+.title-lockup > div:nth-child(2) {
+  min-width: 0;
+}
+.title-lockup__ball {
+  display: grid;
+  width: 86px;
+  height: 86px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: var(--acid);
+  font-size: 2rem;
+  box-shadow: 7px 7px 0 rgba(220, 255, 63, 0.16);
+}
+.kicker,
+.category {
+  margin: 0;
+  color: var(--acid);
+  font:
+    900 0.68rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.title-lockup h1 {
+  margin: 5px 0 9px;
+  font-family: Georgia, serif;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+}
+.title-lockup h1 em {
+  color: var(--acid);
+  font-weight: 500;
+}
+.title-lockup p:last-child {
+  max-width: 660px;
+  margin: 0;
+  color: #a9b9ae;
+  font-size: 0.9rem;
+}
+.data-stamp {
+  display: grid;
+  aspect-ratio: 1;
+  place-content: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--acid);
+  text-align: center;
+  transform: rotate(5deg);
+  box-shadow: 6px 6px 0 var(--orange);
+}
+.data-stamp strong {
+  font:
+    900 2rem/0.75 Georgia,
+    serif;
+}
+.data-stamp span {
+  margin-top: 5px;
+  font:
+    900 0.52rem/1 "Courier New",
+    monospace;
+  text-transform: uppercase;
+}
+
+.scoreboard {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  color: var(--paper);
+  background: #071d15;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.scoreboard > div:not(.scoreboard__progress) {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+.scoreboard span {
+  color: #81948a;
+  font:
+    800 0.58rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.scoreboard strong {
+  font:
+    800 1.35rem/1 Georgia,
+    serif;
+}
+.scoreboard strong small {
+  margin-left: 2px;
+  color: #71837a;
+  font-size: 0.7rem;
+}
+.scoreboard .lives {
+  display: flex;
+  gap: 6px;
+  color: var(--acid);
+  font-size: 0.62rem;
+}
+.scoreboard .lives i {
+  font-style: normal;
+}
+.scoreboard .lives i.is-lost {
+  color: #33443b;
+}
+.scoreboard__progress {
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: #263b30;
+}
+.scoreboard__progress span {
+  display: block;
+  height: 100%;
+  background: var(--acid);
+  transition: width 0.45s ease;
+}
+
+.duel {
+  margin-top: 18px;
+  padding: 32px;
+  background: var(--paper);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.28);
+}
+.question-block {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: end;
+  gap: 17px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--ink);
+}
+.question-block__index {
+  color: var(--orange);
+  font:
+    italic 800 1.1rem/1 Georgia,
+    serif;
+}
+.question-block h2 {
+  margin: 5px 0 2px;
+  font:
+    700 clamp(2rem, 5vw, 3.6rem)/0.95 Georgia,
+    serif;
+  letter-spacing: -0.045em;
+}
+.question-block p {
+  margin: 5px 0 0;
+  color: #637167;
+  font-size: 0.78rem;
+}
+.category {
+  color: #527057;
+}
+.tap-note {
+  padding-bottom: 5px;
+  color: #69746d;
+  font:
+    800 0.57rem/1 "Courier New",
+    monospace;
+  text-transform: uppercase;
+}
+
+.versus-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+.competitor-card {
+  position: relative;
+  display: flex;
+  min-height: 385px;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 18px 20px 20px;
+  border: 1px solid #9caa9f;
+  color: var(--ink);
+  background: #faf8ed;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  min-width: 0;
+}
+.competitor-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: var(--accent);
+  content: "";
+}
+.competitor-card:not(:disabled):hover {
+  z-index: 2;
+  border-color: var(--ink);
+  transform: translateY(-4px) rotate(-0.35deg);
+  box-shadow: 7px 8px 0 var(--ink);
+}
+.competitor-card:nth-child(2):not(:disabled):hover {
+  transform: translateY(-4px) rotate(0.35deg);
+}
+.competitor-card:focus-visible {
+  outline: 4px solid var(--orange);
+  outline-offset: 3px;
+}
+.competitor-card.is-winner {
+  border: 3px solid var(--ink);
+  box-shadow: inset 0 0 0 5px var(--acid);
+}
+.competitor-card.is-wrong {
+  opacity: 0.66;
+}
+.competitor-card__label {
+  align-self: stretch;
+  color: #66736b;
+  font:
+    900 0.55rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.12em;
+  text-align: left;
+}
+.monogram {
+  display: grid;
+  width: 126px;
+  height: 126px;
+  margin: 28px 0 20px;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--accent);
+  font:
+    900 2rem/1 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.competitor-card__detail {
+  color: #647068;
+  font:
+    800 0.58rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.competitor-card > strong {
+  max-width: 95%;
+  margin: 8px 0 13px;
+  font:
+    700 clamp(1.7rem, 4vw, 2.7rem)/0.92 Georgia,
+    serif;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+.hidden-value {
+  display: flex;
+  min-height: 55px;
+  align-items: baseline;
+  gap: 6px;
+  color: #748078;
+}
+.hidden-value b {
+  font:
+    800 2.8rem/1 Georgia,
+    serif;
+}
+.hidden-value small {
+  font:
+    800 0.58rem/1 "Courier New",
+    monospace;
+  text-transform: uppercase;
+}
+.hidden-value.is-visible {
+  color: var(--ink);
+}
+.value-track {
+  width: min(250px, 80%);
+  height: 5px;
+  margin-top: 7px;
+  background: #d8dccf;
+}
+.value-track i {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+  animation: grow 0.45s ease both;
+}
+.verdict {
+  position: absolute;
+  top: 20px;
+  right: -42px;
+  width: 150px;
+  padding: 7px;
+  color: var(--ink);
+  background: var(--acid);
+  font:
+    900 0.56rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(40deg);
+}
+.verdict--wrong {
+  color: white;
+  background: #c94135;
+}
+.versus-mark {
+  position: absolute;
+  z-index: 3;
+  top: 160px;
+  left: 50%;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  color: var(--paper);
+  background: var(--ink);
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  font:
+    italic 900 0.75rem/1 Georgia,
+    serif;
+  transform: translateX(-50%) rotate(-5deg);
+}
+
+.reveal-panel {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  margin-top: 16px;
+  padding: 17px 18px;
+  color: var(--paper);
+  background: var(--ink);
+  border-left: 7px solid var(--acid);
+}
+.reveal-panel.is-wrong {
+  border-color: var(--orange);
+}
+.reveal-panel__result {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--acid);
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.reveal-panel.is-wrong .reveal-panel__result {
+  color: white;
+  background: var(--orange);
+}
+.reveal-panel__copy > span {
+  color: var(--acid);
+  font:
+    900 0.58rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.reveal-panel__copy h3 {
+  margin: 4px 0;
+  font:
+    700 1.25rem/1.05 Georgia,
+    serif;
+}
+.reveal-panel__copy p {
+  margin: 0;
+  color: #9eafa5;
+  font-size: 0.65rem;
+}
+.reveal-panel__copy a {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--paper);
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+.reveal-panel button,
+.primary-action,
+.secondary-action {
+  min-height: 44px;
+  padding: 0 17px;
+  border: 1px solid var(--acid);
+  color: var(--ink);
+  background: var(--acid);
+  font:
+    900 0.62rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.data-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  color: #6e786f;
+  font-size: 0.67rem;
+  text-align: center;
+}
+.data-note span {
+  color: #75a36d;
+}
+
+.finale {
+  margin-top: 18px;
+  padding: 70px 32px;
+  background: var(--paper);
+  text-align: center;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.28);
+}
+.finale__eyebrow {
+  color: #638065;
+  font:
+    900 0.63rem/1 "Courier New",
+    monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.finale h2 {
+  max-width: 700px;
+  margin: 12px auto 24px;
+  font:
+    700 clamp(2.7rem, 7vw, 5.5rem)/0.85 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+}
+.finale__score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.finale__score strong {
+  color: var(--orange);
+  font:
+    800 6rem/0.75 Georgia,
+    serif;
+}
+.finale__score span {
+  padding-left: 14px;
+  border-left: 1px solid #aeb7aa;
+  font:
+    900 0.65rem/1.4 "Courier New",
+    monospace;
+  text-align: left;
+  text-transform: uppercase;
+}
+.answer-tape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 27px 0;
+}
+.answer-tape span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  color: white;
+  background: var(--orange);
+  font-weight: 900;
+}
+.answer-tape span.is-correct {
+  color: var(--ink);
+  background: var(--acid);
+}
+.finale > p {
+  color: #687269;
+}
+.finale__actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.secondary-action {
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--ink);
+}
+.finale > small {
+  display: block;
+  margin-top: 12px;
+  color: #687269;
+}
+.method-note {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  margin-top: 20px;
+  padding: 23px 26px;
+  color: #9db0a5;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.method-note span {
+  color: var(--acid);
+  font:
+    900 0.58rem/1.4 "Courier New",
+    monospace;
+  letter-spacing: 0.1em;
+}
+.method-note p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .mayor-shell {
+    width: min(100% - 20px, 1080px);
+    padding-top: 12px;
+  }
+  .matchday-header__line {
+    grid-template-columns: 1fr 1fr;
+  }
+  .matchday-header__line span:nth-child(2) {
+    display: none;
+  }
+  .title-lockup {
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    padding: 28px 0;
+  }
+  .title-lockup__ball {
+    display: none;
+  }
+  .title-lockup h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+  .title-lockup p:last-child {
+    font-size: 0.78rem;
+  }
+  .data-stamp {
+    width: 62px;
+  }
+  .scoreboard > div:not(.scoreboard__progress) {
+    min-height: 57px;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .scoreboard span {
+    font-size: 0.49rem;
+  }
+  .scoreboard strong {
+    font-size: 1rem;
+  }
+  .duel {
+    padding: 17px 10px 22px;
+  }
+  .question-block {
+    grid-template-columns: 34px 1fr;
+    gap: 7px;
+    padding-inline: 4px;
+  }
+  .question-block > div:nth-child(2) {
+    min-width: 0;
+  }
+  .tap-note {
+    display: none;
+  }
+  .question-block h2 {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+  .versus-grid {
+    gap: 7px;
+  }
+  .competitor-card {
+    min-height: 350px;
+    padding: 14px 8px 16px;
+  }
+  .competitor-card.is-winner {
+    border-width: 2px;
+    box-shadow: inset 0 0 0 3px var(--acid);
+  }
+  .monogram {
+    width: 88px;
+    height: 88px;
+    margin: 28px 0 18px;
+    font-size: 1.45rem;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .competitor-card__detail {
+    min-height: 23px;
+    font-size: 0.47rem;
+    line-height: 1.35;
+  }
+  .competitor-card > strong {
+    min-height: 48px;
+    margin-top: 7px;
+    font-size: clamp(1.25rem, 6vw, 1.7rem);
+  }
+  .hidden-value b {
+    font-size: 2.2rem;
+  }
+  .hidden-value small {
+    font-size: 0.5rem;
+  }
+  .versus-mark {
+    top: 137px;
+    width: 38px;
+    height: 38px;
+    font-size: 0.62rem;
+  }
+  .verdict {
+    top: 21px;
+    right: -51px;
+    font-size: 0.47rem;
+  }
+  .reveal-panel {
+    grid-template-columns: 42px 1fr;
+    gap: 10px;
+    padding: 14px 11px;
+  }
+  .reveal-panel__result {
+    width: 38px;
+    height: 38px;
+  }
+  .reveal-panel button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .method-note {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .finale {
+    padding: 55px 15px;
+  }
+  .finale__actions {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 430px) {
+  .title-lockup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .data-stamp {
+    display: none;
+  }
+  .title-lockup h1 {
+    font-size: clamp(3rem, 16vw, 4rem);
+  }
+  .monogram {
+    width: 78px;
+    height: 78px;
+    font-size: 1.25rem;
+  }
+  .competitor-card > strong {
+    font-size: clamp(1.1rem, 5.5vw, 1.45rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

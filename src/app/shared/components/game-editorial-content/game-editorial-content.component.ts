@@ -161,6 +161,20 @@ const CONTENT: Record<string, GameEditorialContent> = {
     faqs: [{ question: '¿Se mezclan fuentes dentro de una ronda?', answer: 'Cada desafío busca mantener una referencia principal para que las cifras sean comparables.' }, { question: '¿Los rankings pueden cambiar?', answer: 'Sí, especialmente los basados en población o récords. La fecha de revisión indica la vigencia del catálogo.' }],
     related: [{ name: 'ChronoDLE', route: '/games/chronodle', reason: 'Orden cronológico' }, { name: 'GeoDLE', route: '/games/geodle', reason: 'Datos geográficos' }], reviewed: '25 de agosto de 2026',
   },
+  'futbol-mayor': {
+    name: '¿Quién tiene más?', kicker: 'Mesa de estadísticas', title: 'El dato vale sólo cuando el alcance está claro.',
+    intro: '¿Quién tiene más? enfrenta a dos futbolistas, clubes o selecciones y pide elegir cuál registra la cifra mayor. Cada edición mezcla diez duelos de goles, asistencias, partidos, disciplina y títulos, con tres vidas para llegar hasta el final.',
+    rules: ['Leé la métrica: la competición y el período importan tanto como los nombres.', 'Elegí la tarjeta que creas que tiene el valor más alto.', 'Revisá ambos números, el alcance, la fecha de corte y la fuente antes de continuar.'],
+    methodology: 'El catálogo inicial es una selección editorial construida con publicaciones oficiales de FIFA, UEFA y Premier League. Cada registro guarda la métrica, la unidad, el período cubierto, la fecha de corte y el enlace de procedencia. No sumamos datos de competiciones distintas ni presentamos un total de carrera cuando la referencia sólo cubre una liga. Los duelos sin una diferencia real se excluyen para que siempre exista una respuesta única. Las cifras se guardan localmente junto con el juego: una partida no depende de que una API externa responda en ese momento y una actualización de la fuente no puede cambiar una respuesta a mitad de ronda.',
+    feedback: 'Al elegir, las dos tarjetas revelan su valor y una barra ayuda a comparar la magnitud. “Tiene más” marca la respuesta correcta; una selección equivocada consume una vida. El panel inferior explica cuánta diferencia hubo y define si el dato corresponde a Champions League, Premier League, Copa Mundial u otro alcance concreto.',
+    sources: [
+      { label: 'UEFA Champions League', url: 'https://www.uefa.com/uefachampionsleague/history/rankings/players/goals_scored/', note: 'Goleadores y registros históricos de competiciones UEFA.' },
+      { label: 'FIFA World Cup', url: 'https://www.fifa.com/en/tournaments/mens/worldcup/articles/teams-most-victories-wins', note: 'Victorias y títulos de selecciones en la Copa Mundial masculina.' },
+      { label: 'Premier League Records', url: 'https://www.premierleague.com/en/stats/records', note: 'Récords oficiales de jugadores, clubes y temporadas.' },
+    ],
+    faqs: [{ question: '¿Por qué la fecha de corte cambia entre preguntas?', answer: 'Cada fuente actualiza sus publicaciones en momentos distintos. El corte que aparece al revelar una respuesta indica exactamente qué versión respalda esa cifra.' }, { question: '¿Los goles incluyen amistosos y fases previas?', answer: 'Sólo cuando el alcance lo indica. Por ejemplo, los duelos de Champions League distinguen la competición principal de las rondas de clasificación.' }, { question: '¿Los datos se consultan en vivo?', answer: 'No. El catálogo se versiona y revisa antes de publicarse para que la misma ronda conserve la misma respuesta.' }],
+    related: [{ name: 'FutbolDLE', route: '/games/futboldle', reason: 'Apellidos de jugadores' }, { name: 'RoscoDLE', route: '/games/roscodle', reason: 'Más cultura futbolera' }], reviewed: '23 de septiembre de 2026',
+  },
   futboldle: {
     name: 'FutbolDLE', kicker: 'Guía de cancha', title: 'Cinco letras separan la pista del apellido correcto.',
     intro: 'FutbolDLE adapta el formato de palabras a apellidos de futbolistas. Cada ronda es ilimitada y utiliza jugadores reconocibles cuyo apellido normalizado tiene cinco letras.',
