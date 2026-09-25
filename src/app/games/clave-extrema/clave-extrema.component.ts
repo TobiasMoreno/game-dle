@@ -6,6 +6,7 @@ import { catchError, of } from 'rxjs';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { argentinaDateKey } from '../../shared/utils/daily-activity.utils';
+import { Capacitor } from '@capacitor/core';
 import {
   buildExtremeKeyboardState,
   calculateExtremeScore,
@@ -27,6 +28,7 @@ interface ClaveAttempt { word: string; feedback: ClaveFeedback; marks?: ManualLe
   styleUrl: './clave-extrema.component.css',
 })
 export class ClaveExtremaComponent extends BaseGameComponent implements OnInit, OnDestroy {
+  readonly useOnScreenKeyboardOnly = Capacitor.isNativePlatform();
   readonly maxAttempts = 8;
   readonly rows = Array.from({ length: this.maxAttempts });
   readonly slots = Array.from({ length: 5 });

@@ -50,3 +50,15 @@ firebase-debug.*.log
 /audit-artifacts/
 /audit-build.log
 /audit-tests.log
+
+# Native mobile local state, builds and signing material
+/android/.gradle/
+/android/local.properties
+/android/app/build/
+/android/build/
+/ios/App/DerivedData/
+/ios/App/Pods/
+*.jks
+*.keystore
+*.p12
+*.mobileprovision

@@ -10,6 +10,7 @@
 
 .palmo-page {
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--ink);
   background:
     radial-gradient(circle at 15% 5%, rgba(168, 52, 43, .09), transparent 30rem),

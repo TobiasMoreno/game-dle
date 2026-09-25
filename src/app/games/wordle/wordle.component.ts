@@ -6,6 +6,7 @@ import { BaseGameComponent } from '../../shared/components/base-game/base-game.c
 import { GameProgress } from '../../shared/models/game.model';
 import { catchError, of } from 'rxjs';
 import { buildKeyboardState, WordleLetterState } from './wordle-keyboard.utils';
+import { Capacitor } from '@capacitor/core';
 
 interface WordleWord {
   id: number;
@@ -25,6 +26,7 @@ interface WordleWord {
   styleUrl: './wordle.component.css'
 })
 export class WordleComponent extends BaseGameComponent implements OnInit {
+  readonly useOnScreenKeyboardOnly = Capacitor.isNativePlatform();
   readonly maxAttempts = 6;
   readonly keyboardRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],

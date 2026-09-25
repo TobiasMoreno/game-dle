@@ -16,8 +16,6 @@
             "outputPath": "dist/game-dle",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "server": "src/main.server.ts",
-            "outputMode": "static",
             "polyfills": [
               "zone.js"
             ],
@@ -35,6 +33,8 @@
           },
           "configurations": {
             "production": {
+              "server": "src/main.server.ts",
+              "outputMode": "static",
               "budgets": [
                 {
                   "type": "initial",
@@ -48,6 +48,23 @@
                 }
               ],
               "outputHashing": "all"
+            },
+            "mobile": {
+              "outputPath": "dist/game-dle-mobile",
+              "server": false,
+              "outputHashing": "all",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "750kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "8kB",
+                  "maximumError": "12kB"
+                }
+              ]
             },
             "development": {
               "optimization": false,

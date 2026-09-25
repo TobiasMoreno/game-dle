@@ -54,3 +54,26 @@
   animation: fadeInUp 0.5s ease-out forwards;
   opacity: 0;
 }
+
+@media (max-width: 640px) {
+  .cell-animation {
+    width: 4.5rem !important;
+    height: 4.5rem !important;
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+}
+
+@media (hover: none) {
+  .character-name-overlay {
+    top: auto;
+    right: 0.25rem;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    max-width: none;
+    padding: 0.25rem;
+    border-width: 1px;
+    border-radius: 0.35rem;
+    opacity: 1;
+  }
+}

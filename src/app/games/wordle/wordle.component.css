@@ -232,7 +232,7 @@
 @keyframes shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
 
 @media (max-width: 700px) {
-  .wordle-page { min-height: 0; padding: 1rem .75rem 1.5rem; }
+  .wordle-page { min-height: 0; overflow-x: clip; overflow-y: visible; padding: .85rem .55rem 1.25rem; }
   .wordle-page::after { display: none; }
   .masthead { margin-bottom: 1.1rem; }
   .masthead h1 { font-size: 2.7rem; }
@@ -244,7 +244,7 @@
   .wordle-cell { width: clamp(2.75rem, 14vw, 3.25rem); height: clamp(2.75rem, 14vw, 3.25rem); }
   .play-panel { width: min(22rem, 100%); margin: auto; border-top: 1px solid #c7bdab; border-left: 0; padding: 1rem 0 0; }
   .keyboard { width: min(24rem, 100%); }
-  .keyboard-key { height: 2.5rem; }
+  .keyboard-key { height: 2.75rem; }
   .play-panel > p { margin-bottom: .8rem; }
   .progress-track { margin-bottom: .8rem; }
   .state-card { min-height: 22rem; }

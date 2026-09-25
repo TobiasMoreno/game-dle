@@ -6,6 +6,10 @@
 @tailwind utilities;
 
 :root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
   --platform-ink: #172019;
   --platform-paper: #fff8e9;
   --platform-surface: #ffffff;
@@ -19,6 +23,14 @@
   --platform-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
+html {
+  min-width: 0;
+  min-height: 100%;
+  overflow-x: clip;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 .dark {
   --platform-ink: #fff8e9;
   --platform-paper: #171914;
@@ -28,10 +40,41 @@
 }
 
 body {
+  box-sizing: border-box;
   margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
   font-family: var(--platform-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+:where(button, input, select, textarea, summary) {
+  touch-action: manipulation;
+}
+
+@media (max-width: 640px) {
+  input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  select,
+  textarea {
+    font-size: max(1rem, 16px);
+  }
 }
 
 :where(a, button, input, select, textarea, summary):focus-visible {

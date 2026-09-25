@@ -45,9 +45,7 @@ export class GameBoardComponent {
 
   getMinWidth(): string {
     const columnCount = this.columns().length;
-    // 6rem = 96px por columna + gap de 8px
-    const baseWidth = columnCount * 104; // 96px + 8px gap
-    return `${baseWidth}px`;
+    return `calc(${columnCount} * var(--game-board-column-width))`;
   }
 
   getCellData(row: GameRow, columnKey: string, colIndex: number): GameCellData {
@@ -62,4 +60,4 @@ export class GameBoardComponent {
     
     return cellData;
   }
-} 
+}

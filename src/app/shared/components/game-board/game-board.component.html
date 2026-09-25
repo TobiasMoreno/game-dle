@@ -1,9 +1,10 @@
-<div class="max-w-9xl space-y-2 mx-auto overflow-x-auto mt-4" [class]="theme().boardBg || ''">
+<div class="game-board-scroll max-w-9xl space-y-2 mx-auto overflow-x-auto mt-4" [class]="theme().boardBg || ''">
     <!-- Headers fijos -->
     <div
-      class="grid place-items-center text-xs font-bold text-center mb-1 gap-2 p-2 rounded-lg"
+      class="game-board-grid grid place-items-center text-xs font-bold text-center mb-1 gap-2 p-2 rounded-lg"
       [class]="getHeaderClasses()"
       [style.grid-template-columns]="getGridTemplateColumns()"
+      [style.min-width]="getMinWidth()"
     >
       @for (column of columns(); track column.key) {
         <div [class]="theme().headerText || 'text-white'">
@@ -15,7 +16,7 @@
     <!-- Filas de intentos -->
     @for (row of rows(); track $index) {
       <div 
-        class="grid place-items-center gap-2"
+        class="game-board-grid grid place-items-center gap-2"
         [style.grid-template-columns]="getGridTemplateColumns()"
         [style.min-width]="getMinWidth()"
       >

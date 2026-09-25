@@ -16,6 +16,7 @@
 .chronodle-page {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   color: var(--ink);
   background:
@@ -297,6 +298,7 @@
 }
 
 @media (max-width: 720px) {
+  .chronodle-page { overflow-x: clip; overflow-y: visible; }
   .chronodle-shell { width: min(100% - 20px, 1040px); padding-top: 14px; }
   .edition { max-width: 50%; text-align: right; font-size: .62rem; }
   .masthead { padding: 42px 0 26px; }

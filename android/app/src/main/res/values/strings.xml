@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GameDLE</string>
+    <string name="title_activity_main">GameDLE</string>
+    <string name="package_name">com.gamedle.app</string>
+    <string name="custom_url_scheme">com.gamedle.app</string>
+</resources>

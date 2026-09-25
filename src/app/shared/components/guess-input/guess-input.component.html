@@ -1,12 +1,12 @@
 <div class="relative w-full max-w-md mx-auto mt-2">
-  <div class="flex space-x-2 w-full">
+  <div class="flex w-full flex-col gap-2 sm:flex-row">
     <input
       #inputEl
       type="text"
       [placeholder]="placeholder()"
       [disabled]="disabled()"
       [class]="
-        'flex-1 px-4 py-3 rounded-t-lg rounded-b-none text-center focus:z-30 focus:outline-none focus:ring-2 font-medium border-2 rounded-lg ' +
+        'w-full min-w-0 flex-1 px-4 py-3 text-center focus:z-30 focus:outline-none focus:ring-2 font-medium border-2 rounded-lg ' +
         (theme().inputBorder || 'border-black') +
         ' ' +
         (theme().inputText || 'text-gray-700') +
@@ -26,7 +26,7 @@
       (click)="onSubmit()"
       [disabled]="!inputValue.trim() || disabled()"
       [class]="
-        'px-6 py-3 rounded-lg font-bold ' +
+        'w-full px-6 py-3 rounded-lg font-bold sm:w-auto ' +
         (theme().buttonBg || 'bg-blue-600') +
         ' ' +
         (theme().buttonText || 'text-white') +

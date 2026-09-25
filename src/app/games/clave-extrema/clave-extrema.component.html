@@ -80,7 +80,7 @@
             <span><i class="absent"></i><b>Fuera</b> no aparecen</span>
           </div>
           <label for="extreme-guess">Intento {{ attempts.length + 1 }}</label>
-          <input id="extreme-guess" class="guess-input" [(ngModel)]="currentGuess" (input)="onInputChange($event)" (keydown)="onPhysicalKeyDown($event)" maxlength="5" autocomplete="off" spellcheck="false" placeholder="_ _ _ _ _" autofocus>
+          <input id="extreme-guess" class="guess-input" [(ngModel)]="currentGuess" (input)="onInputChange($event)" (keydown)="onPhysicalKeyDown($event)" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="_ _ _ _ _" [readOnly]="useOnScreenKeyboardOnly" [attr.inputmode]="useOnScreenKeyboardOnly ? 'none' : 'text'" [attr.autofocus]="useOnScreenKeyboardOnly ? null : ''">
           <button type="button" class="primary-button" (click)="submitGuess()" [disabled]="currentGuess.length !== 5">Cruzar datos</button>
           @if (errorMessage) { <p class="error-note" role="alert">{{ errorMessage }}</p> }
           <div class="keyboard" aria-label="Teclado en pantalla">

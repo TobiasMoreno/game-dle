@@ -1,19 +1,20 @@
 <div
   class="flex flex-col"
   [class.min-h-screen]="!fitViewport()"
+  [class.min-h-dvh]="!fitViewport()"
   [class.h-full]="fitViewport()"
   [class.min-h-0]="fitViewport()"
   [style.background]="customBackground() || 'rgb(243 244 246)'"
 >
   <div
     [class]="fitViewport()
-      ? 'container mx-auto p-3 flex-1 min-h-0 flex flex-col'
-      : 'container mx-auto px-4 py-8 flex-1'"
+      ? 'container mx-auto p-2 sm:p-3 flex-1 min-h-0 flex flex-col'
+      : 'container mx-auto px-2 py-3 sm:px-4 sm:py-8 flex-1'"
   >
     <!-- Header -->
     @if (!hideHeader()) {
     <div
-      class="rounded-lg shadow-md p-6 mb-6"
+      class="rounded-lg shadow-md p-4 mb-4 sm:p-6 sm:mb-6"
       [style.background]="customHeaderBg() || 'white'"
       [style.color]="customTextColor() || 'inherit'"
     >
@@ -40,7 +41,7 @@
     <!-- Estado del juego -->
     @if (dailyState && !hideDailyState()) {
     <div
-      class="rounded-lg shadow-md p-6 mb-6"
+      class="rounded-lg shadow-md p-4 mb-4 sm:p-6 sm:mb-6"
       [style.background]="customCardBg() || 'white'"
       [style.color]="customTextColor() || 'inherit'"
     >
@@ -106,8 +107,8 @@
     <!-- Contenido del juego -->
     <div
       [class]="fitViewport()
-        ? 'rounded-lg shadow-md p-4 flex-1 min-h-0'
-        : 'rounded-lg shadow-md p-6'"
+        ? 'rounded-lg shadow-md p-2 sm:p-4 flex-1 min-h-0'
+        : 'rounded-lg shadow-md p-2 sm:p-6'"
       [style.background]="customCardBg() || 'white'"
       [style.color]="customTextColor() || 'inherit'"
     >
@@ -118,7 +119,7 @@
     @if (game?.stats && !hideStats()) {
     @defer (on viewport) {
       <div
-        class="rounded-lg shadow-md p-6 mt-6"
+        class="rounded-lg shadow-md p-4 mt-4 sm:p-6 sm:mt-6"
         [style.background]="customCardBg() || 'white'"
         [style.color]="customTextColor() || 'inherit'"
       >
@@ -232,7 +233,7 @@
         </div>
       </div>
     } @placeholder {
-      <div class="rounded-lg shadow-md p-6 mt-6 bg-gray-100 dark:bg-gray-800">
+      <div class="rounded-lg shadow-md p-4 mt-4 sm:p-6 sm:mt-6 bg-gray-100 dark:bg-gray-800">
         Cargando...
       </div>
     }
@@ -241,7 +242,7 @@
     <!-- Estadísticas Personales -->
     @if (!hideStats()) {
     <div
-      class="rounded-lg shadow-md p-6 mt-6"
+      class="rounded-lg shadow-md p-4 mt-4 sm:p-6 sm:mt-6"
       [style.background]="customCardBg() || 'black'"
       [style.color]="customTextColor() || 'white'"
     >

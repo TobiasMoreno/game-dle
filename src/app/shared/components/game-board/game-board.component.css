@@ -1,0 +1,28 @@
+:host {
+  --game-board-column-width: 6.5rem;
+  display: block;
+  min-width: 0;
+}
+
+.game-board-scroll {
+  max-width: 100%;
+  padding-bottom: 0.35rem;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.game-board-grid {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 640px) {
+  :host {
+    --game-board-column-width: 5rem;
+  }
+
+  .game-board-scroll {
+    margin-top: 0.65rem;
+  }
+}

@@ -115,6 +115,8 @@
             autocomplete="off"
             autocapitalize="characters"
             spellcheck="false"
+            [readOnly]="useOnScreenKeyboardOnly"
+            [attr.inputmode]="useOnScreenKeyboardOnly ? 'none' : 'text'"
             placeholder="PALABRA"
             [disabled]="gameWon || currentAttempt >= maxAttempts"
           />

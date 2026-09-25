@@ -9,6 +9,7 @@
   --acid: #dcff3f;
   --orange: #ff6b35;
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--ink);
   background:
     radial-gradient(

@@ -17,6 +17,7 @@
 .rankdle-page {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   color: var(--ink);
   background:
@@ -236,6 +237,7 @@
 :host-context(.dark) .primary-button { color: #173f47; border-color: #dff8ec; box-shadow: 5px 5px 0 #dff8ec; }
 
 @media (max-width: 760px) {
+  .rankdle-page { overflow-x: clip; overflow-y: visible; }
   .rankdle-shell { width: min(100% - 20px, 1040px); padding-top: 14px; }
   .topbar > span { max-width: 48%; text-align: right; font-size: .6rem; }
   .hero { align-items: flex-end; padding: 42px 2px 28px; }

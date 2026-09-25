@@ -8,6 +8,7 @@
   --red: #ff5e57;
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   color: var(--paper);
   background:
@@ -16,7 +17,7 @@
   font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
 }
 
-.page-shell { position: relative; z-index: 1; width: min(1180px, calc(100% - 2rem)); min-height: calc(100vh - 5rem); margin: 0 auto; padding: 1.25rem 0 2rem; }
+.page-shell { position: relative; z-index: 1; width: min(1180px, calc(100% - 2rem)); min-height: calc(100vh - 5rem); min-height: calc(100dvh - 5rem); margin: 0 auto; padding: 1.25rem 0 2rem; }
 .game-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(239,255,88,.22); padding-bottom: 1rem; }
 .brand-block { display: flex; align-items: center; gap: .8rem; }
 .brand-ball { display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 50%; color: var(--ink); background: var(--lime); font-size: 1.25rem; box-shadow: 0 0 0 5px rgba(239,255,88,.1); }
@@ -126,6 +127,7 @@
 }
 
 @media (max-width: 700px) {
+  .rosco-page { overflow-x: clip; overflow-y: visible; }
   .page-shell { width: min(100% - 1rem, 40rem); padding-top: .65rem; }
   .game-header { padding: .35rem .35rem .75rem; }
   .brand-ball { width: 2.25rem; height: 2.25rem; font-size: 1rem; }

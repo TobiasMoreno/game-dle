@@ -6,7 +6,7 @@
   } @else {
     <section aria-label="Timeline de campeones">
       <div class="mb-4 flex justify-between text-[.62rem] font-black uppercase tracking-[.12em] text-slate-400"><span>Más antiguo</span><span>Más reciente</span></div>
-      <div class="grid gap-3 md:grid-cols-5">
+      <div class="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-5">
         @for (champion of timeline; track champion.id; let index = $index) {
           <article class="relative overflow-hidden border border-white/15 bg-[#081d22]">
             <img [src]="champion.img_url" [alt]="champion.nombre" (error)="onImageError($event)" class="aspect-square w-full object-cover" />

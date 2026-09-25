@@ -5,6 +5,7 @@ import { withPreloading } from '@angular/router';
 
 import { routes } from './app.routes';
 import { NextGamePreloadingStrategy } from './shared/services/next-game-preloading.strategy';
+import { NativeShellService } from './shared/services/native-shell.service';
 import { RouteMetadataService } from './shared/services/route-metadata.service';
 
 export const appConfig: ApplicationConfig = {
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withFetch()),
     provideAppInitializer(() => inject(RouteMetadataService).start()),
+    provideAppInitializer(() => inject(NativeShellService).initialize()),
   ],
 };
