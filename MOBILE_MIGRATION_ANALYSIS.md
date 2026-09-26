@@ -710,7 +710,7 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 
 ## 19. Implementation Plan
 
-> Estado al 25 de septiembre de 2026: las fases 1 y 2 están implementadas en el árbol de trabajo de la rama `mobile`. El build client-only, la sincronización Capacitor, los tests web y el APK Android debug compilan correctamente. La validación manual en dispositivos físicos sigue siendo un control de release y debe repetirse antes de avanzar a stores.
+> Estado al 26 de septiembre de 2026: las fases 1, 2 y la implementación técnica de la fase 3 están completas en el árbol de trabajo de la rama `mobile`. Las apps Firebase Android/iOS están registradas, Analytics y Crashlytics integrados, y las reglas RTDB verificadas en el emulador y desplegadas. El build web, el build client-only, los tests y el APK Android debug compilan correctamente. La validación de eventos y de un crash simbolicado en dispositivos reales, junto con el build iOS en macOS/Xcode, siguen siendo controles manuales de release.
 
 ### Fase 0 — Decisiones y derechos
 
@@ -747,6 +747,8 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 5. Validar que no se recolecten respuestas ni PII accidental.
 
 **Checkpoint:** dashboards muestran sesiones/partidas y un crash controlado simbolicado.
+
+**Estado del checkpoint:** integración, configuración de símbolos y pruebas automatizadas completas; queda pendiente generar tráfico desde un dispositivo real y confirmar el evento/crash en Firebase Console.
 
 ### Fase 4 — Ads de prueba
 

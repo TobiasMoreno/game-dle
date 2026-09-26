@@ -7,6 +7,7 @@ import {
   argentinaDateKey,
   normalizeLegacyUtcDateKey,
 } from '../utils/daily-activity.utils';
+import { ObservabilityService } from './observability.service';
 
 /**
  * Servicio principal para gestionar los juegos
@@ -300,6 +301,7 @@ export class GameManagerService {
   constructor(
     private storageService: GameStorageService,
     private dailyActivity: DailyActivityService,
+    private observability: ObservabilityService
   ) {
     this.initializeGames();
   }
@@ -382,7 +384,7 @@ export class GameManagerService {
     gameId: string,
     won: boolean,
     attempts: number,
-    gameData?: any,
+    gameData?: any
   ): void {
     const game = this.getGame(gameId);
     if (!game) return;
@@ -423,6 +425,17 @@ export class GameManagerService {
         typeof gameData?.score === 'number' ? gameData.score : undefined;
       void this.dailyActivity.recordDailyGame(gameId, won, attempts, score);
     }
+    if (game.mode !== 'daily' || !isRepeatRound) {
+      const score =
+        typeof gameData?.score === 'number' ? gameData.score : undefined;
+      void this.observability.trackGameCompleted(
+        gameId,
+        game.mode,
+        won,
+        attempts,
+        score
+      );
+    }
   }
 
   /** Completa un desafío diario cuyo resultado principal es un puntaje. */
@@ -430,7 +443,7 @@ export class GameManagerService {
     gameId: string,
     score: number,
     gameData?: any,
-    date?: string,
+    date?: string
   ): void {
     const game = this.getGame(gameId);
     if (!game) return;
@@ -468,6 +481,15 @@ export class GameManagerService {
     if (game.mode === 'daily' && !isRepeatRound) {
       void this.dailyActivity.recordDailyGame(gameId, true, 0, score);
     }
+    if (game.mode !== 'daily' || !isRepeatRound) {
+      void this.observability.trackGameCompleted(
+        gameId,
+        game.mode,
+        true,
+        0,
+        score
+      );
+    }
   }
 
   /**
@@ -476,7 +498,7 @@ export class GameManagerService {
   private updateGameStats(
     game: GameState,
     won: boolean,
-    attempts: number,
+    attempts: number
   ): GameStats {
     const stats = game.stats || {
       totalGames: 0,

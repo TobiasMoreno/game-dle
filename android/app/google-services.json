@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "931003483104",
+    "firebase_url": "https://game-dle-default-rtdb.firebaseio.com",
+    "project_id": "game-dle",
+    "storage_bucket": "game-dle.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931003483104:android:efa8b161af7789cd7a2185",
+        "android_client_info": {
+          "package_name": "com.gamedle.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931003483104-svcho5nl87a24i6gpp588ej397bftojj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDdo7O6pDRUoVt5_kTG6zf9eSqFadGN3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931003483104-svcho5nl87a24i6gpp588ej397bftojj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "931003483104-3sqe9ib017sj2qhqmmlvvp7fhusesa3o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gamedle.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

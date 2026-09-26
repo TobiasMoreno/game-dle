@@ -16,7 +16,7 @@ export class SiteInfoComponent implements OnInit {
   private readonly theme = inject(ThemeService);
 
   readonly page = this.route.snapshot.data['page'] as SiteInfoPage;
-  readonly updatedAt = '25 de agosto de 2026';
+  readonly updatedAt = '26 de septiembre de 2026';
 
   ngOnInit(): void {
     this.theme.setHeaderTheme('default');

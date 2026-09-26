@@ -13,7 +13,9 @@ const firebaseConfig = {
   databaseURL: 'https://game-dle-default-rtdb.firebaseio.com',
 };
 
-const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+export const firebaseApp = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(firebaseApp);
 
@@ -30,7 +32,7 @@ export function assertFirebaseConfigured(): void {
   if (missingValues.length) {
     throw new Error(
       `Falta configurar Firebase: ${missingValues.join(', ')}. ` +
-      'Completa src/app/shared/config/firebase.config.ts.'
+        'Completa src/app/shared/config/firebase.config.ts.'
     );
   }
 }

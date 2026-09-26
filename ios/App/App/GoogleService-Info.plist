@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>931003483104-3sqe9ib017sj2qhqmmlvvp7fhusesa3o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.931003483104-3sqe9ib017sj2qhqmmlvvp7fhusesa3o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDZwC1cVS7AvGwB5SsGoyR7so54DH6Tl2I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>931003483104</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gamedle.app</string>
+	<key>PROJECT_ID</key>
+	<string>game-dle</string>
+	<key>STORAGE_BUCKET</key>
+	<string>game-dle.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:931003483104:ios:5541f30fbfef72ad7a2185</string>
+	<key>DATABASE_URL</key>
+	<string>https://game-dle-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
