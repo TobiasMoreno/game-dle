@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DailyActivityService } from '../../services/daily-activity.service';
 import { GameManagerService } from '../../services/game-manager.service';
 import { millisecondsUntilArgentinaMidnight } from '../../utils/daily-activity.utils';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
   selector: 'app-daily-journey',
@@ -13,6 +14,7 @@ import { millisecondsUntilArgentinaMidnight } from '../../utils/daily-activity.u
 export class DailyJourneyComponent implements OnDestroy {
   readonly activity = inject(DailyActivityService);
   private readonly gameManager = inject(GameManagerService);
+  readonly isNative = inject(PlatformService).isNative;
 
   readonly expanded = signal(false);
   readonly countdown = signal(this.formatCountdown(millisecondsUntilArgentinaMidnight()));

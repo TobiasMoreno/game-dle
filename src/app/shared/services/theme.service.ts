@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { AppStorageService } from './app-storage.service';
 
 export type FooterTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle' | 'banderadle';
 export type HeaderTheme = 'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle' | 'banderadle';
@@ -8,13 +9,14 @@ export type ColorMode = 'light' | 'dark';
   providedIn: 'root'
 })
 export class ThemeService {
+  private readonly storage = inject(AppStorageService);
   private footerTheme = signal<FooterTheme>('default');
   private headerTheme = signal<HeaderTheme>('default');
   private colorMode = signal<ColorMode>('light');
 
   constructor() {
-    // Inicializar con el tema guardado en localStorage o usar light por defecto
-    const savedMode = localStorage.getItem('colorMode') as ColorMode;
+    // Inicializar con el tema guardado en la plataforma o usar light por defecto.
+    const savedMode = this.storage.getItem('colorMode') as ColorMode;
     if (savedMode) {
       this.colorMode.set(savedMode);
       this.applyTheme(savedMode);
@@ -44,7 +46,7 @@ export class ThemeService {
   toggleColorMode() {
     const newMode = this.colorMode() === 'light' ? 'dark' : 'light';
     this.colorMode.set(newMode);
-    localStorage.setItem('colorMode', newMode);
+    this.storage.setItem('colorMode', newMode);
     this.applyTheme(newMode);
   }
 

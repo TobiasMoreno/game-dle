@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AppLifecycleService } from './app-lifecycle.service';
 
 export interface AudioState {
   isPlaying: boolean;
@@ -11,6 +12,7 @@ export interface AudioState {
 @Injectable({ providedIn: 'root' })
 export class AudioService {
   private audio: HTMLAudioElement | null = null;
+  private resumeAfterBackground = false;
   private audioStateSubject = new BehaviorSubject<AudioState>({
     isPlaying: false,
     isMuted: true,
@@ -19,6 +21,18 @@ export class AudioService {
   });
 
   public audioState$ = this.audioStateSubject.asObservable();
+
+  constructor(lifecycle: AppLifecycleService) {
+    lifecycle.stateChanges.subscribe((isActive) => {
+      if (!isActive) {
+        this.resumeAfterBackground = this.audioStateSubject.value.isPlaying;
+        this.pauseForBackground();
+      } else if (this.resumeAfterBackground) {
+        this.resumeAfterBackground = false;
+        this.startMusic();
+      }
+    });
+  }
 
   /**
    * Inicializa el audio con un archivo de música
@@ -61,6 +75,12 @@ export class AudioService {
       this.audio.currentTime = 0;
       this.updateState({ isPlaying: false });
     }
+  }
+
+  private pauseForBackground(): void {
+    if (!this.audio || !this.audioStateSubject.value.isPlaying) return;
+    this.audio.pause();
+    this.updateState({ isPlaying: false });
   }
 
   /**

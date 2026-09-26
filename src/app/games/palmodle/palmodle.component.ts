@@ -3,6 +3,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
 import { PalmodleEngineService } from './palmodle-engine.service';
 import { PalmodleGameState, PalmodlePerson } from './palmodle.models';
 import { PalmodleStorageService } from './palmodle-storage.service';
@@ -20,6 +21,7 @@ export class PalmodleComponent implements OnInit {
   private readonly storage = inject(PalmodleStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
 
   state!: PalmodleGameState;
   shareMessage = '';
@@ -98,13 +100,9 @@ export class PalmodleComponent implements OnInit {
 
   async share(): Promise<void> {
     const text = this.engine.buildShareText(this.state.score, this.state.answers);
-    try {
-      if (navigator.share) await navigator.share({ title: 'Palmó Primero', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir el resultado.';
-    }
+    const outcome = await this.shareService.share({ title: 'Palmó Primero', text, path: '/games/palmodle' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir el resultado.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   private initialState(run: number, bestScore: number): PalmodleGameState {

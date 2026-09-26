@@ -10,6 +10,7 @@ import { AdSlotComponent } from '../ad-slot/ad-slot.component';
 import { GameEditorialContentComponent } from '../game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../config/adsense.config';
 import { argentinaDateKey } from '../../utils/daily-activity.utils';
+import { HapticsService } from '../../services/haptics.service';
 
 /**
  * Componente base para todos los juegos
@@ -54,6 +55,7 @@ export class BaseGameComponent {
   protected gameStorage = inject(GameStorageService);
   private dailyActivity = inject(DailyActivityService);
   private themeService = inject(ThemeService);
+  private haptics = inject(HapticsService);
 
   /**
    * Establece el gameId y inicializa el componente
@@ -174,6 +176,7 @@ export class BaseGameComponent {
     if (!gameIdValue) return;
 
     this.gameManager.completeGame(gameIdValue, won, attempts, gameData);
+    won ? this.haptics.success() : this.haptics.warning();
     
     this.gameCompleted.emit({ won, attempts, gameData });
     

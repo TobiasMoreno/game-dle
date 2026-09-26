@@ -1,13 +1,24 @@
 import { TestBed } from '@angular/core/testing';
+import { Subject } from 'rxjs';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
 import { RoscodleComponent } from './roscodle.component';
 
 describe('RoscodleComponent pause flow', () => {
   let component: RoscodleComponent;
+  let lifecycleChanges: Subject<boolean>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    component = TestBed.runInInjectionContext(() => new RoscodleComponent());
+    lifecycleChanges = new Subject<boolean>();
+    TestBed.configureTestingModule({
+      providers: [{
+        provide: AppLifecycleService,
+        useValue: { stateChanges: lifecycleChanges.asObservable() },
+      }],
+    });
     jasmine.clock().install();
+    jasmine.clock().mockDate(new Date('2026-09-25T12:00:00Z'));
+    component = TestBed.runInInjectionContext(() => new RoscodleComponent());
+    component.ngOnInit();
   });
 
   afterEach(() => {
@@ -35,5 +46,18 @@ describe('RoscodleComponent pause flow', () => {
     expect(component.currentIndex).toBe(currentIndex + 1);
     expect(component.current?.status).toBe('current');
     expect(component.secondsLeft).toBe(secondsLeft - 1);
+  });
+
+  it('reconciles the real elapsed time after returning from background', () => {
+    component.startGame('players');
+    jasmine.clock().tick(1000);
+    const beforeBackground = component.secondsLeft;
+
+    lifecycleChanges.next(false);
+    jasmine.clock().tick(5000);
+    expect(component.secondsLeft).toBe(beforeBackground);
+
+    lifecycleChanges.next(true);
+    expect(component.secondsLeft).toBe(beforeBackground - 5);
   });
 });

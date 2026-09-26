@@ -305,7 +305,7 @@ export class GameManagerService {
   }
 
   /**
-   * Inicializa los juegos cargando datos del localStorage
+   * Inicializa los juegos cargando datos del almacenamiento de la plataforma.
    */
   private initializeGames(): void {
     const storedGames = this.storageService.getGames();

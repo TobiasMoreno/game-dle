@@ -44,6 +44,7 @@
         </svg>
         @if (!compact()) { <span>Gmail</span> }
       </a>
+      @if (!isNative) {
       <button
         type="button"
         class="inline-flex items-center gap-2 rounded-full border border-current bg-white/10 px-3 py-1.5 font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 motion-reduce:transition-none"
@@ -56,6 +57,7 @@
         </svg>
         @if (!compact()) { <span>Apoyar GameDLE</span> }
       </button>
+      }
     </div>
 
     <nav class="footer-info-links" aria-label="Información de Game-DLE">

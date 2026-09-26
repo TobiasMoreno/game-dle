@@ -1,6 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SupportDialogService } from '../../services/support-dialog.service';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +11,7 @@ import { SupportDialogService } from '../../services/support-dialog.service';
 })
 export class FooterComponent {
   readonly supportDialog = inject(SupportDialogService);
+  readonly isNative = inject(PlatformService).isNative;
   theme = input<'default' | 'onepiece' | 'wordle' | 'loldle' | 'musicdle' | 'serpentile' | 'geodle' | 'banderadle'>('default');
   compact = input<boolean>(false);
   year = new Date().getFullYear();

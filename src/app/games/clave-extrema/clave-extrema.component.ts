@@ -6,7 +6,9 @@ import { catchError, of } from 'rxjs';
 import { BaseGameComponent } from '../../shared/components/base-game/base-game.component';
 import { GameProgress } from '../../shared/models/game.model';
 import { argentinaDateKey } from '../../shared/utils/daily-activity.utils';
-import { Capacitor } from '@capacitor/core';
+import { Subscription } from 'rxjs';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
+import { PlatformService } from '../../shared/services/platform.service';
 import {
   buildExtremeKeyboardState,
   calculateExtremeScore,
@@ -28,7 +30,7 @@ interface ClaveAttempt { word: string; feedback: ClaveFeedback; marks?: ManualLe
   styleUrl: './clave-extrema.component.css',
 })
 export class ClaveExtremaComponent extends BaseGameComponent implements OnInit, OnDestroy {
-  readonly useOnScreenKeyboardOnly = Capacitor.isNativePlatform();
+  readonly useOnScreenKeyboardOnly = inject(PlatformService).isNative;
   readonly maxAttempts = 8;
   readonly rows = Array.from({ length: this.maxAttempts });
   readonly slots = Array.from({ length: 5 });
@@ -51,19 +53,28 @@ export class ClaveExtremaComponent extends BaseGameComponent implements OnInit, 
 
   private readonly gameId = 'clave-extrema';
   private readonly http = inject(HttpClient);
+  private readonly lifecycle = inject(AppLifecycleService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private words: WordEntry[] = [];
   private wordMap = new Map<string, WordEntry>();
   private startedAt = Date.now();
   private timerId?: ReturnType<typeof setInterval>;
+  private readonly subscriptions = new Subscription();
 
   ngOnInit(): void {
+    this.subscriptions.add(this.lifecycle.stateChanges.subscribe((isActive) => {
+      if (isActive) this.startTimer();
+      else this.stopTimer();
+    }));
     this.progressLoaded.subscribe((progress) => progress && this.restoreProgress(progress));
     this.setGameId(this.gameId);
     if (this.isBrowser) this.loadWords();
   }
 
-  ngOnDestroy(): void { this.stopTimer(); }
+  ngOnDestroy(): void {
+    this.stopTimer();
+    this.subscriptions.unsubscribe();
+  }
 
   private loadWords(): void {
     this.http.get<WordEntry[]>('/palabras_wordle.json').pipe(

@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { normalizeLegacyUtcDateKey } from '../../shared/utils/daily-activity.utils';
+import { AppStorageService } from '../../shared/services/app-storage.service';
 import { SerpentileGameState } from './serpentile.models';
 
 @Injectable({ providedIn: 'root' })
 export class SerpentileStorageService {
+  private readonly storage = inject(AppStorageService);
   private readonly storageKey = 'game-dle-serpentile-state-v2';
 
   load(date: string): SerpentileGameState | null {
     try {
-      const rawState = localStorage.getItem(this.storageKey);
+      const rawState = this.storage.getItem(this.storageKey);
       if (!rawState) return null;
 
       const state = JSON.parse(rawState) as SerpentileGameState;
@@ -23,10 +25,10 @@ export class SerpentileStorageService {
   }
 
   save(state: SerpentileGameState): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(state));
+    this.storage.setItem(this.storageKey, JSON.stringify(state));
   }
 
   clear(): void {
-    localStorage.removeItem(this.storageKey);
+    this.storage.removeItem(this.storageKey);
   }
 }

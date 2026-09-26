@@ -50,7 +50,7 @@ export interface DailyGameState {
 
 /**
  * Interfaz para el progreso actual del juego
- * Se guarda en localStorage y se limpia cada 24 horas
+ * Se guarda en el almacenamiento de la plataforma y se limpia cada 24 horas.
  */
 export interface GameProgress {
   /** Fecha de creación del progreso (YYYY-MM-DD) */

@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { App } from '@capacitor/app';
 import { Browser } from '@capacitor/browser';
-import { Capacitor } from '@capacitor/core';
+import { PlatformService } from './platform.service';
 
 @Injectable({ providedIn: 'root' })
 export class NativeShellService {
+  private readonly platform = inject(PlatformService);
   private initialized = false;
 
   initialize(): void {
-    if (this.initialized || !Capacitor.isNativePlatform() || typeof document === 'undefined') {
+    if (this.initialized || !this.platform.isNative || typeof document === 'undefined') {
       return;
     }
 

@@ -17,6 +17,9 @@ import {
   YoutubeIframeService,
 } from './youtube-iframe.service';
 import { MusicdleStorageService } from './musicdle-storage.service';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
+import { Subscription } from 'rxjs';
+import { PlatformService } from '../../shared/services/platform.service';
 
 @Component({
   selector: 'app-musicdle-youtube-player',
@@ -36,6 +39,9 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
   @ViewChild('playerHost', { static: true }) playerHost!: ElementRef<HTMLElement>;
 
   private readonly storage = inject(MusicdleStorageService);
+  private readonly lifecycle = inject(AppLifecycleService);
+  private readonly platform = inject(PlatformService);
+  private readonly subscriptions = new Subscription();
 
   isReady = false;
   loadFailed = false;
@@ -49,6 +55,9 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    this.subscriptions.add(this.lifecycle.stateChanges.subscribe((isActive) => {
+      if (!isActive) this.pauseForBackground();
+    }));
 
     this.youtubeApi.loadApi()
       .then((YT) => {
@@ -64,7 +73,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
             playsinline: 1,
             rel: 0,
             modestbranding: 1,
-            origin: window.location.origin,
+            origin: this.platform.isNative ? this.platform.publicUrl('/').replace(/\/$/, '') : window.location.origin,
           },
           events: {
             onReady: () => {
@@ -96,6 +105,7 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
   ngOnDestroy(): void {
     this.destroyed = true;
     this.stopMonitor();
+    this.subscriptions.unsubscribe();
     this.player?.destroy();
   }
 
@@ -114,6 +124,12 @@ export class MusicdleYoutubePlayerComponent implements AfterViewInit, OnChanges,
     this.volume = Math.min(100, Math.max(0, nextVolume));
     this.player?.setVolume(this.volume);
     this.storage.saveVolume(this.volume);
+  }
+
+  private pauseForBackground(): void {
+    this.player?.pauseVideo();
+    this.stopMonitor();
+    this.playbackChange.emit(false);
   }
 
   private get segmentEnd(): number {

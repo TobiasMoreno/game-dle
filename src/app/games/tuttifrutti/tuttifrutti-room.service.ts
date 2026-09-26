@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { signInAnonymously } from 'firebase/auth';
 import {
   Database,
@@ -27,12 +27,14 @@ import {
   calculateTuttiFruttiScores,
   calculateValidationResults,
 } from './tuttifrutti-score';
+import { AppStorageService } from '../../shared/services/app-storage.service';
 
 const ROOM_CODE_CHARACTERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const ROOM_CODE_LENGTH = 6;
 
 @Injectable({ providedIn: 'root' })
 export class TuttiFruttiRoomService {
+  private readonly storage = inject(AppStorageService);
   async authenticate(): Promise<string> {
     assertFirebaseConfigured();
     if (firebaseAuth.currentUser) return firebaseAuth.currentUser.uid;
@@ -342,14 +344,14 @@ export class TuttiFruttiRoomService {
   }
 
   getRememberedSession(): { code: string; playerName: string } | null {
-    const code = localStorage.getItem('tuttifrutti-room');
-    const playerName = localStorage.getItem('tuttifrutti-player-name');
+    const code = this.storage.getItem('tuttifrutti-room');
+    const playerName = this.storage.getItem('tuttifrutti-player-name');
     return code && playerName ? { code, playerName } : null;
   }
 
   forgetSession(): void {
-    localStorage.removeItem('tuttifrutti-room');
-    localStorage.removeItem('tuttifrutti-player-name');
+    this.storage.removeItem('tuttifrutti-room');
+    this.storage.removeItem('tuttifrutti-player-name');
   }
 
   private async nextRoundNumber(roomCode: string): Promise<number> {
@@ -368,8 +370,8 @@ export class TuttiFruttiRoomService {
   }
 
   private rememberSession(code: string, playerName: string): void {
-    localStorage.setItem('tuttifrutti-room', code);
-    localStorage.setItem('tuttifrutti-player-name', this.cleanName(playerName));
+    this.storage.setItem('tuttifrutti-room', code);
+    this.storage.setItem('tuttifrutti-player-name', this.cleanName(playerName));
   }
 
   private normalizeRoomCode(code: string): string {

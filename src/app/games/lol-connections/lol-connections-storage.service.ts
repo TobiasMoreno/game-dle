@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { AppStorageService } from '../../shared/services/app-storage.service';
 
 export interface StoredConnectionGroup {
   id: number;
@@ -28,12 +29,13 @@ export interface LolConnectionsState {
 
 @Injectable({ providedIn: 'root' })
 export class LolConnectionsStorageService {
+  private readonly storage = inject(AppStorageService);
   readonly storageKey = 'game-dle-lol-connections-state-v2';
   private readonly legacyStorageKey = 'game-dle-lol-connections-state-v1';
 
   load(): LolConnectionsState | null {
     try {
-      const raw = localStorage.getItem(this.storageKey);
+      const raw = this.storage.getItem(this.storageKey);
       if (!raw) return null;
       const state = JSON.parse(raw) as LolConnectionsState;
       if (
@@ -57,7 +59,7 @@ export class LolConnectionsStorageService {
   }
 
   save(state: LolConnectionsState): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(state));
-    localStorage.removeItem(this.legacyStorageKey);
+    this.storage.setItem(this.storageKey, JSON.stringify(state));
+    this.storage.removeItem(this.legacyStorageKey);
   }
 }

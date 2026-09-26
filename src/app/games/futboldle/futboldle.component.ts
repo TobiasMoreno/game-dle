@@ -10,6 +10,8 @@ import {
   LetterResult,
   LetterState
 } from './futboldle-engine.service';
+import { AppStorageService } from '../../shared/services/app-storage.service';
+import { ShareService } from '../../shared/services/share.service';
 
 type GameMode = 'normal' | 'easy';
 type LengthPreference = FutboldleWordLength | 'random';
@@ -29,6 +31,8 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
   readonly selectedPlayerStorageKey = 'game-dle-futboldle-selected-player';
 
   private readonly engine = inject(FutboldleEngineService);
+  private readonly storage = inject(AppStorageService);
+  private readonly shareService = inject(ShareService);
   target!: FootballerEntry;
   guesses: string[] = [];
   currentGuess = '';
@@ -141,14 +145,11 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
       state === 'correct' ? '🟩' : state === 'present' ? '🟨' : '⬛'
     ).join('')).join('\n');
     const score = this.won ? this.guesses.length : 'X';
-    const text = `FutbolDLE ⚽ ${score}/${this.maxAttempts}\n${squares}\nGame-DLE`;
-    try {
-      await navigator.clipboard.writeText(text);
-      this.copied = true;
-      window.setTimeout(() => this.copied = false, 1800);
-    } catch {
-      this.errorMessage = 'No pudimos copiar el resultado';
-    }
+    const text = `FutbolDLE ⚽ ${score}/${this.maxAttempts}\n${squares}`;
+    const outcome = await this.shareService.share({ title: 'FutbolDLE', text, path: '/games/futboldle' });
+    this.copied = outcome === 'copied' || outcome === 'shared';
+    if (this.copied) window.setTimeout(() => this.copied = false, 1800);
+    if (outcome === 'failed') this.errorMessage = 'No pudimos compartir el resultado';
   }
 
   playAgain(): void {
@@ -201,7 +202,7 @@ export class FutboldleComponent extends BaseGameComponent implements OnInit {
 
   private persistSelectedPlayer(): void {
     try {
-      localStorage.setItem(this.selectedPlayerStorageKey, JSON.stringify(this.target));
+      this.storage.setItem(this.selectedPlayerStorageKey, JSON.stringify(this.target));
     } catch (error) {
       console.error('No se pudo guardar el futbolista seleccionado:', error);
     }

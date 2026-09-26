@@ -51,8 +51,6 @@ export class RankdleEngineService {
       puzzle.definition.category,
       '',
       ...rows,
-      '',
-      `${window.location.origin}/games/rankdle`,
     ].join('\n');
   }
 

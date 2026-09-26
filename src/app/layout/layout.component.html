@@ -70,6 +70,7 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-4">
+          @if (!isNative) {
           <button
             type="button"
             (click)="supportDialog.open()"
@@ -83,6 +84,7 @@
             </svg>
             <span class="hidden sm:inline">Apoyar GameDLE</span>
           </button>
+          }
 
           <!-- Theme Toggle Button -->
           <button
@@ -133,7 +135,9 @@
       </div>
     </div>
 
-    <app-support-dialog />
+    @if (!isNative) {
+      <app-support-dialog />
+    }
 
     <!-- Main Content -->
     <div id="main-content" class="flex-1 min-h-0" tabindex="-1">

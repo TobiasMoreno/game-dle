@@ -5,6 +5,7 @@ import { GameEditorialContentComponent } from '../../shared/components/game-edit
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
 import { ChronodleEngineService } from './chronodle-engine.service';
 import {
   ChronodleDirection,
@@ -27,6 +28,7 @@ export class ChronodleComponent implements OnInit {
   private readonly storage = inject(ChronodleStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
 
   puzzle = this.engine.createRoundPuzzle(1);
   state!: ChronodleGameState;
@@ -182,13 +184,9 @@ export class ChronodleComponent implements OnInit {
       this.state.attempts.map((attempt) => attempt.feedback),
       this.state.status === 'won'
     );
-    try {
-      if (navigator.share) await navigator.share({ title: 'ChronoDLE', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir el resultado.';
-    }
+    const outcome = await this.shareService.share({ title: 'ChronoDLE', text, path: '/games/chronodle' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir el resultado.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   nextRound(): void {

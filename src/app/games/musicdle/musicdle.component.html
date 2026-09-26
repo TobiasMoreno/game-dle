@@ -57,6 +57,9 @@
     @if (message) {
       <div class="notice" role="status">{{ message }}</div>
     }
+    @if (!connected()) {
+      <div class="notice" role="status">Sin conexión: podés ver tu progreso, pero el audio de YouTube necesita Internet.</div>
+    }
 
     @if (isLoading) {
       <div class="loading-state" aria-live="polite">
@@ -99,7 +102,7 @@
             <button
               type="button"
               class="play-button"
-              [disabled]="!playerReady || isPlaying"
+              [disabled]="!playerReady || isPlaying || !connected()"
               (click)="playSegment()"
             >
               <span class="play-button__icon" aria-hidden="true">{{ isPlaying ? '◼' : '▶' }}</span>

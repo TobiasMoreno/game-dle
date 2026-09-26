@@ -1,12 +1,14 @@
 import { MusicdleEngineService } from './musicdle-engine.service';
 import { MusicdleStorageService } from './musicdle-storage.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('MusicdleStorageService', () => {
   let service: MusicdleStorageService;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({});
     localStorage.clear();
-    service = new MusicdleStorageService();
+    service = createService();
   });
 
   afterEach(() => {
@@ -44,7 +46,7 @@ describe('MusicdleStorageService', () => {
     service.saveFilter(filter);
     service.saveRound(round);
 
-    const restored = new MusicdleStorageService();
+    const restored = createService();
     expect(restored.getFilter()).toEqual(filter);
     expect(restored.getRound()?.filter).toEqual(filter);
   });
@@ -65,7 +67,7 @@ describe('MusicdleStorageService', () => {
     expect(service.getVolume()).toBe(100);
 
     service.saveVolume(15);
-    const restoredService = new MusicdleStorageService();
+    const restoredService = createService();
 
     expect(restoredService.getVolume()).toBe(15);
     expect(localStorage.getItem('game-dle-musicdle-volume-v1')).toBe('15');
@@ -78,4 +80,8 @@ describe('MusicdleStorageService', () => {
     service.saveVolume(-10);
     expect(service.getVolume()).toBe(0);
   });
+
+  function createService(): MusicdleStorageService {
+    return TestBed.runInInjectionContext(() => new MusicdleStorageService());
+  }
 });

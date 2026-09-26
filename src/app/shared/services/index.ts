@@ -5,3 +5,8 @@ export * from './game-manager.service';
 export * from './game-storage.service';
 export * from './theme.service';
 export * from './enclosure-optimizer.service';
+export * from './app-lifecycle.service';
+export * from './app-storage.service';
+export * from './haptics.service';
+export * from './platform.service';
+export * from './share.service';

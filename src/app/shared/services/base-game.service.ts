@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { GameProgress } from '../models/game.model';
 import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
+import { AppStorageService } from './app-storage.service';
 
 export type CompareStatus = 'correct' | 'partial' | 'wrong';
 
 @Injectable({ providedIn: 'root' })
 export class BaseGameService {
+  private readonly storage = inject(AppStorageService);
 
   /**
    * Guarda el progreso actual del juego
@@ -23,7 +25,7 @@ export class BaseGameService {
         lastUpdated: Date.now()
       };
 
-      localStorage.setItem(`game_progress_${gameId}`, JSON.stringify(progressData));
+      this.storage.setItem(`game_progress_${gameId}`, JSON.stringify(progressData));
       console.log('💾 Progreso guardado para:', gameId);
     } catch (error) {
       console.error('❌ Error al guardar progreso:', error);
@@ -35,7 +37,7 @@ export class BaseGameService {
    */
   protected restoreProgress(gameId: string): GameProgress | null {
     try {
-      const stored = localStorage.getItem(`game_progress_${gameId}`);
+      const stored = this.storage.getItem(`game_progress_${gameId}`);
       if (stored) {
         const progress: GameProgress = JSON.parse(stored);
         console.log('📂 Progreso restaurado para:', gameId);
@@ -52,7 +54,7 @@ export class BaseGameService {
    */
   protected isGamePlayedToday(gameId: string): boolean {
     try {
-      const stored = localStorage.getItem(`game_progress_${gameId}`);
+      const stored = this.storage.getItem(`game_progress_${gameId}`);
       if (stored) {
         const progress: GameProgress = JSON.parse(stored);
         const today = argentinaDateKey();
@@ -69,7 +71,7 @@ export class BaseGameService {
    */
   protected getTodayGameState(gameId: string): any {
     try {
-      const stored = localStorage.getItem(`game_progress_${gameId}`);
+      const stored = this.storage.getItem(`game_progress_${gameId}`);
       if (stored) {
         const progress: GameProgress = JSON.parse(stored);
         const today = argentinaDateKey();
@@ -218,7 +220,7 @@ export class BaseGameService {
    */
   protected clearGameData(gameId: string): void {
     try {
-      localStorage.removeItem(`game_progress_${gameId}`);
+      this.storage.removeItem(`game_progress_${gameId}`);
       console.log('🗑️ Datos del juego eliminados:', gameId);
     } catch (error) {
       console.error('❌ Error al limpiar datos del juego:', error);

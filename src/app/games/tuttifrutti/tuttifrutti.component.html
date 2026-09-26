@@ -17,7 +17,7 @@
         <input id="player-name" class="text-field" type="text" maxlength="24"
           autocomplete="nickname" placeholder="Ej: Tobi" [(ngModel)]="playerName"
           (keyup.enter)="joinCode ? joinRoom() : createRoom()">
-        <button class="primary-action" type="button" [disabled]="isBusy" (click)="createRoom()">
+        <button class="primary-action" type="button" [disabled]="isBusy || !connected()" (click)="createRoom()">
           <span>Crear una sala</span><span aria-hidden="true">→</span>
         </button>
         <div class="divider"><span>o sumate a una</span></div>
@@ -26,9 +26,10 @@
           <input id="room-code" class="text-field room-code-input" type="text" maxlength="6"
             autocomplete="off" placeholder="ABC123" [(ngModel)]="joinCode"
             (input)="joinCode = joinCode.toUpperCase()" (keyup.enter)="joinRoom()">
-          <button type="button" [disabled]="isBusy" (click)="joinRoom()">Entrar</button>
+          <button type="button" [disabled]="isBusy || !connected()" (click)="joinRoom()">Entrar</button>
         </div>
         @if (errorMessage) { <p class="message error" role="alert">{{ errorMessage }}</p> }
+        @if (!connected()) { <p class="message error" role="status">Sin conexión. Las salas multijugador necesitan Internet.</p> }
         @if (isBusy) { <p class="loading-note">Conectando los lápices...</p> }
       </div>
     </section>
@@ -49,6 +50,7 @@
 
       @if (infoMessage) { <p class="message info" role="status">{{ infoMessage }}</p> }
       @if (errorMessage) { <p class="message error" role="alert">{{ errorMessage }}</p> }
+      @if (!connected()) { <p class="message error" role="status">Sin conexión. La sala se actualizará cuando vuelva Internet.</p> }
 
       @if (room.status === 'waiting') {
         <div class="lobby-grid">
@@ -114,7 +116,7 @@
                   <button type="button" (click)="addCategory()">+</button>
                 </div>
               }
-              <button class="start-button" type="button" [disabled]="isBusy || onlinePlayers < 2" (click)="startRound()">
+              <button class="start-button" type="button" [disabled]="isBusy || onlinePlayers < 2 || !connected()" (click)="startRound()">
                 Sacar letra y empezar
               </button>
             } @else {
@@ -152,7 +154,7 @@
                 </label>
               }
             </div>
-            <button class="tutti-button" type="submit" [disabled]="closingRound">
+            <button class="tutti-button" type="submit" [disabled]="closingRound || !connected()">
               <span>¡TUTTI FRUTTI!</span><small>Cierra la ronda para todos</small>
             </button>
           </form>
@@ -187,9 +189,9 @@
                   <div class="anonymous-word-row">
                     <strong>{{ resultAnswer(word.ownerId, word.categoryIndex) }}</strong>
                     <div class="vote-buttons compact-votes">
-                      <button type="button" class="reject" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'no'"
+                      <button type="button" class="reject" [disabled]="!connected()" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'no'"
                         (click)="castVote(word.ownerId, word.categoryIndex, 'no')" aria-label="La palabra no vale">×</button>
-                      <button type="button" class="accept" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'yes'"
+                      <button type="button" class="accept" [disabled]="!connected()" [class.selected]="myVote(word.ownerId, word.categoryIndex) === 'yes'"
                         (click)="castVote(word.ownerId, word.categoryIndex, 'yes')" aria-label="La palabra sí vale">✓</button>
                     </div>
                   </div>
@@ -228,7 +230,7 @@
             }</tbody>
           </table></div>
           @if (isHost) {
-            <button class="next-button" type="button" [disabled]="isBusy" (click)="startRound()">Empezar ronda {{ room.round + 1 }} →</button>
+            <button class="next-button" type="button" [disabled]="isBusy || !connected()" (click)="startRound()">Empezar ronda {{ room.round + 1 }} →</button>
           } @else { <p class="host-note"><span class="pulse"></span> Esperando la próxima ronda</p> }
         </section>
       }
@@ -250,7 +252,7 @@
             }
           </div>
           @if (isHost) {
-            <button class="next-button" type="button" [disabled]="isBusy" (click)="restartGame()">Configurar otra partida →</button>
+            <button class="next-button" type="button" [disabled]="isBusy || !connected()" (click)="restartGame()">Configurar otra partida →</button>
           } @else { <p class="host-note"><span class="pulse"></span> El anfitrión puede iniciar otra partida</p> }
         </section>
       }

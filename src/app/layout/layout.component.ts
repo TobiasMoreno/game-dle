@@ -4,6 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ThemeService } from '../shared/services/theme.service';
 import { SupportDialogComponent } from '../shared/components/support-dialog/support-dialog.component';
 import { SupportDialogService } from '../shared/services/support-dialog.service';
+import { PlatformService } from '../shared/services/platform.service';
 
 @Component({
   selector: 'app-layout',
@@ -18,6 +19,7 @@ export class LayoutComponent implements OnDestroy {
   isSidebarOpen = false;
   private themeService = inject(ThemeService);
   readonly supportDialog = inject(SupportDialogService);
+  readonly isNative = inject(PlatformService).isNative;
 
   get colorMode() {
     return this.themeService.getColorMode();

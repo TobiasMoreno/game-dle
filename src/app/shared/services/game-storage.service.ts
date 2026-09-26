@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { GameState, DailyGameState, GameStats, GameProgress } from '../models/game.model';
 import { argentinaDateKey, normalizeLegacyUtcDateKey } from '../utils/daily-activity.utils';
+import { AppStorageService } from './app-storage.service';
 
 /**
  * Servicio para manejar el almacenamiento local de los juegos
- * Utiliza localStorage para persistir el estado de los juegos
+ * Persiste el estado en localStorage web o Preferences native mediante AppStorageService.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class GameStorageService {
+  private readonly storage = inject(AppStorageService);
   private readonly GAMES_STORAGE_KEY = 'game-dle-games';
   private readonly PROGRESS_STORAGE_KEY = 'game-dle-progress';
   private readonly STATS_STORAGE_KEY = 'game-dle-stats';
@@ -21,22 +23,22 @@ export class GameStorageService {
    */
   getGames(): GameState[] {
     try {
-      const data = localStorage.getItem(this.GAMES_STORAGE_KEY);
+      const data = this.storage.getItem(this.GAMES_STORAGE_KEY);
       return data ? JSON.parse(data) : [];
     } catch (error) {
-      console.error('Error al cargar juegos del localStorage:', error);
+      console.error('Error al cargar juegos del almacenamiento:', error);
       return [];
     }
   }
 
   /**
-   * Guarda todos los juegos en localStorage
+   * Guarda todos los juegos en el almacenamiento de la plataforma.
    */
   saveGames(games: GameState[]): void {
     try {
-      localStorage.setItem(this.GAMES_STORAGE_KEY, JSON.stringify(games));
+      this.storage.setItem(this.GAMES_STORAGE_KEY, JSON.stringify(games));
     } catch (error) {
-      console.error('Error al guardar juegos en localStorage:', error);
+      console.error('Error al guardar juegos en el almacenamiento:', error);
     }
   }
 
@@ -172,7 +174,7 @@ export class GameStorageService {
       }
       
       allStats[gameId] = currentStats;
-      localStorage.setItem(this.STATS_STORAGE_KEY, JSON.stringify(allStats));
+      this.storage.setItem(this.STATS_STORAGE_KEY, JSON.stringify(allStats));
       
     } catch (error) {
       console.error(`❌ Error al actualizar estadísticas personales para ${gameId}:`, error);
@@ -184,7 +186,7 @@ export class GameStorageService {
    */
   private getAllPersonalStats(): { [gameId: string]: { played: number; won: number; currentStreak: number; bestStreak: number } } {
     try {
-      const data = localStorage.getItem(this.STATS_STORAGE_KEY);
+      const data = this.storage.getItem(this.STATS_STORAGE_KEY);
       return data ? JSON.parse(data) : {};
     } catch (error) {
       console.error('❌ Error al cargar estadísticas personales:', error);
@@ -205,7 +207,7 @@ export class GameStorageService {
         lastUpdated: Date.now()
       };
       
-      localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
+      this.storage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
     } catch (error) {
       console.error(`❌ Error al guardar progreso para ${gameId}:`, error);
     }
@@ -246,7 +248,7 @@ export class GameStorageService {
       const allProgress = this.getAllProgress();
       delete allProgress[gameId];
       
-      localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
+      this.storage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
     } catch (error) {
       console.error(`❌ Error al limpiar progreso para ${gameId}:`, error);
     }
@@ -269,7 +271,7 @@ export class GameStorageService {
       
       if (normalizeLegacyUtcDateKey(progress.date) !== today) {
         delete allProgress[gameId];
-        localStorage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
+        this.storage.setItem(this.PROGRESS_STORAGE_KEY, JSON.stringify(allProgress));
       }
     } catch (error) {
       console.error(`❌ Error al limpiar progreso antiguo para ${gameId}:`, error);
@@ -288,7 +290,7 @@ export class GameStorageService {
    */
   private getAllProgress(): { [gameId: string]: GameProgress } {
     try {
-      const data = localStorage.getItem(this.PROGRESS_STORAGE_KEY);
+      const data = this.storage.getItem(this.PROGRESS_STORAGE_KEY);
       return data ? JSON.parse(data) : {};
     } catch (error) {
       console.error('❌ Error al cargar progresos:', error);
@@ -300,41 +302,8 @@ export class GameStorageService {
    * Limpia todos los datos almacenados (útil para testing)
    */
   clearAllData(): void {
-    localStorage.removeItem(this.GAMES_STORAGE_KEY);
-    localStorage.removeItem(this.PROGRESS_STORAGE_KEY);
-    localStorage.removeItem(this.STATS_STORAGE_KEY);
-  }
-
-  /**
-   * Obtiene información sobre el espacio disponible en localStorage
-   */
-  private getLocalStorageQuota(): any {
-    try {
-      const testKey = '__localStorage_test__';
-      const testValue = 'x'.repeat(1024); // 1KB
-      let totalSize = 0;
-      
-      // Intentar escribir hasta que falle
-      while (true) {
-        try {
-          localStorage.setItem(testKey + totalSize, testValue);
-          totalSize++;
-        } catch (e) {
-          break;
-        }
-      }
-      
-      // Limpiar datos de prueba
-      for (let i = 0; i < totalSize; i++) {
-        localStorage.removeItem(testKey + i);
-      }
-      
-      return {
-        availableSpace: totalSize * 1024, // en bytes
-        totalSize: totalSize * 1024
-      };
-    } catch (error) {
-      return { error: 'No se pudo determinar el espacio disponible' };
-    }
+    this.storage.removeItem(this.GAMES_STORAGE_KEY);
+    this.storage.removeItem(this.PROGRESS_STORAGE_KEY);
+    this.storage.removeItem(this.STATS_STORAGE_KEY);
   }
 }

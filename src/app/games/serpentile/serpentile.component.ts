@@ -6,6 +6,9 @@ import { GameEditorialContentComponent } from '../../shared/components/game-edit
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
+import { Subscription } from 'rxjs';
 import { argentinaDateKey } from '../../shared/utils/daily-activity.utils';
 import { SerpentileEngineService } from './serpentile-engine.service';
 import { SerpentileGeneratorService } from './serpentile-generator.service';
@@ -35,6 +38,8 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   private readonly storage = inject(SerpentileStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
+  private readonly lifecycle = inject(AppLifecycleService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private animationFrameId: number | null = null;
   private stepTimeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -42,6 +47,8 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   private readonly animationDuration = 900;
   private animationProgress = 0;
   private renderTrail: { x: number; y: number }[] = [];
+  private autoPaused = false;
+  private readonly subscriptions = new Subscription();
 
   readonly boardCells = this.engine.createBoardCells();
   readonly hexPoints = this.createHexPoints(49);
@@ -51,6 +58,18 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   displayHead = { x: 360, y: 310 };
 
   ngOnInit(): void {
+    this.subscriptions.add(this.lifecycle.stateChanges.subscribe((isActive) => {
+      if (!isActive && this.state?.status === 'running') {
+        this.autoPaused = true;
+        this.state = { ...this.state, status: 'paused' };
+        this.pauseAnimation();
+      } else if (isActive && this.autoPaused && this.state?.status === 'paused') {
+        this.autoPaused = false;
+        this.state = { ...this.state, status: 'running' };
+        if (this.activeMove) this.animateActiveMove();
+        else this.scheduleNextStep(120);
+      }
+    }));
     this.theme.setHeaderTheme('serpentile');
     this.theme.setFooterTheme('serpentile');
     const date = argentinaDateKey();
@@ -66,6 +85,7 @@ export class SerpentileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopAnimation();
+    this.subscriptions.unsubscribe();
   }
 
   get score(): number {
@@ -181,14 +201,10 @@ export class SerpentileComponent implements OnInit, OnDestroy {
   }
 
   async share(): Promise<void> {
-    const text = `Serpentile · ${this.state.date}\n🐍 ${this.score} puntos · ${this.state.moves} movimientos\n${window.location.href}`;
-    try {
-      if (navigator.share) await navigator.share({ title: 'Serpentile diario', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir.';
-    }
+    const text = `Serpentile · ${this.state.date}\n🐍 ${this.score} puntos · ${this.state.moves} movimientos`;
+    const outcome = await this.shareService.share({ title: 'Serpentile diario', text, path: '/games/serpentile' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   private scheduleNextStep(delay: number): void {

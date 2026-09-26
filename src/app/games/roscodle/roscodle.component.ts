@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { AdSlotComponent } from '../../shared/components/ad-slot/ad-slot.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { ThemeService } from '../../shared/services/theme.service';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
 import { ROSCO_GENERAL_CATEGORIES, ROSCO_LEAGUES } from './roscodle-catalog';
 import { ROSCO_QUESTIONS } from './roscodle.data';
 import { RoscoEngineService } from './roscodle-engine.service';
@@ -25,7 +27,10 @@ export class RoscodleComponent implements OnInit, OnDestroy {
 
   private readonly engine = inject(RoscoEngineService);
   private readonly theme = inject(ThemeService);
+  private readonly lifecycle = inject(AppLifecycleService);
   private timerId: ReturnType<typeof setInterval> | null = null;
+  private timerEndsAt: number | null = null;
+  private readonly subscriptions = new Subscription();
 
   phase: 'setup' | 'playing' | 'finished' = 'setup';
   setupView: 'categories' | 'leagues' | 'league' = 'categories';
@@ -43,10 +48,18 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.theme.setHeaderTheme('default');
     this.theme.setFooterTheme('default');
+    this.subscriptions.add(this.lifecycle.stateChanges.subscribe((isActive) => {
+      if (!isActive) {
+        this.stopTimer();
+      } else if (this.phase === 'playing' && !this.isPaused) {
+        this.startTimer(true);
+      }
+    }));
   }
 
   ngOnDestroy(): void {
     this.stopTimer();
+    this.subscriptions.unsubscribe();
   }
 
   get current(): RoscoLetter | null {
@@ -100,6 +113,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     this.isTransitioning = false;
     this.isPaused = false;
     this.secondsLeft = this.roundSeconds;
+    this.timerEndsAt = null;
     this.phase = 'playing';
     this.startTimer();
   }
@@ -128,6 +142,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     if (this.phase !== 'playing' || this.isPaused || !this.current || this.isTransitioning) return;
     this.stopTimer();
     this.isPaused = true;
+    this.timerEndsAt = null;
     this.current.status = 'pending';
     this.feedback = null;
     this.answer = '';
@@ -147,6 +162,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
   changeCategory(): void {
     this.stopTimer();
     this.phase = 'setup';
+    this.timerEndsAt = null;
     this.isPaused = false;
     this.setupView = 'categories';
     this.selectedLeague = null;
@@ -173,6 +189,7 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     if (this.current?.status === 'current') this.current.status = 'pending';
     this.result = this.engine.result(this.letters);
     this.phase = 'finished';
+    this.timerEndsAt = null;
   }
 
   private stopTimer(): void {
@@ -180,11 +197,19 @@ export class RoscodleComponent implements OnInit, OnDestroy {
     this.timerId = null;
   }
 
-  private startTimer(): void {
+  private startTimer(preserveDeadline = false): void {
     this.stopTimer();
-    this.timerId = setInterval(() => {
-      this.secondsLeft -= 1;
+    if (!preserveDeadline || this.timerEndsAt === null) {
+      this.timerEndsAt = Date.now() + this.secondsLeft * 1000;
+    }
+    const tick = () => {
+      if (this.timerEndsAt === null) return;
+      this.secondsLeft = Math.max(0, Math.ceil((this.timerEndsAt - Date.now()) / 1000));
       if (this.secondsLeft <= 0) this.finishGame();
-    }, 1000);
+    };
+    tick();
+    this.timerId = setInterval(() => {
+      tick();
+    }, 250);
   }
 }

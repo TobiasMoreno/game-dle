@@ -8,6 +8,7 @@ import { ADSENSE_CONFIG } from '../../shared/config/adsense.config';
 import { GameProgress } from '../../shared/models/game.model';
 import { GameStorageService } from '../../shared/services/game-storage.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
 import { GeodleEngineService } from './geodle-engine.service';
 import {
   GeodleCatalog,
@@ -30,6 +31,7 @@ export class GeodleComponent implements OnInit {
   private readonly engine = inject(GeodleEngineService);
   private readonly storage = inject(GameStorageService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
 
   countries: GeodleCountry[] = [];
   suggestions: GeodleCountry[] = [];
@@ -120,14 +122,10 @@ export class GeodleComponent implements OnInit {
       guess.population,
       guess.borders,
     ].map(({ status }) => ({ correct: '🟩', partial: '🟨', wrong: '⬛' })[status]).join(''));
-    const text = `GeoDLE · ${score}\n${rows.join('\n')}\n${window.location.href}`;
-    try {
-      if (navigator.share) await navigator.share({ title: 'GeoDLE', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir el resultado.';
-    }
+    const text = `GeoDLE · ${score}\n${rows.join('\n')}`;
+    const outcome = await this.shareService.share({ title: 'GeoDLE', text, path: '/games/geodle' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir el resultado.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   hideSuggestionsSoon(): void {

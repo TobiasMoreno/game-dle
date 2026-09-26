@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { AppStorageService } from '../../shared/services/app-storage.service';
 import {
   MusicdleCooldownEntry,
   MusicdleFilter,
@@ -10,6 +11,7 @@ const DEFAULT_VOLUME = 100;
 
 @Injectable({ providedIn: 'root' })
 export class MusicdleStorageService {
+  private readonly storage = inject(AppStorageService);
   private readonly roundKey = 'game-dle-musicdle-round-v2';
   private readonly legacyRoundKey = 'game-dle-musicdle-round-v1';
   private readonly cooldownKey = 'game-dle-musicdle-cooldown-v1';
@@ -73,7 +75,7 @@ export class MusicdleStorageService {
 
   private read<T>(key: string): T | null {
     try {
-      const value = localStorage.getItem(key);
+      const value = this.storage.getItem(key);
       return value ? JSON.parse(value) as T : null;
     } catch (error) {
       console.error(`No se pudo leer ${key}:`, error);
@@ -83,7 +85,7 @@ export class MusicdleStorageService {
 
   private write<T>(key: string, value: T): void {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
+      this.storage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error(`No se pudo guardar ${key}:`, error);
     }
@@ -91,7 +93,7 @@ export class MusicdleStorageService {
 
   private remove(key: string): void {
     try {
-      localStorage.removeItem(key);
+      this.storage.removeItem(key);
     } catch (error) {
       console.error(`No se pudo eliminar ${key}:`, error);
     }

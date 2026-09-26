@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { AppStorageService } from '../../shared/services/app-storage.service';
 import { PalmodleGameState } from './palmodle.models';
 
 @Injectable({ providedIn: 'root' })
 export class PalmodleStorageService {
+  private readonly storage = inject(AppStorageService);
   private readonly key = 'game-dle-palmodle-v1';
 
   load(): PalmodleGameState | null {
     try {
-      const raw = localStorage.getItem(this.key);
+      const raw = this.storage.getItem(this.key);
       if (!raw) return null;
       const value = JSON.parse(raw) as PalmodleGameState | (Omit<PalmodleGameState, 'version' | 'seed'> & { version: 1 });
       if (value.version === 2 && value.round >= 0 && value.round < 10) return value;
@@ -31,7 +33,7 @@ export class PalmodleStorageService {
   }
 
   save(state: PalmodleGameState): void {
-    localStorage.setItem(this.key, JSON.stringify(state));
+    this.storage.setItem(this.key, JSON.stringify(state));
   }
 
   private randomSeed(): number {

@@ -61,8 +61,6 @@ export class ChronodleEngineService {
       `ChronoDLE · Ronda ${puzzle.number} · ${won ? attempts.length : 'X'}/4`,
       '',
       ...rows,
-      '',
-      `${window.location.origin}/games/chronodle`,
     ].join('\n');
   }
 

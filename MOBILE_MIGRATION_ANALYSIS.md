@@ -710,6 +710,8 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 
 ## 19. Implementation Plan
 
+> Estado al 25 de septiembre de 2026: las fases 1 y 2 están implementadas en el árbol de trabajo de la rama `mobile`. El build client-only, la sincronización Capacitor, los tests web y el APK Android debug compilan correctamente. La validación manual en dispositivos físicos sigue siendo un control de release y debe repetirse antes de avanzar a stores.
+
 ### Fase 0 — Decisiones y derechos
 
 1. Confirmar nombre, `applicationId`/Bundle ID y ownership de cuentas Google/Apple/Firebase/AdMob.

@@ -15,6 +15,9 @@ import {
 } from './tuttifrutti.models';
 import { TuttiFruttiRoomService } from './tuttifrutti-room.service';
 import { requiredYesVotes } from './tuttifrutti-score';
+import { ShareService } from '../../shared/services/share.service';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
+import { Subscription } from 'rxjs';
 
 interface PlayerEntry {
   id: string;
@@ -60,6 +63,10 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
 
   private readonly roomService = inject(TuttiFruttiRoomService);
   private readonly route = inject(ActivatedRoute);
+  private readonly shareService = inject(ShareService);
+  private readonly lifecycle = inject(AppLifecycleService);
+  readonly connected = this.lifecycle.connected;
+  private readonly subscriptions = new Subscription();
 
   get isHost(): boolean {
     return this.room?.hostId === this.userId;
@@ -156,6 +163,13 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
   }
 
   ngOnInit(): void {
+    this.subscriptions.add(this.lifecycle.stateChanges.subscribe((isActive) => {
+      if (!isActive) {
+        this.stopTimer();
+      } else if (this.room?.status === 'playing' || this.room?.status === 'voting') {
+        this.startTimer(this.room.status);
+      }
+    }));
     this.setGameId('tuttifrutti');
     this.joinCode = this.route.snapshot.queryParamMap.get('room')?.toUpperCase() ?? '';
     const remembered = this.roomService.getRememberedSession();
@@ -168,6 +182,7 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
 
   ngOnDestroy(): void {
     this.stopListening();
+    this.subscriptions.unsubscribe();
   }
 
   async createRoom(): Promise<void> {
@@ -234,6 +249,10 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
 
   async callTuttiFrutti(): Promise<void> {
     if (!this.room || this.room.status !== 'playing' || this.closingRound) return;
+    if (!this.connected()) {
+      this.errorMessage = 'Sin conexión. Conservamos tus respuestas hasta que vuelva Internet.';
+      return;
+    }
     this.closingRound = true;
     this.submittedRound = this.room.round;
     try {
@@ -246,6 +265,10 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
 
   async castVote(ownerId: string, categoryIndex: number, vote: TuttiFruttiVote): Promise<void> {
     if (this.room?.status !== 'voting' || this.validationRemainingMs <= 0) return;
+    if (!this.connected()) {
+      this.errorMessage = 'Necesitás conexión a Internet para votar.';
+      return;
+    }
     try {
       await this.roomService.voteAnswer(
         this.roomCode,
@@ -283,16 +306,15 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
   }
 
   async copyRoomInvitation(): Promise<void> {
-    const url = new URL('/games/tuttifrutti', window.location.origin);
-    url.searchParams.set('room', this.roomCode);
     const text = `Sumate a mi Tutti Frutti en Game-DLE. Sala ${this.roomCode}`;
-    try {
-      await navigator.clipboard.writeText(`${text}\n${url.toString()}`);
-      this.infoMessage = 'Invitación copiada al portapapeles.';
-      this.errorMessage = '';
-    } catch {
-      this.errorMessage = 'No pudimos copiar la invitación.';
-    }
+    const outcome = await this.shareService.share({
+      title: 'Tutti Frutti',
+      text,
+      path: `/games/tuttifrutti?room=${encodeURIComponent(this.roomCode)}`,
+    });
+    this.infoMessage = outcome === 'cancelled' || outcome === 'failed' ? '' :
+      outcome === 'copied' ? 'Invitación copiada al portapapeles.' : 'Invitación lista para compartir.';
+    this.errorMessage = outcome === 'failed' ? 'No pudimos compartir la invitación.' : '';
   }
 
   categoryKey(index: number): string {
@@ -502,6 +524,10 @@ export class TuttiFruttiComponent extends BaseGameComponent implements OnInit, O
   }
 
   private async runAction(action: () => Promise<void>): Promise<void> {
+    if (!this.connected()) {
+      this.errorMessage = 'Necesitás conexión a Internet para jugar Tutti Frutti.';
+      return;
+    }
     this.isBusy = true;
     this.errorMessage = '';
     try {

@@ -7,6 +7,7 @@ import { GameProgress } from '../../shared/models/game.model';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { GameStorageService } from '../../shared/services/game-storage.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
 import {
   BANDERADLE_MAX_ATTEMPTS,
   BanderadleEngineService,
@@ -49,6 +50,7 @@ export class BanderadleComponent implements OnInit {
   private readonly storage = inject(GameStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
 
   countries: BanderadleCountry[] = [];
   suggestions: BanderadleCountry[] = [];
@@ -197,14 +199,10 @@ export class BanderadleComponent implements OnInit {
     const marks = this.attempts
       .map((attempt) => attempt.correct ? '🟩' : attempt.kind === 'pass' ? '⏭️' : '⬛')
       .join('');
-    const text = `BanderaDLE · ${score}\n${marks}\n${window.location.href}`;
-    try {
-      if (navigator.share) await navigator.share({ title: 'BanderaDLE', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir el resultado.';
-    }
+    const text = `BanderaDLE · ${score}\n${marks}`;
+    const outcome = await this.shareService.share({ title: 'BanderaDLE', text, path: '/games/banderadle' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir el resultado.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   hideSuggestionsSoon(): void {

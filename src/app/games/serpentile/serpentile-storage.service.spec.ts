@@ -1,11 +1,13 @@
 import { SerpentileStorageService } from './serpentile-storage.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('SerpentileStorageService', () => {
   let service: SerpentileStorageService;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({});
     localStorage.clear();
-    service = new SerpentileStorageService();
+    service = TestBed.runInInjectionContext(() => new SerpentileStorageService());
   });
 
   afterEach(() => localStorage.clear());

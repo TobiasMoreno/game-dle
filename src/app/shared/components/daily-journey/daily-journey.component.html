@@ -117,9 +117,11 @@
       <div class="journey__sync">
         <div>
           <span class="journey__eyebrow">Respaldo</span>
-          <h3>{{ !activity.authReady() ? 'Restaurando sesión…' : signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
+          <h3>{{ isNative ? 'Guardado en este dispositivo' : !activity.authReady() ? 'Restaurando sesión…' : signedInWithGoogle() ? 'Conectado con Google' : 'Guardado en este dispositivo' }}</h3>
           <p>
-            {{ !activity.authReady()
+            {{ isNative
+              ? 'Tu progreso y tus preferencias se conservan en la app.'
+              : !activity.authReady()
               ? 'Estamos recuperando tu cuenta y tus estadísticas guardadas.'
               : signedInWithGoogle()
               ? 'Tus estadísticas, tu bitácora y tu racha pueden acompañarte en otros dispositivos.'
@@ -129,6 +131,7 @@
             <small class="journey__sync-status" role="status">{{ activity.syncMessage() }}</small>
           }
         </div>
+        @if (!isNative) {
         <div class="journey__sync-actions">
           @if (!activity.authReady()) {
             <button type="button" class="journey__google" disabled aria-label="Restaurando la sesión guardada">
@@ -145,6 +148,7 @@
             </button>
           }
         </div>
+        }
       </div>
 
     </div>

@@ -23,6 +23,8 @@ import {
 import { MusicdleStorageService } from './musicdle-storage.service';
 import { MusicdleYoutubePlayerComponent } from './musicdle-youtube-player.component';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
+import { AppLifecycleService } from '../../shared/services/app-lifecycle.service';
 
 @Component({
   selector: 'app-musicdle',
@@ -95,6 +97,9 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
   private readonly musicStorage = inject(MusicdleStorageService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly musicThemeService = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
+  private readonly lifecycle = inject(AppLifecycleService);
+  readonly connected = this.lifecycle.connected;
   private readonly subscriptions = new Subscription();
 
   get isDarkMode(): boolean {
@@ -235,6 +240,10 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
   }
 
   playSegment(): void {
+    if (!this.connected()) {
+      this.errorMessage = 'Necesitás conexión a Internet para reproducir el fragmento.';
+      return;
+    }
     if (!this.isRoundActive || !this.playerReady) return;
     this.youtubePlayer?.playSegment();
   }
@@ -262,18 +271,10 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     if (!this.round || !this.isRoundFinished) return;
     const text = this.engine.buildShareText(this.round);
 
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: 'MusicDLE', text });
-        this.shareMessage = 'Resultado listo para compartir.';
-        return;
-      }
-      await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado copiado al portapapeles.';
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') return;
-      this.shareMessage = 'No se pudo compartir. Intenta copiarlo nuevamente.';
-    }
+    const outcome = await this.shareService.share({ title: 'MusicDLE', text, path: '/games/musicdle' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir. Intenta copiarlo nuevamente.' :
+      outcome === 'cancelled' ? '' : outcome === 'copied' ?
+        'Resultado copiado al portapapeles.' : 'Resultado listo para compartir.';
   }
 
   segmentState(index: number): 'used' | 'available' | 'locked' {

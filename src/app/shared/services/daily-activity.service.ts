@@ -18,6 +18,8 @@ import {
   buildActivitySummary,
   buildGameActivityStats,
 } from '../utils/daily-activity.utils';
+import { AppStorageService } from './app-storage.service';
+import { PlatformService } from './platform.service';
 
 interface CloudActivityByDate {
   [date: string]: Record<string, DailyActivityEntry>;
@@ -25,6 +27,8 @@ interface CloudActivityByDate {
 
 @Injectable({ providedIn: 'root' })
 export class DailyActivityService {
+  private readonly storage = inject(AppStorageService);
+  private readonly platform = inject(PlatformService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly storageKey = 'game-dle-daily-activity-v1';
   private readonly entriesState = signal<DailyActivityEntry[]>(this.readLocalEntries());
@@ -85,6 +89,10 @@ export class DailyActivityService {
   }
 
   async signInWithGoogle(): Promise<void> {
+    if (this.platform.isNative) {
+      this.syncMessage.set('El acceso con Google no está disponible en la app por ahora.');
+      return;
+    }
     this.syncing.set(true);
     this.syncMessage.set('');
     try {
@@ -211,7 +219,7 @@ export class DailyActivityService {
 
   private readLocalEntries(): DailyActivityEntry[] {
     try {
-      const raw = localStorage.getItem(this.storageKey);
+      const raw = this.storage.getItem(this.storageKey);
       const parsed: unknown = raw ? JSON.parse(raw) : [];
       return Array.isArray(parsed)
         ? parsed.filter((entry): entry is DailyActivityEntry => this.isValidEntry(entry))
@@ -225,7 +233,7 @@ export class DailyActivityService {
     const normalized = this.mergeEntries(entries, []);
     this.entriesState.set(normalized);
     try {
-      localStorage.setItem(this.storageKey, JSON.stringify(normalized));
+      this.storage.setItem(this.storageKey, JSON.stringify(normalized));
     } catch {
       // La señal mantiene la sesión funcional aunque el almacenamiento esté lleno o bloqueado.
     }

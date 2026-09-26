@@ -3,6 +3,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { GameEditorialContentComponent } from '../../shared/components/game-editorial-content/game-editorial-content.component';
 import { GameManagerService } from '../../shared/services/game-manager.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ShareService } from '../../shared/services/share.service';
 import { FutbolMayorEngineService } from './futbol-mayor-engine.service';
 import {
   FutbolMayorCompetitor,
@@ -23,6 +24,7 @@ export class FutbolMayorComponent implements OnInit {
   private readonly storage = inject(FutbolMayorStorageService);
   private readonly gameManager = inject(GameManagerService);
   private readonly theme = inject(ThemeService);
+  private readonly shareService = inject(ShareService);
 
   state!: FutbolMayorGameState;
   shareMessage = '';
@@ -132,14 +134,9 @@ export class FutbolMayorComponent implements OnInit {
       this.state.score,
       this.state.answers,
     );
-    try {
-      if (navigator.share)
-        await navigator.share({ title: '¿Quién tiene más?', text });
-      else await navigator.clipboard.writeText(text);
-      this.shareMessage = 'Resultado listo para compartir.';
-    } catch {
-      this.shareMessage = 'No se pudo compartir el resultado.';
-    }
+    const outcome = await this.shareService.share({ title: '¿Quién tiene más?', text, path: '/games/futbol-mayor' });
+    this.shareMessage = outcome === 'failed' ? 'No se pudo compartir el resultado.' :
+      outcome === 'cancelled' ? '' : 'Resultado listo para compartir.';
   }
 
   private initialState(run: number, bestScore: number): FutbolMayorGameState {
