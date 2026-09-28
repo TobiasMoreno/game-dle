@@ -1,0 +1,27 @@
+{
+  "appId": "com.gamedle.app",
+  "locale": "es-AR",
+  "version": "1.0.0",
+  "copyright": "2026 Tobias Emiliano Moreno",
+  "supportUrl": "https://game-dle.web.app/contacto",
+  "privacyPolicyUrl": "https://game-dle.web.app/privacidad",
+  "marketingUrl": "https://game-dle.web.app/",
+  "supportEmail": "tobiasmoreno.tm.21@gmail.com",
+  "googlePlay": {
+    "title": "GameDLE",
+    "shortDescription": "Desafíos diarios de palabras, música, geografía, historia y cultura.",
+    "fullDescription": "Un desafío distinto cada día.\n\nGameDLE reúne juegos breves de palabras, música, geografía, historia, fútbol y cultura popular en una sola aplicación. Cada propuesta tiene reglas propias, partidas cortas y resultados fáciles de compartir.\n\nJUGÁ A TU RITMO\n• Resolvé desafíos diarios en pocos minutos.\n• Conservá estadísticas, rachas y progreso en tu dispositivo.\n• Elegí entre distintos universos y mecánicas.\n• Consultá reglas, guías y fuentes cuando quieras aprender más.\n\nUNA COLECCIÓN EN CRECIMIENTO\nProbá Wordle en español, desafíos de orden, conexiones, banderas, mapas, fútbol, League of Legends, música y más. El catálogo se actualiza y cada juego identifica sus reglas y referencias.\n\nFUNCIONES MÓVILES\n• Interfaz adaptable para teléfono y tablet.\n• Progreso local y sincronización opcional de actividad.\n• Compartir resultados con el menú nativo.\n• Respuesta háptica en acciones compatibles.\n• Anuncios recompensados opcionales: cerrar o rechazar uno nunca bloquea la partida.\n\nGameDLE es un proyecto independiente creado en Argentina. No está afiliado con Riot Games, Shueisha, Toei Animation, YouTube ni otras marcas mencionadas dentro de sus categorías. Las marcas y obras pertenecen a sus respectivos titulares.",
+    "category": "GAME_WORD",
+    "tags": ["palabras", "trivia", "casual", "puzles", "diario"]
+  },
+  "appStore": {
+    "name": "GameDLE",
+    "subtitle": "Un desafío distinto cada día",
+    "promotionalText": "Palabras, historia, geografía, música y cultura popular en partidas breves con nuevos desafíos cada día.",
+    "description": "Un desafío distinto cada día.\n\nGameDLE reúne juegos breves de palabras, música, geografía, historia, fútbol y cultura popular. Cada propuesta tiene reglas propias, partidas cortas y resultados fáciles de compartir.\n\n• Resolvé desafíos diarios en pocos minutos.\n• Conservá estadísticas, rachas y progreso.\n• Elegí entre distintos universos y mecánicas.\n• Consultá reglas, guías y fuentes.\n• Compartí tus resultados desde la aplicación.\n\nLos anuncios recompensados son opcionales: cerrar o rechazar uno nunca bloquea la partida.\n\nGameDLE es un proyecto independiente creado en Argentina. No está afiliado con Riot Games, Shueisha, Toei Animation, YouTube ni otras marcas mencionadas dentro de sus categorías. Las marcas y obras pertenecen a sus respectivos titulares.",
+    "keywords": "juegos,palabras,trivia,diario,puzles,geografía,historia,música,fútbol,wordle",
+    "primaryCategory": "GAMES",
+    "secondaryCategory": "ENTERTAINMENT"
+  },
+  "releaseNotes": "Primera versión móvil de GameDLE: desafíos diarios, progreso local, sincronización opcional, compartir resultados y soporte para Android, iPhone y iPad."
+}

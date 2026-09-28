@@ -13,6 +13,7 @@ import {
   ADSENSE_CONFIG,
   isAdsenseSlotConfigured,
 } from '../../config/adsense.config';
+import { PlatformService } from '../../services/platform.service';
 
 declare global {
   interface Window {
@@ -36,15 +37,17 @@ export class AdSlotComponent implements AfterViewInit {
   readonly hasConfiguredSlot = computed(() => isAdsenseSlotConfigured(this.slot()));
   readonly advertisingEnabled = ADSENSE_CONFIG.enabled;
   readonly showDevelopmentPreview = computed(
-    () => this.isBrowser && (isDevMode() || this.isLocalHostname)
+    () => this.isWeb && this.isBrowser && (isDevMode() || this.isLocalHostname)
   );
 
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly platform = inject(PlatformService);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
+  readonly isWeb = this.platform.isWeb;
   private hasRequestedAd = false;
 
   ngAfterViewInit(): void {
-    if (!this.advertisingEnabled || !this.isBrowser || this.showDevelopmentPreview() || !this.hasConfiguredSlot()) {
+    if (!this.advertisingEnabled || !this.isWeb || !this.isBrowser || this.showDevelopmentPreview() || !this.hasConfiguredSlot()) {
       return;
     }
 

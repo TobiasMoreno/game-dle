@@ -11,3 +11,4 @@ export * from './haptics.service';
 export * from './platform.service';
 export * from './share.service';
 export * from './observability.service';
+export * from './ad.service';

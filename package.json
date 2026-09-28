@@ -1,6 +1,6 @@
 {
   "name": "game-dle",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,11 @@
     "mobile:sync": "npm run build:mobile && cap sync",
     "mobile:android": "npm run build:mobile && cap sync android && cap open android",
     "mobile:ios": "npm run build:mobile && cap sync ios && cap open ios",
+    "mobile:android:aab": "npm run build:mobile && cap sync android && node scripts/build-android-release.mjs",
+    "mobile:android:aab:check": "npm run build:mobile && cap sync android && node scripts/build-android-release.mjs --unsigned",
+    "store:assets": "node scripts/capture-store-assets.mjs",
+    "store:validate": "node scripts/validate-store-readiness.mjs",
+    "store:validate:strict": "node scripts/validate-store-readiness.mjs --strict",
     "firebase:serve": "npm run build && firebase emulators:start --only hosting",
     "deploy": "npm run build && firebase deploy --only hosting",
     "watch": "ng build --watch --configuration development",
@@ -37,6 +42,7 @@
     "@angular/platform-server": "^19.2.14",
     "@angular/router": "^19.2.14",
     "@angular/ssr": "^19.2.15",
+    "@capacitor-community/admob": "^8.1.0",
     "@capacitor-firebase/analytics": "^8.5.2",
     "@capacitor-firebase/crashlytics": "^8.5.2",
     "@capacitor/android": "^8.5.2",
@@ -73,6 +79,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "parse5": "^7.2.1",
+    "playwright": "^1.63.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.0",
     "typescript": "~5.6.2"

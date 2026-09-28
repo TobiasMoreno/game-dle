@@ -25,6 +25,11 @@ import {
 } from '@capacitor-firebase/crashlytics';
 import { filter } from 'rxjs';
 import { firebaseApp } from '../config/firebase.config';
+import {
+  AdRewardType,
+  RewardedAdFailureReason,
+  RewardedAdPlacement,
+} from '../models/ad.model';
 import { GameMode } from '../models/game.model';
 import { PlatformService } from './platform.service';
 
@@ -35,6 +40,19 @@ export type NonFatalContext =
   | 'window_error'
   | 'unhandled_rejection'
   | 'observability';
+
+export type AdEventName =
+  | 'rewarded_ad_requested'
+  | 'rewarded_ad_loaded'
+  | 'rewarded_ad_completed'
+  | 'rewarded_ad_failed'
+  | 'reward_granted';
+
+interface AdEventDetails {
+  gameId: string;
+  placement: RewardedAdPlacement;
+  rewardType: AdRewardType;
+}
 
 export interface AnalyticsClient {
   setConsent(options: SetConsentOptions): Promise<void>;
@@ -142,6 +160,26 @@ export class ObservabilityService {
     }
 
     await this.logEvent('game_complete', params);
+  }
+
+  async trackAdEvent(
+    name: AdEventName,
+    details: AdEventDetails,
+    errorCode?: RewardedAdFailureReason
+  ): Promise<void> {
+    const safeGameId = this.safeGameId(details.gameId);
+    if (!this.isBrowser || !safeGameId) return;
+
+    const params: AnalyticsParams = {
+      game_id: safeGameId,
+      placement: details.placement,
+      reward_type: details.rewardType,
+      platform: this.platform.platform,
+    };
+    if (name === 'rewarded_ad_failed' && errorCode) {
+      params['error_code'] = errorCode;
+    }
+    await this.logEvent(name, params);
   }
 
   async recordNonFatal(

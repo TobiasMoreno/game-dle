@@ -54,6 +54,7 @@ firebase-debug.*.log
 # Native mobile local state, builds and signing material
 /android/.gradle/
 /android/local.properties
+/android/keystore.properties
 /android/app/build/
 /android/build/
 /ios/App/DerivedData/

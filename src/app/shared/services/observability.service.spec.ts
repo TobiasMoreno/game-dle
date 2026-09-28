@@ -106,6 +106,30 @@ describe('ObservabilityService', () => {
     expect(analytics.logEvent).not.toHaveBeenCalled();
   });
 
+  it('sends only the approved rewarded-ad fields', async () => {
+    await service.initialize();
+    await service.trackAdEvent(
+      'rewarded_ad_failed',
+      {
+        gameId: 'wordle',
+        placement: 'hint',
+        rewardType: 'hint',
+      },
+      'offline'
+    );
+
+    expect(analytics.logEvent).toHaveBeenCalledWith({
+      name: 'rewarded_ad_failed',
+      params: {
+        game_id: 'wordle',
+        placement: 'hint',
+        reward_type: 'hint',
+        platform: 'android',
+        error_code: 'offline',
+      },
+    });
+  });
+
   it('records a non-fatal without forwarding the original error message', async () => {
     await service.initialize();
 

@@ -302,7 +302,7 @@
   .chronodle-shell { width: min(100% - 20px, 1040px); padding-top: 14px; }
   .edition { max-width: 50%; text-align: right; font-size: .62rem; }
   .masthead { padding: 42px 0 26px; }
-  .masthead h1 { font-size: clamp(3.5rem, 19vw, 5.2rem); }
+  .masthead h1 { font-size: clamp(2.8rem, 14vw, 3.75rem); }
   .issue-stamp { position: static; width: auto; aspect-ratio: auto; margin: 22px auto 0; padding: 8px 14px; border-radius: 0; box-shadow: none; transform: rotate(-2deg); }
   .rules { grid-template-columns: 1fr; }
   .rules div { min-height: 54px; padding: 8px 12px; }

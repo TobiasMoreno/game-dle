@@ -710,7 +710,7 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 
 ## 19. Implementation Plan
 
-> Estado al 26 de septiembre de 2026: las fases 1, 2 y la implementación técnica de la fase 3 están completas en el árbol de trabajo de la rama `mobile`. Las apps Firebase Android/iOS están registradas, Analytics y Crashlytics integrados, y las reglas RTDB verificadas en el emulador y desplegadas. El build web, el build client-only, los tests y el APK Android debug compilan correctamente. La validación de eventos y de un crash simbolicado en dispositivos reales, junto con el build iOS en macOS/Xcode, siguen siendo controles manuales de release.
+> Estado al 26 de septiembre de 2026: las fases 1, 2 y 3, junto con la implementación técnica de anuncios de prueba de la fase 4 y la preparación reproducible de la fase 5 dentro del repositorio, están completas en el árbol de trabajo de la rama `mobile`. Firebase Analytics/Crashlytics y reglas RTDB están integrados; AdMob usa UMP, requests no personalizados e IDs oficiales de demostración con recompensas idempotentes. El build web, el build client-only, los tests, el APK Android debug y el AAB Android estructural compilan correctamente. La firma con credenciales reales, la validación en dispositivos, TestFlight/Play testing, los formularios y el rollout siguen siendo controles externos de release.
 
 ### Fase 0 — Decisiones y derechos
 
@@ -760,6 +760,8 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 
 **Checkpoint:** ninguna recompensa se concede sin callback; no hay unidades reales en builds de desarrollo.
 
+**Estado del checkpoint:** cubierto por pruebas automatizadas de recompensa, cierre, duplicados, error, offline y background. Android compila con el SDK y sólo IDs de muestra; queda pendiente repetir el flujo en dispositivos Android/iOS reales antes de conectar una recompensa de gameplay o unidades de producción.
+
 ### Fase 5 — Store readiness
 
 1. Completar iconos, screenshots, fichas, privacy forms, content rating y soporte.
@@ -767,6 +769,8 @@ Opcionales: banners, SQLite, orientación dinámica, app-open ads y automatizaci
 3. Firmar iOS en Mac, subir a TestFlight y probar en iPhone/iPad soportados.
 4. Corregir issues de review, accesibilidad, performance y contenido.
 5. Hacer rollout gradual, monitorear Crashlytics/Analytics y conservar rollback mediante nueva versión.
+
+**Estado del checkpoint:** la parte reproducible dentro del repositorio está completa: versión `1.0.0`, configuración de firma Android fail-closed, AAB estructural, metadata y piezas gráficas de ambas tiendas, mapa de privacidad, guía de clasificación, checklist, validador y CI Android/iOS. Quedan pendientes las acciones que requieren cuentas, credenciales, hardware o aprobación externa: confirmar derechos e identificadores, crear y custodiar claves/certificados, completar formularios, configurar unidades publicitarias de producción, ejecutar QA real, subir a Play/TestFlight y realizar el rollout.
 
 La implementación debe dividirse en cambios pequeños y verificables. No es necesario crear microservicios, introducir login obligatorio, reemplazar Angular ni agregar un store global.
 

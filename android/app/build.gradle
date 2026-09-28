@@ -1,6 +1,24 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.crashlytics'
 
+def releaseVersionCode = (project.findProperty('GAME_DLE_VERSION_CODE') ?: System.getenv('GAME_DLE_VERSION_CODE') ?: '1') as Integer
+def releaseVersionName = project.findProperty('GAME_DLE_VERSION_NAME') ?: System.getenv('GAME_DLE_VERSION_NAME') ?: '1.0.0'
+def signingProperties = new Properties()
+def signingPropertiesFile = rootProject.file('keystore.properties')
+if (signingPropertiesFile.exists()) {
+    signingPropertiesFile.withInputStream { signingProperties.load(it) }
+}
+def signingValue = { String key -> signingProperties.getProperty(key) ?: System.getenv(key) }
+def releaseSigning = [
+    storeFile: signingValue('GAME_DLE_UPLOAD_STORE_FILE'),
+    storePassword: signingValue('GAME_DLE_UPLOAD_STORE_PASSWORD'),
+    keyAlias: signingValue('GAME_DLE_UPLOAD_KEY_ALIAS'),
+    keyPassword: signingValue('GAME_DLE_UPLOAD_KEY_PASSWORD')
+]
+def configuredSigningValues = releaseSigning.values().count { it }
+def releaseSigningConfigured = configuredSigningValues == releaseSigning.size()
+def requireReleaseSigning = project.findProperty('requireReleaseSigning') == 'true'
+
 android {
     namespace = "com.gamedle.app"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -8,8 +26,8 @@ android {
         applicationId "com.gamedle.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode releaseVersionCode
+        versionName releaseVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -17,12 +35,36 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    signingConfigs {
+        if (releaseSigningConfigured) {
+            release {
+                storeFile rootProject.file(releaseSigning.storeFile)
+                storePassword releaseSigning.storePassword
+                keyAlias releaseSigning.keyAlias
+                keyPassword releaseSigning.keyPassword
+            }
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
+
+if (configuredSigningValues > 0 && configuredSigningValues < releaseSigning.size()) {
+    throw new GradleException('La firma release está incompleta. Configurá las cuatro variables GAME_DLE_UPLOAD_* o eliminá todas.')
+}
+if (requireReleaseSigning && !releaseSigningConfigured) {
+    throw new GradleException('Falta la firma release. Copiá android/keystore.properties.example a android/keystore.properties y completalo fuera de Git.')
+}
+if (releaseSigningConfigured && !rootProject.file(releaseSigning.storeFile).exists()) {
+    throw new GradleException("No existe el keystore configurado: ${releaseSigning.storeFile}")
 }
 
 repositories {

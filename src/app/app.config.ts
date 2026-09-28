@@ -19,6 +19,7 @@ import {
   GlobalErrorHandler,
   ObservabilityService,
 } from './shared/services/observability.service';
+import { AdService } from './shared/services/ad.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +29,12 @@ export const appConfig: ApplicationConfig = {
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideAppInitializer(() => inject(RouteMetadataService).start()),
     provideAppInitializer(() => inject(ObservabilityService).initialize()),
-    provideAppInitializer(() => inject(AppStorageService).initialize()),
+    provideAppInitializer(() => {
+      const storageInitialization = inject(AppStorageService).initialize();
+      const adService = inject(AdService);
+      void storageInitialization.then(() => adService.initialize());
+      return storageInitialization;
+    }),
     provideAppInitializer(() => inject(AppLifecycleService).initialize()),
     provideAppInitializer(() => inject(NativeShellService).initialize()),
   ],
