@@ -7,6 +7,7 @@ export interface MusicdleSong {
   id: string;
   title: string;
   artist: string;
+  artists: string[];
   aliases: string[];
   collection: string;
   genres: string[];
@@ -21,6 +22,7 @@ export interface MusicdleFilter {
   kind: MusicdleFilterKind;
   value: string;
   values?: string[];
+  artistValues?: string[];
   label: string;
 }
 
@@ -55,4 +57,10 @@ export interface MusicdleCooldownEntry {
 
 export interface MusicdleFilterOption extends MusicdleFilter {
   key: string;
+}
+
+export interface MusicdleArtistOption {
+  value: string;
+  label: string;
+  availableSongs: number;
 }

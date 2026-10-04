@@ -33,6 +33,12 @@ for (const [index, song] of songs.entries()) {
   if (!Array.isArray(song.aliases) || !Array.isArray(song.genres) || song.genres.length === 0) {
     errors.push(`${location}: aliases y genres deben ser arrays; genres no puede estar vacío.`);
   }
+  if (!Array.isArray(song.artists) || song.artists.length === 0 ||
+      song.artists.some((artist) => typeof artist !== 'string' || !artist.trim())) {
+    errors.push(`${location}: artists debe contener al menos un artista válido.`);
+  } else if (new Set(song.artists).size !== song.artists.length) {
+    errors.push(`${location}: artists no puede contener artistas duplicados.`);
+  }
   if (!Number.isInteger(song.decade) || song.decade < 1900 || song.decade % 10 !== 0) {
     errors.push(`${location}: decade debe indicar el inicio de una década.`);
   }

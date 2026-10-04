@@ -10,7 +10,11 @@ import { MusicdleYoutubePlayerComponent } from './musicdle-youtube-player.compon
 
 describe('MusicdleComponent categorías múltiples', () => {
   const songs: MusicdleSong[] = ['Cuarteto', 'Rock nacional', 'Trap argentino'].map((collection, index) => ({
-    id: `song-${index}`, title: `Tema ${index}`, artist: 'Artista', aliases: [], collection,
+    id: `song-${index}`,
+    title: `Tema ${index}`,
+    artist: index === 2 ? 'Duki & Bizarrap' : `Artista ${index}`,
+    artists: index === 2 ? ['Duki', 'Bizarrap'] : [`Artista ${index}`],
+    aliases: [], collection,
     genres: [], decade: 2020, language: 'Español', youtubeVideoId: 'abcdefghijk',
     startSeconds: 0, enabled: true,
   }));
@@ -125,5 +129,30 @@ describe('MusicdleComponent categorías múltiples', () => {
     component.onFilterChange('collection:Rock nacional');
     expect(component.selectedFilter).toEqual(combined);
     expect(component.targetSong?.id).toBe('song-1');
+  });
+
+  it('limita los artistas a las categorías elegidas e incluye colaboradores', () => {
+    const component = load();
+
+    component.onFilterChange('collection:Trap argentino');
+
+    expect(component.artistOptions.map((option) => option.value)).toEqual(['Bizarrap', 'Duki']);
+    component.onArtistFilterChange('Duki');
+    expect(component.selectedArtistValues).toEqual(['Duki']);
+    expect(component.round?.filter.artistValues).toEqual(['Duki']);
+    component.onGuessInputChange('Tema');
+    expect(component.suggestions.map((suggestion) => suggestion.id)).toEqual(['song-2']);
+  });
+
+  it('quita artistas que dejan de pertenecer a las categorías seleccionadas', () => {
+    const component = load();
+    component.onFilterChange('collection:Trap argentino');
+    component.onArtistFilterChange('Duki');
+
+    component.onFilterChange('collection:Rock nacional');
+    component.onFilterChange('collection:Trap argentino');
+
+    expect(component.selectedArtistValues).toEqual([]);
+    expect(component.message).toContain('Quitamos Duki');
   });
 });

@@ -14,6 +14,7 @@ import {
   MusicdleEngineService,
 } from './musicdle-engine.service';
 import {
+  MusicdleArtistOption,
   MusicdleFilter,
   MusicdleFilterOption,
   MusicdleArtistMatch,
@@ -74,6 +75,9 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
   songs: MusicdleSong[] = [];
   filterOptions: MusicdleFilterOption[] = [];
+  artistOptions: MusicdleArtistOption[] = [];
+  artistSearchQuery = '';
+  hasAvailableSongs = true;
   selectedFilter: MusicdleFilter = {
     kind: 'all',
     value: '*',
@@ -153,6 +157,25 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     );
   }
 
+  get filtersLocked(): boolean {
+    return this.isRoundActive && (this.round?.attempts.length ?? 0) > 0;
+  }
+
+  get filteredArtistOptions(): MusicdleArtistOption[] {
+    return this.catalogService.searchArtistOptions(this.artistOptions, this.artistSearchQuery);
+  }
+
+  get selectedArtistValues(): string[] {
+    return this.selectedFilter.artistValues ?? [];
+  }
+
+  get artistFilterLabel(): string {
+    const count = this.selectedArtistValues.length;
+    if (count === 0) return 'Todos los artistas';
+    if (count === 1) return this.selectedArtistValues[0];
+    return `${count} artistas seleccionados`;
+  }
+
   isFilterSelected(option: MusicdleFilterOption): boolean {
     if (option.kind === 'all') return this.selectedFilter.kind === 'all';
     return this.selectedFilter.kind === option.kind &&
@@ -163,13 +186,18 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     const option = this.filterOptions.find((filter) => filter.key === key);
     if (!option) return;
 
-    if (this.isRoundActive && (this.round?.attempts.length ?? 0) > 0) {
+    if (this.filtersLocked) {
       this.message = 'Termina la ronda actual antes de cambiar las categorías.';
       return;
     }
 
     if (option.kind === 'all') {
-      this.selectedFilter = { kind: 'all', value: '*', label: option.label };
+      this.selectedFilter = {
+        kind: 'all',
+        value: '*',
+        label: option.label,
+        artistValues: this.selectedFilter.artistValues,
+      };
     } else {
       const values = this.selectedFilter.kind === 'collection'
         ? this.selectedFilter.values ?? [this.selectedFilter.value]
@@ -182,19 +210,60 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
         return;
       }
       this.selectedFilter = this.catalogService.resolveFilter(
-        { kind: 'collection', value: nextValues[0], values: nextValues, label: '' },
+        {
+          kind: 'collection',
+          value: nextValues[0],
+          values: nextValues,
+          artistValues: this.selectedFilter.artistValues,
+          label: '',
+        },
         this.filterOptions
       )!;
     }
+    const removedArtists = this.reconcileArtistsForCategories();
     this.musicStorage.saveFilter(this.selectedFilter);
-    this.message = this.isRoundFinished
-      ? 'Las categorías elegidas se aplicarán en la siguiente canción.'
-      : '';
+    this.message = removedArtists.length
+      ? `Quitamos ${removedArtists.join(', ')} porque no pertenece a las categorías elegidas.`
+      : this.isRoundFinished
+        ? 'Los filtros elegidos se aplicarán en la siguiente canción.'
+        : '';
 
     if (!this.isRoundFinished) {
       this.musicStorage.clearRound();
       this.startNewRound();
+    } else {
+      this.refreshArtistOptions();
     }
+  }
+
+  onArtistSearchChange(value: string): void {
+    this.artistSearchQuery = value;
+  }
+
+  isArtistSelected(artist: string): boolean {
+    return this.selectedArtistValues.includes(artist);
+  }
+
+  onArtistFilterChange(artist: string): void {
+    if (this.filtersLocked) {
+      this.message = 'Termina la ronda actual antes de cambiar los artistas.';
+      return;
+    }
+
+    const option = this.artistOptions.find((item) => item.value === artist);
+    if (!option || (option.availableSongs === 0 && !this.isArtistSelected(artist))) return;
+
+    const values = this.isArtistSelected(artist)
+      ? this.selectedArtistValues.filter((value) => value !== artist)
+      : [...this.selectedArtistValues, artist];
+    this.selectedFilter = this.withArtistValues(this.selectedFilter, values);
+    this.applySelectedFilters();
+  }
+
+  clearArtistFilter(): void {
+    if (this.filtersLocked || this.selectedArtistValues.length === 0) return;
+    this.selectedFilter = this.withArtistValues(this.selectedFilter, []);
+    this.applySelectedFilters();
   }
 
   onGuessInputChange(value: string): void {
@@ -314,7 +383,10 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       const nextFilter = storedRound.status === 'active'
         ? storedRound.filter
         : this.musicStorage.getFilter() ?? storedRound.filter;
-      const matchingFilter = this.catalogService.resolveFilter(nextFilter, this.filterOptions);
+      const resolvedFilter = this.catalogService.resolveFilter(nextFilter, this.filterOptions);
+      const matchingFilter = resolvedFilter
+        ? this.withCompatibleArtists(resolvedFilter)
+        : null;
 
       if (storedRound.status === 'active' && (!matchingFilter ||
           !this.catalogService.filterSongs([storedSong], matchingFilter).length)) {
@@ -324,6 +396,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
         this.targetSong = storedSong;
         this.selectedFilter = matchingFilter ?? this.filterOptions[0];
         if (storedRound.status !== 'active') this.prepareRevealedVideo();
+        this.refreshArtistOptions();
         return;
       }
     }
@@ -333,7 +406,7 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
       ? this.catalogService.resolveFilter(savedFilter, this.filterOptions)
       : null;
     if (matchingFilter) {
-      this.selectedFilter = matchingFilter;
+      this.selectedFilter = this.withCompatibleArtists(matchingFilter);
     }
     this.startNewRound();
   }
@@ -347,16 +420,18 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
     this.playerReady = false;
     this.isPlaying = false;
 
+    const cooldownSongIds = this.musicStorage.getCooldownSongIds();
+    this.refreshArtistOptions(cooldownSongIds);
     const filteredSongs = this.catalogService.filterSongs(this.songs, this.selectedFilter);
     const target = this.catalogService.pickRandomSong(
       filteredSongs,
-      this.musicStorage.getCooldownSongIds()
+      cooldownSongIds
     );
 
     if (!target) {
       this.targetSong = null;
       this.round = null;
-      this.errorMessage = 'No quedan canciones disponibles en las categorías elegidas durante las próximas 24 horas. Prueba con otras.';
+      this.errorMessage = 'Completaste todas las canciones disponibles para esta selección por hoy.';
       return;
     }
 
@@ -377,8 +452,59 @@ export class MusicdleComponent extends BaseGameComponent implements OnInit, OnDe
 
     if (this.round.status !== 'active' && this.targetSong) {
       this.musicStorage.addCooldown(this.targetSong.id, 'played');
+      this.refreshArtistOptions();
       this.prepareRevealedVideo();
     }
+  }
+
+  private applySelectedFilters(): void {
+    this.musicStorage.saveFilter(this.selectedFilter);
+    this.message = this.isRoundFinished
+      ? 'Los filtros elegidos se aplicarán en la siguiente canción.'
+      : '';
+
+    if (!this.isRoundFinished) {
+      this.musicStorage.clearRound();
+      this.startNewRound();
+    } else {
+      this.refreshArtistOptions();
+    }
+  }
+
+  private reconcileArtistsForCategories(): string[] {
+    const previous = this.selectedArtistValues;
+    this.selectedFilter = this.withCompatibleArtists(this.selectedFilter);
+    return previous.filter((artist) => !this.selectedArtistValues.includes(artist));
+  }
+
+  private withCompatibleArtists(filter: MusicdleFilter): MusicdleFilter {
+    const categorySongs = this.catalogService.filterSongsByCategory(this.songs, filter);
+    const availableArtists = new Set(categorySongs.flatMap((song) => song.artists));
+    const compatibleArtists = (filter.artistValues ?? []).filter(
+      (artist) => availableArtists.has(artist)
+    );
+    return this.withArtistValues(filter, compatibleArtists);
+  }
+
+  private withArtistValues(filter: MusicdleFilter, artistValues: string[]): MusicdleFilter {
+    const { artistValues: _previousArtists, ...categoryFilter } = filter;
+    const uniqueArtists = [...new Set(artistValues)].sort((a, b) => a.localeCompare(b, 'es'));
+    return uniqueArtists.length
+      ? { ...categoryFilter, artistValues: uniqueArtists }
+      : categoryFilter;
+  }
+
+  private refreshArtistOptions(
+    cooldownSongIds = this.musicStorage.getCooldownSongIds()
+  ): void {
+    const categorySongs = this.catalogService.filterSongsByCategory(
+      this.songs,
+      this.selectedFilter
+    );
+    this.artistOptions = this.catalogService.buildArtistOptions(categorySongs, cooldownSongIds);
+    this.hasAvailableSongs = this.catalogService
+      .filterSongs(this.songs, this.selectedFilter)
+      .some((song) => !cooldownSongIds.has(song.id));
   }
 
   private prepareRevealedVideo(): void {

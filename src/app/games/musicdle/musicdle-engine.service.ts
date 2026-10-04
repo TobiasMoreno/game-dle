@@ -39,7 +39,7 @@ export class MusicdleEngineService {
       songId: guessedSong.id,
       label: `${guessedSong.title} — ${guessedSong.artist}`,
       correct,
-      artistMatch: this.getArtistMatch(guessedSong.artist, targetSong.artist),
+      artistMatch: this.getArtistMatch(guessedSong.artists, targetSong.artists),
       categoryMatch: this.normalize(guessedSong.collection) === this.normalize(targetSong.collection),
       listenedSeconds: round.unlockedSeconds,
       createdAt: now,
@@ -66,12 +66,16 @@ export class MusicdleEngineService {
       .map((attempt) => attempt.correct ? '🟩' : attempt.kind === 'pass' ? '⏭️' : '⬛')
       .join(' ');
 
-    return [
+    const lines = [
       'MusicDLE 🎵',
       `${result} ${round.attempts.length}/${MUSICDLE_MAX_ATTEMPTS} · ${round.unlockedSeconds}s`,
       marks,
       `Categoría: ${round.filter.label}`,
-    ].join('\n');
+    ];
+    if (round.filter.artistValues?.length) {
+      lines.push(`Artistas: ${round.filter.artistValues.join(' + ')}`);
+    }
+    return lines.join('\n');
   }
 
   private resolveAttempt(
@@ -108,21 +112,18 @@ export class MusicdleEngineService {
       .trim();
   }
 
-  private getArtistMatch(guessedArtist: string, targetArtist: string): MusicdleArtistMatch {
-    const normalizedGuess = this.normalize(guessedArtist);
-    const normalizedTarget = this.normalize(targetArtist);
-    if (normalizedGuess === normalizedTarget) return 'exact';
+  private getArtistMatch(
+    guessedArtists: string[],
+    targetArtists: string[]
+  ): MusicdleArtistMatch {
+    const normalizedGuess = new Set(guessedArtists.map((artist) => this.normalize(artist)));
+    const normalizedTarget = new Set(targetArtists.map((artist) => this.normalize(artist)));
+    const exact = normalizedGuess.size === normalizedTarget.size &&
+      [...normalizedGuess].every((artist) => normalizedTarget.has(artist));
+    if (exact) return 'exact';
 
-    const targetArtists = new Set(this.splitArtistCredit(normalizedTarget));
-    const sharesArtist = this.splitArtistCredit(normalizedGuess)
-      .some((artist) => targetArtists.has(artist));
-
-    return sharesArtist ? 'partial' : 'none';
-  }
-
-  private splitArtistCredit(normalizedArtist: string): string[] {
-    return normalizedArtist
-      .split(/\s*(?:&|,|\bfeat\.?|\bft\.?|\bx\b)\s*/)
-      .filter(Boolean);
+    return [...normalizedGuess].some((artist) => normalizedTarget.has(artist))
+      ? 'partial'
+      : 'none';
   }
 }

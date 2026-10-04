@@ -40,6 +40,7 @@ describe('MusicdleStorageService', () => {
       kind: 'collection' as const,
       value: 'Cuarteto',
       values: ['Cuarteto', 'Rock nacional'],
+      artistValues: ['Luck Ra', 'Duki'],
       label: 'Cuarteto + Rock nacional',
     };
     const round = new MusicdleEngineService().createRound('song-1', filter, 100);

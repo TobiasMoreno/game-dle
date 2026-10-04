@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import {
+  MusicdleArtistOption,
   MusicdleFilter,
   MusicdleFilterOption,
   MusicdleSong,
@@ -35,7 +36,44 @@ export class MusicdleCatalogService {
     ];
   }
 
+  buildArtistOptions(
+    songs: MusicdleSong[],
+    excludedSongIds: Set<string> = new Set()
+  ): MusicdleArtistOption[] {
+    const counts = new Map<string, number>();
+
+    for (const song of songs) {
+      for (const artist of new Set(song.artists)) {
+        if (!counts.has(artist)) counts.set(artist, 0);
+        if (!excludedSongIds.has(song.id)) {
+          counts.set(artist, (counts.get(artist) ?? 0) + 1);
+        }
+      }
+    }
+
+    return [...counts.entries()]
+      .map(([artist, availableSongs]) => ({
+        value: artist,
+        label: artist,
+        availableSongs,
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, 'es'));
+  }
+
   filterSongs(songs: MusicdleSong[], filter: MusicdleFilter): MusicdleSong[] {
+    const categorySongs = this.filterSongsByCategory(songs, filter);
+    const selectedArtists = new Set(
+      (filter.artistValues ?? []).map((artist) => this.normalize(artist))
+    );
+
+    if (selectedArtists.size === 0) return categorySongs;
+
+    return categorySongs.filter((song) => song.artists.some(
+      (artist) => selectedArtists.has(this.normalize(artist))
+    ));
+  }
+
+  filterSongsByCategory(songs: MusicdleSong[], filter: MusicdleFilter): MusicdleSong[] {
     switch (filter.kind) {
       case 'collection':
         return songs.filter((song) => (filter.values ?? [filter.value]).includes(song.collection));
@@ -50,12 +88,28 @@ export class MusicdleCatalogService {
     }
   }
 
+  searchArtistOptions(
+    options: MusicdleArtistOption[],
+    query: string
+  ): MusicdleArtistOption[] {
+    const normalizedQuery = this.normalize(query);
+    if (!normalizedQuery) return options;
+    return options.filter((option) => this.normalize(option.label).includes(normalizedQuery));
+  }
+
   resolveFilter(
     filter: MusicdleFilter,
     options: MusicdleFilterOption[]
   ): MusicdleFilter | null {
+    const artistValues = this.unique(filter.artistValues ?? []);
     if (filter.kind !== 'collection') {
-      return options.find((option) => option.kind === filter.kind && option.value === filter.value) ?? null;
+      const selected = options.find(
+        (option) => option.kind === filter.kind && option.value === filter.value
+      );
+      return selected ? {
+        ...selected,
+        ...(artistValues.length ? { artistValues } : {}),
+      } : null;
     }
 
     const values = this.unique(filter.values ?? [filter.value]);
@@ -69,6 +123,7 @@ export class MusicdleCatalogService {
       value: values[0],
       values,
       label: selected.map((option) => option!.label).join(' + '),
+      ...(artistValues.length ? { artistValues } : {}),
     };
   }
 
@@ -114,6 +169,9 @@ export class MusicdleCatalogService {
       song.id &&
       song.title &&
       song.artist &&
+      Array.isArray(song.artists) &&
+      song.artists.length > 0 &&
+      song.artists.every((artist) => typeof artist === 'string' && artist.trim()) &&
       song.collection &&
       /^[\w-]{11}$/.test(song.youtubeVideoId) &&
       Number.isFinite(song.startSeconds) &&

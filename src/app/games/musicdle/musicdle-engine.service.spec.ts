@@ -14,6 +14,7 @@ describe('MusicdleEngineService', () => {
     id: 'target',
     title: 'Canción secreta',
     artist: 'Artista secreto',
+    artists: ['Artista secreto'],
     aliases: [],
     collection: 'Rock nacional',
     genres: ['Pop'],
@@ -34,6 +35,7 @@ describe('MusicdleEngineService', () => {
     ...wrong,
     id: 'other-artist',
     artist: 'Otro artista',
+    artists: ['Otro artista'],
     collection: 'Otra categoría',
   };
 
@@ -41,6 +43,7 @@ describe('MusicdleEngineService', () => {
     ...wrong,
     id: 'collaborating-artist',
     artist: 'Artista secreto feat. Artista invitado',
+    artists: ['Artista secreto', 'Artista invitado'],
   };
 
   beforeEach(() => {

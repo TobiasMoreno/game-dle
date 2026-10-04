@@ -54,6 +54,7 @@ describe('MusicdleCatalogService', () => {
       ...createSong('dragon-ball-gt-mi-corazon-encantado', 'Openings de anime'),
       title: 'Mi corazón encantado',
       artist: 'Aarón Montalvo',
+      artists: ['Aarón Montalvo'],
       aliases: ['Dragon Ball', 'Dragon Ball GT'],
     };
 
@@ -99,6 +100,7 @@ describe('MusicdleCatalogService', () => {
       ...createSong('desakta2-la-diabla', 'Cuarteto'),
       title: 'La diabla',
       artist: 'DesaKTa2',
+      artists: ['DesaKTa2'],
     };
 
     const results = service.searchSongs(
@@ -110,6 +112,64 @@ describe('MusicdleCatalogService', () => {
     expect(results.length).toBe(12);
     expect(results).toContain(desaktaSong);
   });
+
+  it('combina categorías y artistas, incluyendo colaboraciones', () => {
+    const dukiSolo = {
+      ...createSong('duki-solo', 'Trap argentino'),
+      artist: 'Duki',
+      artists: ['Duki'],
+    };
+    const collaboration = {
+      ...createSong('duki-bizarrap', 'Trap argentino'),
+      artist: 'Duki & Bizarrap',
+      artists: ['Duki', 'Bizarrap'],
+    };
+    const otherCategory = {
+      ...createSong('duki-latino', 'Trap latino'),
+      artist: 'Duki',
+      artists: ['Duki'],
+    };
+
+    const filtered = service.filterSongs(
+      [dukiSolo, collaboration, otherCategory],
+      {
+        kind: 'collection',
+        value: 'Trap argentino',
+        values: ['Trap argentino'],
+        artistValues: ['Duki'],
+        label: 'Trap argentino',
+      }
+    );
+
+    expect(filtered.map((song) => song.id)).toEqual(['duki-solo', 'duki-bizarrap']);
+  });
+
+  it('ofrece solo artistas de las categorías elegidas y cuenta canciones disponibles', () => {
+    const collaboration = {
+      ...createSong('duki-bizarrap', 'Trap argentino'),
+      artist: 'Duki & Bizarrap',
+      artists: ['Duki', 'Bizarrap'],
+    };
+    const solo = {
+      ...createSong('duki-solo', 'Trap argentino'),
+      artist: 'Duki',
+      artists: ['Duki'],
+    };
+    const rock = {
+      ...createSong('cerati-rock', 'Rock nacional'),
+      artist: 'Gustavo Cerati',
+      artists: ['Gustavo Cerati'],
+    };
+    const categorySongs = service.filterSongsByCategory(
+      [collaboration, solo, rock],
+      { kind: 'collection', value: 'Trap argentino', label: 'Trap argentino' }
+    );
+
+    expect(service.buildArtistOptions(categorySongs, new Set(['duki-solo']))).toEqual([
+      { value: 'Bizarrap', label: 'Bizarrap', availableSongs: 1 },
+      { value: 'Duki', label: 'Duki', availableSongs: 1 },
+    ]);
+  });
 });
 
 function createSong(id: string, collection: string): MusicdleSong {
@@ -117,6 +177,7 @@ function createSong(id: string, collection: string): MusicdleSong {
     id,
     title: id,
     artist: 'Artista',
+    artists: ['Artista'],
     aliases: [],
     collection,
     genres: ['Rock'],
